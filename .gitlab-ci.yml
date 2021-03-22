@@ -862,7 +862,7 @@ rhel8_deploy:
 
 rhel8_py36_deploy:
   stage: deploy
-  needs: [rhel8_package, rhel8_package_py36]
+  needs: [rhel8_package, rhel8_py36_package]
   extends: .package_build
   tags:
     - docker-executor
@@ -874,7 +874,7 @@ rhel8_py36_deploy:
     - python3 -c "import gpstk"
     - timeconvert
   dependencies:
-    - rhel8_package_py36
+    - rhel8_py36_package
     - rhel8_package
 
 
