@@ -46,6 +46,7 @@ find $RPM_BUILD_ROOT/usr/include/gpstk ! -name "*.i" ! -name "gpstk_swig.hpp" -t
 rm -rf $RPM_BUILD_ROOT/usr/bin/*
 rm -rf $RPM_BUILD_ROOT/usr/lib64/*
 rm -rf $RPM_BUILD_ROOT/usr/share/cmake/GPSTK
+rm -rf $RPM_BUILD_ROOT/usr/include
 
 
 %clean

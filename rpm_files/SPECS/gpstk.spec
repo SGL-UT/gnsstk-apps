@@ -38,6 +38,7 @@ make all -j 4
 cd build
 make install -j 4
 rm -rf $RPM_BUILD_ROOT/usr/README.md
+rm -rf $RPM_BUILD_ROOT/usr/include
 
 %clean
 rm -rf $RPM_BUILD_ROOT
