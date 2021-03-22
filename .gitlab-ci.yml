@@ -408,7 +408,7 @@ deb9_test:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
-    - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
   artifacts:
@@ -534,8 +534,9 @@ windows_test:
   timeout: 5m
 
 # User_Install Stage
-# Tests user install of GPSTk on each platform, saves artifacts for downstream builds.
-user_install_debian_9:
+# Tests user install of GPSTk on each platform, saves artifacts for
+# downstream builds.
+deb9_user_install:
   stage: install
   needs: [deb9_build]
   extends: .normal_build
@@ -543,6 +544,8 @@ user_install_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=`pwd`/install
     - export PYTHONPATH=$gpstk/lib/python2.7/site-packages
@@ -555,7 +558,7 @@ user_install_debian_9:
   dependencies:
     - deb9_build
 
-user_install_redhat:
+rhel7_user_install:
   stage: install
   needs: [rhel7_build]
   extends: .normal_build
@@ -563,6 +566,8 @@ user_install_redhat:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
@@ -573,7 +578,7 @@ user_install_redhat:
   dependencies:
     - rhel7_build
 
-user_install_redhat_8:
+rhel8_user_install:
   stage: install
   needs: [rhel8_build]
   extends: .normal_build
@@ -581,6 +586,8 @@ user_install_redhat_8:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
@@ -608,7 +615,7 @@ user_install_windows:
 
 # System Stage
 # Tests install of GPSTk on each platform, saves artifacts for downstream builds.
-system_install_debian_9:
+deb9_system_install:
   stage: install
   needs: [deb9_build]
   extends: .normal_build
@@ -616,6 +623,8 @@ system_install_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=/usr/local
     - export PYTHONPATH=$gpstk/lib/python2.7/site-packages
@@ -625,7 +634,7 @@ system_install_debian_9:
   dependencies:
     - deb9_build
 
-system_install_redhat:
+rhel7_system_install:
   stage: install
   needs: [rhel7_build]
   extends: .normal_build
@@ -633,6 +642,8 @@ system_install_redhat:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
@@ -640,7 +651,7 @@ system_install_redhat:
   dependencies:
     - rhel7_build
 
-system_install_redhat_8:
+rhel8_system_install:
   stage: install
   needs: [rhel8_build]
   extends: .normal_build
@@ -648,6 +659,8 @@ system_install_redhat_8:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export LD_LIBRARY_PATH=/usr/local/lib:$mdhtk/lib:$LD_LIBRARY_PATH
     - cd build
     - export gpstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
