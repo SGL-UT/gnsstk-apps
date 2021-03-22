@@ -1,5 +1,5 @@
-set( SD ${GPSTK_TEST_DATA_DIR} )
-set( TD ${GPSTK_TEST_OUTPUT_DIR} )
+set( SD ${NAVSAT_TOOLS_TEST_DATA_DIR} )
+set( TD ${NAVSAT_TOOLS_TEST_OUTPUT_DIR} )
 
 ###############################################################################
 # TEST rmwcheck

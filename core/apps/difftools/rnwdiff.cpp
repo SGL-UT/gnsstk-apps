@@ -97,15 +97,15 @@
  * \ref rmwdiff, \ref rowdiff
  */
 
-#include <RINEX3/Rinex3ObsFilterOperators.hpp>
-#include "FileFilterFrameWithHeader.hpp"
+#include <gpstk/Rinex3ObsFilterOperators.hpp>
+#include <gpstk/FileFilterFrameWithHeader.hpp>
 
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
-#include "Rinex3NavFilterOperators.hpp"
+#include <gpstk/Rinex3NavData.hpp>
+#include <gpstk/Rinex3NavStream.hpp>
+#include <gpstk/Rinex3NavFilterOperators.hpp>
 
 #include "DiffFrame.hpp"
-#include "YDSTime.hpp"
+#include <gpstk/YDSTime.hpp>
 
 using namespace std;
 using namespace gpstk;

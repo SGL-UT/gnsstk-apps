@@ -198,9 +198,11 @@ set( CPACK_INCLUDE_TOPLEVEL_DIRECTORY "OFF" )
 set( CPACK_PACKAGE_INSTALL_DIRECTORY "gpstk")
 set( CPACK_TOPLEVEL_TAG "gpstk" ) 
 
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.13)" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.13), gpstk (>= 11.0.0)" )
 set( CPACK_DEBIAN_SECTION "stable" )
 set( CPACK_DEBIAN_PACKAGE_SECTION "science" )
+
+set( CPACK_RPM_PACKAGE_REQUIRES "gpstk >= 11.0.0" )
 
 set( CPACK_SOURCE_IGNORE_FILES "build/" "build-.*/" "examples/" "ref/" ".*/[.].*" )
 set( CPACK_SOURCE_GENERATOR "TGZ")

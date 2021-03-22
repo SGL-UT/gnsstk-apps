@@ -22,7 +22,7 @@ ComputeRAIMSolution.cpp
 EditRawDataBuffers.cpp
 StochasticModels.cpp
 )
-target_link_libraries(baselib gpstk)
+target_link_libraries(baselib ${SUPPORTLIBS})
 
 add_executable(DDBase DDBase.cpp)
 target_link_libraries(DDBase baselib)
