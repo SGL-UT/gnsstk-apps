@@ -776,6 +776,7 @@ rhel7_package:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - bash rpm_files/setup_dirs.sh
     - git archive --prefix gpstk-master/ -o rpm_files/SOURCES/gpstk-master.tar.gz HEAD
     - pushd rpm_files
@@ -794,6 +795,7 @@ rhel8_package:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - bash rpm_files/setup_dirs.sh
     - git archive --prefix gpstk-master/ -o rpm_files/SOURCES/gpstk-master.tar.gz HEAD
     - pushd rpm_files
