@@ -255,7 +255,7 @@ conda_py27_build:
   image: $DOCKER_REGISTRY/deb9_conda_py27
   script:
     # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash debian/install_required_deps_debian.sh package_conda $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py27
@@ -277,7 +277,7 @@ conda_py36_build:
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
     # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash debian/install_required_deps_debian.sh package_conda $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py36
@@ -369,6 +369,7 @@ deb7_test:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_7 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
     - touch $CI_PROJECT_DIR/success
@@ -389,9 +390,9 @@ deb8_test:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
@@ -407,9 +408,9 @@ deb9_test:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
@@ -426,9 +427,9 @@ deb10_test:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
@@ -445,10 +446,10 @@ conda_py27_test:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py27
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - conda activate py27
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
@@ -465,10 +466,10 @@ conda_py36_test:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - conda activate py36
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
@@ -485,6 +486,7 @@ rhel7_test:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
   artifacts:
@@ -502,6 +504,7 @@ rhel8_test:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
   artifacts:
