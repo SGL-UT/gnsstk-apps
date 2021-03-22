@@ -55,7 +55,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc RELNOTES.md PYTHON.md
-/usr/include/gpstk
 /usr/lib/python2.7/site-packages/gpstk
 /usr/lib/python2.7/site-packages/gpstk-%{version}-py2.7.egg-info
 
