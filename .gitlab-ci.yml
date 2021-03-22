@@ -255,7 +255,7 @@ conda_py27_build:
   image: $DOCKER_REGISTRY/deb9_conda_py27
   script:
     # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash debian/install_required_deps_debian.sh package_conda $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py27
@@ -277,7 +277,7 @@ conda_py36_build:
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
     # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash debian/install_required_deps_debian.sh package_conda $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py36
@@ -319,7 +319,7 @@ rhel8_build:
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
     # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - mkdir build
