@@ -47,7 +47,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc README.md COPYING.md RELNOTES.md
 /usr/bin/*
-/usr/share/cmake/GPSTK
 
 
 %changelog
