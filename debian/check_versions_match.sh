@@ -39,7 +39,7 @@ fixcmd() {
 
 
 CHANGELOG_UPSTREAM_VER=`dpkg-parsechangelog  | sed -ne "s/Version: \([[:digit:]]\+:\)\?\(.\+\)\(-.\+\)/\2/p"`
-SOURCE_VER=$(get_cmake_var GPSTK_VERSION_MAJOR).$(get_cmake_var GPSTK_VERSION_MINOR).$(get_cmake_var GPSTK_VERSION_PATCH)
+SOURCE_VER=$(get_cmake_var NAVSAT_TOOLS_VERSION_MAJOR).$(get_cmake_var NAVSAT_TOOLS_VERSION_MINOR).$(get_cmake_var NAVSAT_TOOLS_VERSION_PATCH)
 
 if [ ! $CHANGELOG_UPSTREAM_VER = $SOURCE_VER ]
 then
