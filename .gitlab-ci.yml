@@ -679,6 +679,8 @@ deb8_package:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - rm -rf ../*.deb
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
@@ -704,6 +706,8 @@ deb9_package:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - rm -rf ../*.deb
     - dpkg-buildpackage --build-profiles=pkg_python -us -uc -d --changes-option="-DDistribution=stretch-sgl"
     - mkdir debs
@@ -726,6 +730,8 @@ deb10_package:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - rm -rf ../*.deb
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.

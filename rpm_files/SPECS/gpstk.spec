@@ -46,9 +46,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc README.md COPYING.md RELNOTES.md
-/usr/include/gpstk
 /usr/bin/*
-/usr/lib64/*
 /usr/share/cmake/GPSTK
 
 
