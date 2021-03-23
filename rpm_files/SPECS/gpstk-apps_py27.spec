@@ -42,7 +42,6 @@ cd build
 make install -j 4
 # Currently the CMAKE installer cannot install python only, so we need to delete the non-python files.
 rm -rf $RPM_BUILD_ROOT/usr/README.md
-find $RPM_BUILD_ROOT/usr/include/gpstk ! -name "*.i" ! -name "gpstk_swig.hpp" -type f -exec rm {} +
 rm -rf $RPM_BUILD_ROOT/usr/bin/*
 rm -rf $RPM_BUILD_ROOT/usr/lib64/*
 rm -rf $RPM_BUILD_ROOT/usr/share/cmake/GPSTK
