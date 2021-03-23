@@ -1,4 +1,4 @@
-%define name gpstk
+%define name gpstk-apps
 %define version 11.0.0
 %define release 1
 

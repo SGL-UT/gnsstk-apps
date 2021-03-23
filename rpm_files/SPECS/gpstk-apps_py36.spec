@@ -1,4 +1,4 @@
-%define name python3-gpstk
+%define name python3-gpstk-apps
 %define version 11.0.0
 %define release 1
 
@@ -55,8 +55,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 %doc RELNOTES.md PYTHON.md
-/usr/lib/python3.6/site-packages/gpstk
-/usr/lib/python3.6/site-packages/gpstk-%{version}-py3.6.egg-info
+/usr/lib/python3.6/site-packages/gpstk-apps
+/usr/lib/python3.6/site-packages/gpstk-apps-%{version}-py3.6.egg-info
 
 
 %changelog
