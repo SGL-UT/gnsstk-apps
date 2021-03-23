@@ -820,6 +820,7 @@ rhel8_py36_package:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - bash rpm_files/setup_dirs.sh
     - git archive --prefix python3-gpstk-master/ -o rpm_files/SOURCES/python3-gpstk-master.tar.gz HEAD
     - pushd rpm_files
@@ -840,6 +841,8 @@ deb8_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd debs
     - sudo dpkg -i ./*.deb
     - timeconvert
@@ -854,6 +857,8 @@ deb9_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd debs
     - sudo apt-get -y install ./*.deb
     - python -c "import gpstk"
@@ -869,6 +874,8 @@ deb10_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd debs
     - sudo apt-get -y install ./*.deb
     - python -c "import gpstk"
@@ -884,6 +891,8 @@ rhel7_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd rpm_files/RPMS/x86_64/
     - sudo yum install gpstk-*.rpm -y
     - timeconvert
@@ -898,6 +907,8 @@ rhel8_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd rpm_files/RPMS/x86_64/
     - sudo yum install gpstk-*.rpm -y
     - timeconvert
@@ -912,6 +923,8 @@ rhel8_py36_deploy:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd rpm_files/RPMS/x86_64/
     - sudo yum install gpstk-*.rpm -y
     - sudo yum install python3-gpstk-*.rpm -y
