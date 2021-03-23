@@ -693,10 +693,9 @@ deb8_package:
     - mv ../*.dsc debs
     - mv ../*.git debs
   artifacts:
+    when: always
     paths:
-      on_success:
         - debs/
-      on_failure:
         - debian/
   dependencies:
     - deb8_build
