@@ -694,7 +694,10 @@ deb8_package:
     - mv ../*.git debs
   artifacts:
     paths:
-    - debs/
+      on_success:
+        - debs/
+      on_failure:
+        - debian/
   dependencies:
     - deb8_build
 
