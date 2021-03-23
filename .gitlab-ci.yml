@@ -809,10 +809,13 @@ rhel8_package:
     - pushd rpm_files
     - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk-apps.spec
   artifacts:
+    when: always
     paths:
-      - rpm_files/RPMS/x86_64/gpstk-*
-      - rpm_files/SRPMS/gpstk-*
+      - rpm_files/
   dependencies: []
+
+#      - rpm_files/RPMS/x86_64/gpstk-*
+#      - rpm_files/SRPMS/gpstk-*
 
 rhel8_py36_package:
   stage: package
