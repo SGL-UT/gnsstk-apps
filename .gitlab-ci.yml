@@ -20,7 +20,7 @@ variables:
   CMAKE_ARG_DEFAULT: "-DBUILD_EXT=ON -DBUILD_PYTHON=ON -DTEST_SWITCH=ON -DPIP_WHEEL_SWITCH=ON ../"
   DOCKER_REGISTRY: "modisdev:5000/sgl_ci"
   # this can be used for incremental builds
-  GIT_CLEAN_FLAGS: none
+  # GIT_CLEAN_FLAGS: none
   # This can be set to True by Gitlab UI to only build/test packages.
   RELEASE_ONLY: "False"
   # When building packages, this determines which branch gpstk/sgltk
