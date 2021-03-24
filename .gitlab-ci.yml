@@ -20,7 +20,7 @@ variables:
   CMAKE_ARG_DEFAULT: "-DBUILD_EXT=ON -DBUILD_PYTHON=ON -DTEST_SWITCH=ON -DPIP_WHEEL_SWITCH=ON ../"
   DOCKER_REGISTRY: "modisdev:5000/sgl_ci"
   # this can be used for incremental builds
-  #  GIT_CLEAN_FLAGS: none
+  GIT_CLEAN_FLAGS: none
   # This can be set to True by Gitlab UI to only build/test packages.
   RELEASE_ONLY: "False"
   # When building packages, this determines which branch gpstk/sgltk
@@ -341,9 +341,9 @@ windows_build:
     - win10
   script:
 # incremental builds
-#    - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
+    - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
 # non-incremental builds
-    - mkdir build
+#    - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DBUILD_PYTHON=OFF -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
     - cmake --build . --config Release
@@ -351,9 +351,9 @@ windows_build:
     paths:
     - build/
 # used for incremental builds
-#  cache:
-#    paths:
-#    - build/
+  cache:
+    paths:
+    - build/
   timeout: 30m
 # Temporarily allow failures as Windows Runner issues are resolved
   allow_failure: true
@@ -818,25 +818,6 @@ rhel8_package:
 #      - rpm_files/RPMS/x86_64/gpstk-*
 #      - rpm_files/SRPMS/gpstk-*
 
-rhel8_py36_package:
-  stage: package
-  needs: []
-  extends: .package_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
-    - bash rpm_files/setup_dirs.sh
-    - git archive --prefix python3-gpstk-apps-master/ -o rpm_files/SOURCES/python3-gpstk-apps-master.tar.gz HEAD
-    - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk-apps_py36.spec
-  artifacts:
-    paths:
-      - rpm_files/RPMS/x86_64/python3-gpstk-*
-      - rpm_files/SRPMS/python3-gpstk-*
-  dependencies: []
-
 # Deploy Stage
 # Tests install of GPSTk package on each platform, saves artifacts for downstream builds.
 deb8_deploy:
@@ -921,26 +902,8 @@ rhel8_deploy:
   dependencies:
     - rhel8_package
 
-rhel8_py36_deploy:
-  stage: deploy
-  needs: [rhel8_package, rhel8_py36_package]
-  extends: .package_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
-  script:
-    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
-    - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gpstk-*.rpm -y
-    - sudo yum install python3-gpstk-*.rpm -y
-    - python3 -c "import gpstk"
-    - timeconvert
-  dependencies:
-    - rhel8_py36_package
-    - rhel8_package
-
-
+# This requires a third-party package called NSIS.  We don't have it
+# installed and don't have the resources to make it work right now.
 # windows_package:
 #   stage: package
 #   tags:
