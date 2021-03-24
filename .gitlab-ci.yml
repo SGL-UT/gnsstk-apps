@@ -349,7 +349,7 @@ windows_build:
 # non-incremental builds
 #    - mkdir build
     - cd build
-    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\share\cmake\GPSTK
+    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - echo %GPSTK_DIR%
     - dir /s %CI_PROJECT_DIR%
     - dir %GPSTK_DIR%
