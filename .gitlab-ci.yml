@@ -342,13 +342,14 @@ windows_build:
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
     - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/2/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - cd
     - 7z x -olibrary gpstk_win.zip
 # incremental builds
     - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
 # non-incremental builds
 #    - mkdir build
     - cd build
-    - SET GPSTK_DIR=%CI_PROJECT_DIR%/library/build/share/cmake/GPSTK
+    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\share\cmake\GPSTK
     - echo %GPSTK_DIR%
     - dir %GPSTK_DIR%
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DBUILD_PYTHON=OFF -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
