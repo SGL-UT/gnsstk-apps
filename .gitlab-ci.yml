@@ -351,8 +351,8 @@ windows_build:
     - cd build
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\share\cmake\GPSTK
     - echo %GPSTK_DIR%
+    - dir /s %CI_PROJECT_DIR%
     - dir %GPSTK_DIR%
-    - dir %CI_PROJECT_DIR%
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DBUILD_PYTHON=OFF -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
     - cmake --build . --config Release
   artifacts:
