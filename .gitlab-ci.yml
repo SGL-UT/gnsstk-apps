@@ -176,7 +176,7 @@ deb7_build:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
@@ -198,7 +198,7 @@ deb8_build:
     - bash debian/install_required_deps_debian.sh package_debian_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
-    - mkdir build
+    - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DCMAKE_PREFIX_PATH=/usr/local -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
     - make all -j 4
@@ -218,7 +218,7 @@ deb9_build:
     - bash debian/install_required_deps_debian.sh package_debian_9 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -239,7 +239,7 @@ deb10_build:
     - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -261,7 +261,7 @@ conda_py27_build:
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py27
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -283,7 +283,7 @@ conda_py36_build:
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
     - conda activate py36
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -304,7 +304,7 @@ rhel7_build:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
@@ -324,7 +324,7 @@ rhel8_build:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - export buildroot=`pwd`
     - export LD_LIBRARY_PATH=/usr/local/lib
-    - mkdir build
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
