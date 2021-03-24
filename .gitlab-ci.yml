@@ -1,8 +1,10 @@
 #.yml file for Gitlab-CI support
 
 # Note that the following tokens must be supplied via the Gitlab Repository Settings:
-# - CI_USER: username to pull from gitlab repository
-# - CI_TOKEN: password to pull from gitlab repository
+# - CI_USER: username to pull from gitlab repository in sgl-tks group
+# - CI_TOKEN: password to pull from gitlab repository in sgl-tks group
+# - CI_USER_SGL: username to pull from gitlab repository in sgl group
+# - CI_TOKEN_SGL: password to pull from gitlab repository in sgl group
 
 stages:
   - check
@@ -81,7 +83,7 @@ sgllint_lint:
     - '######'
     - conda activate py27
     # Obtain the latest version of ./sgl_lint.py
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
+    - git clone --depth 1 https://${CI_USER_SGL}:${CI_TOKEN_SGL}@${REPO_HOST}/sgl/repo_utils.git
     - python repo_utils/sgl_lint.py -v -R core
     - python repo_utils/sgl_lint.py -v -R ext
     - python repo_utils/sgl_lint.py -v -R swig/apps
@@ -100,7 +102,7 @@ protected_term_lint:
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
     - '######'
     - conda activate py36
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
+    - git clone --depth 1 https://${CI_USER_SGL}:${CI_TOKEN_SGL}@${REPO_HOST}/sgl/repo_utils.git
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - git fetch origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
     - bash repo_utils/dw_search/modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
@@ -120,7 +122,7 @@ protected_history_lint:
     - '# This job checks all files modified on this branch for sensitive terms.'
     - '######'
     - conda activate py36
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
+    - git clone --depth 1 https://${CI_USER_SGL}:${CI_TOKEN_SGL}@${REPO_HOST}/sgl/repo_utils.git
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - git fetch origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
     - bash repo_utils/dw_search/history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
@@ -760,12 +762,11 @@ conda_package:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
+    - bash conda_recipe/get_required_deps_conda.sh $GPSTK_COMMIT
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
-    # Build Conda Py36 package
-    - conda-build conda_recipe_py36
-    # Build Conda Py27 package
-    - conda-build conda_recipe
+    - conda index conda-bld
+    - conda-build conda_recipe --override-channels -c file://$PWD/conda-bld/
     # Copy files to local directory for archiving.
     - mkdir -p conda-bld
     - cp -r $CONDA_PREFIX/conda-bld/* conda-bld/
