@@ -191,7 +191,6 @@ deb7_build:
   artifacts:
     paths:
       - build/
-  allow_failure: true
 
 deb8_build:
   stage: build
@@ -348,7 +347,7 @@ windows_build:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
 # incremental builds
@@ -366,8 +365,6 @@ windows_build:
 #    paths:
 #    - build/
   timeout: 30m
-# Temporarily allow failures as Windows Runner issues are resolved
-  allow_failure: true
 
 
 # Test Stage
@@ -399,8 +396,6 @@ deb7_test:
     - build/Testing/Temporary/
   dependencies:
     - deb7_build
-  # Allowing failure since this is unlikely to be fixed before we deprecate debian-7
-  allow_failure: true
 
 deb8_test:
   stage: test
@@ -542,7 +537,7 @@ windows_test:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
@@ -554,7 +549,6 @@ windows_test:
     - build/swig/
   dependencies:
     - windows_build
-  allow_failure: true
   timeout: 5m
 
 # User_Install Stage
@@ -630,7 +624,7 @@ user_install_windows:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
@@ -638,7 +632,6 @@ user_install_windows:
   dependencies:
     - windows_build
 # Temporarily allow failures as Windows Runner issues are resolved
-  allow_failure: true
   timeout: 10m
 
 # System Stage
