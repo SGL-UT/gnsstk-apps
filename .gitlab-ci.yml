@@ -382,13 +382,6 @@ deb7_test:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
-    - mkdir packages
-    - cd packages
-    - 'curl --output gpstk_deb.zip --header "PRIVATE-TOKEN: ${CI_API_TOKEN}" https://$REPO_HOST/api/v4/projects/$PROJ_GPSTK/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7'
-    - unzip gpstk_deb.zip
-    - export GPSTK_DIR=`pwd`/build/install/share/cmake/GPSTK
-    - cd ..
-    - bash debian/install_required_deps_debian.sh package_debian_7 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
     - touch $CI_PROJECT_DIR/success
