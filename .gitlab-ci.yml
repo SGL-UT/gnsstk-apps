@@ -254,6 +254,51 @@ deb10_build:
     paths:
       - build/
 
+deb10_op1_build:
+  stage: build
+  needs: []
+  extends: .normal_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/debian10_fai_ish
+  script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export buildroot=`pwd`
+    - export LD_LIBRARY_PATH=/usr/local/lib
+    - mkdir -p build
+    - cd build
+    - export gpstk=`pwd`/install
+    - echo "find_package( sgltk CONFIG )" >>ExtLinkage.cmake
+    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
+deb10_op2_build:
+  stage: build
+  needs: []
+  extends: .normal_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/debian10_fai_ish
+  script:
+    # Install gpstk/sgltk/betatk from latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
+    - export buildroot=`pwd`
+    - export LD_LIBRARY_PATH=/usr/local/lib
+    - mkdir -p build
+    - cd build
+    - export gpstk=`pwd`/install
+    - echo "find_package( sgltk CONFIG )" >>ExtLinkage.cmake
+    - echo "find_package( mdhtk CONFIG )" >>ExtLinkage.cmake
+    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
 conda_py27_build:
   stage: build
   needs: []
