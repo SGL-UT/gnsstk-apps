@@ -382,6 +382,8 @@ deb7_test:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
+    - export gpstk=`pwd`/packages/build/install
+    - export LD_LIBRARY_PATH=$gpstk/lib:$gpstk/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH
     - cd build
     - ctest -j 4
     - touch $CI_PROJECT_DIR/success
