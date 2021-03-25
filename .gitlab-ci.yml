@@ -29,6 +29,7 @@ variables:
   SGLTK_COMMIT: "main"
   BETATK_COMMIT: "main"
   MDHTK_COMMIT: "master"
+  PROJ_GPSTK: "2"
 
 # Template for all normal jobs.
 .normal_build:
@@ -176,6 +177,12 @@ deb7_build:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
+    - mkdir packages
+    - cd packages
+    - wget --no-verbose -O gpstk_deb.zip --header=PRIVATE-TOKEN:${CI_API_TOKEN} https://$REPO_HOST/api/v4/projects/$PROJ_GPSTK/jobs/artifacts/${GPSTK_BRANCH}/download?job=${DEBIAN_JOB}
+    - unzip gpstk_deb.zip
+    - export GPSTK_DIR=`pwd`/build/install/share/cmake/GPSTK
+    - cd ..
     - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
@@ -341,7 +348,7 @@ windows_build:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/2/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
 # incremental builds
@@ -375,6 +382,12 @@ deb7_test:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
+    - mkdir packages
+    - cd packages
+    - wget --no-verbose -O gpstk_deb.zip --header=PRIVATE-TOKEN:${CI_API_TOKEN} https://$REPO_HOST/api/v4/projects/$PROJ_GPSTK/jobs/artifacts/${GPSTK_BRANCH}/download?job=${DEBIAN_JOB}
+    - unzip gpstk_deb.zip
+    - export GPSTK_DIR=`pwd`/build/install/share/cmake/GPSTK
+    - cd ..
     - bash debian/install_required_deps_debian.sh package_debian_7 $GPSTK_COMMIT $SGLTK_COMMIT $BETATK_COMMIT $MDHTK_COMMIT
     - cd build
     - ctest -j 4
@@ -528,7 +541,7 @@ windows_test:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/2/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
@@ -616,7 +629,7 @@ user_install_windows:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/2/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
+    - curl --output gpstk_win.zip https://%REPO_HOST%/api/v4/projects/%PROJ_GPSTK%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows
     - 7z x -olibrary gpstk_win.zip
     - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
