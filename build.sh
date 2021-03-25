@@ -299,10 +299,6 @@ if [ $build_packages ]; then
             run make package
             run make package_source
     esac
-    # if [[ -z $exclude_python && $build_ext ]] ; then
-    #     cd "$build_root"/swig/install_package
-    #     ${python_exe} setup.py sdist --formats=zip,gztar
-    # fi
 fi
 
 log
