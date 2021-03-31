@@ -15,3 +15,7 @@ install (TARGETS RinSum DESTINATION "${CMAKE_INSTALL_BINDIR}")
 add_executable(scanBrdcFile scanBrdcFile.cpp)
 target_link_libraries(scanBrdcFile ${SUPPORTLIBS})
 install (TARGETS scanBrdcFile DESTINATION "${CMAKE_INSTALL_BINDIR}")
+
+add_executable(youwillfail youwillfail.cpp)
+target_link_libraries(youwillfail ${SUPPORTLIBS})
+install (TARGETS youwillfail DESTINATION "${CMAKE_INSTALL_BINDIR}")
