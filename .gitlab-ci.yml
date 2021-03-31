@@ -68,6 +68,7 @@ variables:
 static_analysis:
   stage: check
   needs: []
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -141,6 +142,7 @@ protected_history_lint:
 generate_documentation:
   stage: check
   needs: []
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -159,6 +161,7 @@ generate_documentation:
 repository_validation:
   stage: check
   needs: []
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -378,6 +381,7 @@ rhel7_build:
 rhel8_build:
   stage: build
   needs: []
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -752,7 +756,7 @@ rhel8_system_install:
 deb8_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
@@ -781,7 +785,7 @@ deb8_package:
 deb9_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -805,7 +809,7 @@ deb9_package:
 deb10_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -833,7 +837,7 @@ deb10_package:
 conda_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -856,7 +860,7 @@ conda_package:
 rhel7_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -875,7 +879,7 @@ rhel7_package:
 rhel8_package:
   stage: package
   needs: []
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -899,7 +903,7 @@ rhel8_package:
 deb8_deploy:
   stage: deploy
   needs: [deb8_package]
-  extends: .package_build
+  extends: .dont_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
