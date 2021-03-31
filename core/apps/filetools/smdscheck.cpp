@@ -74,6 +74,7 @@ SatMetaDataStoreCheck(const string& applName)
         satMetaOpt('M', "svconfig", "File containing satellite configuration"
                    " information for mapping SVN<->PRN", true)
 {
+   dummyTest();
 }
 
 
