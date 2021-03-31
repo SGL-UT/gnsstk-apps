@@ -177,6 +177,7 @@ deb7_build:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
+    - set
     - mkdir packages
     - cd packages
     - 'echo curl --output gpstk_deb.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://${REPO_HOST}/api/v4/projects/${PROJ_GPSTK}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
