@@ -191,7 +191,9 @@ deb7_build:
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
     - make all -j 4
   artifacts:
+    when: always
     paths:
+      - packages/gpstk_deb.zip
       - build/
 
 deb8_build:
