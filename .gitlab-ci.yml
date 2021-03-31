@@ -187,7 +187,7 @@ deb7_build:
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
     - set
-    - mkdir packages
+    - mkdir -p packages
     - cd packages
     #- 'echo curl --output gpstk_deb.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://${REPO_HOST}/api/v4/projects/${PROJ_GPSTK}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
     #- 'curl --output gpstk_deb.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://${REPO_HOST}/api/v4/projects/${PROJ_GPSTK}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
@@ -440,9 +440,9 @@ deb7_test:
     - deb7-support
   image: $DOCKER_REGISTRY/debian7_fai_ish
   script:
-    - mkdir packages
+    - mkdir -p packages
     - cd packages
-    - 'curl --output gpstk_deb.zip --header "PRIVATE-TOKEN: ${CI_API_TOKEN}" https://${REPO_HOST}/api/v4/projects/${PROJ_GPSTK}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7'
+    - 'curl --output gpstk_deb.zip --header "PRIVATE-TOKEN: $CI_API_TOKEN" "${CI_API_V4_URL}/projects/${PROJ_GPSTK}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
     - unzip gpstk_deb.zip
     - export GPSTK_DIR=`pwd`/build/install/share/cmake/GPSTK
     - cd ..
