@@ -57,6 +57,12 @@ variables:
       - tags
       - /^tag_.*$/
 
+# Template for disabling stages
+.dont_build:
+  only:
+    refs:
+      - /^do_not_build.*$/
+
 # Check Stage
 # Runs static analysis on code.
 static_analysis:
