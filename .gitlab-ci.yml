@@ -25,7 +25,7 @@ variables:
   RELEASE_ONLY: "False"
   # When building packages, this determines which branch gpstk/sgltk
   # artifacts are pulled from.
-  GPSTK_COMMIT: "ci_issue_475"
+  #GPSTK_COMMIT: "ci_issue_475"
   SGLTK_COMMIT: "main"
   BETATK_COMMIT: "main"
   MDHTK_COMMIT: "master"
