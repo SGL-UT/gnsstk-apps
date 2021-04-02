@@ -61,7 +61,7 @@ variables:
 static_analysis:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -74,7 +74,7 @@ static_analysis:
 sgllint_lint:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_conda_py27:latest
@@ -94,7 +94,7 @@ sgllint_lint:
 protected_term_lint:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36:latest
@@ -114,7 +114,7 @@ protected_term_lint:
 protected_history_lint:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36:latest
@@ -135,7 +135,7 @@ protected_history_lint:
 generate_documentation:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -154,7 +154,7 @@ generate_documentation:
 repository_validation:
   stage: check
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -202,7 +202,7 @@ deb7_build:
 deb8_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .big_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
@@ -222,7 +222,7 @@ deb8_build:
 deb9_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -243,7 +243,7 @@ deb9_build:
 deb10_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -264,7 +264,7 @@ deb10_build:
 deb10_op1_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -286,7 +286,7 @@ deb10_op1_build:
 deb10_op2_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -309,7 +309,7 @@ deb10_op2_build:
 conda_py27_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py27
@@ -331,7 +331,7 @@ conda_py27_build:
 conda_py36_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -353,7 +353,7 @@ conda_py36_build:
 rhel7_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -374,7 +374,7 @@ rhel7_build:
 rhel8_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -395,7 +395,7 @@ rhel8_build:
 windows_build:
   stage: build
   needs: []
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - win10
   script:
@@ -454,7 +454,7 @@ deb7_test:
 deb8_test:
   stage: test
   needs: [deb8_build]
-  extends: .dont_build
+  extends: .big_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
@@ -472,7 +472,7 @@ deb8_test:
 deb9_test:
   stage: test
   needs: [deb9_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -491,7 +491,7 @@ deb9_test:
 deb10_test:
   stage: test
   needs: [deb10_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -510,7 +510,7 @@ deb10_test:
 conda_py27_test:
   stage: test
   needs: [conda_py27_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py27
@@ -530,7 +530,7 @@ conda_py27_test:
 conda_py36_test:
   stage: test
   needs: [conda_py36_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -550,7 +550,7 @@ conda_py36_test:
 rhel7_test:
   stage: test
   needs: [rhel7_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -568,7 +568,7 @@ rhel7_test:
 rhel8_test:
   stage: test
   needs: [rhel8_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -586,7 +586,7 @@ rhel8_test:
 windows_test:
   stage: test
   needs: [windows_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - win10
   script:
@@ -611,7 +611,7 @@ windows_test:
 deb9_user_install:
   stage: install
   needs: [deb9_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -633,7 +633,7 @@ deb9_user_install:
 rhel7_user_install:
   stage: install
   needs: [rhel7_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -653,7 +653,7 @@ rhel7_user_install:
 rhel8_user_install:
   stage: install
   needs: [rhel8_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -673,7 +673,7 @@ rhel8_user_install:
 user_install_windows:
   stage: install
   needs: [windows_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - win10
   script:
@@ -693,7 +693,7 @@ user_install_windows:
 deb9_system_install:
   stage: install
   needs: [deb9_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -712,7 +712,7 @@ deb9_system_install:
 rhel7_system_install:
   stage: install
   needs: [rhel7_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -729,7 +729,7 @@ rhel7_system_install:
 rhel8_system_install:
   stage: install
   needs: [rhel8_build]
-  extends: .dont_build
+  extends: .normal_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -749,7 +749,7 @@ rhel8_system_install:
 deb8_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
@@ -778,7 +778,7 @@ deb8_package:
 deb9_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -802,7 +802,7 @@ deb9_package:
 deb10_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -830,7 +830,7 @@ deb10_package:
 conda_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -853,7 +853,7 @@ conda_package:
 rhel7_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -872,7 +872,7 @@ rhel7_package:
 rhel8_package:
   stage: package
   needs: []
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -896,7 +896,7 @@ rhel8_package:
 deb8_deploy:
   stage: deploy
   needs: [deb8_package]
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
@@ -912,7 +912,7 @@ deb8_deploy:
 deb9_deploy:
   stage: deploy
   needs: [deb9_package]
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -929,7 +929,7 @@ deb9_deploy:
 deb10_deploy:
   stage: deploy
   needs: [deb10_package]
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -946,7 +946,7 @@ deb10_deploy:
 rhel7_deploy:
   stage: deploy
   needs: [rhel7_package]
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -962,7 +962,7 @@ rhel7_deploy:
 rhel8_deploy:
   stage: deploy
   needs: [rhel8_package]
-  extends: .dont_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
