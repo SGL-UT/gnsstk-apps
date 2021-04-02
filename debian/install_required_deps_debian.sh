@@ -15,7 +15,7 @@ SGLTK_BRANCH=${3:-main}
 BETATK_BRANCH=${4:-main}
 MDHTK_BRANCH=${5:-master}
 
-echo "Downloading compiled binary artifacts from: $DEBIAN_JOB, $BRANCH"
+echo "Downloading compiled binary artifacts from: $DEBIAN_JOB, $GPSTK_BRANCH"
 
 mkdir packages
 pushd packages

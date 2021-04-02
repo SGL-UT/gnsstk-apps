@@ -15,7 +15,7 @@ SGLTK_BRANCH=${3:-main}
 BETATK_BRANCH=${4:-main}
 MDHTK_BRANCH=${5:-master}
 
-echo "Downloading compiled binary artifacts from: $PY_PACKAGE_JOB, $BRANCH"
+echo "Downloading compiled binary artifacts from: $PACKAGE_JOB, $GPSTK_BRANCH"
 mkdir packages
 pushd packages
 wget --no-verbose -O gpstk_rpm.zip $TOKEN $REPO_URL/api/v4/projects/$PROJ_GPSTK/jobs/artifacts/${GPSTK_BRANCH}/download?job=${PACKAGE_JOB}
