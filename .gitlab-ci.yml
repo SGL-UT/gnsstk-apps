@@ -608,6 +608,40 @@ windows_test:
 # User_Install Stage
 # Tests user install of GPSTk on each platform, saves artifacts for
 # downstream builds.
+deb7_user_install:
+  stage: install
+  needs: [deb7_build]
+  extends: .big_build
+  tags:
+    - docker-executor
+    # Not all docker runners support debian 7
+    - deb7-support
+  image: $DOCKER_REGISTRY/debian7_fai_ish
+  script:
+    - set
+    - mkdir -p packages
+    - cd packages
+    #- 'echo curl --output gpstk_deb.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://${REPO_HOST}/api/v4/projects/${GPSTK_PROJID}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
+    #- 'curl --output gpstk_deb.zip --header "JOB-TOKEN: $CI_JOB_TOKEN" "https://${REPO_HOST}/api/v4/projects/${GPSTK_PROJID}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
+    - 'echo curl --output gpstk_deb.zip --header "PRIVATE-TOKEN: $CI_API_TOKEN" "${CI_API_V4_URL}/projects/${GPSTK_PROJID}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
+    - 'curl --output gpstk_deb.zip --header "PRIVATE-TOKEN: $CI_API_TOKEN" "${CI_API_V4_URL}/projects/${GPSTK_PROJID}/jobs/artifacts/${GPSTK_COMMIT}/download?job=user_install_debian_7"'
+    - unzip gpstk_deb.zip
+    - export GPSTK_DIR=`pwd`/build/install/share/cmake/GPSTK
+    - cd ..
+    - export sgltk=`pwd`/build/install
+    - export LD_LIBRARY_PATH=/usr/local/lib:$sgltk/lib:$LD_LIBRARY_PATH
+    - export P_SITE_PACKAGES=lib/python2.7/site-packages
+    - export PYTHONPATH=$sgltk/$P_SITE_PACKAGES:$PYTHONPATH
+    - cd build
+    - make install -j 4
+    # todo figure out a way to verify the install given that we have no
+    # applications and aren't building swig bindings on debian 7
+  artifacts:
+    paths:
+      - build/install
+  dependencies:
+    - deb7_build
+
 deb9_user_install:
   stage: install
   needs: [deb9_build]
