@@ -88,7 +88,7 @@ EOF
 }
 
 
-while getopts ":hb:cdepi:j:xnP:sutTgv" OPTION; do
+while getopts ":hb:cdepi:j:nP:F:sutTv" OPTION; do
     case $OPTION in
         h) usage
            exit 0
