@@ -1,5 +1,5 @@
 %define name gpstk-apps
-%define version 11.0.0
+%define version 12.0.0
 %define release 1
 
 Summary:        GPS Toolkit
@@ -51,6 +51,47 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Aug 19 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v12.0.0 release
+- gitlab yaml cleanup v2
+- Try to make debian packaging consistent
+- Remove unneeded debian package cruft and set package version for cpack
+- Pull gpstk packages from split branch
+- Remove all debian packages from control file except applications
+- First cut at making an apps-only build/repo
+* Thu Jul 22 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v11.2.1 release
+- Updated git url ref to new sgl-git
+* Thu Jun 17 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v11.2.0 release
+- Reformat Position tests (Position_T.cpp) to follow style.
+- Fix typo bugs in two trop models.
+- Add fortify pipeline yaml file
+- Fix VectorOperators.hpp to put math functions in std namespace.
+- Change header-file installation for debian to use versioned path names.
+- Fix pipeline yaml for protected jobs.
+- Fix library SONAME: use only major version
+- Fix CNavMidiAlm to use unsigned sqrtA.
+- Remove extraneous space in data/test_input_rinex3_nav_gal.20n
+- Fix PNBGPSLNavDataFactory to use unsigned eccentricity in almanac.
+- Fix OrbitDataKepler to properly handle Adot and dndot terms.
+- Fix NavDataFactoryWithStore::addNavData to handle multiple time systems.
+- Fix NavDataFactoryWithStore static initialization problem.
+- Fix MultiFormatNavDataFactory time system handling in getInitialTime() and getFinalTime().
+- Add DebugTrace code for execution tracing.
+* Thu May 13 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v11.1.0 release
+- Fix CNavMidiAlm to use unsigned sqrtA.
+- Remove extraneous space in data/test_input_rinex3_nav_gal.20n
+- Fix PNBGPSLNavDataFactory to use unsigned eccentricity in almanac.
+- Fix OrbitDataKepler to properly handle Adot and dndot terms.
+- Fix NavDataFactoryWithStore::addNavData to handle multiple time systems.
+- Fix NavDataFactoryWithStore static initialization problem.
+- Fix MultiFormatNavDataFactory time system handling in getInitialTime() and getFinalTime().
+- Add DebugTrace code for execution tracing.
+* Wed Apr 21 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v11.0.1 release
+- Fix ext/lib/FileHandling/SEM/SEMData.cpp: correct faulty unit conversion.
 * Thu Mar 18 2021 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v11.0.0 release
 - Deprecate external users contributed code and references.

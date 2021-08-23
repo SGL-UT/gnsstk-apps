@@ -8,7 +8,7 @@ package:
 
 source:
   git_rev: {{ environ.get('GIT_COMMIT', 'main') }}
-  git_url: https://{{build_user}}:{{build_token}}@repositories.arlut.utexas.edu/sgl-tks/gpstk-apps.git
+  git_url: https://{{build_user}}:{{build_token}}@sgl-git.arlut.utexas.edu/sgl-tks/gpstk-apps.git
 
 build:
   number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
@@ -22,17 +22,17 @@ requirements:
   host:
     - python {{ python }}
     - setuptools
-    - gpstk >=10.0.0,<12
+    - gpstk >=12.0.0,<13
   run:
     - python {{ python }}
-    - gpstk >=10.0.0,<12
+    - gpstk >=12.0.0,<13
 
 test:
   imports:
     - gpstk
 
 about:
-  home: https://repositories.arlut.utexas.edu:sgl-tks/gpstk-apps
+  home: https://sgl-git.arlut.utexas.edu:sgl-tks/gpstk-apps
   summary: The GPS Toolkit Applications (GPSTk-Apps)
   description: |
     The GPS Toolkit (GPSTk) is an open-source (LGPL) project sponsored by

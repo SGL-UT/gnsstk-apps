@@ -1,5 +1,619 @@
-gpstk-apps (11.0.0-1) stable; urgency=low
+gpstk-apps (12.0.0-1) stable; urgency=low
 
-  * Split applications from library
+  * Updated to version 12.0.0
+  * TKS Split out to separate lib and apps repository.
+  * gitlab yaml cleanup v2
+  * Try to make debian packaging consistent
+  * Remove unneeded debian package cruft and set package version for cpack
+  * Pull gpstk packages from split branch
+  * Remove all debian packages from control file except applications
+  * First cut at making an apps-only build/repo
+
+ -- David Barber <dbarber@sgl-lap096.arlut.utexas.edu>  Thu, 19 Aug 2021 09:20:54 -0500
+
+gpstk (11.2.1-1) stable; urgency=low
+
+  * Updated to version 11.2.1
+  * Updated git url ref to new sgl-git
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 22 Jul 2021 10:28:43 -0500
+
+gpstk (11.2.0-1) stable; urgency=low
+
+  * Updated to version 11.2.0
+  * Add DebugTrace code for execution tracing.
+  * Fix MultiFormatNavDataFactory time system handling in
+    getInitialTime() and getFinalTime().
+  * Fix NavDataFactoryWithStore static initialization problem.
+  * Fix NavDataFactoryWithStore::addNavData to handle multiple time
+    systems.
+  * Fix OrbitDataKepler to properly handle Adot and dndot terms.
+  * Fix PNBGPSLNavDataFactory to use unsigned eccentricity in almanac.
+  * Remove extraneous space in data/test_input_rinex3_nav_gal.20n
+  * Fix CNavMidiAlm to use unsigned sqrtA.
+  * Fix pipeline yaml for protected jobs.
+  * Change header-file installation for debian to use versioned path
+    names.
+  * Fix VectorOperators.hpp to put math functions in std namespace.
+  * Add fortify pipeline yaml file
+  * Fix typo bugs in two trop models.
+  * Reformat Position tests (Position_T.cpp) to follow style.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 17 Jun 2021 09:27:17 -0500
+
+gpstk (11.1.0-1) stable; urgency=low
+
+  * Updated to version 11.1.0
+  * Add DebugTrace code for execution tracing.
+  * Fix MultiFormatNavDataFactory time system handling in
+    getInitialTime() and getFinalTime().
+  * Fix NavDataFactoryWithStore static initialization problem.
+  * Fix NavDataFactoryWithStore::addNavData to handle multiple time
+    systems.
+  * Fix OrbitDataKepler to properly handle Adot and dndot terms.
+  * Fix PNBGPSLNavDataFactory to use unsigned eccentricity in almanac.
+  * Remove extraneous space in data/test_input_rinex3_nav_gal.20n
+  * Fix CNavMidiAlm to use unsigned sqrtA.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 13 May 2021 13:29:25 -0500
+
+gpstk (11.0.1-1) stable; urgency=low
+
+  * Updated to version 11.0.1
+  * Fix ext/lib/FileHandling/SEM/SEMData.cpp: correct faulty unit
+    conversion.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Wed, 21 Apr 2021 14:59:06 -0500
+
+gpstk (11.0.0-1) stable; urgency=low
+
+  * Updated to version 11.0.0
+  * Fix StringUtils::words() for cases of empty strings or single words.
+  * Remove SVNumXref (deprecated code).
+  * Fix PNBGPSCNav2DataFactory comment
+  * Update source code files copyright header for year 2021
+  * Deprecate external users contributed code and references.
 
  -- David Barber <dbarber@arlut.utexas.edu>  Thu, 18 Mar 2021 11:45:17 -0500
+
+gpstk (10.0.0-1) stable; urgency=low
+
+  * Updated to version 10.0.0
+  * Update TimeTag_T.cpp to follow proper style
+  * Update Doxyfile to generate graphs by default.
+  * Update CommandOption to allow changing the description post-
+    constructor.
+  * Add ObsID support for GLONASS frequency offset and mcode metadata.
+  * Add SatID wildcard support for system and ID.
+  * Add NavType wildcard value.
+  * Add PackedNavBits support for decoding more types.
+  * Add NewNav code tree to replace existing nav store classes (in
+    core/lib/NewNav and ext/lib/NewNav).
+  * Update TestUtil to print invalid boolean values as 'true' or 'false'
+    and increased precision when printing invalid floating point values.
+  * Update GPSWeekZcount to support printing day of week by name.
+  * Add TimeCorrection support for 8-bit week rollover correction.
+  * Fix OrbAlmGen to decode A**1/2 as unsigned rather than signed.
+  * Update SWIG to remove pseudo-mapping that conflicts with SatID
+    constructor changes.
+  * Fix NavDataFactoryWithStore infinite loop bug in find.
+  * Add NavTimeSystemConverter that uses a NavLibrary object to get nav-
+    sourced time offset data.
+  * Add CommonTime changeTimeSystem method that uses a static
+    TimeSystemConverter.
+  * Add TimeTag changeTimeSystem methods for both static and specified
+    TimeSystemConverter objects.
+  * Fix bug in WindowFilter due to uninitialized boolean.
+  * Fix NavDataFactory classes to enforce proper initialization and
+    destruction.
+  * Update bc2sp3 to use Frameworks for better command line option help.
+  * Update sp3version to use Frameworks for better command line option
+    help.
+  * Fix "implement proper command line option help where needed"
+  * Update TimeSystemCorr_T to use test macros and such for improved
+    readability.
+  * Update TimeSystemCorrection (RINEX3 NAV header) to store reference
+    time in CommonTime.
+  * Fix test binaries to be excluded from bin
+  * Update Removed obsolete files
+  * Update MultiFormatNavDataFactory to implement getOffset(),
+    getInitialTime() and getFinalTime()
+  * Fix NavDataFactoryWithStore::getOffset() so it doesn't fail when
+    reversing the offset look-up (e.g. GPS->UTC vs UTC->GPS).
+  * Fix NavDataFactoryWithStore::edit() and clear() to process time
+    offset data.
+  * Add RinexNavDataFactory support of time offset data in RINEX NAV
+    header.
+  * Update NavDataFactory::getFactoryFormats() methods to prevent
+    printing formats that don't support the desired message types.
+  * Update RINEX NAV test data files that had improperly formatted DELTA-
+    UTC records.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 11 Feb 2021 09:18:05 -0600
+
+gpstk (9.1.0-1) stable; urgency=low
+
+  * Updated to version 9.1.0
+  * Fix conda recipe to specify correct default branch for GPSTk.
+  * Update CI pipelines to make protected word searches advisory only.
+  * Add accessors to the ObsID description maps for SWIG.
+  * Update across the library to improve documentation.
+  * Remove latex documentation in favor of doxygen.
+  * Add to CommandOptionParser the ability to show program usage in a
+    format that can be used in doxygen.
+  * Update EngNav documentation for clarity.
+  * Update SatMetaDataStore to improve documentation.
+  * Update EngNav decoding internals to use C++ instead of C storage
+  * Update buil.sh Allow better error reporting
+  * Update TimeSystem to support conversion to/from QZSS
+  * Add TimeSystemConversion class to support generalized time system
+    conversion.
+  * Add BasicTimeSystemConversion class to wrap existing second-
+    precision TimeSystem conversion.
+  * Update CommonTime to implement changeTimeSystem method.
+  * Update CommonTime/TimeSystem Redesign
+  * Update various source files to add namespace context where it was
+    missing.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 14 Jan 2021 08:12:55 -0600
+
+gpstk (9.0.0-1) stable; urgency=low
+
+  * Updated to version 9.0.0
+  * Add CI stage to check files and history for sensitive words.
+  * Update the CI pipeline to reflect that the new default branch name.
+  * Modify IonoModel to accommodate Klo params in different units.
+  * Update readme.
+  * Update File_Hunter related files were deprecated and moved to
+    tks_legacy_archive repo
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 10 Dec 2020 08:31:21 -0600
+
+gpstk (8.0.0-1) stable; urgency=low
+
+  * Updated to version 8.0.0
+  * Update Nav reader code to properly assign being/end validity values
+    for non-GPS GNSS data.
+  * Update python 2.7 conda recipe to avoid using preprocessig-selector
+    for enum34.
+  * Refactor calculate_ord method definition out of header file.
+  * Fix SP3EphemerisStore to properly handle correlation data from SP3c
+    files.
+  * Update CODEOWNERS file.
+  * Refactor `PRSolution2` to `PRSolutionLegacy`.
+  * Add Centos8 build/test/package/deploy jobs to the CI pieline.
+  * Fix EL8 RPM Generation to avoid including build-id files.
+  * Update copyright language to reflect year 2020
+  * Refactor pipeline to use git https protocol instead of ssh
+  * Update CI to verify proper copyright and license header.
+  * Fix OrbSysGpsL_56 Correct iono parameter units
+  * Update SVNumXRef Add SVN77/PRN14
+  * Update IonoModel to include all modernized GPS bands.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 19 Nov 2020 05:00:35 -0600
+
+gpstk (7.0.0-1) stable; urgency=low
+
+  * Updated to version 7.0.0
+  * Add CODEOWNERS file.
+  * Fix various pieces of code to resolve warning messages on various
+    platforms.
+  * Fix OrbSysGpsL_55 Restore output of text message
+  * Fix core/lib include statements to search GPSTk include directory.
+  * Refactor Yuma/SEM file support back into ext
+  * Add Documentation Artifact to CI Pipeline
+  * Add SatMetaDataStore findSatByFdmaSlot
+  * Refactor enumerations in TimeSystem, ReferenceFrame, IERSConvention,
+    SatID, NavID and ObsID (SatelliteSystem, NavType, ObservationType,
+    CarrierBand, TrackingCode) to use strongly typed enumerations and
+    move them outside the scope of those classes.
+  * Rename TrackingCode enumerations to better support codes that RINEX
+    does not by using names based on the ICDs rather than what RINEX
+    uses.
+  * Add EnumIterator class to provide the ability to iterate over the
+    above enum classes.
+  * Refactor swig bindings for enums to use similar naming conventions
+    between C++ and python (e.g. gpstk::TrackingCode::CA in C++ and
+    gpstk.TrackingCode.CA in python)
+  * Move RINEX-isms (such as the string constructor for decoding RINEX
+    obs IDs) in ObsID into RinexObsID where they belong.
+  * Refactor ObsID and RinexObsID initialization of containers (tcDesc,
+    etc.) to use C++11 syntax and eliminate the use of a singleton
+    initializer.
+  * Dropping Python Swig binding support for RHEL7/DEB7
+  * Refactor debian8 remove python bindings
+  * Refactor debian dpkg-buildpackage Update control files to remove
+    python bindings
+  * Refactor gpstk pipeline downstream jobs
+  * Update OceanLoadTides.hpp Add reference to SPOTL in doxygen comments
+  * Update SWIG Bindings to wrap enumerations more correctly.
+  * Fix GalEphemeris Corrected behavior of isHealthy()
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Fri, 18 Sep 2020 12:38:33 -0500
+
+gpstk (6.0.0-1) stable; urgency=low
+
+  * Updated to version 6.0.0
+  * Add Rinex3ObsHeader accessors for wavelengthFactor in support of
+    python.
+  * Update Ashtech and other classes to prevent SWIG from generating bad
+    code.
+  * Fix SWIG vector constructor to take a list of integers
+  * Update swig CMakeLists.txt to preclude setting RUNPATH in _gpstk.so
+    thus preventing it from pointing to the wrong libgpstk.so
+  * Update CommonTime::setTimeSystem to return a reference to itself.
+  * Add CI testing on Redhat 7 with SWIG 3 installed.
+  * Update FileFilterFrame to use FileSpecFind instead of FileHunter.
+  * Update FileFilterFrameWithHeader to use FileSpecFind instead of
+    FileHunter.
+  * Update FileSpec for a more optimal implementation of hasField
+  * Add FileSpec methods hasTimeField and hasNonTimeField.
+  * Fix FileSpecFind to handle more use cases under windows.
+  * Add Filter class to FileSpecFind to support matching of sets of
+    values.
+  * Fix FileSpecFind to support both forward slash and backslash file
+    separators under windows.
+  * Update AntexData Add BeiDou-3, QZSS, NAVIC satellite types
+  * Deprecate FileHunter class.
+  * Update SVNumXRef Deassign PRN23 from SVN60
+  * Refactor SatMetaDataStore to split records to reduce redundancy of
+    data, particularly of data that does not change over the life of the
+    satellite.
+  * Update SVNumXRef Add SVN76/PRN23
+  * Update gitlab-ci.yml to declare a registry associated with each
+    image.
+  * Add FormattedDouble as a more versatile replacement for doub2for,
+    for2doub, etc.
+  * Deprecate doub2sci, doubleToScientific, sci2for, doub2for, and
+    for2doub in StringUtils.
+  * Update existing uses of doub2for etc. to use FormattedDouble.
+  * Refactor text stream classes to use stream operations instead of
+    string construction.
+  * Update test data to use fortran format numbers in RINEX nav data.
+  * Update and Adding swig support for IonoModel and Nav Reader
+  * Update CI Pipeline to be more adept at producing downloadable
+    packages.
+  * Fix AntennaStore BeiDou phase center
+  * Fix RinDump to eliminate a memory leak.
+  * Fix rinheaddiff to eliminate a memory leak.
+  * Fix PRSolve to eliminate a memory leak.
+  * Fix FFTextStream to eliminate an invalid memory read.
+  * Fix RinDump to eliminate a memory leak.
+  * Fix OrbitEph to initialize all data members.
+  * Fix RationalizeRinexNav to eliminate a memory leak.
+  * Fix BasicFrameworkHelp_T to eliminate a memory leak.
+  * Fix CommandOption_T to eliminate a memory leak.
+  * Fix Rinex3Obs_FromScratch_t.cpp to eliminate a memory leak.
+  * Fix CNav2Filter_T to eliminate a memory leak.
+  * Fix CNavFilter_T to eliminate a memory leak.
+  * Fix dfix to eliminate use of uninitialized variables.
+  * Fix rstats to eliminate a memory leak.
+  * Fix OrbAlmStore to eliminate a memory leak.
+  * Fix OrbSysStore to eliminate a memory leak.
+  * Fix WindowFilter to eliminate use of uninitialized variables.
+  * Fix gdc::getArcStats to eliminate a memory leak.
+  * Fix RinexObsHeader to eliminate use of uninitialized variables.
+  * Fix GlobalTropModel to eliminate use of uninitialized variables.
+  * Fix BDSEphemeris to eliminate use of uninitialized variables.
+  * Fix OrbElem to eliminate use of uninitialized variables.
+  * Fix TimeRange_T to eliminate dereferencing of unallocated memory
+    pointers.
+  * Fix FFBinaryStraem to eliminate use of uninitialized variables.
+  * Fix YDSTime to eliminate use of uninitialized variables.
+  * Update SWIG bindings to fix memory leaks for Matrix.
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Thu, 30 Jul 2020 14:20:04 -0500
+
+gpstk (5.0.1-1) stable; urgency=low
+
+  * Updated to version 5.0.1
+  * Fix Swig wrapper of PRSolution to allow passing list of GNSS system.
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Wed, 17 Jun 2020 11:40:05 -0500
+
+gpstk (5.0.0-1) stable; urgency=low
+
+  * Updated to version 5.0.0
+  * Add tests for computeXvt and getSVHealth with unhealthy satellites
+  * Update SWIG files so that gpstk::Exception is treated as a Python
+    Exception
+  * Add ObsID Add methods to convert between enumeration and string and
+    test them.
+  * Add NavID Add methods to convert between enumeration and string and
+    test them.
+  * Update OrbitEphStore to have more information when a potentially
+    corrupt ephemeris is added.
+  * Fix decimation bug Rinex3ObsLoader corrected decimation logic
+  * Update CI to retain, as CI artifacts, output from failed tests.
+  * Update MJD/JD timeconvert tests to be able to pass under windows.
+  * Deprecate SVNumXRef in favor of SatMetaDataStore
+  * Add FileSpecFind as an eventual replacement for FileHunter
+  * Fix RinexSatID/SP3SatID to properly handle QZSS and GEO satellite
+    IDs over 100
+  * Update CommandOptionParser to remove the .exe file extension when
+    printing help under Windows.
+  * Update FileSpec to use WIN32 precompiler macro instead of _WIN32 to
+    get the correct file separator.
+  * Remove FileHunter_T failing test from Windows build in preparation
+    for future deprecation of the FileHunter class.
+  * Update rstats testing to use portable ctest mechanisms instead of
+    the python script, and split the truth data accordingly.
+  * Update Yuma_T test to use the most modern cmake test script and
+    df_diff to account for minor differences in floating point least
+    significant digits.
+  * Modify installation script to create site-packages if it doesn't
+    exist.
+  * Update Rinex3ObsHeader to use a nested class called "Flags" for
+    header field management, replacing the bit field.
+  * Fix RINEX reference data for tests containing the "Signal Strenth"
+    typo, or remove it for RINEX 2 tests.
+  * Add SWIG bindings to support the nested classes within
+    Rinex3ObsHeader.
+  * Fix Rinex3ObsHeader::Fields SWIG bindings.
+  * Fix Rinex3ObsHeader::Fields SWIG bindings.
+  * Update Position::transformTo,asGeodetic,asECEF to return a
+    reference.
+  * Update CommandOption classes to return a const reference instead of
+    a copy of a vector.
+  * Add BasicFramework documentation.
+  * Update RinSum to have better diagnostics when there is an invalid
+    Rinex header
+  * Fix SWIG bindings to use Python-list to C-array typemaps in
+    gpstk_typemaps.i
+  * Move a collection of tests and code from ext to core.
+  * Add FileUtils/FileUtils_T comments explaining debian 7 test
+    failures.
+  * Update RinDump to support all current (as of RINEX 3.04) codes
+  * Update RinSum to improve support aux headers over simple comment
+    support.
+  * Update PRSolve to input multiple GNSS options, and for multi-GNSS
+    solution, including one Rx clock per system.
+  * Fix Rinex3ClockData/Rinex3ClockHeader to decode systems using
+    existing classes.
+  * Fix Rinex3NavData to use a sane begin time for QZSS nav.
+  * Fix QZSEphemeris to use a sane begin time for QZSS nav.
+  * Update Rinex3ObsData to support channel number and ionospheric delay
+    data.
+  * Remove frequency/wavelength constants from GNSSconstants.hpp and put
+    them in DeprecatedConsts.hpp
+  * Add FreqConsts.hpp to replace the deprecated constants with new
+    names based on ICD naming instead of RINEX.
+  * Add ObsID support for numerous previously unsupported codes.
+  * Add RinexObsID support for decoding channel number and ionospheric
+    delay pseudo-observables.
+  * Update OrbitEph::adjustValidity to subtract two hours only for GPS.
+  * Update PRSolution for multi-GNSS solution, including one Rx clock
+    per system.
+  * Update PreciseRange to input frequencies as well as GNSS.
+  * Note: Rinex 3.04 support is not fully in compliance with "9.1 Phase
+    Cycle Shifts", although that does not affect any of our use cases.
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Fri, 12 Jun 2020 14:59:16 -0500
+
+gpstk (4.0.0-1) stable; urgency=low
+
+  * Updated to version 4.0.0
+  * Modify RPM packages to seperate python installation from C++
+    apps/libs.
+  * Fix slight errors in svXvt velocity computation.
+  * Update svXvt to set Xvt.health when available.
+  * Fix BrcKeplerOrbit to use relativity correction and initial URE
+    value of 0.
+  * Fix AlmOrbit to add missing final value of G.
+  * Fix BDSEphemeris to use GEO equations only above 7 degrees.
+  * Change OrbitEph to use CGCS2000 ellipsoid for BeiDou when computing
+    relativity correction
+  * Fix misleading comment on CommonTime.m_day
+  * Fix test failures observed running on Debian 10.
+  * Add CI checks to ensure continued compatibility with Debian 7.
+  * Update SVNumXRef to move PRN 18 from SVN 34 to SVN 75
+  * Remove deprecated dynamic exception specifications.
+  * Add string conversions to-from SatID.SatelliteSystem
+  * Updated call signatures in OrbElemRinex to support downstream
+    callers.
+  * Update CMAKE to optimize at level O3 on linux by default.
+  * Fix bug in timeconvert app breaking after year 2038
+  * Fix incorrect interval in output header from RinEdit if thinning
+    option is used.
+  * Fix memory leak during OrbElmStore deallocation.
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Mon, 30 Mar 2020 15:06:22 -0500
+
+gpstk (3.1.0-1) stable; urgency=low
+
+  * Updated to version 3.1.0
+
+ -- Andrew Kuck <kuck@arlut.utexas.edu>  Tue, 03 Mar 2020 13:34:46 -0600
+
+gpstk (3.0.0-1) stable; urgency=medium
+
+  * Build for stretch
+
+ -- Bryan Parsons <bparsons@clau>  Tue, 11 Feb 2020 11:02:39 -0600
+
+gpstk (3.0.0-1~bpo9+2) stable; urgency=medium
+
+  * Build for wheezy-backports
+
+ -- Bryan Parsons <bparsons@clau>  Tue, 11 Feb 2020 11:01:47 -0600
+
+gpstk (3.0.0-1~bpo9+3) stable; urgency=medium
+
+  * Update to upstream version 3.0.0
+  * Build for jessie-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Tue, 11 Feb 2020 10:46:54 -0600
+
+gpstk (2.12.2-1) stable; urgency=medium
+
+  * Update to upstream version 2.12.2
+  * Build for Stretch
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 17 Jan 2020 12:09:38 -0600
+
+gpstk (2.12.2-1~bpo9+2) stable; urgency=medium
+
+  * Rebuild for wheezy-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 17 Jan 2020 12:08:38 -0600
+
+gpstk (2.12.2-1~bpo9+3) stable; urgency=medium
+
+  * Rebuild for jessie-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 17 Jan 2020 12:07:38 -0600
+
+gpstk (2.12.1-2) stable; urgency=medium
+
+  * Rebuild for Stretch
+
+ -- Bryan Parsons <bparsons@clau>  Wed, 16 Oct 2019 10:25:41 -0500
+
+gpstk (2.12.1-2~bpo9+2) stable; urgency=medium
+
+  * 2nd Rebuild for wheezy-backports
+
+ -- Bryan Parsons <bparsons@clau>  Wed, 16 Oct 2019 10:25:05 -0500
+
+gpstk (2.12.1-2~bpo9+3) stable; urgency=medium
+
+  * 2nd Rebuild for jessie-backports
+
+ -- Bryan Parsons <bparsons@clau>  Wed, 16 Oct 2019 10:24:05 -0500
+
+gpstk (2.12.1-1~bpo9+3) stable; urgency=medium
+
+  * Rebuild for jessie-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Thu, 10 Oct 2019 15:21:56 -0500
+
+gpstk (2.12.1-1~bpo9+2) stable; urgency=medium
+
+  * Rebuild for wheezy-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Wed, 09 Oct 2019 10:18:45 -0500
+
+gpstk (2.12.1-1) stable; urgency=medium
+
+  * Update to upstream version 2.12.1
+  * Build for Stretch
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Wed, 09 Oct 2019 09:37:40 -0500
+
+gpstk (2.12.0-1~bpo9+3) stable; urgency=low
+
+  * Rebuild for wheezy-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 16 Aug 2019 11:07:54 -0500
+
+gpstk (2.12.0-1~bpo9+2) stable; urgency=medium
+
+  * Rebuild for stretch-backports
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 16 Aug 2019 10:50:24 -0500
+
+gpstk (2.12.0-1) stable; urgency=medium
+
+  * Update to upstream version 2.12
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Thu, 15 Aug 2019 11:33:55 -0500
+
+gpstk (2.11.2-1~bpo9+3) wheezy-backports; urgency=low
+
+  * Rebuild for wheezy-backports.
+  * no changes
+
+ -- Bryan Parsons <bparsons@ayudar.arlut.utexas.edu>  Fri, 12 Apr 2019 09:34:54 -0500
+
+gpstk (2.11.2-1~bpo9+2) stretch-backports; urgency=medium
+
+  * Rebuild for stretch-backports.
+  * no changes
+
+ -- Bryan Parsons <bparsons@clau.arlut.utexas.edu>  Tue, 09 Apr 2019 08:59:26 -0500
+
+gpstk (2.11.2-1) stable; urgency=medium
+
+  * Update to upstream version 2.11.2
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Fri, 05 Apr 2019 09:33:29 -0500
+
+gpstk (2.11.1-1) stable; urgency=medium
+
+  * Update to upstream version 2.11.1
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Mon, 04 Feb 2019 13:23:58 -0600
+
+gpstk (2.11.0-1) stable; urgency=medium
+
+  * Update to upstream version 2.11
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Tue, 18 Dec 2018 10:32:41 -0600
+
+gpstk (2.10.7-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.7
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Thu, 06 Dec 2018 15:02:41 -0600
+
+gpstk (2.10.6-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.6
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Mon, 24 Sep 2018 15:02:46 -0500
+
+gpstk (2.10.5-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.5
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Wed, 22 Aug 2018 10:14:23 -0500
+
+gpstk (2.10.4-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.4
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Wed, 01 Aug 2018 11:41:37 -0500
+
+gpstk (2.10.3-2) stable; urgency=medium
+
+  * Update to upstream version 2.10.3
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Mon, 30 Jul 2018 13:43:26 -0500
+
+gpstk (2.10.2-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.2
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Thu, 26 Apr 2018 13:52:11 -0500
+
+gpstk (2.10.1-1) stable; urgency=medium
+
+  * Update to upstream version 2.10.1
+
+ -- Bryan Parsons <bparsons@arlut.utexas.edu>  Mon, 22 Jan 2018 14:55:58 -0600
+
+gpstk (2.9.8-2) unstable; urgency=medium
+
+  * Switch source format to "git" to allow deb src packages to build
+  * Add a libgpstkX.Y-dbg Debian package with debugging symbols
+
+ -- Johnathan York <york@arlut.utexas.edu>  Thu, 11 May 2017 09:11:30 -0500
+
+gpstk (2.9.8-1) unstable; urgency=medium
+
+  * Update to upstream version 2.9.8
+
+ -- Johnathan York <york@arlut.utexas.edu>  Wed, 26 Apr 2017 20:16:08 -0500
+
+gpstk (2.9.7-2) unstable; urgency=medium
+
+  * Add -ext and Python support
+  * Fix building on wheezy
+
+ -- Johnathan York <york@arlut.utexas.edu>  Mon, 10 Apr 2017 18:33:36 -0500
+
+gpstk (2.9.7-1) unstable; urgency=low
+
+  * Initial Debian Packaging, not using CPack
+
+ -- Johnathan York <york@arlut.utexas.edu>  Thu, 06 Apr 2017 12:24:53 -0500
