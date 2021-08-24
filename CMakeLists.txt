@@ -38,7 +38,6 @@ option( BUILD_EXT "HELP: BUILD_EXT: SWITCH, Default = OFF, Build the ext library
 option( TEST_SWITCH "HELP: TEST_SWITCH: SWITCH, Default = OFF, Turn on test mode." OFF )
 option( COVERAGE_SWITCH "HELP: COVERAGE_SWITCH: SWITCH, Default = OFF, Turn on coverage instrumentation." OFF )
 option( USE_RPATH "HELP: USE_RPATH: SWITCH, Default= ON, Set RPATH in libraries and binaries." ON )
-option( BUILD_FOR_PACKAGE_SWITCH "HELP: BUILD_FOR_PACKAGE_SWITCH: SWITCH, Default= OFF, Modify python install paths assuming creation of deb/rpm." OFF )
 option( VERSIONED_HEADER_INSTALL "HELP: VERSIONED_HEADER_INSTALL: SWITCH, Default= OFF, Install header files into maj/min versioned directory." OFF )
 
 # GPSTk header file install target (whether it is version dependent changes based on user flag)

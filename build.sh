@@ -74,7 +74,7 @@ OPTIONS:
                         variable is not set, it will be installed to
                         $user_install_prefix.
 
-   -e                   GPSTk has several parts: core, ext, and python.
+   -e                   GPSTk has several parts: core and ext.
 
                         See README.txt for details.
                         Default (without -e) will build only core
@@ -100,13 +100,11 @@ while getopts ":hb:cdepi:j:nP:F:sutTv" OPTION; do
         d) build_docs=1
            ;;
         e) build_ext=1
-           build_python=1
            ;;
         p) build_packages=1
            ;;
         i) install=1
            install_prefix=$(abspath ${OPTARG})
-           python_install=$install_prefix
            ;;
         j) num_threads=$OPTARG
            ;;
@@ -118,11 +116,9 @@ while getopts ":hb:cdepi:j:nP:F:sutTv" OPTION; do
            ;;
         s) install=1
            install_prefix=$system_install_prefix
-           python_install=$system_python_install
            ;;
         u) install=1
            install_prefix=${navsat_tools:-$user_install_prefix}
-           python_install=$user_python_install
            user_install=1
            ;;
         t) test_switch=1
