@@ -1,8 +1,7 @@
 Source: gpstk-apps
 Priority: optional
 Maintainer: Bryan Parsons <bparsons@arlut.utexas.edu>
-Build-Depends: debhelper (>= 9), cmake, python-dev <pkg_python>, dh-python <pkg_python>, libgpstk12, python-gpstk <pkg_python>
-X-Python-Version: 2.7
+Build-Depends: debhelper (>= 9), cmake, libgpstk12
 Standards-Version: 3.9.5
 Section: libs
 Homepage: http://www.gpstk.org/
@@ -11,7 +10,7 @@ Vcs-Browser: https://github.com/SGL-UT/GPSTk.git
 
 Package: gpstk-apps
 Architecture: any
-Depends: libgpstk12, python-gpstk <pkg_python>, ${misc:Depends}, ${shlibs:Depends}, ${python:Depends}
+Depends: libgpstk12, ${misc:Depends}, ${shlibs:Depends}
 Description: GPS Toolkit (GPSTk) - command line tools
  The GPS Toolkit (GPSTk) is an open-source (LGPL) project sponsored by
  the Space and Geophysics Laboratory (SGL), part of the Applied Research
