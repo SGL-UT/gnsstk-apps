@@ -152,13 +152,6 @@ if( DEBUG_VERBOSE )
         message( STATUS "---- ${_variableName} = ${${_variableName}}" )
     endforeach()
 endif()
-        
-#----------------------------------------
-# Get CMake vars into C++
-#----------------------------------------
-configure_file( "${PROJECT_SOURCE_DIR}/build_config.h.in" "${PROJECT_BINARY_DIR}/generated/build_config.h" )
-include_directories( "${PROJECT_BINARY_DIR}/generated/" ) 
-install( FILES "${PROJECT_BINARY_DIR}/generated/build_config.h" DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}" )
 
 
 #----------------------------------------
@@ -198,9 +191,11 @@ set( CPACK_INCLUDE_TOPLEVEL_DIRECTORY "OFF" )
 set( CPACK_PACKAGE_INSTALL_DIRECTORY "gpstk")
 set( CPACK_TOPLEVEL_TAG "gpstk" ) 
 
-set( CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.13)" )
+set( CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.13), gpstk (>= 11.0.0)" )
 set( CPACK_DEBIAN_SECTION "stable" )
 set( CPACK_DEBIAN_PACKAGE_SECTION "science" )
+
+set( CPACK_RPM_PACKAGE_REQUIRES "gpstk >= 11.0.0" )
 
 set( CPACK_SOURCE_IGNORE_FILES "build/" "build-.*/" "examples/" "ref/" ".*/[.].*" )
 set( CPACK_SOURCE_GENERATOR "TGZ")

@@ -9,8 +9,8 @@
 add_test(NAME timeconvert_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:timeconvert>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check ANSI time
@@ -21,8 +21,8 @@ add_test(NAME timeconvert_CmdOpt_ANSI
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_ANSI}
          -DTESTNAME=timeconvert_CmdOpt_ANSI
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Civil time
@@ -33,8 +33,8 @@ add_test(NAME timeconvert_CmdOpt_Civil
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_CIVIL}
          -DTESTNAME=timeconvert_CmdOpt_Civil
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check RINEX time
@@ -45,8 +45,8 @@ add_test(NAME timeconvert_CmdOpt_Rinex
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_RINEX}
          -DTESTNAME=timeconvert_CmdOpt_Rinex
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS epoch/week/second
@@ -57,8 +57,8 @@ add_test(NAME timeconvert_CmdOpt_GPSews
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_GPSEWS}
          -DTESTNAME=timeconvert_CmdOpt_GPSews
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS full week/second
@@ -69,8 +69,8 @@ add_test(NAME timeconvert_CmdOpt_GPSws
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_GPSWS}
          -DTESTNAME=timeconvert_CmdOpt_GPSws
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS full week/zcount
@@ -81,8 +81,8 @@ add_test(NAME timeconvert_CmdOpt_GPSwz
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_GPSWZ}
          -DTESTNAME=timeconvert_CmdOpt_GPSwz
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS 32-bit zcount
@@ -93,8 +93,8 @@ add_test(NAME timeconvert_CmdOpt_GPSfullz
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_GPSFULLZ}
          -DTESTNAME=timeconvert_CmdOpt_GPSfullz
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS 29-bit zcount
@@ -107,8 +107,8 @@ add_test(NAME timeconvert_CmdOpt_GPSzcount29
          -DPROG_OPTS_2=${TIMECONVERT_CMDOPT_GPSZCOUNT29_PART2}
          -DTESTNAME=timeconvert_CmdOpt_GPSzcount29
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Julian date
@@ -127,8 +127,8 @@ add_test(NAME timeconvert_CmdOpt_Julian
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_JULIAN}
          -DTESTNAME=timeconvert_CmdOpt_Julian
          -DTESTBASE=${TIMECONVERT_CMDOPT_JULIAN_BASE}
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check MJD
@@ -145,8 +145,8 @@ add_test(NAME timeconvert_CmdOpt_MJD
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_MJD}
          -DTESTNAME=timeconvert_CmdOpt_MJD
          -DTESTBASE=${TIMECONVERT_CMDOPT_MJD_BASE}
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Unix
@@ -157,8 +157,8 @@ add_test(NAME timeconvert_CmdOpt_Unix
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_UNIX}
          -DTESTNAME=timeconvert_CmdOpt_Unix
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check YDS
@@ -169,8 +169,8 @@ add_test(NAME timeconvert_CmdOpt_YDS
          -DPROG_OPTS=${TIMECONVERT_CMDOPT_YDS}
          -DTESTNAME=timeconvert_CmdOpt_YDS
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check subtract offset
@@ -183,8 +183,8 @@ add_test(NAME timeconvert_CmdOpt_Subtract
          -DPROG_OPTS_2=${TIMECONVERT_CMDOPT_SUBTRACT_2}
          -DTESTNAME=timeconvert_CmdOpt_Subtract
          -DTESTBASE=timeconvert_2015_200_0
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check add offset
@@ -197,8 +197,8 @@ add_test(NAME timeconvert_CmdOpt_Add
          -DPROG_OPTS_2=${TIMECONVERT_CMDOPT_ADD_2}
          -DTESTNAME=timeconvert_CmdOpt_Add
          -DTESTBASE=timeconvert_2015_200_99
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check output format
@@ -211,8 +211,8 @@ add_test(NAME timeconvert_CmdOpt_Format
          -DPROG_OPTS_2=${TIMECONVERT_CMDOPT_FORMAT_2}
          -DTESTNAME=timeconvert_CmdOpt_Format
          -DTESTBASE=timeconvert_2015_200_format
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # MISSING:
@@ -232,8 +232,8 @@ add_test(NAME timeconvert_CmdOpt_Format
 add_test(NAME calgps_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:calgps>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTNAME=calgps_CmdOpt_1
          -DTESTBASE=calgps_CmdOpt_1
          -DARGS=-h
@@ -244,8 +244,8 @@ add_test(NAME calgps_CmdOpt_1
 add_test(NAME calgps_CmdOpt_2
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:calgps>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTNAME=calgps_CmdOpt_2
          -DTESTBASE=calgps_CmdOpt_2
          -DARGS=-3
@@ -256,8 +256,8 @@ add_test(NAME calgps_CmdOpt_2
 add_test(NAME calgps_CmdOpt_3
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:calgps>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTNAME=calgps_CmdOpt_3
          -DTESTBASE=calgps_CmdOpt_3
          -DARGS=-y
@@ -268,8 +268,8 @@ add_test(NAME calgps_CmdOpt_3
 add_test(NAME calgps_CmdOpt_4
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:calgps>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTNAME=calgps_CmdOpt_4
          -DTESTBASE=calgps_CmdOpt_4
          -DNODIFF=1
@@ -279,8 +279,8 @@ add_test(NAME calgps_CmdOpt_4
 add_test(NAME calgps_Year
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:calgps>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTNAME=calgps_Year
          -DTESTBASE=calgps_Year
          -DARGS=-Y\ 2015
@@ -295,8 +295,8 @@ add_test(NAME calgps_Year
 add_test(NAME timediff_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:timediff>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME timediff_Equal_1

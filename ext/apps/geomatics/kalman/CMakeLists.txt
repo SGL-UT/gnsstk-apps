@@ -1,10 +1,10 @@
 # apps/geomatics/kalman/CMakeLists.txt
 
 add_executable(mergeSRI mergeSRI.cpp)
-target_link_libraries(mergeSRI gpstk)
+target_link_libraries(mergeSRI ${SUPPORTLIBS})
 install (TARGETS mergeSRI DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(tkalm tkalm.cpp)
-target_link_libraries(tkalm gpstk)
+target_link_libraries(tkalm ${SUPPORTLIBS})
 install (TARGETS tkalm DESTINATION "${CMAKE_INSTALL_BINDIR}")
 

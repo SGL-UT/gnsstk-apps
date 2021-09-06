@@ -1,29 +1,39 @@
 #.yml file for Gitlab-CI support
 
 # Note that the following tokens must be supplied via the Gitlab Repository Settings:
-# - CI_USER: username to pull from gitlab repository
-# - CI_TOKEN: password to pull from gitlab repository
+# - CI_USER: username to pull from gitlab repository in sgl-tks group
+# - CI_TOKEN: password to pull from gitlab repository in sgl-tks group
+# - PACKAGE_CONFIG_1/2 to pull from project settings cicd variables
+# - PACKAGE_CONFIG_CONDA_1/2 to pull from project settings cicd variables
+# - DOCKER_REGISTRY to pull from project settings cicd variables
+
+include:
+  - project: sgl-tks/ci-control
+    file: /gpstk-apps/ci_downstrm_chain.yml
+    ref: main
 
 stages:
-- check
-- build
-- test
-- install
-- package
-- deploy
-- downstream
+  - check
+  - build
+  - test
+  - install
+  - package
+  - deploy
+  - downstream_stack
 
-# Default cmake arguments
 variables:
-  REPO_HOST: "repositories.arlut.utexas.edu"
-  CMAKE_ARG_DEFAULT: "-DBUILD_EXT=ON -DBUILD_PYTHON=ON -DTEST_SWITCH=ON -DPIP_WHEEL_SWITCH=ON ../"
-  # this is usually set to main, unless there are downstream dependencies
-  SGLTK_BRANCH: main
-  DOCKER_REGISTRY: "modisdev:5000/sgl_ci"
+  # Default cmake arguments
+  CMAKE_ARG_DEFAULT: "-DBUILD_EXT=ON -DTEST_SWITCH=ON ../"
   # this can be used for incremental builds
-  #  GIT_CLEAN_FLAGS: none
+  # GIT_CLEAN_FLAGS: none
   # This can be set to True by Gitlab UI to only build/test packages.
   RELEASE_ONLY: "False"
+  # If set to "True" then only only chained jobs from upstream pipelines are executed.
+  GPSTK_COMMIT:
+    value: "main"
+    description: "Upstream gpstk lib branch to link. Defaults to main"
+  # The default project id for gpstk to download windows install artifact
+  GPSTK_PROJID: "164"
 
 # Template for all normal jobs.
 .normal_job:
@@ -56,9 +66,10 @@ variables:
 static_analysis:
   stage: check
   needs: []
+  extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
     - ./lint_test.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -99,7 +110,9 @@ protected_term_lint:
     - conda activate py36
     - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
-    - git fetch origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
+    - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
+    - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
+    - echo "bash repo_utils/dw_search/modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
     - bash repo_utils/dw_search/modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
   dependencies: []
   # This has the occasional false-positive, so it's advisory only.
@@ -119,7 +132,9 @@ protected_history_lint:
     - conda activate py36
     - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
-    - git fetch origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
+    - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
+    - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
+    - echo "bash repo_utils/dw_search/history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
     - bash repo_utils/dw_search/history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
   dependencies: []
   # This has the occasional false-positive, so it's advisory only.
@@ -129,9 +144,10 @@ protected_history_lint:
 generate_documentation:
   stage: check
   needs: []
+  extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
     # Install GraphViz
     - sudo apt-get install -y graphviz
@@ -143,27 +159,25 @@ generate_documentation:
     paths:
       - docs/
 
-build_debian_7:
-  stage: build
+# Validates some internal repository structure.
+repository_validation:
+  stage: check
   needs: []
-  extends: .big_build
+  extends: .normal_job
   tags:
     - docker-executor
-    # Not all docker runners support debian 7
-    - deb7-support
-  image: $DOCKER_REGISTRY/debian7_fai_ish
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - mkdir build
-    - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-  allow_failure: true
+    # Verify there are no duplicate header files names in the repo.
+    - ./dup_check.sh
+  # Allow failures here to prevent blocking the rest of the pipeline.
+  allow_failure: false
 
-build_debian_8:
+#
+# Build Stage - Try building in several environments.
+#
+
+deb8_build:
   stage: build
   needs: []
   extends: .big_build
@@ -171,16 +185,18 @@ build_debian_8:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
-    - mkdir build
+    # Install dependencies from latest CI first. latest deb CI artifacts first.
+    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk -DCMAKE_PREFIX_PATH=/usr -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
     - make all -j 4
   artifacts:
     paths:
       - build/
 
-build_debian_9:
+deb9_build:
   stage: build
   needs: []
   extends: .normal_job
@@ -188,16 +204,17 @@ build_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
+    - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
     - build/
 
-build_debian_10:
+deb10_build:
   stage: build
   needs: []
   extends: .normal_job
@@ -205,52 +222,57 @@ build_debian_10:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
+    - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
       - build/
 
-build_conda_py27:
+deb10_op1_build:
   stage: build
   needs: []
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py27
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - conda activate py27
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
+    # Link optional library sgltk
+    - ./optional_package_add.sh $PACKAGE_CONFIG_1
+    - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
       - build/
 
-build_conda_py36:
+deb10_op2_build:
   stage: build
   needs: []
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - conda activate py36
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
+    # Link optional libraries sgltk, betatk, mdhtk
+    - ./optional_package_add.sh $PACKAGE_CONFIG_2
+    - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
       - build/
 
-build_redhat:
+rhel7_build:
   stage: build
   needs: []
   extends: .normal_job
@@ -258,7 +280,9 @@ build_redhat:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
+    - mkdir -p build
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
@@ -267,35 +291,42 @@ build_redhat:
     paths:
     - build/
 
-build_redhat_8:
+rhel8_build:
   stage: build
   needs: []
+  extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
-    - mkdir build
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
       - build/
 
-build_windows:
+windows_build:
   stage: build
   needs: []
   extends: .normal_job
   tags:
     - win10
   script:
+    - SET PATH=%PATH%;c:\Program Files\7-Zip
+    - 'echo curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gpstk_win.zip
+    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
 # incremental builds
 #    - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
 # non-incremental builds
     - mkdir build
     - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DBUILD_PYTHON=OFF -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
     - cmake --build . --config Release
   artifacts:
     paths:
@@ -305,138 +336,55 @@ build_windows:
 #    paths:
 #    - build/
   timeout: 30m
-# Temporarily allow failures as Windows Runner issues are resolved
-  allow_failure: true
 
 
 # Test Stage
 # Runs all tests of GPSTK for each platform
-test_debian_7:
+deb8_test:
   stage: test
-  needs: [build_debian_7]
-  extends: .big_build
-  tags:
-    - docker-executor
-    # Not all docker runners support debian 7
-    - deb7-support
-  image: $DOCKER_REGISTRY/debian7_fai_ish
-  script:
-    - cd build
-    - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - build_debian_7
-  # Allowing failure since this is unlikely to be fixed before we deprecate debian-7
-  allow_failure: true
-
-test_debian_8:
-  stage: test
-  needs: [build_debian_8]
+  needs: [deb8_build]
   extends: .big_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
     - build/Testing/Temporary/
   dependencies:
-    - build_debian_8
+    - deb8_build
 
-test_debian_9:
+deb9_test:
   stage: test
-  needs: [build_debian_9]
+  needs: [deb9_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
     - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
   artifacts:
     when: on_failure
     paths:
     - build/Testing/Temporary/
-    - build/swig/
   dependencies:
-    - build_debian_9
+    - deb9_build
 
-test_debian_10:
+deb10_test:
   stage: test
-  needs: [build_debian_10]
+  needs: [deb10_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - cd build
-    - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-    - build/swig/
-  dependencies:
-    - build_debian_10
-
-test_conda_py27:
-  stage: test
-  needs: [build_conda_py27]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py27
-  script:
-    - conda activate py27
-    - cd build
-    - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-    - build/swig/
-  dependencies:
-    - build_conda_py27
-
-test_conda_py36:
-  stage: test
-  needs: [build_conda_py36]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36
-  script:
-    - conda activate py36
-    - cd build
-    - ctest -j 4
-    - touch $CI_PROJECT_DIR/success
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-    - build/swig/
-  dependencies:
-    - build_conda_py36
-
-test_redhat:
-  stage: test
-  needs: [build_redhat]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
-  script:
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd build
     - ctest -j 4
   artifacts:
@@ -444,16 +392,17 @@ test_redhat:
     paths:
     - build/Testing/Temporary/
   dependencies:
-    - build_redhat
+    - deb10_build
 
-test_redhat_8:
+deb10_op2_test:
   stage: test
-  needs: [build_redhat_8]
+  needs: [deb10_op2_build]
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
     - cd build
     - ctest -j 4
   artifacts:
@@ -461,57 +410,96 @@ test_redhat_8:
     paths:
       - build/Testing/Temporary/
   dependencies:
-    - build_redhat_8
+    - deb10_op2_build
 
-test_windows:
+rhel7_test:
   stage: test
-  needs: [build_windows]
+  needs: [rhel7_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/centos7_sgl
+  script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
+    - cd build
+    - ctest -j 4
+  artifacts:
+    when: on_failure
+    paths:
+    - build/Testing/Temporary/
+  dependencies:
+    - rhel7_build
+
+rhel8_test:
+  stage: test
+  needs: [rhel8_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/centos8_sgl
+  script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    - cd build
+    - ctest -j 4
+  artifacts:
+    when: on_failure
+    paths:
+      - build/Testing/Temporary/
+  dependencies:
+    - rhel8_build
+
+windows_test:
+  stage: test
+  needs: [windows_build]
   extends: .normal_job
   tags:
     - win10
   script:
+    - SET PATH=%PATH%;c:\Program Files\7-Zip
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gpstk_win.zip
+    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
     - cmake --build . --target RUN_TESTS --config Release
   artifacts:
     when: on_failure
     paths:
     - build/Testing/Temporary/
-    - build/swig/
   dependencies:
-    - build_windows
-  allow_failure: true
+    - windows_build
   timeout: 5m
 
 # User_Install Stage
-# Tests user install of GPSTk on each platform, saves artifacts for downstream builds.
-user_install_debian_9:
+# Tests user install of GPSTk on each platform, saves artifacts for
+# downstream builds.
+deb9_user_install:
   stage: install
-  needs: [build_debian_9]
+  needs: [deb9_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
     - export gpstk=`pwd`/install
-    - export PYTHONPATH=$gpstk/lib/python2.7/site-packages
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
     - make install -j 4
-    - python -c "import gpstk"
   artifacts:
     paths:
       - build/install
   dependencies:
-    - build_debian_9
+    - deb9_build
 
-user_install_redhat:
+rhel7_user_install:
   stage: install
-  needs: [build_redhat]
+  needs: [rhel7_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
@@ -520,16 +508,17 @@ user_install_redhat:
     paths:
       - build/install
   dependencies:
-    - build_redhat
+    - rhel7_build
 
-user_install_redhat_8:
+rhel8_user_install:
   stage: install
-  needs: [build_redhat_8]
+  needs: [rhel8_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
     - export gpstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
@@ -538,75 +527,81 @@ user_install_redhat_8:
     paths:
       - build/install
   dependencies:
-    - build_redhat_8
+    - rhel8_build
 
 user_install_windows:
   stage: install
-  needs: [build_windows]
+  needs: [windows_build]
   extends: .normal_job
   tags:
     - win10
   script:
+    - SET PATH=%PATH%;c:\Program Files\7-Zip
+    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gpstk_win.zip
+    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
     - cd build
     - cmake --build . --config Release --target install
   dependencies:
-    - build_windows
+    - windows_build
 # Temporarily allow failures as Windows Runner issues are resolved
-  allow_failure: true
   timeout: 10m
 
 # System Stage
 # Tests install of GPSTk on each platform, saves artifacts for downstream builds.
-system_install_debian_9:
+deb9_system_install:
   stage: install
-  needs: [build_debian_9]
+  needs: [deb9_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
     - export gpstk=/usr/local
-    - export PYTHONPATH=$gpstk/lib/python2.7/site-packages
-    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
     - sudo make install -j 4
-    - python -c "import gpstk"
   dependencies:
-    - build_debian_9
+    - deb9_build
 
-system_install_redhat:
+rhel7_system_install:
   stage: install
-  needs: [build_redhat]
+  needs: [rhel7_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
     - export gpstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
     - sudo make install -j 4
   dependencies:
-    - build_redhat
+    - rhel7_build
 
-system_install_redhat_8:
+rhel8_system_install:
   stage: install
-  needs: [build_redhat_8]
+  needs: [rhel8_build]
   extends: .normal_job
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
     - export gpstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
     - sudo make install -j 4
   dependencies:
-    - build_redhat_8
+    - rhel8_build
 
 
 # Package Stage
-# Tests packaging of GPSTk on all platforms
+# Tests packaging of GPSTk-apps on all platforms
+# Temporarily changing name back to old name so repo_utils can find this job.
+# We will standardize job names per Jira SIM-55
 package_debian_8:
   stage: package
   needs: []
@@ -615,7 +610,10 @@ package_debian_8:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
-    - rm -rf ../*.deb
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
+    # Remove any directories left over from the above script.
+    - rm -rf packages repo_utils
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
     - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
@@ -627,10 +625,12 @@ package_debian_8:
     - mv ../*.dsc debs
     - mv ../*.git debs
   artifacts:
+    when: always
     paths:
-    - debs/
+        - debs/
+        - debian/
   dependencies:
-    - build_debian_8
+    - deb8_build
 
 package_debian_9:
   stage: package
@@ -640,8 +640,11 @@ package_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
-    - rm -rf ../*.deb
-    - dpkg-buildpackage --build-profiles=pkg_python -us -uc -d --changes-option="-DDistribution=stretch-sgl"
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
+    # Remove any directories left over from the above script.
+    - rm -rf packages repo_utils
+    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=stretch-sgl"
     - mkdir debs
     - mv ../*.deb debs
     - mv ../*.changes debs
@@ -652,8 +655,9 @@ package_debian_9:
     paths:
       - debs/
   dependencies:
-    - build_debian_9
+    - deb9_build
 
+#Temporarily changing name back to old name so repo_utils can find this job.  We will standardize job names per Jira SIM-55
 package_debian_10:
   stage: package
   needs: []
@@ -662,12 +666,15 @@ package_debian_10:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
-    - rm -rf ../*.deb
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
+    # Remove any directories left over from the above script.
+    - rm -rf packages repo_utils
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
     - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
     - dch --bpo "No Changes"
-    - dpkg-buildpackage --build-profiles=pkg_python -us -uc -d --changes-option="-DDistribution=buster-sgl"
+    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=buster-sgl"
     - mkdir debs
     - mv ../*.deb debs
     - mv ../*.changes debs
@@ -678,7 +685,7 @@ package_debian_10:
     paths:
       - debs/
   dependencies:
-    - build_debian_10
+    - deb10_build
 
 package_conda:
   stage: package
@@ -688,12 +695,12 @@ package_conda:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
+    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
+    - mv conda-bld conda-bld2
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
-    # Build Conda Py36 package
-    - conda-build conda_recipe_py36
-    # Build Conda Py27 package
-    - conda-build conda_recipe
+    - conda index conda-bld2
+    - conda-build conda_recipe --override-channels -c file://$PWD/conda-bld2/
     # Copy files to local directory for archiving.
     - mkdir -p conda-bld
     - cp -r $CONDA_PREFIX/conda-bld/* conda-bld/
@@ -712,10 +719,11 @@ package_redhat:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gpstk-master/ -o rpm_files/SOURCES/gpstk-master.tar.gz HEAD
+    - git archive --prefix gpstk-apps-master/ -o rpm_files/SOURCES/gpstk-apps-master.tar.gz HEAD
     - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gpstk.spec
+    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gpstk-apps.spec
   artifacts:
     paths:
       - rpm_files/RPMS/x86_64/gpstk-*
@@ -730,37 +738,23 @@ package_redhat_8:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gpstk-master/ -o rpm_files/SOURCES/gpstk-master.tar.gz HEAD
+    - git archive --prefix gpstk-apps-master/ -o rpm_files/SOURCES/gpstk-apps-master.tar.gz HEAD
     - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk.spec
+    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk-apps.spec
   artifacts:
+    when: always
     paths:
-      - rpm_files/RPMS/x86_64/gpstk-*
-      - rpm_files/SRPMS/gpstk-*
+      - rpm_files/
   dependencies: []
 
-package_redhat_8_py36:
-  stage: package
-  needs: []
-  extends: .package_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
-  script:
-    - bash rpm_files/setup_dirs.sh
-    - git archive --prefix python3-gpstk-master/ -o rpm_files/SOURCES/python3-gpstk-master.tar.gz HEAD
-    - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk_py36.spec
-  artifacts:
-    paths:
-      - rpm_files/RPMS/x86_64/python3-gpstk-*
-      - rpm_files/SRPMS/python3-gpstk-*
-  dependencies: []
+#      - rpm_files/RPMS/x86_64/gpstk-*
+#      - rpm_files/SRPMS/gpstk-*
 
 # Deploy Stage
 # Tests install of GPSTk package on each platform, saves artifacts for downstream builds.
-deploy_debian_8:
+deb8_deploy:
   stage: deploy
   needs: [package_debian_8]
   extends: .package_build
@@ -768,20 +762,24 @@ deploy_debian_8:
     - docker-executor
   image: $DOCKER_REGISTRY/debian8_fai_ish
   script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
     - cd debs
     - sudo dpkg -i ./*.deb
     - timeconvert
   dependencies:
     - package_debian_8
 
-deploy_debian_9:
+deb9_deploy:
   stage: deploy
   needs: [package_debian_9]
-  extends: .big_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
     - python -c "import gpstk"
@@ -789,14 +787,16 @@ deploy_debian_9:
   dependencies:
     - package_debian_9
 
-deploy_debian_10:
+deb10_deploy:
   stage: deploy
   needs: [package_debian_10]
-  extends: .big_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
     - python -c "import gpstk"
@@ -804,53 +804,41 @@ deploy_debian_10:
   dependencies:
     - package_debian_10
 
-deploy_redhat:
+rhel7_deploy:
   stage: deploy
   needs: [package_redhat]
-  extends: .big_build
+  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd rpm_files/RPMS/x86_64/
     - sudo yum install gpstk-*.rpm -y
     - timeconvert
   dependencies:
     - package_redhat
 
-deploy_redhat_8:
+rhel8_deploy:
   stage: deploy
   needs: [package_redhat_8]
-  extends: .big_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
-  script:
-    - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gpstk-*.rpm -y
-    - timeconvert
-  dependencies:
-    - package_redhat_8
-
-deploy_redhat_py36:
-  stage: deploy
-  needs: [package_redhat_8, package_redhat_8_py36]
   extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd rpm_files/RPMS/x86_64/
     - sudo yum install gpstk-*.rpm -y
-    - sudo yum install python3-gpstk-*.rpm -y
-    - python3 -c "import gpstk"
     - timeconvert
   dependencies:
-    - package_redhat_8_py36
     - package_redhat_8
 
-
-# package_windows:
+# This requires a third-party package called NSIS.  We don't have it
+# installed and don't have the resources to make it work right now.
+# windows_package:
 #   stage: package
 #   tags:
 #     - win10
@@ -858,73 +846,6 @@ deploy_redhat_py36:
 #     - cd build
 #     - cpack -C Release
 #   dependencies:
-#     - build_windows
+#     - windows_build
 
 # Temporarily allow failures as Windows Runner issues are resolved
-
-
-sgltk_debian:
-  stage: downstream
-  needs: [user_install_debian_9]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
-  script:
-    - cd build
-    - git clone -b $SGLTK_BRANCH https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/sgltk.git
-    - export gpstk=`pwd`/install
-    - export LD_LIBRARY_PATH=$gpstk/lib:$LD_LIBRARY_PATH
-    - cd sgltk
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_PREFIX_PATH=$gpstk -DBUILD_PYTHON=ON -DTEST_SWITCH=ON ../
-    - make all -j 4
-  dependencies:
-    - user_install_debian_9
-
-sgltk_redhat:
-  stage: downstream
-  needs: [user_install_redhat]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
-  script:
-    - cd build
-    - git clone -b $SGLTK_BRANCH https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/sgltk.git
-    - export gpstk=`pwd`/install
-    - export LD_LIBRARY_PATH=$gpstk/lib:$LD_LIBRARY_PATH
-    - cd sgltk
-    - mkdir build
-    - cd build
-    - cmake -DBUILD_PYTHON=OFF -DCMAKE_PREFIX_PATH=$gpstk -DTEST_SWITCH=ON ../
-    - make all -j 4
-  dependencies:
-    - user_install_redhat
-
-# sgltk_windows:
-#   stage: downstream
-#   needs: [user_install_windows]
-#   extends: .normal_job
-#   tags:
-#     - win10
-#   script:
-#     - set
-#     - cd
-#     - dir %CI_PROJECT_DIR%
-#     - dir %CI_PROJECT_DIR%\build
-#     - dir %CI_PROJECT_DIR%\build\install
-#     - cd build
-#     - git clone -b %SGLTK_BRANCH% https://repositories.arlut.utexas.edu/sgl/sgltk.git
-#     - cd sgltk
-#     - mkdir build
-#     - cd build
-#     - cmake -DCMAKE_PREFIX_PATH=%CI_PROJECT_DIR%/build/install -DCMAKE_INSTALL_PREFIX=install -DBUILD_PYTHON=OFF -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" --trace ../
-#     - cmake --build .
-# #  artifacts:
-# #    paths:
-# #    - build/
-#   timeout: 30m
-#   dependencies:
-#     - user_install_windows

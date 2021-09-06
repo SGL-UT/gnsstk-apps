@@ -1,10 +1,14 @@
+{% set build_user = environ.get('CI_USER', '') %}
+{% set build_token = environ.get('CI_TOKEN', '') %}
+
+
 package:
-  name: gpstk
+  name: gpstk-apps
   version: {{ environ.get('GIT_DESCRIBE_TAG', 'v0.0')[1:] }}
 
 source:
   git_rev: {{ environ.get('GIT_COMMIT', 'main') }}
-  git_url: https://repositories.arlut.utexas.edu/sgl/gpstk.git
+  git_url: https://{{build_user}}:{{build_token}}@sgl-git.arlut.utexas.edu/sgl-tks/gpstk-apps.git
 
 build:
   number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
@@ -16,22 +20,20 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
   host:
-    - python=2.7
+    - python {{ python }}
     - setuptools
-    - numpy {{ numpy }}
-    - enum34
+    - gpstk >=12.0.0,<13
   run:
-    - python=2.7
-    - {{ pin_compatible('numpy') }}
-    - enum34
+    - python {{ python }}
+    - gpstk >=12.0.0,<13
 
 test:
   imports:
     - gpstk
 
 about:
-  home: https://repositories.arlut.utexas.edu:sgl/gpstk
-  summary: The GPS Toolkit (GPSTk)
+  home: https://sgl-git.arlut.utexas.edu:sgl-tks/gpstk-apps
+  summary: The GPS Toolkit Applications (GPSTk-Apps)
   description: |
     The GPS Toolkit (GPSTk) is an open-source (LGPL) project sponsored by
     the Space and Geophysics Laboratory (SGL).

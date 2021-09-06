@@ -1,18 +1,18 @@
-set( SD ${GPSTK_TEST_DATA_DIR} )
-set( TD ${GPSTK_TEST_OUTPUT_DIR} )
+set( SD ${NAVSAT_TOOLS_TEST_DATA_DIR} )
+set( TD ${NAVSAT_TOOLS_TEST_OUTPUT_DIR} )
 
 ###############################################################################
 # TEST PRSolve
 ###############################################################################
 
 # test with minimum required inputs - RINEX obs, SP3 Ephemeris, Solution Descriptor
-set( ARGS1 --obs\ ${GPSTK_TEST_DATA_DIR}/arlm200b.15o\ --eph\ ${GPSTK_TEST_DATA_DIR}/test_input_sp3_nav_2015_200.sp3\ --sol\ GPS:12:WC\ --log\ ${TD}/PRSolve_Required.out )
+set( ARGS1 --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/arlm200b.15o\ --eph\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/test_input_sp3_nav_2015_200.sp3\ --sol\ GPS:12:WC\ --log\ ${TD}/PRSolve_Required.out )
 add_test(NAME PRSolve_Required
     COMMAND ${CMAKE_COMMAND}
     -DTEST_PROG=$<TARGET_FILE:PRSolve>
-    -DDIFF_PROG=$<TARGET_FILE:df_diff>
-    -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-    -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+    -DDIFF_PROG=${df_diff}
+    -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+    -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
     -DTESTBASE=PRSolve_Required
     -DTESTNAME=PRSolve_Required
     -DARGS=${ARGS1}
@@ -21,13 +21,13 @@ add_test(NAME PRSolve_Required
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # test with minimum required inputs, RINEX output - RINEX obs, SP3 Ephemeris, Solution Descriptor, adequate ephemerides
-set( ARGS2 --obs\ ${GPSTK_TEST_DATA_DIR}/arlm200b.15o\ --eph\ ${GPSTK_TEST_DATA_DIR}/test_input_sp3_nav_2015_200.sp3\ --sol\ GPS:12:WC\ --out\ ${TD}/PRSolve_Rinexout.out\ --log\ ${TD}/PRSolve_Rinexout.log)
+set( ARGS2 --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/arlm200b.15o\ --eph\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/test_input_sp3_nav_2015_200.sp3\ --sol\ GPS:12:WC\ --out\ ${TD}/PRSolve_Rinexout.out\ --log\ ${TD}/PRSolve_Rinexout.log)
 add_test(NAME PRSolve_Rinexout
     COMMAND ${CMAKE_COMMAND}
     -DTEST_PROG=$<TARGET_FILE:PRSolve>
-    -DDIFF_PROG=$<TARGET_FILE:df_diff>
-    -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-    -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+    -DDIFF_PROG=${df_diff}
+    -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+    -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
     -DTESTBASE=PRSolve_Rinexout
     -DTESTNAME=PRSolve_Rinexout
     -DARGS=${ARGS2}
@@ -56,8 +56,8 @@ set_tests_properties(PRSolve_ValidOutput PROPERTIES DEPENDS PRSolve_Rinexout)
 add_test(NAME poscvt_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # no options should result in failure
@@ -70,8 +70,8 @@ add_test(NAME poscvt_CmdOpt_2
 add_test(NAME poscvt_ECEF
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTBASE=poscvt_ECEF
          -DTESTNAME=poscvt_ECEF
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
@@ -81,8 +81,8 @@ add_test(NAME poscvt_ECEF
 add_test(NAME poscvt_Geodetic
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTBASE=poscvt_Geodetic
          -DTESTNAME=poscvt_Geodetic
          -DSPARG1=--geodetic=30.38366382\ 262.27458654\ 217.6452
@@ -92,8 +92,8 @@ add_test(NAME poscvt_Geodetic
 add_test(NAME poscvt_Geocentric
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTBASE=poscvt_Geocentric
          -DTESTNAME=poscvt_Geocentric
          -DSPARG1=--geocentric=30.21602743\ 262.27458654\ 6372918.0945
@@ -103,8 +103,8 @@ add_test(NAME poscvt_Geocentric
 add_test(NAME poscvt_Spherical
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DTESTBASE=poscvt_Spherical
          -DTESTNAME=poscvt_Spherical
          -DSPARG1=--spherical=59.78397257\ 262.27458654\ 6372918.0945
@@ -114,8 +114,8 @@ add_test(NAME poscvt_Spherical
 add_test(NAME poscvt_Format_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_1
          -DTESTNAME=poscvt_Format_1
@@ -126,8 +126,8 @@ add_test(NAME poscvt_Format_1
 add_test(NAME poscvt_Format_2
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_2
          -DTESTNAME=poscvt_Format_2
@@ -138,8 +138,8 @@ add_test(NAME poscvt_Format_2
 add_test(NAME poscvt_Format_3
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_3
          -DTESTNAME=poscvt_Format_3
@@ -150,8 +150,8 @@ add_test(NAME poscvt_Format_3
 add_test(NAME poscvt_Format_4
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_4
          -DTESTNAME=poscvt_Format_4
@@ -162,8 +162,8 @@ add_test(NAME poscvt_Format_4
 add_test(NAME poscvt_Format_5
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_5
          -DTESTNAME=poscvt_Format_5
@@ -174,8 +174,8 @@ add_test(NAME poscvt_Format_5
 add_test(NAME poscvt_Format_6
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_6
          -DTESTNAME=poscvt_Format_6
@@ -186,8 +186,8 @@ add_test(NAME poscvt_Format_6
 add_test(NAME poscvt_Format_7
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_7
          -DTESTNAME=poscvt_Format_7
@@ -198,8 +198,8 @@ add_test(NAME poscvt_Format_7
 add_test(NAME poscvt_Format_8
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:poscvt>
-         -DSOURCEDIR=${GPSTK_TEST_DATA_DIR}
-         -DTARGETDIR=${GPSTK_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
          -DSPARG1=--ecef=-740289.9180\ -5457071.7340\ 3207245.5420
          -DTESTBASE=poscvt_Format_8
          -DTESTNAME=poscvt_Format_8
