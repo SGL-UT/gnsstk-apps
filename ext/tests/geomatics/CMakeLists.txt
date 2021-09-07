@@ -201,7 +201,7 @@ set_property(TEST DDBase_CmdOpt_eopfile_invalid PROPERTY LABELS DDBase)
 ###############################################################################
 # @todo - DDBase: --TropModel <trop,id> Use trop model <trop> for station <id>,
 #                    choices are: 'Zero','Black','NewB','ModHop','ModHopH',
-#                    'Saas' [cf. GPSTk] (Saas)
+#                    'Saas' [cf. GNSSTk] (Saas)
 ###############################################################################
 
 

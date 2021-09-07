@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -43,7 +43,7 @@
 
 /// Base class for writing utilities that merge files
 
-class MergeFrame : public gpstk::BasicFramework
+class MergeFrame : public gnsstk::BasicFramework
 {
 public:
       /**
@@ -55,7 +55,7 @@ public:
    MergeFrame(char* arg0, 
               const std::string& type, 
               const std::string& message = std::string())
-         : gpstk::BasicFramework(arg0, 
+         : gnsstk::BasicFramework(arg0, 
                                  "Sorts and merges input " + type +
                                  " files into a single file. " + message),
            inputFileOption("<" + type + " file> [...]", true),
@@ -72,14 +72,14 @@ public:
 #pragma clang diagnostic ignored "-Woverloaded-virtual"
    virtual bool initialize(int argc, char* argv[]) throw()
    {
-      return gpstk::BasicFramework::initialize(argc, argv);
+      return gnsstk::BasicFramework::initialize(argc, argv);
    }
 #pragma clang diagnostic pop
 protected:
    virtual void process() = 0;
 
-   gpstk::CommandOptionRest inputFileOption;
-   gpstk::CommandOptionWithAnyArg outputFileOption;
+   gnsstk::CommandOptionRest inputFileOption;
+   gnsstk::CommandOptionWithAnyArg outputFileOption;
 };
 
 

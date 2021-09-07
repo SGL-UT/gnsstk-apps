@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -48,7 +48,7 @@
 #include <CivilTime.hpp>
 #include <time.h>
 
-// GPSTk
+// GNSSTk
 //#define RANGECHECK // throw on invalid ranges in Vector and Matrix
 #include "Epoch.hpp"
 
@@ -57,7 +57,7 @@
 
 //------------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 
 //------------------------------------------------------------------------------------
 string Version("4.8 5/13/11");
@@ -163,7 +163,7 @@ try {
    " in a double-differenced carrier phase estimation algorithm to produce precise\n"
    " estimates of relative positions. Input is on the command line, or of the same\n"
    " format in a file (see -f<file> below). "
-   "DDBase is built on the GPS Toolkit (GPSTk).\n"
+   "DDBase is built on the GNSS Toolkit (GNSSTk).\n"
    " NB. Input option --DT <data_interval_(seconds)> is optional but recommended.\n"
    " NB. Stations are defined, and many inputs for each are identified, by a label\n"
    "  (called station label or id below), which is case sensitive and must be used\n"
@@ -286,8 +286,8 @@ try {
    return iret;
 }
 catch(Exception& e) {
-   cerr << "GPSTk Exception : " << e;
-   oflog << "GPSTk Exception : " << e;
+   cerr << "GNSSTk Exception : " << e;
+   oflog << "GNSSTk Exception : " << e;
 }
 catch (...) {
    cerr << "Unknown error in DDBase.  Abort." << endl;
@@ -312,7 +312,7 @@ try {
    if(axis < 1 || axis > 3) {
       Exception e(string("Invalid axis (1,2,3 <=> X,Y,Z): ")
                          + StringUtils::asString(axis));
-      GPSTK_THROW(e);
+      GNSSTK_THROW(e);
    }
    Matrix<double> R(3,3,0.0);
 
@@ -326,9 +326,9 @@ try {
 
    return R;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------

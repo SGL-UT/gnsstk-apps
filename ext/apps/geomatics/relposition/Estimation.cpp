@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -52,7 +52,7 @@
 // system includes
 #include "TimeString.hpp"
 
-// GPSTk
+// GNSSTk
 #include "Vector.hpp"
 #include "Matrix.hpp"
 #include "Namelist.hpp"
@@ -69,7 +69,7 @@
 
 //------------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 //------------------------------------------------------------------------------------
@@ -276,9 +276,9 @@ try {
 
    return iret;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }   // end Estimation()
 
 //------------------------------------------------------------------------------------
@@ -312,9 +312,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -391,9 +391,9 @@ try {
    Mmax = DDDataMap.size();            // the largest M (Data.size()) could be
 
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -449,9 +449,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -475,7 +475,7 @@ try {
       k = StateNL.index(it->first+string("-Z"));
       if(i == -1 || j == -1 || k == -1) {   // FIXME - i is unsigned!!
          Exception e("Position states confused: unable to find for " + it->first);
-         GPSTK_THROW(e);
+         GNSSTK_THROW(e);
       }
 
       State(i) = State(j) = State(k) = 0.0;
@@ -507,9 +507,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -563,9 +563,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -656,7 +656,7 @@ try {
             i = StateNL.index(stname);
             if(i == -1) {
                Exception e("RZD states confused: unable to find state " + stname);
-               GPSTK_THROW(e);
+               GNSSTK_THROW(e);
             }
             if(CI.Debug) oflog << "RZD state " << stname << " = index " << i << endl;
             indexes.push_back(i);
@@ -739,9 +739,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -781,9 +781,9 @@ try {
 
    return i;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -832,7 +832,7 @@ try {
          k = StateNL.index(site1 + string("-Z"));
          if(i == -1 || j == -1 || k == -1) {
             Exception e("Position states confused: unable to find for " + site1);
-            GPSTK_THROW(e);
+            GNSSTK_THROW(e);
          }
       }
          // sat 1 -----------------------------------------------------
@@ -852,7 +852,7 @@ try {
          if(n == -1) {
             Exception e("RZD states confused: unable to find state " + 
                site1 + string("-RZD") + asString(ntrop));
-            GPSTK_THROW(e);
+            GNSSTK_THROW(e);
          }
          mapf = st1.pTropModel->wet_mapping_function(CER.elevation);
          P(m,n) += mapf;
@@ -884,7 +884,7 @@ try {
          k = StateNL.index(site2 + string("-Z"));
          if(i == -1 || j == -1 || k == -1) {
             Exception e("Position states confused: unable to find for " + site2);
-            GPSTK_THROW(e);
+            GNSSTK_THROW(e);
          }
       }
          // sat 1 -----------------------------------------------------
@@ -903,7 +903,7 @@ try {
          if(n == -1) {
             Exception e("RZD states confused: unable to find state " + 
                site2 + string("-RZD") + asString(ntrop));
-            GPSTK_THROW(e);
+            GNSSTK_THROW(e);
          }
          mapf = st2.pTropModel->wet_mapping_function(CER.elevation);
          P(m,n) += mapf;
@@ -954,9 +954,9 @@ try {
    P.resize(M,N);
 
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -969,9 +969,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -990,9 +990,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1027,7 +1027,7 @@ try {
       k = StateNL.index(it->first+string("-Z"));
       if(i == -1 || j == -1 || k == -1) {
          Exception e("Position states confused: unable to find for " + it->first);
-         GPSTK_THROW(e);
+         GNSSTK_THROW(e);
       }
 
       // update the nominal position in Stations[]
@@ -1039,9 +1039,9 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1116,9 +1116,9 @@ try {
       << f82s << rmsrof << endl;
 
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1179,9 +1179,9 @@ try {
 
    return done;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1196,9 +1196,9 @@ try {
    return ( site1 + string("-") + site2 + string("_")
       + asString(sat1) + string("-") + asString(sat2) );
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 //------------------------------------------------------------------------------------
 string ComposeName(const DDid& ddid)
@@ -1217,9 +1217,9 @@ try {
          return ComposeName(ddid.site2,ddid.site1,ddid.sat2,ddid.sat1);
    }
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 //------------------------------------------------------------------------------------
 void DecomposeName(const string& label,
@@ -1240,9 +1240,9 @@ try {
    sat2.fromString(copy);
    //oflog << " " << sat2 << endl;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1376,9 +1376,9 @@ try {
          << fixed << setprecision(3) << double(nDD)/double(NEp) << " DDs/epoch) "
          << " used in estimation." << endl;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1466,9 +1466,9 @@ try {
 
    return rms;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(std::exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------

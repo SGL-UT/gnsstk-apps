@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -45,13 +45,13 @@
 #define DDBASE_CONSTANTS_INCLUDE
 
 //------------------------------------------------------------------------------------
-// GPSTk
+// GNSSTk
 #include "GNSSconstants.hpp"
 
 //------------------------------------------------------------------------------------
-const double CFF=gpstk::C_MPS/gpstk::OSC_FREQ_GPS;
-const double F1=gpstk::L1_MULT_GPS;   // 154.0;
-const double F2=gpstk::L2_MULT_GPS;   // 120.0;
+const double CFF=gnsstk::C_MPS/gnsstk::OSC_FREQ_GPS;
+const double F1=gnsstk::L1_MULT_GPS;   // 154.0;
+const double F2=gnsstk::L2_MULT_GPS;   // 120.0;
 const double f12=F1*F1;
 const double f22=F2*F2;
 /// wavelength L1

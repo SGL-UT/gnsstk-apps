@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -49,7 +49,7 @@
 //------------------------------------------------------------------------------------
 // includes
 // system
-// GPSTk
+// GNSSTk
 // DDBase
 // put '#include this file' at bottom of DDBase.hpp #include "DDBase.hpp"
 
@@ -84,8 +84,8 @@ public:
    std::vector<std::string> NavFileNames;
    std::vector<std::string> EOPFileNames;
    std::string TimeTableFile;
-   gpstk::CommonTime BegTime;
-   gpstk::CommonTime EndTime;
+   gnsstk::CommonTime BegTime;
+   gnsstk::CommonTime EndTime;
    int Frequency;
       // stochastic models
    std::string StochasticModel;
@@ -98,7 +98,7 @@ public:
    double PRSconverge;
       // for use by pseudorange solution only
    double PRSMinElevation;
-   gpstk::TropModel *pTropModel;          // Station has another for Estimation
+   gnsstk::TropModel *pTropModel;          // Station has another for Estimation
    bool noRAIM;                           // not implemented right now
       // for modeling the residual zenith delay (RZD) of the troposphere
    int NRZDintervals;                     // 0 for no RZD estimation
@@ -113,9 +113,9 @@ public:
    int MaxGap;
    int MinDDSeg;
    int PhaseBiasReset;
-   std::vector<gpstk::GSatID> ExSV;
+   std::vector<gnsstk::GSatID> ExSV;
       // timetable
-   gpstk::GSatID RefSat;
+   gnsstk::GSatID RefSat;
       // Estimation
    bool noEstimate;
    int nIter;
@@ -125,7 +125,7 @@ public:
    double DefaultTemp,DefaultPress,DefaultRHumid;
       // output
    std::vector<std::string> OutputBaselines;
-   std::vector<gpstk::Triple> OutputBaselineOffsets;
+   std::vector<gnsstk::Triple> OutputBaselineOffsets;
    std::string OutputClkFile;
    std::string OutputRawDDFile;
    std::string OutputDDDFile;

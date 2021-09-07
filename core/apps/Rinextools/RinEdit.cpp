@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -122,7 +122,7 @@
  * \enddictionary
  *
  * Time related [T,F are strings, time T conforms to format F;
- * cf. gpstk::Epoch.]
+ * cf. gnsstk::Epoch.]
  *
  * Default t(f) is 'week,sec-of-week'(%F,%g) OR 'y,m,d,h,m,s'(%Y,%m,%d,%H,%M,%S)
  * \dictionary
@@ -233,7 +233,7 @@
 #include <fstream>
 #include <algorithm>
 
-// GPSTK
+// GNSSTK
 #include "Exception.hpp"
 #include "StringUtils.hpp"
 #include "GNSSconstants.hpp"
@@ -255,7 +255,7 @@
 
 //------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 //------------------------------------------------------------------------------
@@ -455,7 +455,7 @@ int main(int argc, char **argv)
       wallclkbeg.setLocalTime();
 
          // build title = first line of output
-      C.Title = "# " + C.prgmName + ", part of the GPS Toolkit, Ver " + version
+      C.Title = "# " + C.prgmName + ", part of the GNSS Toolkit, Ver " + version
          + ", Run " + printTime(wallclkbeg,C.calfmt);
    
       for(;;) {
@@ -563,7 +563,7 @@ int initialize(string& errors)
       if(!isValid) return -5;
       return 0;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end initialize()
 
 
@@ -787,11 +787,11 @@ int processFiles(void)
             }
             catch(std::exception& e) {
                Exception ge(string("Std excep: ") + e.what());
-               GPSTK_THROW(ge);
+               GNSSTK_THROW(ge);
             }
             catch(...) {
                Exception ue("Unknown exception while reading RINEX data.");
-               GPSTK_THROW(ue);
+               GNSSTK_THROW(ue);
             }
 
                // normal EOF
@@ -852,7 +852,7 @@ int processFiles(void)
 
                // write data out
             try { C.ostrm << RDout; }
-            catch(Exception& e) { GPSTK_RETHROW(e); }
+            catch(Exception& e) { GNSSTK_RETHROW(e); }
 
                // debug: dump the RINEX data objects input and output
             if (C.debug > -1)
@@ -883,7 +883,7 @@ int processFiles(void)
 
       return nfiles;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end processFiles()
 
 //------------------------------------------------------------------------------
@@ -935,7 +935,7 @@ int processOneEpoch(Rinex3ObsHeader& Rhead, Rinex3ObsHeader& RHout,
                   if (jt == C.currCmds.end())
                   {
                      Exception e(string("Execute failed to find + cmd matching ")+it->asString());
-                     GPSTK_THROW(e);
+                     GNSSTK_THROW(e);
                   }
                   C.currCmds.erase(jt);
                }
@@ -969,7 +969,7 @@ int processOneEpoch(Rinex3ObsHeader& Rhead, Rinex3ObsHeader& RHout,
 
       return 0;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end processOneEpoch()
 
 
@@ -1216,7 +1216,7 @@ int executeEditCmd(const vector<EditCmd>::iterator& it, Rinex3ObsHeader& Rhead,
 
       return 1;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end executeEditCmd()
 
 
@@ -1362,7 +1362,7 @@ string Configuration::buildCommandLine(void) throw()
    stopStr = defaultstopStr;
    opts.Add(0, "TB", "t[:f]", false, false, &startStr,
             "# Time related [t,f are strings, time t conforms to format f;"
-            " cf. gpstk::Epoch.]\n# Default t(f) is 'week,sec-of-week'(%F,%g)"
+            " cf. gnsstk::Epoch.]\n# Default t(f) is 'week,sec-of-week'(%F,%g)"
             " OR 'y,m,d,h,m,s'(%Y,%m,%d,%H,%M,%S)\n"
             " --OF <f,t>        At RINEX time <t>, close output file and open "
             "another named <f> ()",
@@ -1697,7 +1697,7 @@ EditCmd::EditCmd(const string intypestr, const string inarg)
          else if(tag == "BD") type = bdCT;
       }
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------
@@ -1754,10 +1754,10 @@ string EditCmd::asString(string msg)
 
       return os.str();
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
    catch(std::exception& e) {
       Exception E(string("std::except: ") + e.what());
-      GPSTK_THROW(E);
+      GNSSTK_THROW(E);
    }
 }
 

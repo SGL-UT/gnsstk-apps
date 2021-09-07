@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# This script downloads/installs the most recent conda pkg from the $GPSTK_COMMIT (defaults to main) branch of gpstk repo.
+# This script downloads/installs the most recent conda pkg from the $GNSSTK_COMMIT (defaults to main) branch of gnsstk repo.
 
 if [ -z $CI_API_TOKEN ]; then
     echo "Unable to locate API Token variable CI_API_TOKEN"

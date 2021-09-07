@@ -493,7 +493,7 @@ Version 5.0.0   Saturday June 13, 2020
            Add comments explaining Debian 7 problems
 
      Quang Duong <qduong@arlut.utexas.edu> (3):
-           Declare via SWIG's exceptionclass directive that gpstk::Exception is an Exception
+           Declare via SWIG's exceptionclass directive that gnsstk::Exception is an Exception
            Replace using syntax with typedef
            Resolve Rinex3ObsHeader nested class/struct issues
 
@@ -988,7 +988,7 @@ Bryan Parsons (14):
       Updating CMakelists.txt in ext/apps due to deprecation of applications.  While slated for deprecation, PRSolution2.* still has dependencies within the codebase that need to be reviewed.
 
 Corwin Olson (2):
-      adding Windows build script for GPSTk
+      adding Windows build script for GNSSTk
       adding script to install gpstk for diffproc to ~./local/gpstkDiffProc
 
 Don Tucker (2):
@@ -1083,7 +1083,7 @@ Bryan Parsons (13):
       Merge branch 'issue_368_GPSIII_FitInterval' into 'master'
 
 Dave Rainwater (3):
-      Version with altered RAIMCompute signature (no Sat Sys type vector) to work with PySGLTk.  This is a temporary solution, until someone can modify GPSTk's swig to accommodate the full normal signature.
+      Version with altered RAIMCompute signature (no Sat Sys type vector) to work with PySGLTk.  This is a temporary solution, until someone can modify GNSSTk's swig to accommodate the full normal signature.
       Revision to PRSolution signature changes to work with Python swig-bound code.
       Modified PRSolution with a simplified RAIMCompute interface, RAIMComputeSimple, that doesn't have the vector and matrix varibles that aren't yet exposed in swig.
 
@@ -1116,7 +1116,7 @@ Version 2.11   Thursday, January 3, 2019
    General modifications
    ---------------------
    - First cut of Travis-CI build file for external CI builds with Github
-   - Added official debian builds to package stage of GPSTk CI
+   - Added official debian builds to package stage of GNSSTk CI
 
    Modifications by Author
    ---------------------
@@ -1293,7 +1293,7 @@ Version 2.10.2   Thursday, April 19, 2018
 
    General modifications
    ---------------------
-   - Tweaks to Core and RedHat builds for fixes to SGLTk portion of GPSTk CI build
+   - Tweaks to Core and RedHat builds for fixes to SGLTk portion of GNSSTk CI build
    - Test Additions and Cleanup
    - Various Bug and Compile Warning Fixes
 
@@ -1324,7 +1324,7 @@ Andrew Kuck (20):
 Bryan Parsons (16):
       Added line to GPSTKConfig.cmake to allow dependent projects to find header files regardless of explicit or implicit paths.
       Merge branch 'Explicit_Header_Fix' into 'master'
-      Merge branch 'GPSTk_2_10_1' into 'master'
+      Merge branch 'GNSSTk_2_10_1' into 'master'
       Merge branch 'EngEphHealthFix' into 'master'
       Merge branch 'issue_335_scanBrdc' into 'master'
       Merge branch 'issue_333' into 'master'
@@ -1335,9 +1335,9 @@ Bryan Parsons (16):
       Merge branch '54_18_corrected' into 'master'
       Merge branch 'issue_333' into 'master'
       Merge branch 'issue_339_sp3d_support' into 'master'
-      Fixing bug that introduced false positive on Downstream GPSTk Core build.  Making this test an Allowed Failure at this time.
+      Fixing bug that introduced false positive on Downstream GNSSTk Core build.  Making this test an Allowed Failure at this time.
       Merge branch 'gitlab_ci_bug' into 'master'
-      GPSTk v2.10.2
+      GNSSTk v2.10.2
 
 John H. Price (1):
       Use newer rinex classes to allow RINEX 3 file checking
@@ -1390,7 +1390,7 @@ Version 2.10.1   Monday, January 22, 2018
 
    General modifications
    ---------------------
-   - Tweaks to Core and RedHat builds for fixes to SGLTk portion of GPSTk CI build
+   - Tweaks to Core and RedHat builds for fixes to SGLTk portion of GNSSTk CI build
    - Test Additions and Cleanup
    - Various Bug and Compile Warning Fixes
 
@@ -1424,13 +1424,13 @@ Bryan Parsons (22):
       Merge branch 'SatPass_consts' into 'master'
       Merge branch 'Stats_plus_bug' into 'master'
       Merge branch 'RinexNavWeek' into 'master'
-      Tweaks for resolving issues with SGLTk builds of GPSTk CI.
-      Additional tweaks to .gitlab-ci.yml file for fixing SGLTK issues in GPSTk CI pipeline.
+      Tweaks for resolving issues with SGLTk builds of GNSSTk CI.
+      Additional tweaks to .gitlab-ci.yml file for fixing SGLTK issues in GNSSTk CI pipeline.
       Additional Gitlab CI tweaks.
       More changes to Gitlab CI.
       Updates to .gitlab-ci.yml
-      Debian GPSTk SGLTk fixed, change for Core and Redhat added.
-      Tweaks to Core and RedHat builds for fixes to SGLTk portion of GPSTk CI build.
+      Debian GNSSTk SGLTk fixed, change for Core and Redhat added.
+      Tweaks to Core and RedHat builds for fixes to SGLTk portion of GNSSTk CI build.
       Merge branch 'Gitlab_CI_Fix' into 'master'
       Merge branch 'issue_334' into 'master'
 
@@ -2202,12 +2202,12 @@ Version 2.9.1   Tuesday, July 12, 2016
 
    General modifications
    ---------------------
-   - Documentation across the GPSTk have been revamped
+   - Documentation across the GNSSTk have been revamped
      - LaTex User's Reference Manual PDF has been updated
         - Old applications and LaTex files removed
         - Migrated documentation for applications in SGLTk
         - Various information updated
-     - Documentation.md added for how-tos on building GPSTk documentation
+     - Documentation.md added for how-tos on building GNSSTk documentation
      - Application documentation added to each app directory, in markdown for easy reading and auto-rendering on Gitlab
    - Additional Application and Unit tests
    - This release includes new/modified source code comments for improved readability.
@@ -2229,7 +2229,7 @@ Bryan Parsons (50):
       calgps application and application tests have migrated from /ext to /core
       Migrated all mergetools applications (mergeRinMet, mergeRinNav, mergeRinObs) and application tests from /ext to /core
       RinEdit and RinSum applications with application tests have been migrated from /ext to /core
-      Migrated all difftools (rmwdiff, rnwdiff, rowdiff, rinheaddiff) applications and application tests from /ext to /core.  This commit closes JIRA issues GPSTK-61 and GPSTk-160.
+      Migrated all difftools (rmwdiff, rnwdiff, rowdiff, rinheaddiff) applications and application tests from /ext to /core.  This commit closes JIRA issues GPSTK-61 and GNSSTk-160.
       Merge branch 'doc_mod' into 'master'
       Merge branch 'ext_core_migration' into 'master'
       Adding newline to end of CNavFilterData.hpp to quiet Solaris warnings.
@@ -2251,7 +2251,7 @@ Bryan Parsons (50):
       Reverted /ext calgps test names back to original.
       Merge branch 'ext_core_migration' into 'master'
       Merge branch 'rinex_bug' into 'master'
-      Updating Doxyfile for latest version of GPSTk.
+      Updating Doxyfile for latest version of GNSSTk.
       Latex Users Manual cleanup, removed old and migrated documentation to SGLTk.
       Cleaned up User's Manual, updating dates, names, tables, and other relevant data.
       Changed README.txt to README.md.
@@ -2266,10 +2266,10 @@ Bryan Parsons (50):
       Update apps/positioning README.md for better readability
       Moved PRSolve.pdf into /doc subdirectory in apps/positioning.
       Updated Rinextools, positioning, and time app folders with README.md files for app descriptions.
-      DOCUMENTATION.md file added to root GPSTk folder for instructions on how to build Doxygen API documentations and LaTex Users Manual.
+      DOCUMENTATION.md file added to root GNSSTk folder for instructions on how to build Doxygen API documentations and LaTex Users Manual.
       Updated info in DOCUMENTATION.md file.
       Some formatting cleanup for documentation.
-      Migrated some SGLTk app documentation to SGLTk from GPSTk documentation.
+      Migrated some SGLTk app documentation to SGLTk from GNSSTk documentation.
       Updated README.txt to README.md for proper markdown rendering for /core/apps/time folder.
 
 Conor Lindahl (3):
@@ -2308,7 +2308,7 @@ Jon Little (17):
       Stream output operator doesn't seem to stack.
       Refactored test to use the test utilities macros
       Tweaking the tolerances.
-      Providing a better way for the GPSTk build to communicate where the python bindings are located.
+      Providing a better way for the GNSSTk build to communicate where the python bindings are located.
       Fixing output of the phase shift header records in rinex v3
       Adding a new obs type, freqIndex, for recording the GLONAS frequency offset index
       Line ending removal
@@ -2439,7 +2439,7 @@ Bryan Parsons (67):
       Removed all dependency variables, testing ssh executor using imac osx coordinator.
       Tweak to code, testing new osx coordinator system level runners.
       Comments to .yml file
-      Added all supported GPSTk platforms to .yml for testing with sudo osx coordinator and ssh scripts.
+      Added all supported GNSSTk platforms to .yml for testing with sudo osx coordinator and ssh scripts.
       Added deploy label to .yml file.
       Merge branch 'issue_250_NavID' into 'master'
       Adding CPACK License parameter for NSIS Windows installer build.
@@ -2457,14 +2457,14 @@ Bryan Parsons (67):
       Explicit build folder for Gitlab-Ci redhat and osx builds
       Merge branch 'issue_249' into 'master'
       Updating Changelog and NEWS files with missing information.
-      Updates to tests to reduce errors in Windows GPSTk build. Submitted by John Knudson.
+      Updates to tests to reduce errors in Windows GNSSTk build. Submitted by John Knudson.
       Merge branch 'windows_fix' into 'master'
       Merge branch 'splitWithDoubleQuotes' into 'master'
       Merge branch 'issue_251' into 'master'
       Added ifdef for Linux for unistd.h support after merging in Windows bug fixes.
       Commented out GPSWeekSecond tests dueto the delay of merging issue_248 branch.
       Updates for FileHunter and FileUtils tests for fixing Win32 bugs.  Spelling mistakes fixed in swig/PythonSetup.cmake.
-      Merge branch 'GPSTk_RC29' into 'master'
+      Merge branch 'GNSSTk_RC29' into 'master'
       Merge branch '253-add-initialization-to-engephemeris-aodo' into 'master'
       Fixed various Windows build issues.  Added various #ifdef's to designate appropriate libraries between Windows and Linux.
       Merge branch 'windows_fixes' into 'master'
@@ -2694,7 +2694,7 @@ Brian Tolman (3):
       Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk
 
 Bryan Parsons (1):
-      GPSTk v2.8.1 Patch
+      GNSSTk v2.8.1 Patch
 
 Jessica Rosenquest (12):
       Updated SVNumXRef to reflect change from CommonTime to TimeRange.
@@ -3086,7 +3086,7 @@ Bryan Parsons (14):
       Merging CDash Integration feature branch into 'master'
       Tweaks to Mac CDash scripts.
       Tweaking Linux and Solaris nightly CDash scripts.
-      Removing CDash scripts from the GPSTk repository.
+      Removing CDash scripts from the GNSSTk repository.
       Merge branch 'issue_201_removescripts' into 'master'
       Spelling Tweaks in build.sh.
       Updated documents with new refactored build scripts and for RC27 release.
@@ -3160,7 +3160,7 @@ Joseph Voss (35):
       Commenting out modifier function in Rinex3ClockData that broke the build
       Fixed error within the NumberHeaderRecordsToBeWritten
       Initial commit of Rinex3Nav_T and all dependent test files
-      Reverting back to current GPSTk Rinex3Clock class for testing
+      Reverting back to current GNSSTk Rinex3Clock class for testing
       Initial commit of Rinex3Clock_T and all dependent test data files
       Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk into Rinex_Merger
       Minor changes to fix failing tests
@@ -3332,10 +3332,10 @@ Bryan Parsons (40):
       TimeTag class bug fix - Nick.  Ext -> Core file movement.
       Pull down from gitlab repository.
       Updated core test class names, updated ANSITime_T for new UnitTest class.
-      Moved Clocktools apps from SGLTk to GPSTk
+      Moved Clocktools apps from SGLTk to GNSSTk
       Updated CivilTime_T to utilize new TestUtils class, as well as minor fixes.
       Additions to CivilTime
-      Removed SMODF files from the GPSTk.  Added TimeTag_T test placeholder.
+      Removed SMODF files from the GNSSTk.  Added TimeTag_T test placeholder.
       Changes made to CommonTime_T tests.
       Added/Removed test Placeholders to match updated chart, cleaned up *'s
       Resolving merge conflict from upstream changes.
@@ -3346,16 +3346,16 @@ Bryan Parsons (40):
       Updated minimum required version of CMake. External submission by Github user jonyrock of REC-SPb-ETU.
       Removed all commented out add_test() commands from ext app CMakeLists.
       Per #144 - Added two new options to the build.sh script: -g for building binary Gzip tarball and -s for building source Gzip tarball.  BuildSetup.cmake, INSTALL.txt, CMakeLists.txt also updated for this change.
-      Per #146 - Added Testing document to root GPSTk.
+      Per #146 - Added Testing document to root GNSSTk.
       Merge upstream changes on master to RC26 feature branch.
-      GPSTk Documentation update for RC v2.6
+      GNSSTk Documentation update for RC v2.6
       Minor fixes for tests that failed or passed warnings on Mac and Windows.
       Hide build/ directory from git. External submission by Github user jonyrock of Research & Engineering Center of Saint-Petersburg Electrotechnical University (REC-SPb-ETU)
       Updated minimum required version of CMake. External submission by Github user jonyrock of REC-SPb-ETU.
       Removed all commented out add_test() commands from ext app CMakeLists.
       Per #144 - Added two new options to the build.sh script: -g for building binary Gzip tarball and -s for building source Gzip tarball.  BuildSetup.cmake, INSTALL.txt, CMakeLists.txt also updated for this change.
-      Per #146 - Added Testing document to root GPSTk.
-      GPSTk Documentation update for RC v2.6
+      Per #146 - Added Testing document to root GNSSTk.
+      GNSSTk Documentation update for RC v2.6
       Minor fixes for tests that failed or passed warnings on Mac and Windows.
       Additional minor fixes for warnings and errors under Windows Visual Studio 2012.
       Resolving merge conflict, pushing out to feature branch RC26
@@ -3372,7 +3372,7 @@ Jason Vestuto (113):
       Overhaul of build.sh and clean up of top-level CMakeLists.txt files for C++ and Python.
       Build script, added test for source files when building /ext or /core. If *.cpp files not found, an error is printed to the screen, and the script exits.
       Build script, fixed white-space problems and ordering of documentation processing.
-      Sphinx documentation, updates to the build instructions to account for recent changes to the GPSTk source file tree structure and the build.sh build script.
+      Sphinx documentation, updates to the build instructions to account for recent changes to the GNSSTk source file tree structure and the build.sh build script.
       Updated build.sh script:     - fixed comments about install paths.     - moved determination of install paths above echo and tests of those paths.     - changed the file names of the documentation archives for clarity.
       Build script, replaced tabs with spaces.
       Decoupling of build and install processes:     - modified build.sh, adding new input flag "-b" to do "build only, no install"     - modified build.sh, adding an explicity $build_root variable     - modified build.sh, so that $build_root is /tmp/gpstk/build for non-user installs     - modified swig/CMakeLists.txt, changing the python package file copy commands from install targets into custom commands dependent on the swig module build target that builds the binding library _gpstk.so, so that the fiel tree gets recopied every time the library gets rebuilt.     - successfully tested separate build and install to user and systme paths on FAI Debian VM.
@@ -3381,7 +3381,7 @@ Jason Vestuto (113):
       Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk
       Updates to INSTALL.txt instructions to account for recent changes.
       Initial overhaul of RINEX Obs test cases, including the following changes:
-      Initial commit of TestUtil utility class for use with unit testing of GPSTk.
+      Initial commit of TestUtil utility class for use with unit testing of GNSSTk.
       Updates to Rinex_Obs_T test cases to demonstrate the use of TestUtil class.
       Cleaning up comments.
       Updates to TimeUtil class, including the following:
@@ -3401,10 +3401,10 @@ Jason Vestuto (113):
       RinexMet test class, first pass at complete overhaul and clean up:
       Testing, RinexMet_T class, cleanup:
       Testing, FileHandling build script, added "-Wall" flag to gcc builds.
-      Testing, Rewrote Rinex_T test app to follow current working test app style conventions for GPSTk.
+      Testing, Rewrote Rinex_T test app to follow current working test app style conventions for GNSSTk.
       Initial addition of SINEX file handling support:
       SINEX, added include of stdint.h in SinexBase.hpp:
-      Testing, renamed sinex_test.cpp to Sinex_ReadWrite_T.cpp to follow GPSTk conventions.
+      Testing, renamed sinex_test.cpp to Sinex_ReadWrite_T.cpp to follow GNSSTk conventions.
       Sweeping away the last remnants of the old CPPUNIT republic.
       Updated build.sh to capture accurate measure of unit test results.
       Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk
@@ -3412,7 +3412,7 @@ Jason Vestuto (113):
       Testing, cleaned up implemetation of testLine in TestUtil.hpp to follow conventions followed elsewhere in the class.
       Initial addition of sinex data files for use in automated testing.
       Testing, Fixed source method name in print statement for Vector_T testing.
-      Testing, renamed Rinex_Clock_T.cpp to RinexClock_T.cpp to follow GPSTk test file name conventions.
+      Testing, renamed Rinex_Clock_T.cpp to RinexClock_T.cpp to follow GNSSTk test file name conventions.
       Added capability to pass build-config-dependent variables into the C++ source:
       Build Framework, preparaing ground work for refactoring build config.
       Testing, Updates to Rinex test apps to use test data file paths
@@ -3521,7 +3521,7 @@ Joseph Voss (43):
       Rewrote RACRotation_T, Stats_T, Stats_TwoSampleStats_T, & Triple_T
       Fixed redirection operator bug in Xvt
       Added Xvt.cpp test
-      Adding GPSTk copyright headers
+      Adding GNSSTk copyright headers
       Fixed bug in ValidType.hpp, added convhelp and ValidType tests
       Added SP3SatID_T and SatID_T tests
       Changed #include from a cpp file to a hpp
@@ -3558,7 +3558,7 @@ Nick Fitzsimmons (74):
       Updated core/lib/GNSSEph/RinexEphemerisStore.cpp so that the loadFile method will open the file before reading from it. Updated TestUtil.hpp so that passTest() and failTest() will increment the test counter properly. Updated CivilTime_T.cpp so to remove a couple of redundant tests.
       I broke the build. It is now fixed. RinexEphemerisStore::loadFile will no longer use the is_open method derived from the (great-grand)parent fstream class. The new method is to use a simple !RinexNavStream_Object to denote whether the file has been opened.
       Adding minor comment changes to ANSITime_T and CivilTime_T. Also adding a completed RinexEphemerisStore_T. This new test has many failures associated with it. These failures are documented on Test Bug list. Also some small functionality has been removed from GPSEphemeris in that the dumpHeader method will no longer rely on the SVNumXRef class in ext.
-      Commit to clean up a number of small issues:       1) core/tests/CMakeLists.txt now only includes directories where GPSTk tests have been written. Be sure to update this list as you move to the skipped directories.       2) core/tests/Math/Vector_T.cpp did not compile. This has been fixed.       3) core/tests/TimeHandling/CivilTime_T.cpp and core/tests/TimeHandling/YDSTime_T.cpp have been updated to fail as per the bug page.
+      Commit to clean up a number of small issues:       1) core/tests/CMakeLists.txt now only includes directories where GNSSTk tests have been written. Be sure to update this list as you move to the skipped directories.       2) core/tests/Math/Vector_T.cpp did not compile. This has been fixed.       3) core/tests/TimeHandling/CivilTime_T.cpp and core/tests/TimeHandling/YDSTime_T.cpp have been updated to fail as per the bug page.
       Forgot to cleanup the GNSSEph directory and remove some comments as the test was being built. Also removing IonoModel_T so that the tests will build on non cppunit machines when cloned.
       Commit changes the following:
       Commit to add the SP3EphemerisStore_T.cpp test. Removed all stored output and comparison files associated with this test as they are no longer necessary.
@@ -3668,7 +3668,7 @@ Version 2.5   Friday, October 10, 2014
    General modifications
    ---------------------
    - Python Bindings Installation Package
-   - GPSTk Script Changes
+   - GNSSTk Script Changes
       - Tweaks and Clean-up
       - Build and Install C++ Lib/Apps
       - Build and Install Python Lib
@@ -3696,7 +3696,7 @@ Version 2.5   Friday, October 10, 2014
 
    Jason Vestuto (49):
          Build framework bug fixes: Corrected instances of sgltk to gpstk in CMake input file, and added creation of build directory for the python bindings.
-         Restoring a header file that is required SGL toolkits dependent upon GPSTk. May need to migrate this header to the other toolkit.
+         Restoring a header file that is required SGL toolkits dependent upon GNSSTk. May need to migrate this header to the other toolkit.
          Disambiguation of multiple headers with the same file name by removal of one and updating comments of the other.
          Removal of mistakenly restored header that has been migrated to SGLTk.
          Added a missing mkdir for the python install directory.
@@ -3708,7 +3708,7 @@ Version 2.5   Friday, October 10, 2014
             - Modified the python module CMakeLists.txt, replacing the gpstk source file list with a find directive, and adding install directives to place _gpstk.os and gpstk.py in site-packages.      
             - Updated the build script to follow the new pattern of having the bindings link against a pre-built libgpstk.so rather than recompiling *.cpp files in the GPSTK library.
          Removal of duplicate header file entries in gpstk_swig.hpp.
-         Several bug fixes for the default GPSTk install path handling.      
+         Several bug fixes for the default GNSSTk install path handling.      
             - Fixed a typo in the build script which misnamed gpstk_install path variable name, causing the default to be ignored.      
             - Fixed a logic error in the CMake Find module so that the python bindings properly accept the default gpstk install path.      
             - Added the default gpstk_install path in the cmake call for the python bindings, so that an environment variable does not need to be set for the python module to build.
@@ -3721,7 +3721,7 @@ Version 2.5   Friday, October 10, 2014
             - Fixed references attributes under gpstk.constants, gpstk.exceptions, gpstk.cpp      
             - Fixed import statements referencing same.      
             - Improved usage and example usage statements in docstrings of example scripts
-         Updated SWIG interface file by adding an %extend directive to add the __getitem__() method to gpstk::Triple so that it could support indexing as seen in the python extension module. This fixes about a dozen otherwise broken test cases in test.py.
+         Updated SWIG interface file by adding an %extend directive to add the __getitem__() method to gnsstk::Triple so that it could support indexing as seen in the python extension module. This fixes about a dozen otherwise broken test cases in test.py.
          Updated the SWIG interface file to remove all the "_swigregister" pollution seen in the gpstk python extension module namespace.
          Updated SWIG interface file, adding a missing include of the Triple.i secondary SWIG input file. Parts of a previous fix, needed because of that missing include, were moved from gpstk.i to Triple.i.
          Initial commit of a distribution install package for the python extension module using distutils. Needs further testing.
@@ -3775,13 +3775,13 @@ Version 2.5   Friday, October 10, 2014
          Python bindings, removal of unused scripts, and addition of draft code block for creating source distribution packages for the python package in script_gpstk.sh
          Python bindings, removal of unused scripts, and addition of draft code block for creating source distribution packages for the python package in script_gpstk.sh
          Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk
-         GPSTk documentation, updates to README and addition of full GPL/LGPL licensing files needed. LGPL depends on the GPL, so we need to distribute copies of both with the source code.
-         GPSTk build script, minor updates to white-space formatting.
-         GPSTk build script, updated script header comments.
-         GPSTk Licensing, pleased copies of the full GPL and LGPL amendments in the gpstk/dev directory to ensure that the any portion of the file tree that we might distribute include the full license documents. In the future, we may have the package install scripts simply copy the top-level documents.
-         GPSTk install, moving dev/INSTALL to dev/INSTALL.txt to avoid conflicts with things that are not case-sensitive when you try to create an dev/install/ subdirectory
-         GPSTk project documentation, changing all top-level documentation file names to be consistent with the pattern FILENAME.txt
-         GPSTk project documentation, more renames to follow consistent pattern of FILENAME.txt
+         GNSSTk documentation, updates to README and addition of full GPL/LGPL licensing files needed. LGPL depends on the GPL, so we need to distribute copies of both with the source code.
+         GNSSTk build script, minor updates to white-space formatting.
+         GNSSTk build script, updated script header comments.
+         GNSSTk Licensing, pleased copies of the full GPL and LGPL amendments in the gpstk/dev directory to ensure that the any portion of the file tree that we might distribute include the full license documents. In the future, we may have the package install scripts simply copy the top-level documents.
+         GNSSTk install, moving dev/INSTALL to dev/INSTALL.txt to avoid conflicts with things that are not case-sensitive when you try to create an dev/install/ subdirectory
+         GNSSTk project documentation, changing all top-level documentation file names to be consistent with the pattern FILENAME.txt
+         GNSSTk project documentation, more renames to follow consistent pattern of FILENAME.txt
 
    Jon C. Little (1):
          Merge branch 'master' of repositories.arlut.utexas.edu:sgl/gpstk
@@ -3828,7 +3828,7 @@ Version 2.5   Friday, October 10, 2014
 
    Supraj Prakash (5):
          SWIG Python Bindings comments added
-         Created scripts to build C++ and Python GPSTk individually and allow for changes in build and install locations; Fixed errors in Python example 2
+         Created scripts to build C++ and Python GNSSTk individually and allow for changes in build and install locations; Fixed errors in Python example 2
          Spelling error fix in gpstk_pylib.i
          Made syntax fixes and suppressed Python Build Directory Already Exists message
          Removed the pure C++ library and pure Python library build scripts
@@ -3854,18 +3854,18 @@ Version 2.4   Tuesday, April 22, 2014
    ---------------------
    - Core & Ext Folder Structure implemented
       - Core Folder
-         - Location of Core GPSTk Code base, fully reviewed and tested.
+         - Location of Core GNSSTk Code base, fully reviewed and tested.
          - Currently, no code resides in this directory, as code review and testing are currently ongoing.
       - Ext Folder
-         - GPSTk Developer Sandbox Code base
+         - GNSSTk Developer Sandbox Code base
          - Code that is in development, prototyped, or does not meet criteria for Core Code base.
    - Python Bindings Relocated and Repaired
    - Doxygen build Repaired
    - New Initial CMake Testing framework
       - Currently in Development
       - No actual tests are being utilized at this time, only the framework
-   - New GPSTk Script
-      - Build and Install GPSTk Code
+   - New GNSSTk Script
+      - Build and Install GNSSTk Code
          - Automatically Identifies and Utilizes multiple processors for increased build speed.
          - Can be set to build only the Core Code base (Currently broken, as no code resides in Core folder)
       - Build Doxygen Documentation
@@ -3900,15 +3900,15 @@ Brent Renfro (14):
       Correcting fit Interval to fit duration
 
 Bryan Parsons (14):
-      Phase 1 of GPSTk to SGLTk Migration, with Python CMake updated
+      Phase 1 of GNSSTk to SGLTk Migration, with Python CMake updated
       Base CMakeLists.txt clean-up
       CMakeLists.txt tweak
-      GPSTk CMake build/install automation script, modified version of SGLTk script.
+      GNSSTk CMake build/install automation script, modified version of SGLTk script.
       script change
       Script update
       RinEdit bug fix
       Code updated from submitted patches
-      Moved python bindings folder to main GPSTk folder, fixed Python build code and re-added gpstk_builder.py, updated and fixed Doxygen, added doxygen and python option to main script_cmake.py
+      Moved python bindings folder to main GNSSTk folder, fixed Python build code and re-added gpstk_builder.py, updated and fixed Doxygen, added doxygen and python option to main script_cmake.py
       Deprecated setup.py in favor of cmake and shell script
       Script bug fix
       Script updated with additional options - doxygen, python, and test.  Headers have been updated for all applicable code to reflect updated LGP License 3.0.
@@ -3933,16 +3933,16 @@ Version 2.3   Thursday, December 5, 2013
 
    General modifications
    ---------------------
-   - GPSTk Library merger & Directory Restructure
-      - Core Library and Auxiliary Libraries have been merged into single GPSTk Library
+   - GNSSTk Library merger & Directory Restructure
+      - Core Library and Auxiliary Libraries have been merged into single GNSSTk Library
         - Core Library code (src) have been merged into lib directory
         - Code has been reorganized into function-oriented directories
-   - CMake is now the build system of the GPSTk
+   - CMake is now the build system of the GNSSTk
       - Jam and Autotools build files have been deprecated and removed
    - Linux 32-bit & Cygwin are no longer supported platforms
    - Bug fixes for multiple applications
    - This release includes new/modified source code comments for improved readability.
-   - The next planned release, GPSTk v2.4, will be a major upgrade that will introduce a new testing infrastructure, as well as further code reorganization.
+   - The next planned release, GNSSTk v2.4, will be a major upgrade that will introduce a new testing infrastructure, as well as further code reorganization.
 
    Modifications by Author
    ---------------------
@@ -4008,8 +4008,8 @@ Version 2.2   Friday, September 6, 2013
 
    General modifications
    ---------------------
-   - Fully functional CMake cross-platform build system has been finished and tested for the GPSTk.
-         - Using CMake, the GPSTk now supports IDEs in addition to current supported platforms.
+   - Fully functional CMake cross-platform build system has been finished and tested for the GNSSTk.
+         - Using CMake, the GNSSTk now supports IDEs in addition to current supported platforms.
          - Newly supported IDEs:
             - Visual Studio 2010 IDE (32-bit)
             - Visual Studio 2012 IDE (32-bit & 64-bit)
@@ -4020,7 +4020,7 @@ Version 2.2   Friday, September 6, 2013
    - Minor modifications to Jamfiles, Makefiles, and source code
      for clean compilation (no warnings or errors) & compatibility with the latest
     Cygwin, Windows 7 VS, Solaris 10 Sparc, and Mac OX X Lion (10.7.5).
-   - The next planned release, GPSTk v2.3, will be a minor upgrade that will introduce a new function-oriented dirctory structure.
+   - The next planned release, GNSSTk v2.3, will be a minor upgrade that will introduce a new function-oriented dirctory structure.
    - This release includes new/modified source code comments for improved
      readability.
 
@@ -4250,7 +4250,7 @@ Version 2.1   Tuesday, June 25, 2013
     Cygwin, Windows 7 VS, Solaris 10 Sparc, and Mac OX X Lion (10.7.5).
    - Base CMake files have been added for future CMake support, still in development
      stages.
-   - The next planned release, GPSTk v2.2, will be a minor upgrade that will introduce
+   - The next planned release, GNSSTk v2.2, will be a minor upgrade that will introduce
      a new fully functioning CMake cross-platform build system and deprecation of some
      older supported platforms.   
    - This release includes new/modified source code comments for improved
@@ -4881,7 +4881,7 @@ Version 2.1   Tuesday, June 25, 2013
        Rinex3ObsData.cpp
        Rinex3ObsData.hpp
       The new 'Rinex3ObsData' method was modified and renamed to improve consistency
-      with the former GPSTk version, and a new method was added.
+      with the former GNSSTk version, and a new method was added.
 
        Rinex3ObsFilterOperators.hpp
        Rinex3ObsHeader.cpp
@@ -6619,9 +6619,9 @@ Version 1.7   Friday, 8 October, 2010
      readability.
    - Cleaned up and added comments to various examples to make them more
      useful.
-   - The next planned release, GPSTk v2.0, will be a major upgrade and will
+   - The next planned release, GNSSTk v2.0, will be a major upgrade and will
      merge the RINEX 3 development branch back into the trunk;
-     GPSTk v1.7 is expected to be the last 1.x release.
+     GNSSTk v1.7 is expected to be the last 1.x release.
 
 
    Library modifications
@@ -6753,7 +6753,7 @@ Version 1.7   Friday, 8 October, 2010
 
        MSCData.cpp
           Updated to support new data format which allows for greater precision
-          in specifying station positions. New format described on GPSTk wiki
+          in specifying station positions. New format described on GNSSTk wiki
           at: http://gpstk.arlut.utexas.edu/bin/view/Documentation/
           MonitorStationCoordinatesFileFormat. Change related to 1/7/09 e-mail
           from B. Renfro to gpstk developers e-mail list re these classes. Also
@@ -7347,7 +7347,7 @@ Version 1.7   Friday, 8 October, 2010
 
        /positioning/PRSolve.cpp
           Fixed flag-setting to reject bad SP3 data; improved Householder
-          algorithm. Fixed missing bracket and cleaned up per GPSTk coding
+          algorithm. Fixed missing bracket and cleaned up per GNSSTk coding
           standards.
 
        /positioning/rinexpvt.[h|c]pp
@@ -7812,10 +7812,10 @@ Version 1.6   Tuesday, June 19, 2009
             Implements clock time-domain frequency stability metrics as well as
             data editing, noise identification, and plotting routines. Allows
             for basic clock stability analyses and is interoperable with other
-            GPSTk programs. Run from the command line with output piped to
-            other GPSTk programs.
+            GNSSTk programs. Run from the command line with output piped to
+            other GNSSTk programs.
          - /ObsArrayEvaluator
-            Refactoring of mpsolve whic is the GPSTk Multipath Environment
+            Refactoring of mpsolve whic is the GNSSTk Multipath Environment
             Evaluator. Computes statistical model of a dual frequency multipath
             combination. The model is a function of azimuth and/or elevation.
          - /performance
@@ -7871,7 +7871,7 @@ Version 1.6   Tuesday, June 19, 2009
             This program shows how to use GNSS Data Structures (GDS) to obtain
             phase-based differential positioning (single-differences).
          example11.cpp
-            Example of GPSTk's built-in postscript plotting routines.
+            Example of GNSSTk's built-in postscript plotting routines.
          example12.cpp
             This is a example program to demonstrate some of the functionality
             of the ObsID class. The intent is to use ObsID as a key in a STL
@@ -7897,7 +7897,7 @@ Version 1.5   Tuesday, March 11, 2008
    - Majority of version 1.5 comprised of revision number 1115,
      branching took place under revision 1115 from dev/ to RC1.5/
 
-   - A large amount of work went into ensuring that the GPSTk built
+   - A large amount of work went into ensuring that the GNSSTk built
      on all supported platforms using both jam and make. A place has
      been set aside on the TWiki to inform developers on which platforms
      the Tk has been built successfully.
@@ -8144,10 +8144,10 @@ Version 1.4   Tuesday, December 18, 2007
 
               Old                           |        New
     -------------------------------------------------------------------------------
-    gpstk::EphemerisStore         | gpstk::XvtStore<gpstk::SatID>
-    gpstk::BCEphemerisStore          | gpstk::GPSEphemerisStore
-    gpstk::AlmanacStore                     | gpstk::GPSAlmanacStore
-    gpstk::EphemerisStore::NoEphemerisFound | gpstk::InvalidRequest
+    gnsstk::EphemerisStore         | gnsstk::XvtStore<gnsstk::SatID>
+    gnsstk::BCEphemerisStore          | gnsstk::GPSEphemerisStore
+    gnsstk::AlmanacStore                     | gnsstk::GPSAlmanacStore
+    gnsstk::EphemerisStore::NoEphemerisFound | gnsstk::InvalidRequest
     eph.getSatXvt(sat, time)              | eph.getXvt(sat, time)
     eph.getSatXvt(prn, time)         | eph.getXvt(SatID(prn, SatID::systemGPS), time)
     eph.dump(0, cout)             | eph.dump(cout, 0)
@@ -8157,7 +8157,7 @@ Version 1.4   Tuesday, December 18, 2007
            as well as a list of classes in the gpstk libraries
            (sorted & categorized) found in ref/glance/
 
-   - Added LeTex source for the GPSTk paper at the ION-GNSS-2006
+   - Added LeTex source for the GNSSTk paper at the ION-GNSS-2006
 
    - Added a library /dev/lib/vplot/ to create drawing primitives in SVG
            and postscript formats. Intended to support complex, fully
@@ -8316,7 +8316,7 @@ Version 1.3   Monday, July 16, 2007
    - Improved src/icd_200_constants.hpp
            Fixed RSVCLK value
 
-   - GPSTk is now able to build under the MS Visual Studio 2005 (Express
+   - GNSSTk is now able to build under the MS Visual Studio 2005 (Express
            Edition)
 
    - A simulator has been added but is not part of the binary build, but
@@ -8342,7 +8342,7 @@ Version 1.3   Monday, July 16, 2007
       classes
 
    - Added DataStructures.[h|c]pp
-           Set of data structures to be used by other GPSTk classes
+           Set of data structures to be used by other GNSSTk classes
 
    - Added src/DeltaOp.[h|c]pp
            Applies differences on ground-related data to the GNSS data
@@ -8468,7 +8468,7 @@ Version 1.2   Monday, November 6, 2006
    - Moved from Perforce to a Subversion repository located at
       https://svn.sourceforge.net/svnroot/gpstk
 
-   - GPSTk library testing is now being implemented in dev/tests
+   - GNSSTk library testing is now being implemented in dev/tests
       These unit tests for the library currently cover over
       40% of the code with an average of 95% coverage for
       tested classes.  Tests use CppUnit and Perl scripts.
@@ -8476,9 +8476,9 @@ Version 1.2   Monday, November 6, 2006
 
    - Added examples/example5.cpp
       An example that shows how to use some very useful high level
-      GPSTk classes for positioning
+      GNSSTk classes for positioning
 
-   - Added Python support to the GPSTk
+   - Added Python support to the GNSSTk
 
    - Added capability for FileHunter to work under Window and Cygwin
 
@@ -8710,7 +8710,7 @@ Version 1.1   Friday, January 7, 2005
 
    apps/binding
 
-   - This  new project provides GPSTk bindings in other languages
+   - This  new project provides GNSSTk bindings in other languages
      has been added. This capability is in an alpha state.
      Currently there are a limited set of bindings for
      Tcl/Tk, Python and Octave.

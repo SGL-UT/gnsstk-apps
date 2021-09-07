@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -127,7 +127,7 @@
  * \dicterm{\--cmd \argarg{FILE}}
  * \dicdef{Output file name (for editing commands) (df.out) (df.out)}
  * \dicterm{\--format \argarg{FMT}}
- * \dicdef{Output time format (cf. gpstk::Epoch) (%4F %10.3g) (%4F %10.3g)}
+ * \dicdef{Output time format (cf. gnsstk::Epoch) (%4F %10.3g) (%4F %10.3g)}
  * \dicterm{\--round \argarg{N}}
  * \dicdef{Round output time format (--format) to n digits (3)}
  * \enddictionary
@@ -139,7 +139,7 @@
  * \dicterm{\--Prgm \argarg{STR}}
  * \dicdef{RINEX header 'PROGRAM' string for output (DiscFix v.6.3 )}
  * \dicterm{\--RunBy \argarg{STR}}
- * \dicdef{RINEX header 'RUNBY' string for output (ARL:UT/SGL/GPSTk)}
+ * \dicdef{RINEX header 'RUNBY' string for output (ARL:UT/SGL/GNSSTk)}
  * \dicterm{\--Observer \argarg{STR}}
  * \dicdef{RINEX header 'OBSERVER' string for output ()}
  * \dicterm{\--Agency \argarg{STR}}
@@ -174,7 +174,7 @@
  * arlm200a.15o will be unchanged.
  *
  * \section DiscFix_support SUPPORT
- * DiscFix is not part of the gpstk core and thus testing and support
+ * DiscFix is not part of the gnsstk core and thus testing and support
  * are limited to non-existent.
  *
  * \section DiscFix_exit_status EXIT STATUS
@@ -191,7 +191,7 @@
 //------------------------------------------------------------------------------------
 // DiscFix.cpp Read a RINEX observation file containing dual frequency
 //    pseudorange and phase, separate the data into satellite passes, and then
-//    find and estimate discontinuities in the phase (using the GPSTk Discontinuity
+//    find and estimate discontinuities in the phase (using the GNSSTk Discontinuity
 //    Corrector (GDC) in DiscCorr.hpp).
 //    The corrected data can be written out to another RINEX file, plus there is the
 //    option to smooth the pseudorange and/or debias the phase (SatPass::smooth()).
@@ -209,7 +209,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
-// gpstk
+// gnsstk
 #include "MathBase.hpp"
 #include "RinexSatID.hpp"
 #include "RinexObsBase.hpp"
@@ -232,7 +232,7 @@
 #include "DiscCorr.hpp"
 
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 
@@ -376,7 +376,7 @@ int main(int argc, char **argv)
                if(pos != string::npos) what.erase(pos);
                LOG(ERROR) << "Error - " << what;
             }
-            else { GPSTK_RETHROW(e); }
+            else { GNSSTK_RETHROW(e); }
          }
 
          if(nread != cfg.obsfiles.size()) {
@@ -474,7 +474,7 @@ int main(int argc, char **argv)
 
          cfg.GDConfig.setParameter(string("DT:")+asString(cfg.dt,2));
          cfg.GDConfig.setParameter(string("MaxGap:")+asString(cfg.MaxGap,2));
-         LOG(INFO) << "\nHere is the current GPSTk DC configuration:";
+         LOG(INFO) << "\nHere is the current GNSSTk DC configuration:";
          cfg.GDConfig.DisplayParameterUsage(LOGstrm,(cfg.DChelp && cfg.verbose));
          LOG(INFO) << "";
 
@@ -640,7 +640,7 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -867,7 +867,7 @@ try {
    if(inputValid) return 0;
    return -6;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -926,7 +926,7 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -989,7 +989,7 @@ try {
    cfg.dt = -1.0;
    
    cfg.HDPrgm = PrgmName + string(" v.") + DiscFixVersion.substr(0,4);
-   cfg.HDRunby = string("ARL:UT/SGL/GPSTk");
+   cfg.HDRunby = string("ARL:UT/SGL/GNSSTk");
 
    cfg.smoothPR = false;
    cfg.smoothPH = false;
@@ -1016,7 +1016,7 @@ try {
    + " will (optionally) write the corrected pseudorange and phase data\n"
    "   to a new RINEX observation file. Other options will also smooth the\n"
    "   pseudorange and/or debias the corrected phase.\n\n"
-   "   " + PrgmName + " calls the GPSTk Discontinuity Corrector (GDC vers "
+   "   " + PrgmName + " calls the GNSSTk Discontinuity Corrector (GDC vers "
    + cfg.GDConfig.Version() + ").\n" +
    "   GDC options (--DC below, and see --DChelp) are passed to GDC,\n"
    "     except --DCDT is ignored; it is computed from the data.";
@@ -1088,7 +1088,7 @@ try {
    opts.Add(0, "cmd", "file", false, false, &cfg.OutFile, "",
             "Output file name (for editing commands) (" + cfg.OutFile + ")");
    opts.Add(0, "format", "fmt", false, false, &cfg.format, "",
-            "Output time format (cf. gpstk::" "Epoch) (" + cfg.format + ")");
+            "Output time format (cf. gnsstk::" "Epoch) (" + cfg.format + ")");
    opts.Add(0, "round", "n", false, false, &cfg.round, "",
             "Round output time format (--format) to n digits");
 
@@ -1215,9 +1215,9 @@ try {
    return 0;
 
 } // end try
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -1307,9 +1307,9 @@ try {
    if(!cfg.smooth) LOG(INFO) << " No smoothing.\n";
 
 } // end try
-catch(Exception& e) { GPSTK_RETHROW(e); }
-catch(exception& e) { Exception E("std except: "+string(e.what())); GPSTK_THROW(E); }
-catch(...) { Exception e("Unknown exception"); GPSTK_THROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
+catch(exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
+catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
 
 //------------------------------------------------------------------------------------

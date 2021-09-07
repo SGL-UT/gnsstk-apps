@@ -22,14 +22,14 @@ set( CPACK_PACKAGE_VERSION ${NAVSAT_TOOLS_VERSION} )
 # This sets up variables contining GNU standard installation locations.
 include( GNUInstallDirs )
 
-# always link gpstk
-list( APPEND SUPPORTLIBS gpstk )
+# always link gnsstk
+list( APPEND SUPPORTLIBS gnsstk )
 
 # Include any optional desired linkage
 include( ExtLinkage.cmake OPTIONAL )
 
 # Set a filename for collecting exported targets.
-set( EXPORT_TARGETS_FILENAME "GPSTKTargets" )
+set( EXPORT_TARGETS_FILENAME "GNSSTKTargets" )
 
 
 option( DEBUG_SWITCH "HELP: DEBUG_SWITCH: Default = OFF, print some CMake variable values to stdout." OFF )
@@ -40,16 +40,16 @@ option( COVERAGE_SWITCH "HELP: COVERAGE_SWITCH: SWITCH, Default = OFF, Turn on c
 option( USE_RPATH "HELP: USE_RPATH: SWITCH, Default= ON, Set RPATH in libraries and binaries." ON )
 option( VERSIONED_HEADER_INSTALL "HELP: VERSIONED_HEADER_INSTALL: SWITCH, Default= OFF, Install header files into maj/min versioned directory." OFF )
 
-# GPSTk header file install target (whether it is version dependent changes based on user flag)
+# GNSSTk header file install target (whether it is version dependent changes based on user flag)
 if( VERSIONED_HEADER_INSTALL )
-    set( GPSTK_INCLUDE_WRAPPER_DIR "gpstk_${GPSTK_VERSION_MAJOR}_${GPSTK_VERSION_MINOR}" )
-    set( GPSTK_INCLUDE_TGT "${GPSTK_INCLUDE_WRAPPER_DIR}/gpstk" )
-    set( GPSTK_INCLUDE_PARENT "${CMAKE_INSTALL_INCLUDEDIR}/${GPSTK_INCLUDE_WRAPPER_DIR}" )
-    set( CMAKE_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}/${GPSTK_INCLUDE_TGT}" )
-    message( WARNING "Setting GPSTK_INCLUDE_TGT_DIR = ${CMAKE_INSTALL_INCLUDEDIR}" )
+    set( GNSSTK_INCLUDE_WRAPPER_DIR "gnsstk_${GNSSTK_VERSION_MAJOR}_${GNSSTK_VERSION_MINOR}" )
+    set( GNSSTK_INCLUDE_TGT "${GNSSTK_INCLUDE_WRAPPER_DIR}/gnsstk" )
+    set( GNSSTK_INCLUDE_PARENT "${CMAKE_INSTALL_INCLUDEDIR}/${GNSSTK_INCLUDE_WRAPPER_DIR}" )
+    set( CMAKE_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}/${GNSSTK_INCLUDE_TGT}" )
+    message( WARNING "Setting GNSSTK_INCLUDE_TGT_DIR = ${CMAKE_INSTALL_INCLUDEDIR}" )
 else()
-    set( GPSTK_INCLUDE_PARENT "${CMAKE_INSTALL_INCLUDEDIR}" )
-    set( CMAKE_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}/gpstk" )
+    set( GNSSTK_INCLUDE_PARENT "${CMAKE_INSTALL_INCLUDEDIR}" )
+    set( CMAKE_INSTALL_INCLUDEDIR "${CMAKE_INSTALL_INCLUDEDIR}/gnsstk" )
 endif()
 
 
@@ -61,10 +61,10 @@ include( BuildSetup.cmake )
 # Note that since these are brought in here, the sub dirs do not need to
 # re-find these or include them.
 #----------------------------------------
-find_package( GPSTK REQUIRED CONFIG )
+find_package( GNSSTK REQUIRED CONFIG )
 
-include_directories( ${GPSTK_INCLUDE_DIRS} )
-link_directories( ${GPSTK_LIBRARY_DIRS} )
+include_directories( ${GNSSTK_INCLUDE_DIRS} )
+link_directories( ${GNSSTK_LIBRARY_DIRS} )
 
 
 #============================================================
@@ -79,7 +79,7 @@ if( TEST_SWITCH )
   # Test output directory
   set( NAVSAT_TOOLS_TEST_OUTPUT_DIR ${PROJECT_BINARY_DIR}/Testing/Temporary )
   # Some cmake scripts used with testing
-  set(df_diff ${GPSTK_BINDIR}/df_diff)
+  set(df_diff ${GNSSTK_BINDIR}/df_diff)
   set(difftest ${PROJECT_SOURCE_DIR}/tests/difftest.cmake)
   set(testsuccexp ${PROJECT_SOURCE_DIR}/tests/testsuccexp.cmake)
   set(testhelp ${PROJECT_SOURCE_DIR}/tests/testhelp.cmake)

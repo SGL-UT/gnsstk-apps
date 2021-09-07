@@ -3,12 +3,12 @@
 
 
 package:
-  name: gpstk-apps
+  name: gnsstk-apps
   version: {{ environ.get('GIT_DESCRIBE_TAG', 'v0.0')[1:] }}
 
 source:
   git_rev: {{ environ.get('GIT_COMMIT', 'main') }}
-  git_url: https://{{build_user}}:{{build_token}}@sgl-git.arlut.utexas.edu/sgl-tks/gpstk-apps.git
+  git_url: https://{{build_user}}:{{build_token}}@sgl-git.arlut.utexas.edu/sgl-tks/gnsstk-apps.git
 
 build:
   number: {{ environ.get('GIT_DESCRIBE_NUMBER', 0) }}
@@ -22,18 +22,18 @@ requirements:
   host:
     - python {{ python }}
     - setuptools
-    - gpstk >=12.0.0,<13
+    - gnsstk >=12.0.0,<13
   run:
     - python {{ python }}
-    - gpstk >=12.0.0,<13
+    - gnsstk >=12.0.0,<13
 
 test:
   imports:
-    - gpstk
+    - gnsstk
 
 about:
-  home: https://sgl-git.arlut.utexas.edu:sgl-tks/gpstk-apps
-  summary: The GPS Toolkit Applications (GPSTk-Apps)
+  home: https://sgl-git.arlut.utexas.edu:sgl-tks/gnsstk-apps
+  summary: The GNSS Toolkit Applications (GNSSTk-Apps)
   description: |
-    The GPS Toolkit (GPSTk) is an open-source (LGPL) project sponsored by
+    The GNSS Toolkit (GNSSTk) is an open-source (LGPL) project sponsored by
     the Space and Geophysics Laboratory (SGL).

@@ -1,4 +1,4 @@
-GPSTk 11.0.0 Release Notes
+GNSSTk 11.0.0 Release Notes
 ========================
 
  * This version addresses the deprecation of `SVNumXRef.cpp` class.

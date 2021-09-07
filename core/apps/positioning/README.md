@@ -122,7 +122,7 @@ Usage:
         --conv <lim> Maximum convergence criterion in estimation in meters (3.00e-07)
         --Trop <m,T,P,H> Trop model <m> [one of Zero,Black,Saas,NewB,Neill,GG,GGHt
       with optional weather T(C),P(mb),RH(%)] (NewB,20.0,1013.0,50.0)
-      # Output [for formats see GPSTK::Position (--ref) and GPSTK::Epoch (--timefmt)] :
+      # Output [for formats see GNSSTK::Position (--ref) and GNSSTK::Epoch (--timefmt)] :
         --log <fn> Output log file name (prs.log)
         --out <fn> Output RINEX observations (with position solution in comments) ()
         --ver2 In output RINEX (--out), write RINEX version 2.11 [otherwise 3.01] (don't)
@@ -207,7 +207,7 @@ W,X,L or C (in that order) are found in the data. *(Note that the actual code ch
 output line; see below.)* 
 
     >./PRSolve --SOLhelp
-      PRSolve, part of the GPS Toolkit, Ver 5.0 8/1/13, Run 2013/08/15 11:29:04
+      PRSolve, part of the GNSS Toolkit, Ver 5.0 8/1/13, Run 2013/08/15 11:29:04
       === Help for Solution Descriptors, option --sol <S:F:C> ===
       The --sol option is repeatable, so all --sol solutions, if valid,
       will be computed and output in one run of the program.
@@ -303,7 +303,7 @@ for the temperature (degrees C), pressure (millibars) and relative humidity (%).
 Some of these models (Saas, Neill, NewB) require the height (altitude) and latitude of the receiver and the day of year; PRSolve 
 will give it this information when it has a reference position (--ref) and a start or stop time (--start or --stop). Note that the 
 NewB model computes it own weather parameters given the latitude and day of year. For more information on these tropospheric models, 
-see class TropModel in the GPS Toolkit.
+see class TropModel in the GNSS Toolkit.
 
 Reference position input:
 -------------------------
@@ -360,7 +360,7 @@ Other optional input:
 PRSolve accepts some options that edit the data in various ways. PRSolve will ignore data in the input RINEX observation file 
 that are outside time limits given by --start and --stop, each followed by a time. The time argument may be given as "week,seconds-of-week" 
 or as "year,month,day,hour,minute,seconds", or as another form given by a format included after a colon (:) in the argument. The format 
-descriptors are taken from class Epoch in the GPS Toolkit; the defaults are '%F,%g' and '%Y,%m,%d,%H,%M,%S'. Here are some examples.
+descriptors are taken from class Epoch in the GNSS Toolkit; the defaults are '%F,%g' and '%Y,%m,%d,%H,%M,%S'. Here are some examples.
     
     --stop 2009,9,23,18,1,2 --start 1550,280800
     --start 1550,299999.000 --stop 2009,9,23,12,0,1
@@ -455,7 +455,7 @@ each solution descriptor. The XYZ line gives the ECEF XYZ solution in meters, fo
 solution in meters, preceded by the system to which it applies, for each system included in the solution, followed by the descriptor again. 
 Finally the DIA line includes the number of satellites, followed by the PDOP, GDOP and the RMS residual of fit and the descriptor. Note 
 that RINEX comments are limited to 60 characters, and so it may happen that very long solution descriptors will get truncated. There are 
-other RINEX tools in the GPS Toolkit that will read and make use of these position-clock comments.
+other RINEX tools in the GNSS Toolkit that will read and make use of these position-clock comments.
 
 PRSolve log file output: 
 ------------------------

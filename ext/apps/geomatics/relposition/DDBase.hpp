@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -57,7 +57,7 @@
 #include <map>
 #include <ctime>
 
-// GPSTk
+// GNSSTk
 //#define RANGECHECK // if defined, Vector and Matrix will throw on invalid index.
 #include "Exception.hpp"
 #include "StringUtils.hpp"
@@ -126,7 +126,7 @@ int Timetable(void);             // Timetable.cpp
 /**
  * @throw Exception
  */
-int QueryTimeTable(gpstk::SDid& sdid, gpstk::CommonTime& tt);
+int QueryTimeTable(gnsstk::SDid& sdid, gnsstk::CommonTime& tt);
 /**
  * @throw Exception
  */
@@ -146,7 +146,7 @@ int Estimation(void);            // Estimation.cpp
 /**
  * @throw Exception
  */
-gpstk::Matrix<double> SingleAxisRotation(double angle, const int axis);
+gnsstk::Matrix<double> SingleAxisRotation(double angle, const int axis);
    // DDBase.cpp
 
 //------------------------------------------------------------------------------------
@@ -157,20 +157,20 @@ extern std::ofstream oflog;
 //extern CommandInput CI;   put in CommandInput.hpp
 extern std::vector<std::string> Baselines;
 
-extern gpstk::CommonTime SolutionEpoch;
-extern gpstk::CommonTime FirstEpoch,LastEpoch,MedianEpoch;
+extern gnsstk::CommonTime SolutionEpoch;
+extern gnsstk::CommonTime FirstEpoch,LastEpoch,MedianEpoch;
 extern int Count; 
 extern int maxCount;
 extern double wave;
 
-extern gpstk::XvtStore<gpstk::SatID> *pEph;
-extern gpstk::EOPStore EOPList;
-extern gpstk::EarthOrientation eorient;
+extern gnsstk::XvtStore<gnsstk::SatID> *pEph;
+extern gnsstk::EOPStore EOPList;
+extern gnsstk::EarthOrientation eorient;
 
 extern std::map<std::string,Station> Stations;
 extern std::vector<ObsFile> ObsFileList;
 
-extern std::map<gpstk::DDid,DDData> DDDataMap;
+extern std::map<gnsstk::DDid,DDData> DDDataMap;
 
 #endif
 

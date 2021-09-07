@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -75,7 +75,7 @@
  * Generates an SP3c version of data/test_input_SP3ae.sp3 in sp3.out.
  *
  * \section sp3version_support SUPPORT
- * sp3version is not part of the gpstk core and thus testing and support
+ * sp3version is not part of the gnsstk core and thus testing and support
  * are limited to non-existent.
  *
  * \section sp3version_exit_status EXIT STATUS
@@ -107,7 +107,7 @@
 #include "BasicFramework.hpp"
 
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 
 class SP3Version : public BasicFramework
 {
@@ -340,7 +340,7 @@ process()
    }
    catch (Exception& e)
    {
-      GPSTK_RETHROW(e);
+      GNSSTK_RETHROW(e);
    }
 }
 

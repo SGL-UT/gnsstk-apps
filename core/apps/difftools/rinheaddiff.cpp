@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -49,7 +49,7 @@
 #include "Rinex3ObsStream.hpp"
 
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 
 /** Implement an application that displays differences between the
  * headers of two RINEX files (clock, met, nav, obs). */
@@ -81,15 +81,15 @@ protected:
       /// Do the work of reading the input files and comparing the headers.
    virtual void process();
       /// Allow the user to specify header types to ignore.
-   gpstk::CommandOptionWithAnyArg exclOption;
+   gnsstk::CommandOptionWithAnyArg exclOption;
       /// Allow the user to specify the only header types to compare.
-   gpstk::CommandOptionWithAnyArg inclOption;
+   gnsstk::CommandOptionWithAnyArg inclOption;
       /// Allow the user to specify the two input files.
-   gpstk::CommandOptionRest inputFileOption;
+   gnsstk::CommandOptionRest inputFileOption;
       /// Force the user to specify exactly two files.
-   gpstk::CommandOptionNOf filesRestr;
+   gnsstk::CommandOptionNOf filesRestr;
       /// Make sure only one of exclOption or inclOption are used.
-   gpstk::CommandOptionMutex incexc;
+   gnsstk::CommandOptionMutex incexc;
 };
 
 

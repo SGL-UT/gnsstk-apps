@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -85,7 +85,7 @@
  * \dicterm{\--out2 \argarg{[SYS:]FN}}
  * \dicdef{Version 2 output [system \argarg{SYS} only] to RINEX file fn [repeatable] ()}
  * \dicterm{\--timefmt \argarg{FMT}}
- * \dicdef{Format for time tags (see GPSTK::Epoch::printf) in output (%4F %10.3g)}
+ * \dicdef{Format for time tags (see GNSSTK::Epoch::printf) in output (%4F %10.3g)}
  * \dicterm{\--ver2}
  * \dicdef{Write out RINEX version 2 (don't)}
  * \dicterm{\--verbose}
@@ -111,7 +111,7 @@
  * output is RINEX 3 NAV.
  *
  * \section RinNav_support SUPPORT
- * RinNav is not part of the gpstk core and thus testing and support
+ * RinNav is not part of the gnsstk core and thus testing and support
  * are limited to non-existent.
  *
  * \section RinNav_exit_status EXIT STATUS
@@ -135,7 +135,7 @@
 #include <iostream>
 #include <fstream>
 
-// GPSTK
+// GNSSTK
 #include "Exception.hpp"
 #include "StringUtils.hpp"
 #include "singleton.hpp"
@@ -157,7 +157,7 @@
 
 //------------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 //------------------------------------------------------------------------------------
@@ -262,7 +262,7 @@ try {
    wallclkbeg.setLocalTime();
 
    // build title = first line of output
-   C.Title = "# " + C.PrgmName + ", part of the GPS Toolkit, Ver " + Version
+   C.Title = "# " + C.PrgmName + ", part of the GNSS Toolkit, Ver " + Version
       + ", Run " + printTime(wallclkbeg,C.calfmt);
 
    for(;;) {
@@ -329,7 +329,7 @@ try {
    if(!isValid) return -5;
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end Initialize()
 
 //------------------------------------------------------------------------------------
@@ -486,7 +486,7 @@ string Configuration::BuildCommandLine(void) throw()
    opts.Add(0, "out2", "[sys:]fn", true, false, &output2Strs, "",
             "Version 2 output [system <sys> only] to RINEX file fn");
    opts.Add(0, "timefmt", "fmt", false, false, &userfmt, "",
-            "Format for time tags (see GPSTK::Epoch::printf) in output");
+            "Format for time tags (see GNSSTK::Epoch::printf) in output");
    opts.Add(0, "ver2", "", false, false, &outver2, "",
             "Write out RINEX version 2");
    opts.Add(0, "verbose", "", false, false, &verbose, "",
@@ -906,7 +906,7 @@ try {
 
    return nfiles;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end ProcessFiles()
 
 //------------------------------------------------------------------------------------
