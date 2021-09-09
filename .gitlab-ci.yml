@@ -272,6 +272,78 @@ deb10_op2_build:
     paths:
       - build/
 
+conda_py27_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/deb9_conda_py27
+  script:
+    # Install dependencies from latest CI first.
+    - bash conda_recipe/get_required_deps_conda.sh package_conda
+    - conda activate conda_builder
+    - conda index conda-bld
+    - conda activate py27
+    - conda install gpstk --override-channels -c file://$PWD/conda-bld/
+    - mkdir -p build
+    - cd build
+    - export gpstk=`pwd`/install
+    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
+conda_py36_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/deb9_conda_py36
+  script:
+    # Install dependencies from latest CI first.
+    - bash conda_recipe/get_required_deps_conda.sh package_conda
+    - conda activate conda_builder
+    - conda index conda-bld
+    - conda activate py36
+    - conda install gpstk --override-channels -c file://$PWD/conda-bld/
+    - mkdir -p build
+    - cd build
+    - export gpstk=`pwd`/install
+    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
+conda_op2_py27_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/deb9_conda_py27
+  script:
+    # Install dependencies from latest CI first.
+    - bash conda_recipe/get_required_deps_conda.sh package_conda
+    - conda activate conda_builder
+    - conda index conda-bld
+    - conda activate py27
+    # Install optional conda libraries sgltk, betatk, mdhtk_cpp
+    - conda install gpstk $PACKAGE_CONFIG_CONDA_2 --override-channels -c file://$PWD/conda-bld/
+    # Link optional libraries sgltk, betatk, mdhtk
+    - ./optional_package_add.sh $PACKAGE_CONFIG_2
+    - mkdir -p build
+    - cd build
+    - export gpstk=`pwd`/install
+    - cmake -DPYTHON_INSTALL_PREFIX=$gpstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
 rhel7_build:
   stage: build
   needs: []
