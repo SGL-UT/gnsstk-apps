@@ -7,6 +7,7 @@ IF(DEFINED ARGS)
    string(REPLACE " " ";" ARG_LIST ${ARGS})
 ENDIF(DEFINED ARGS)
 
+message(STATUS "running ${TEST_PROG} ${ARG_LIST}")
 execute_process(COMMAND ${TEST_PROG} ${ARG_LIST}
                 OUTPUT_QUIET
                 ERROR_QUIET

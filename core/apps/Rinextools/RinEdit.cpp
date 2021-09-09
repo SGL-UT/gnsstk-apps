@@ -211,6 +211,10 @@
  *
  * \todo Add more examples.
  *
+ * \section RinEdit_bugs BUGS
+ *
+ * \bug RinEdit does not remove duplicate data from the output.
+ *
  * \section RinEdit_exit_status EXIT STATUS
  * The following exit values are returned:
  * \dictable
@@ -491,6 +495,8 @@ int main(int argc, char **argv)
          LOG(INFO) << oss.str();
       }
 
+      if (C.help)
+         return 0; // return 0 when help is requested as this is not an error.
       return iret;
    }
    catch(FFStreamError& e) { cerr << "FFStreamError: " << e.what(); }
