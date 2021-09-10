@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -208,7 +208,7 @@
 #include <fstream>
 #include <algorithm>
 
-// GPSTK
+// GNSSTK
 #include "Exception.hpp"
 #include "MathBase.hpp"
 #include "GNSSconstants.hpp"
@@ -270,8 +270,8 @@
 
 //------------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
-using namespace gpstk::StringUtils;
+using namespace gnsstk;
+using namespace gnsstk::StringUtils;
 
 //------------------------------------------------------------------------------------
 string Version(string("5.3 1/27/20"));
@@ -763,7 +763,7 @@ try {
    wallclkbeg.setLocalTime();
 
    // build title = first line of output
-   C.Title = C.PrgmName + ", part of the GPS Toolkit, Ver " + Version
+   C.Title = C.PrgmName + ", part of the GNSS Toolkit, Ver " + Version
       + ", Run " + printTime(wallclkbeg,C.calfmt);
    //cout << C.Title << endl;
 
@@ -813,7 +813,7 @@ try {
 catch(FFStreamError& e) { cerr << "FFStreamError: " << e.what(); }
 catch(Exception& e) { cerr << "Exception: " << e.what(); }
 catch (...) { cerr << "Unknown exception.  Abort." << endl; }
-return gpstk::BasicFramework::EXCEPTION_ERROR;
+return gnsstk::BasicFramework::EXCEPTION_ERROR;
 
 }  // end main()
 
@@ -985,7 +985,7 @@ try {
       LOG(VERBOSE) << "\nSP3 Ephemeris Store time intervals for " << sat
          << " are " << dtp << " (pos), and " << dtc << " (clk)";
       LOG(VERBOSE) << "SP3 Ephemeris store time system "
-                   << gpstk::StringUtils::asString(C.SP3EphStore.getTimeSystem());
+                   << gnsstk::StringUtils::asString(C.SP3EphStore.getTimeSystem());
 
       // set gap checking - don't b/c TimeStep may vary GPS/GLO
       // TD this is a problem
@@ -1388,7 +1388,7 @@ try {
    if(!isValid) return -5;
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end Initialize()
 
 //------------------------------------------------------------------------------------
@@ -1442,7 +1442,7 @@ try {
          LOG(VERBOSE) << "Input header for RINEX file " << filename;
          Rhead.dump(LOGstrm);
          LOG(VERBOSE) << "Time system for RINEX file " << filename
-                      << " is " << gpstk::StringUtils::asString(istrm.timesystem);
+                      << " is " << gnsstk::StringUtils::asString(istrm.timesystem);
       }
 
       // does header include C1C (for DCB correction)?
@@ -1543,11 +1543,11 @@ try {
          }
          catch(std::exception& e) {
             Exception ge(string("Std excep: ") + e.what());
-            GPSTK_THROW(ge);
+            GNSSTK_THROW(ge);
          }
          catch(...) {
             Exception ue("Unknown exception while reading RINEX data.");
-            GPSTK_THROW(ue);
+            GNSSTK_THROW(ue);
          }
 
          // normal EOF
@@ -1762,7 +1762,7 @@ try {
 
    return nfiles;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end ProcessFiles()
 
 //------------------------------------------------------------------------------------
@@ -1774,7 +1774,7 @@ try {
 
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end routine()
 
 //------------------------------------------------------------------------------------
@@ -2093,7 +2093,7 @@ string Configuration::BuildCommandLine(void) throw()
             "                      with optional weather T(C),P(mb),RH(%)]");
 
    opts.Add(0, "log", "fn", false, false, &LogFile, "# Output [for formats see "
-            "GPSTK::Position (--ref) and GPSTK::Epoch (--timefmt)] :",
+            "GNSSTK::Position (--ref) and GNSSTK::Epoch (--timefmt)] :",
             "Output log file name");
    opts.Add(0, "out", "fn", false, false, &OutputObsFile, "",
             "Output RINEX observations (with position solution in comments)");
@@ -2228,7 +2228,7 @@ int Configuration::ExtraProcessing(string& errors, string& extras) throw()
          else {
             msg = string();
             oss << "Error : invalid trop model (" << fld[0] << "); choose one of "
-               << "Zero,Black,Saas,NewB,GG,GGht,Neill,Global (cf. gpstk::TropModel)"
+               << "Zero,Black,Saas,NewB,GG,GGht,Neill,Global (cf. gnsstk::TropModel)"
                << endl;
          }
 
@@ -2340,7 +2340,7 @@ void Configuration::setWeather(const CommonTime& ttag)
          else break;
       }
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -2723,7 +2723,7 @@ int SolutionObject::ComputeSolution(const CommonTime& ttag)
 
       return iret;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -2762,7 +2762,7 @@ int SolutionObject::WriteORDs(const CommonTime& time, const int iret)
 
       return 0;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
@@ -2808,7 +2808,7 @@ void SolutionObject::FinalOutput(void)
       }
 
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------

@@ -1,20 +1,20 @@
 #!/usr/bin/perl
 #==============================================================================
 #
-#  This file is part of GPSTk, the GPS Toolkit.
+#  This file is part of GNSSTk, the GNSS Toolkit.
 #
-#  The GPSTk is free software; you can redistribute it and/or modify
+#  The GNSSTk is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published
 #  by the Free Software Foundation; either version 3.0 of the License, or
 #  any later version.
 #
-#  The GPSTk is distributed in the hope that it will be useful,
+#  The GNSSTk is distributed in the hope that it will be useful,
 #  but WITHOUT ANY WARRANTY; without even the implied warranty of
 #  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #  GNU Lesser General Public License for more details.
 #
 #  You should have received a copy of the GNU Lesser General Public
-#  License along with GPSTk; if not, write to the Free Software Foundation,
+#  License along with GNSSTk; if not, write to the Free Software Foundation,
 #  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 #  
 #  This software was developed by Applied Research Laboratories at the
@@ -38,29 +38,29 @@
 #==============================================================================
 #Script by Eric Hagen, Jonathan Vorce
 #Last saved Jan 10, 2007
-#This script is designed to automate capture and Twiki markup of GPSTk application output.
+#This script is designed to automate capture and Twiki markup of GNSSTk application output.
 
 use strict;
 use warnings;
 
 
 
-#SysCall has the following parameters - GPSTk App to call,
+#SysCall has the following parameters - GNSSTk App to call,
 # - parameters for the first example, - parameters for the second example,
 # etc.
 
 #*********** Set local directory variables ***************
 #*********************************************************
-#location of GPSTk install directory (e.g jam -sPREFIX=############ install)
-my $Local_install = "/home/vorce/svn/gpstk/ebony/jam/ebonyInstall/bin/";
+#location of GNSSTk install directory (e.g jam -sPREFIX=############ install)
+my $Local_install = "/home/vorce/svn/gnsstk/ebony/jam/ebonyInstall/bin/";
 
 #location of subversion ref/ directory to access input files
-my $Local_ref = "/home/vorce/svn/gpstk/ebony/jam/ref/usersguide/";
+my $Local_ref = "/home/vorce/svn/gnsstk/ebony/jam/ref/usersguide/";
 
 chdir $Local_ref;
 
 #desired location for output
-my $Local_out = "/home/vorce/svn/gpstk/ebony/jam/wiki_out/";
+my $Local_out = "/home/vorce/svn/gnsstk/ebony/jam/wiki_out/";
 
 #print the whole example as opposed to truncating it at 19 lines
 my $truncate_example;
@@ -91,8 +91,8 @@ SysCall("ficcheck","fic06.187");
 sub SysCall{
    #Set the application call we are going to make
    my $call = $_[0];
-   #Set the file - in the form of AppGPSTk + the application .txt
-   my $wikiOutputFile = $Local_out . "AppGPSTk" . $call . ".txt";
+   #Set the file - in the form of AppGNSSTk + the application .txt
+   my $wikiOutputFile = $Local_out . "AppGNSSTk" . $call . ".txt";
    open RESULTS,"> $wikiOutputFile" or die "can't open: $!";
    #Grab the help and put it in a temp file
    system($Local_install."./$call --help > " . $Local_out . "temp.log 2>&1");
@@ -124,7 +124,7 @@ sub SysCall{
    print RESULTS "-- Main.Jonathan Vorce $date";
 }
 
-#Subroutine for parsing the GPSTk application help and moving to Twiki markup
+#Subroutine for parsing the GNSSTk application help and moving to Twiki markup
 sub ParseHelp {
    open TEMP, "< ". $Local_out ."temp.log" or die "can't open datafile: $!";
    my $test_next = 0;
@@ -170,7 +170,7 @@ sub ParseHelp {
    }
 }
 
-#The subroutine for parsing the GPSTk application example and moving to Twiki markup
+#The subroutine for parsing the GNSSTk application example and moving to Twiki markup
 sub ParseExample {
    open TEMP, "< ". $Local_out ."temp.log" or die "can't open datafile: $!";
    my $count = 0;

@@ -1,5 +1,5 @@
 # This script converts the JPL 403/405 ephemeris to a binary file for use by
-# other applications with the gpstk SolarSystemEphemeris class.
+# other applications with the gnsstk SolarSystemEphemeris class.
 # The 405 ephemeris is newer and presumably better than the 403.
 
 #!/bin/bash

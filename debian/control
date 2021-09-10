@@ -1,20 +1,20 @@
-Source: gpstk-apps
+Source: gnsstk-apps
 Priority: optional
 Maintainer: Bryan Parsons <bparsons@arlut.utexas.edu>
-Build-Depends: debhelper (>= 9), cmake, libgpstk12
+Build-Depends: debhelper (>= 9), cmake, libgnsstk12
 Standards-Version: 3.9.5
 Section: libs
-Homepage: http://www.gpstk.org/
-Vcs-Git: https://github.com/SGL-UT/GPSTk.git
-Vcs-Browser: https://github.com/SGL-UT/GPSTk.git
+Homepage: http://www.gnsstk.org/
+Vcs-Git: https://github.com/SGL-UT/GNSSTk.git
+Vcs-Browser: https://github.com/SGL-UT/GNSSTk.git
 
-Package: gpstk-apps
+Package: gnsstk-apps
 Architecture: any
-Depends: libgpstk12, ${misc:Depends}, ${shlibs:Depends}
-Description: GPS Toolkit (GPSTk) - command line tools
- The GPS Toolkit (GPSTk) is an open-source (LGPL) project sponsored by
+Depends: libgnsstk12, ${misc:Depends}, ${shlibs:Depends}
+Description: GNSS Toolkit (GNSSTk) - command line tools
+ The GNSS Toolkit (GNSSTk) is an open-source (LGPL) project sponsored by
  the Space and Geophysics Laboratory (SGL), part of the Applied Research
  Laboratories (ARL) at The University of Texas at Austin.
- The primary goals of the GPSTk project are to:
+ The primary goals of the GNSSTk project are to:
  * provide applications for use by the GNSS and satellite navigation community.
  * provide a core library to facilitate the development of GNSS applications.

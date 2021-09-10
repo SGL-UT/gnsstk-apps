@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -50,26 +50,26 @@
 #include <string>
 #include <ostream>
 
-// GPSTk
+// GNSSTk
 #include "Exception.hpp"
 // Geomatics
 #include "GSatID.hpp"
 
-namespace gpstk {
+namespace gnsstk {
 //------------------------------------------------------------------------------------
 // double difference identification
 class DDid {
 public:
    std::string site1,site2;
-   gpstk::GSatID sat1,sat2;
+   gnsstk::GSatID sat1,sat2;
    int ssite,ssat;
       // empty constructor - sites are empty and sats are GPS,-1
    //DDid(void);
       // explicit constructor - do not reorder
    explicit DDid(std::string s1,
                  std::string s2,
-                 gpstk::GSatID p1,
-                 gpstk::GSatID p2);
+                 gnsstk::GSatID p1,
+                 gnsstk::GSatID p2);
 
       // 'less than' is required for map<DDid,...>.find(DDid)
    bool operator<(const DDid& right) const;
@@ -92,14 +92,14 @@ public:
 class SDid {
 public:
    std::string site1,site2;
-   gpstk::GSatID sat;
+   gnsstk::GSatID sat;
    int ssite;
       // empty constructor - sites are empty and sat is GPS,-1
    //SDid(void);
       // explicit constructor - do not reorder
    explicit SDid(std::string s1,
                  std::string s2,
-                 gpstk::GSatID p);
+                 gnsstk::GSatID p);
 
    bool operator<(const SDid& right) const;
    bool operator>(const SDid& right) const;
@@ -119,11 +119,11 @@ public:
 class OWid {
 public:
    std::string site;
-   gpstk::GSatID sat;
+   gnsstk::GSatID sat;
       // empty constructor - site is empty and sat is GPS,-1
    //OWid(void);
       // explicit constructor - do not reorder
-   explicit OWid(std::string& s1, gpstk::GSatID& p);
+   explicit OWid(std::string& s1, gnsstk::GSatID& p);
 
    bool operator<(const OWid& right) const;
    bool operator>(const OWid& right) const;
@@ -138,6 +138,6 @@ public:
    friend std::ostream& operator<<(std::ostream& s, const OWid& t);
 };
 
-}  // end namespace gpstk
+}  // end namespace gnsstk
 //------------------------------------------------------------------------------------
 #endif

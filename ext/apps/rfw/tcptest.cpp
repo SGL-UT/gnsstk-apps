@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -55,15 +55,15 @@ int main(int argc, char* argv[])
 {
    try
    {
-      gpstk::SocketAddr client(std::string("localhost"), 4621);
-      gpstk::IPaddress any;
-      gpstk::SocketAddr server(any, 4621);
+      gnsstk::SocketAddr client(std::string("localhost"), 4621);
+      gnsstk::IPaddress any;
+      gnsstk::SocketAddr server(any, 4621);
       int debugLevel = 0;
-      gpstk::CommandOptionNoArg
+      gnsstk::CommandOptionNoArg
          debugOption('d', "debug", "Enable debug output."),
          serverOption('s', "server", "Run as server, not client");
       std::string appDescription("Test program for the TCPStream stuff.");
-      gpstk::CommandOptionParser cop(appDescription);
+      gnsstk::CommandOptionParser cop(appDescription);
       cop.parseOptions(argc, argv);
       if (cop.hasErrors())
       {
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
       debugLevel = debugOption.getCount();
 
-      gpstk::TCPStream tcpStream;
+      gnsstk::TCPStream tcpStream;
 
       if (serverOption.getCount())
       {
@@ -100,8 +100,8 @@ int main(int argc, char* argv[])
             cout << "Couldn't listen"
                  << " (" << strerror(errno) << ")" << endl, exit(-1);
          
-         gpstk::TCPStream link;
-         gpstk::SocketAddr peeraddr = gpstk::SocketAddr(any,1);
+         gnsstk::TCPStream link;
+         gnsstk::SocketAddr peeraddr = gnsstk::SocketAddr(any,1);
          link.rdbuf()->accept(listening_socket,peeraddr);
          cout << "Accepted connection from " << peeraddr << endl;
          link.close();

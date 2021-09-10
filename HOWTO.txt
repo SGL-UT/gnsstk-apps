@@ -7,7 +7,7 @@
 \li See the detailed documentation...
     1. Make sure Doxygen is installed on your build system by running "doxygen -v"
     2. In the top level directory of the toolkit (where the Doxyfile resides), run doxygen.
-    3. In a web browser, open $TKROOT/gpstk_doc_dir/html/index.html
+    3. In a web browser, open $TKROOT/gnsstk_doc_dir/html/index.html
 
 \li Build the toolkit...
     1. Refer to \ref INSTALL

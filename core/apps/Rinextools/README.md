@@ -87,7 +87,7 @@ RinEdit [options] [editing commands]
  --HDc <c>         Add 'COMMENT' <c> to the output header [repeat] ()
  --HDdc            Delete all comments [not --HDc] from input header (don't)
  --HDda            Delete all auxiliary header data (don't)
-# Time related [t,f are strings, time t conforms to format f; cf. gpstk::Epoch.]
+# Time related [t,f are strings, time t conforms to format f; cf. gnsstk::Epoch.]
 # Default t(f) is 'week,sec-of-week'(%F,%g) OR 'y,m,d,h,m,s'(%Y,%m,%d,%H,%M,%S)
  --OF <f,t>        At RINEX time <t>, close output file and open another named <f> ()
  --TB <t[:f]>      Start time: Reject data before this time ([Beginning of dataset])
@@ -166,7 +166,7 @@ Examples:
 ---------
 
     >RinSum obs/s051001a.04o
-        # RinSum, part of the GPS Toolkit, Ver 3.3 1/31/12, Run 2012/07/17 11:12:32
+        # RinSum, part of the GNSS Toolkit, Ver 3.3 1/31/12, Run 2012/07/17 11:12:32
         +++++++++++++ RinSum summary of Rinex obs file obs/s051001a.04o +++++++++++++
         ---------------------------------- REQUIRED ----------------------------------
         Rinex Version 2.10, File type Observation, System G (GPS).

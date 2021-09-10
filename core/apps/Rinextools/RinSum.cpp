@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -70,7 +70,7 @@
  * \dicterm{\--RinexVer \argarg{V}}
  * \dicdef{Output in RINEX version V (default is header.version) (0.00)}
  * \dicterm{\--timefmt \argarg{FMT}}
- * \dicdef{Format for time tags (see GPSTK::Epoch::printf) in output (%4F %w %10.3g %P)}
+ * \dicdef{Format for time tags (see GNSSTK::Epoch::printf) in output (%4F %w %10.3g %P)}
  * \dicterm{\--brief}
  * \dicdef{Produce a brief output (don't)}
  * \dicterm{\--nohead}
@@ -126,7 +126,7 @@
 #include <fstream>
 #include <algorithm>
 
-// GPSTK
+// GNSSTK
 #include "Exception.hpp"
 #include "StringUtils.hpp"
 #include "GNSSconstants.hpp"
@@ -153,7 +153,7 @@
 
 //-----------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 //-----------------------------------------------------------------------------
@@ -308,7 +308,7 @@ int main(int argc, char **argv)
       wallclkbeg.setLocalTime();
 
          // build title = first line of output
-      C.Title = "# " + C.PrgmName + ", part of the GPS Toolkit, Ver " +
+      C.Title = "# " + C.PrgmName + ", part of the GNSS Toolkit, Ver " +
          Version + ", Run " + printTime(wallclkbeg,C.calfmt);
 
       for(;;)
@@ -403,7 +403,7 @@ int Initialize(string& errors)
    }
    catch(Exception& e)
    {
-      GPSTK_RETHROW(e);
+      GNSSTK_RETHROW(e);
    }
 }  // end Initialize()
 
@@ -565,7 +565,7 @@ string Configuration::BuildCommandLine(void) throw()
             "Output in RINEX version V (default is header.version)");
 
    opts.Add(0, "timefmt", "fmt", false, false, &userfmt, "# Output:",
-            "Format for time tags (see GPSTK::Epoch::printf) in output");
+            "Format for time tags (see GNSSTK::Epoch::printf) in output");
    opts.Add('b', "brief", "", false, false, &brief, "",
             "Produce a brief output");
    opts.Add(0, "nohead", "", false, false, &nohead, "",
@@ -988,12 +988,12 @@ int ProcessFiles()
             catch(std::exception& e)
             {
                Exception ge(string("Std excep: ") + e.what());
-               GPSTK_THROW(ge);
+               GNSSTK_THROW(ge);
             }
             catch(...)
             {
                Exception ue("Unknown exception while reading RINEX data.");
-               GPSTK_THROW(ue);
+               GNSSTK_THROW(ue);
             }
 
                // normal EOF
@@ -1808,7 +1808,7 @@ int ProcessFiles()
    }
    catch(Exception& e)
    {
-      GPSTK_RETHROW(e);
+      GNSSTK_RETHROW(e);
    }
 }  // end ProcessFiles()
 

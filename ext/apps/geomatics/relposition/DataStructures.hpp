@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -49,7 +49,7 @@
 #include <string>
 #include <vector>
 
-// GPSTk
+// GNSSTk
 #include "PRSolutionLegacy.hpp"
 #include "Stats.hpp"
 
@@ -114,20 +114,20 @@ class Station {
 public:
    bool fixed;                      // if true, hold position fixed, else solve for it
    bool usePRS;                     // if true, use ave. PR solution as position
-   gpstk::Position pos;             // either known or solution or apriori
-   gpstk::PRSolutionLegacy PRS;     // pseudorange solution, includes clock bias
-   gpstk::Stats<double> PRSXstats;  // stats on pseudorange solution
-   gpstk::Stats<double> PRSYstats;  // stats on pseudorange solution
-   gpstk::Stats<double> PRSZstats;  // stats on pseudorange solution
+   gnsstk::Position pos;             // either known or solution or apriori
+   gnsstk::PRSolutionLegacy PRS;     // pseudorange solution, includes clock bias
+   gnsstk::Stats<double> PRSXstats;  // stats on pseudorange solution
+   gnsstk::Stats<double> PRSYstats;  // stats on pseudorange solution
+   gnsstk::Stats<double> PRSZstats;  // stats on pseudorange solution
 
    double ant_azimuth;              // (relative) orientation of the antenna dipole
 
-   std::map<gpstk::GSatID,DataStruct> RawDataMap;
+   std::map<gnsstk::GSatID,DataStruct> RawDataMap;
                                     // cleaned, raw data at current epoch
-   gpstk::CommonTime time;             // timetag (SolutionEpoch) of RawDataMap
+   gnsstk::CommonTime time;             // timetag (SolutionEpoch) of RawDataMap
 
       // these buffers must remain parallel
-   std::map<gpstk::GSatID,RawData> RawDataBuffers;
+   std::map<gnsstk::GSatID,RawData> RawDataBuffers;
                                     // buffers of good raw data
    std::vector<double> ClockBuffer; // buffer of clock solution (m)
    std::vector<double> ClkSigBuffer;// buffer of clock solution sigma (m)
@@ -136,7 +136,7 @@ public:
    std::vector<int> CountBuffer;    // epoch count since FirstEpoch - if data exists
 
    std::string TropType;            // label from input giving type of trop model
-   gpstk::TropModel *pTropModel;    // chosen trop model (defined in CommandInput)
+   gnsstk::TropModel *pTropModel;    // chosen trop model (defined in CommandInput)
    double temp;                     // temperature in degrees Celsius
    double press;                    // pressure in mbars at sealevel
    double rhumid;                   // relative humidity in % (0-100)
@@ -155,14 +155,14 @@ class ObsFile {
 public:
    std::string name;           // file name, not including path
    std::string label;          // Station label to which this obs file belongs
-   gpstk::RinexObsStream ins;  // streams for reading RINEX
+   gnsstk::RinexObsStream ins;  // streams for reading RINEX
       // TD use pointer -- operator= does not work for RinexObsStream,
       // yet operator= necessary to form vector<RinexObsStream>
-   gpstk::RinexObsHeader Rhead;// RINEX header record (for reading)
-   gpstk::RinexObsData Robs;   // RINEX observation record (for reading)
+   gnsstk::RinexObsHeader Rhead;// RINEX header record (for reading)
+   gnsstk::RinexObsData Robs;   // RINEX observation record (for reading)
 
    double dt;                  // nominal time step <= reading past header
-   gpstk::CommonTime firstTime;   // first good epoch
+   gnsstk::CommonTime firstTime;   // first good epoch
 
    int nread;                  // number of records read (-1=unopened, 0=header read)
    bool valid;                 // set false if unopened or at EOF

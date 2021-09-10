@@ -9,7 +9,7 @@
 
 include:
   - project: sgl-tks/ci-control
-    file: /gpstk-apps/ci_downstrm_chain.yml
+    file: /gnsstk-apps/ci_downstrm_chain.yml
     ref: main
 
 stages:
@@ -29,11 +29,11 @@ variables:
   # This can be set to True by Gitlab UI to only build/test packages.
   RELEASE_ONLY: "False"
   # If set to "True" then only only chained jobs from upstream pipelines are executed.
-  GPSTK_COMMIT:
+  GNSSTK_COMMIT:
     value: "main"
-    description: "Upstream gpstk lib branch to link. Defaults to main"
-  # The default project id for gpstk to download windows install artifact
-  GPSTK_PROJID: "164"
+    description: "Upstream gnsstk lib branch to link. Defaults to main"
+  # The default project id for gnsstk to download windows install artifact
+  GNSSTK_PROJID: "164"
 
 # Template for all normal jobs.
 .normal_job:
@@ -93,7 +93,7 @@ sgllint_lint:
     - python repo_utils/sgl_lint.py -v -R core
     - python repo_utils/sgl_lint.py -v -R ext
     - python repo_utils/sgl_lint.py -v -R swig/apps
-    - python repo_utils/sgl_lint.py -v -R swig/gpstk
+    - python repo_utils/sgl_lint.py -v -R swig/gnsstk
   dependencies: []
 
 protected_term_lint:
@@ -189,8 +189,8 @@ deb8_build:
     - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
     - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk -DCMAKE_PREFIX_PATH=/usr -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DCMAKE_PREFIX_PATH=/usr -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
     - make all -j 4
   artifacts:
     paths:
@@ -356,7 +356,7 @@ rhel7_build:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - mkdir -p build
     - cd build
-    - export gpstk=`pwd`/install
+    - export gnsstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
     - make all -j 4
   artifacts:
@@ -389,10 +389,10 @@ windows_build:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'echo curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
-    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
-    - 7z x -olibrary gpstk_win.zip
-    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
+    - 'echo curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
+    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gnsstk_win.zip
+    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
 # incremental builds
 #    - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
 # non-incremental builds
@@ -411,7 +411,7 @@ windows_build:
 
 
 # Test Stage
-# Runs all tests of GPSTK for each platform
+# Runs all tests of GNSSTK for each platform
 deb8_test:
   stage: test
   needs: [deb8_build]
@@ -528,9 +528,9 @@ windows_test:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
-    - 7z x -olibrary gpstk_win.zip
-    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
+    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gnsstk_win.zip
+    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
     - cd build
     - cmake --build . --target RUN_TESTS --config Release
   artifacts:
@@ -542,7 +542,7 @@ windows_test:
   timeout: 5m
 
 # User_Install Stage
-# Tests user install of GPSTk on each platform, saves artifacts for
+# Tests user install of GNSSTk on each platform, saves artifacts for
 # downstream builds.
 deb9_user_install:
   stage: install
@@ -554,8 +554,8 @@ deb9_user_install:
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - make install -j 4
   artifacts:
     paths:
@@ -573,8 +573,8 @@ rhel7_user_install:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - make install -j 4
   artifacts:
     paths:
@@ -592,8 +592,8 @@ rhel8_user_install:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
-    - export gpstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - make install -j 4
   artifacts:
     paths:
@@ -609,9 +609,9 @@ user_install_windows:
     - win10
   script:
     - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'curl --output gpstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GPSTK_PROJID%/jobs/artifacts/%GPSTK_COMMIT%/download?job=user_install_windows'
-    - 7z x -olibrary gpstk_win.zip
-    - SET GPSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GPSTK
+    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
+    - 7z x -olibrary gnsstk_win.zip
+    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
     - cd build
     - cmake --build . --config Release --target install
   dependencies:
@@ -620,7 +620,7 @@ user_install_windows:
   timeout: 10m
 
 # System Stage
-# Tests install of GPSTk on each platform, saves artifacts for downstream builds.
+# Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
 deb9_system_install:
   stage: install
   needs: [deb9_build]
@@ -631,8 +631,8 @@ deb9_system_install:
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
-    - export gpstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=/usr/local
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - sudo make install -j 4
   dependencies:
     - deb9_build
@@ -647,8 +647,8 @@ rhel7_system_install:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
-    - export gpstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=/usr/local
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - sudo make install -j 4
   dependencies:
     - rhel7_build
@@ -663,15 +663,15 @@ rhel8_system_install:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
-    - export gpstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gpstk ../
+    - export gnsstk=/usr/local
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
     - sudo make install -j 4
   dependencies:
     - rhel8_build
 
 
 # Package Stage
-# Tests packaging of GPSTk-apps on all platforms
+# Tests packaging of GNSSTk-apps on all platforms
 # Temporarily changing name back to old name so repo_utils can find this job.
 # We will standardize job names per Jira SIM-55
 package_debian_8:
@@ -793,13 +793,13 @@ package_redhat:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gpstk-apps-master/ -o rpm_files/SOURCES/gpstk-apps-master.tar.gz HEAD
+    - git archive --prefix gnsstk-apps-master/ -o rpm_files/SOURCES/gnsstk-apps-master.tar.gz HEAD
     - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gpstk-apps.spec
+    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gnsstk-apps.spec
   artifacts:
     paths:
-      - rpm_files/RPMS/x86_64/gpstk-*
-      - rpm_files/SRPMS/gpstk-*
+      - rpm_files/RPMS/x86_64/gnsstk-*
+      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
 
 package_redhat_8:
@@ -812,20 +812,20 @@ package_redhat_8:
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gpstk-apps-master/ -o rpm_files/SOURCES/gpstk-apps-master.tar.gz HEAD
+    - git archive --prefix gnsstk-apps-master/ -o rpm_files/SOURCES/gnsstk-apps-master.tar.gz HEAD
     - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gpstk-apps.spec
+    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" --define "_build_id_links none" -ba SPECS/gnsstk-apps.spec
   artifacts:
     when: always
     paths:
       - rpm_files/
   dependencies: []
 
-#      - rpm_files/RPMS/x86_64/gpstk-*
-#      - rpm_files/SRPMS/gpstk-*
+#      - rpm_files/RPMS/x86_64/gnsstk-*
+#      - rpm_files/SRPMS/gnsstk-*
 
 # Deploy Stage
-# Tests install of GPSTk package on each platform, saves artifacts for downstream builds.
+# Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
 deb8_deploy:
   stage: deploy
   needs: [package_debian_8]
@@ -854,7 +854,7 @@ deb9_deploy:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
-    - python -c "import gpstk"
+    - python -c "import gnsstk"
     - timeconvert
   dependencies:
     - package_debian_9
@@ -871,7 +871,7 @@ deb10_deploy:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
-    - python -c "import gpstk"
+    - python -c "import gnsstk"
     - timeconvert
   dependencies:
     - package_debian_10
@@ -887,7 +887,7 @@ rhel7_deploy:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gpstk-*.rpm -y
+    - sudo yum install gnsstk-*.rpm -y
     - timeconvert
   dependencies:
     - package_redhat
@@ -903,7 +903,7 @@ rhel8_deploy:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gpstk-*.rpm -y
+    - sudo yum install gnsstk-*.rpm -y
     - timeconvert
   dependencies:
     - package_redhat_8

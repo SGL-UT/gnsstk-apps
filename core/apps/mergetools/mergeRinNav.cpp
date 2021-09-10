@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -96,7 +96,7 @@
 #include "MergeFrame.hpp"
 
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 
 class MergeRinNav : public MergeFrame
 {
@@ -131,13 +131,13 @@ void MergeRinNav::process()
       // set the pgm/runby/date field
    merged.theHeader.fileType = string("NAVIGATION");
    merged.theHeader.fileProgram = std::string("mergeRinNav");
-   merged.theHeader.fileAgency = std::string("gpstk");
+   merged.theHeader.fileAgency = std::string("gnsstk");
    merged.theHeader.date = CivilTime(SystemTime()).asString();
    merged.theHeader.version = 2.1;
-   merged.theHeader.valid |= gpstk::Rinex3NavHeader::validVersion;
-   merged.theHeader.valid |= gpstk::Rinex3NavHeader::validRunBy;
-   merged.theHeader.valid |= gpstk::Rinex3NavHeader::validComment;
-   merged.theHeader.valid |= gpstk::Rinex3NavHeader::validEoH;
+   merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validVersion;
+   merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validRunBy;
+   merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validComment;
+   merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validEoH;
 
       // write the header
    std::string outputFile = outputFileOption.getValue().front();

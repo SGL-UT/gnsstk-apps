@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -45,10 +45,10 @@
 #include "DDid.hpp"
 
 //------------------------------------------------------------------------------------
-using namespace gpstk;
+using namespace gnsstk;
 using namespace std;
 
-namespace gpstk {
+namespace gnsstk {
 //------------------------------------------------------------------------------------
 // empty constructor - sites are empty and sats are GPS,-1
 //DDid::DDid(void)
@@ -64,7 +64,7 @@ DDid::DDid(string s1, string s2, GSatID p1, GSatID p2)
 {
    if(s1 == s2 || p1.id == p2.id || p1.system != p2.system) {
       Exception e("DDid constructor with identical parts");
-      GPSTK_THROW(e);
+      GNSSTK_THROW(e);
    }
    if(s1 < s2) ssite=1; else ssite=-1;
    site1 = (s1 < s2 ? s1 : s2);
@@ -145,7 +145,7 @@ SDid::SDid(string s1, string s2, GSatID p)
 {
    if(s1 == s2) {
       Exception e("SDid constructor with identical sites");
-      GPSTK_THROW(e);
+      GNSSTK_THROW(e);
    }
    if(s1 < s2) ssite=1; else ssite=-1;
    site1 = (s1 < s2 ? s1 : s2);
@@ -257,6 +257,6 @@ ostream& operator<<(ostream& s, const OWid& t)
    return s;
 }
 
-} // end namespace gpstk
+} // end namespace gnsstk
 //------------------------------------------------------------------------------------
 //------------------------------------------------------------------------------------

@@ -21,7 +21,7 @@ Short Arg.| Long Arg.| Description
     -s    –svg=ARG            Generates an SVG file.
     -e    –eps=ARG            Generates an encapsulated postscript file.
     -v    –view               Try to launch an appropriate viewer for the file.
-    -n    –no-blurb           Suppress GPSTk reference in graphic output.
+    -n    –no-blurb           Suppress GNSSTk reference in graphic output.
 
 Examples:
 ---------

@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -49,8 +49,8 @@ template <class FileData>
 struct NullTimeFilter : public std::unary_function<FileData, bool>
 {
 public:
-   NullTimeFilter(const gpstk::CommonTime& startTime,
-                  const gpstk::CommonTime& endTime)
+   NullTimeFilter(const gnsstk::CommonTime& startTime,
+                  const gnsstk::CommonTime& endTime)
    {}
 
    bool operator() (const FileData& l) const
@@ -61,11 +61,11 @@ public:
  
 
 template <class FileStream, class FileData, class FilterTimeOperator = NullTimeFilter<FileData> >
-class CheckFrame : public gpstk::BasicFramework
+class CheckFrame : public gnsstk::BasicFramework
 {
 public:
    CheckFrame(char* arg0, std::string fileType) :
-         gpstk::BasicFramework(arg0,
+         gnsstk::BasicFramework(arg0,
                                "Reads given input " + fileType + 
                                " files and check for errors. This will only"
                                " report the first error found in each file. "
@@ -79,8 +79,8 @@ public:
                      " = \"end of time\")"),
          inputFileOption("Each input file is checked for errors.", true),
          quitOnFirstError(false),
-         startTime(gpstk::CommonTime::BEGINNING_OF_TIME),
-         endTime(gpstk::CommonTime::END_OF_TIME)
+         startTime(gnsstk::CommonTime::BEGINNING_OF_TIME),
+         endTime(gnsstk::CommonTime::END_OF_TIME)
    {
       timeOption.setMaxCount(1);
       eTimeOption.setMaxCount(1);
@@ -91,7 +91,7 @@ public:
 #pragma clang diagnostic ignored "-Woverloaded-virtual"
    virtual bool initialize(int argc, char* argv[]) throw()
    {
-      if (!gpstk::BasicFramework::initialize(argc, argv))
+      if (!gnsstk::BasicFramework::initialize(argc, argv))
          return false;
       if (firstErrorOption.getCount())
          quitOnFirstError = true;
@@ -134,12 +134,12 @@ protected:
             std::cout << "Read " << recCount << " records." 
                       << std::endl << std::endl;
          }
-         catch (gpstk::Exception& e)
+         catch (gnsstk::Exception& e)
          {
             std::cout << e << std::endl << std::endl;
             ++errors;
             if (quitOnFirstError)
-               GPSTK_RETHROW(e);
+               GNSSTK_RETHROW(e);
          }
          catch (std::exception& e)
          {
@@ -162,25 +162,25 @@ protected:
       if (errors > 0)
       {
             // Throw an exception so the app returns 1 on any errors.
-         gpstk::Exception exc("Encountered " + 
-                              gpstk::StringUtils::asString(errors) +
+         gnsstk::Exception exc("Encountered " + 
+                              gnsstk::StringUtils::asString(errors) +
                               " error(s).");
-         GPSTK_THROW(exc);
+         GNSSTK_THROW(exc);
       }
    }
    
       /// Quit on first error.
-   gpstk::CommandOptionNoArg firstErrorOption;
+   gnsstk::CommandOptionNoArg firstErrorOption;
       /// start time for record counting
-   gpstk::CommandOptionWithSimpleTimeArg timeOption;
+   gnsstk::CommandOptionWithSimpleTimeArg timeOption;
       /// end time for record counting
-   gpstk::CommandOptionWithSimpleTimeArg eTimeOption;
+   gnsstk::CommandOptionWithSimpleTimeArg eTimeOption;
       /// if either of the time options are set
-   gpstk::CommandOptionGroupOr timeOptions;
-   gpstk::CommandOptionRest inputFileOption;
+   gnsstk::CommandOptionGroupOr timeOptions;
+   gnsstk::CommandOptionRest inputFileOption;
    
    bool quitOnFirstError;
-   gpstk::CommonTime startTime, endTime;
+   gnsstk::CommonTime startTime, endTime;
    
 };
 

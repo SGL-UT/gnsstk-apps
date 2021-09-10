@@ -1,19 +1,19 @@
 //==============================================================================
 //
-//  This file is part of GPSTk, the GPS Toolkit.
+//  This file is part of GNSSTk, the GNSS Toolkit.
 //
-//  The GPSTk is free software; you can redistribute it and/or modify
+//  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
 //  by the Free Software Foundation; either version 3.0 of the License, or
 //  any later version.
 //
-//  The GPSTk is distributed in the hope that it will be useful,
+//  The GNSSTk is distributed in the hope that it will be useful,
 //  but WITHOUT ANY WARRANTY; without even the implied warranty of
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU Lesser General Public License for more details.
 //
 //  You should have received a copy of the GNU Lesser General Public
-//  License along with GPSTk; if not, write to the Free Software Foundation,
+//  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
 //  
 //  This software was developed by Applied Research Laboratories at the
@@ -139,7 +139,7 @@
  * \dicterm{\--ionoht \argarg{HT}}
  * \dicdef{Ionospheric height in kilometers [for VI, LAT, LON] (400.00)}
  * \dicterm{\--timefmt \argarg{FMT}}
- * \dicdef{Format for time tags (see GPSTK::Epoch::printf) in output (%4F %10.3g)}
+ * \dicdef{Format for time tags (see GNSSTK::Epoch::printf) in output (%4F %10.3g)}
  * \dicterm{\--headless}
  * \dicdef{Turn off printing of headers and no-eph-warnings in output (don't)}
  * \dicterm{\--TECU}
@@ -194,7 +194,7 @@
 #include <fstream>
 #include <algorithm>
 
-// GPSTK
+// GNSSTK
 #include "Exception.hpp"
 #include "StringUtils.hpp"
 #include "GNSSconstants.hpp"
@@ -242,7 +242,7 @@
 
 //------------------------------------------------------------------------------------
 using namespace std;
-using namespace gpstk;
+using namespace gnsstk;
 using namespace StringUtils;
 
 //------------------------------------------------------------------------------------
@@ -450,7 +450,7 @@ try {
    wallclkbeg.setLocalTime();
 
    // build title = first line of output
-   C.Title = "# " + C.PrgmName + ", part of the GPS Toolkit, Ver " + Version
+   C.Title = "# " + C.PrgmName + ", part of the GNSS Toolkit, Ver " + Version
       + ", Run " + printTime(wallclkbeg,C.calfmt);
 
    for(;;) {
@@ -498,7 +498,7 @@ try {
 catch(FFStreamError& e) { cerr << "FFStreamError: " << e.what(); }
 catch(Exception& e) { cerr << "Exception: " << e.what(); }
 catch (...) { cerr << "Unknown exception.  Abort." << endl; }
-return gpstk::BasicFramework::EXCEPTION_ERROR;
+return gnsstk::BasicFramework::EXCEPTION_ERROR;
 
 }  // end main()
 
@@ -921,7 +921,7 @@ try {
    if(!isValid) return -5;
    return 0;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end Initialize()
 
 //------------------------------------------------------------------------------------
@@ -1494,7 +1494,7 @@ string Configuration::BuildCommandLine(void)
             "Ionospheric height in kilometers [for VI, LAT, LON]");
 
    opts.Add(0, "timefmt", "fmt", false, false, &userfmt, "# Output:",
-            "Format for time tags (see GPSTK::Epoch::printf) in output");
+            "Format for time tags (see GNSSTK::Epoch::printf) in output");
    opts.Add(0, "headless", "", false, false, &noHeader, "",
             "Turn off printing of headers and no-eph-warnings in output");
    opts.Add(0, "TECU", "", false, false, &doTECU, "",
@@ -1638,7 +1638,7 @@ int Configuration::ExtraProcessing(string& errors, string& extras)
          else {
             msg = string();
             oss << "Error : invalid trop model (" << fld[0] << "); choose one of "
-               << "Zero,Black,Saas,NewB,GG,GGht,Neill (see gpstk::TropModel)" << endl;
+               << "Zero,Black,Saas,NewB,GG,GGht,Neill (see gnsstk::TropModel)" << endl;
          }
 
          if(!msg.empty() && !pTrop) {
@@ -1854,11 +1854,11 @@ try {
          }
          catch(std::exception& e) {
             Exception ge(string("Std excep: ") + e.what());
-            GPSTK_THROW(ge);
+            GNSSTK_THROW(ge);
          }
          catch(...) {
             Exception ue("Unknown exception while reading RINEX data.");
-            GPSTK_THROW(ue);
+            GNSSTK_THROW(ue);
          }
 
          // normal EOF
@@ -2071,7 +2071,7 @@ try {
 
    return nfiles;
 }
-catch(Exception& e) { GPSTK_RETHROW(e); }
+catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end ProcessFiles()
 
 //------------------------------------------------------------------------------------
@@ -2103,7 +2103,7 @@ double getObsData(string tag, RinexSatID sat, Rinex3ObsHeader& Rhead,
 
       return data;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }  // end getObsData()
 
 //------------------------------------------------------------------------------------
@@ -2169,7 +2169,7 @@ double getNonObsData(string tag, RinexSatID sat, const CommonTime& time)
 
       return data;
    }
-   catch(Exception& e) { GPSTK_RETHROW(e); }
+   catch(Exception& e) { GNSSTK_RETHROW(e); }
 }
 
 //------------------------------------------------------------------------------------
