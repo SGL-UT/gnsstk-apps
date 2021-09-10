@@ -1,4 +1,4 @@
-gpstk-apps (12.0.0-1) stable; urgency=low
+gnsstk-apps (12.0.0-1) stable; urgency=low
 
   * Updated to version 12.0.0
   * TKS Split out to separate lib and apps repository.
