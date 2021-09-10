@@ -68,6 +68,13 @@ test_app_with_stdout(
 ###############################################################################
 # TEST RinEdit
 ###############################################################################
+add_test(NAME RinEdit_CmdOpt_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:RinEdit>
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
+
 test_app_with_file(
     RinEdit_Header #test_name
     RinEdit # application name
@@ -137,6 +144,36 @@ test_app_with_file(
   "Rinex2"
   --ID\ ${NAVSAT_TOOLS_TEST_DATA_DIR}\ --IF\ test_dfix_txau047.ed.12o\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_210thin.out\ --TT\ 0.005\ --TN\ 30.0
   "-l2 -v")
+
+# test merge rinex 2 obs
+add_test(NAME RinEdit_211_merge_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:RinEdit>
+         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DTESTBASE=RinEdit_211_merge_1
+         -DTESTNAME=RinEdit_211_merge_1
+         -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
+         -DRINDIFF=$<TARGET_FILE:rowdiff>
+         -DINFILE1=arlm200a.15o
+         -DINFILE2=arlm200b.15o
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditmerge.cmake)
+
+# Merge the same file twice. Should get the same file back.
+# This test currently fails, suggesting that RinEdit does not remove duplicate data.
+# add_test(NAME RinEdit_211_merge_2
+#          COMMAND ${CMAKE_COMMAND}
+#          -DTEST_PROG=$<TARGET_FILE:RinEdit>
+#          -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
+#          -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+#          -DTESTBASE=RinEdit_211_merge_2
+#          -DTESTNAME=RinEdit_211_merge_2
+#          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
+#          -DRINDIFF=$<TARGET_FILE:rowdiff>
+#          -DINFILE1=RinEdit_211_merge_2.exp
+#          -DINFILE2=RinEdit_211_merge_2.exp
+#          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditmerge.cmake)
+
 
 ###############################################################################
 # TEST RinSum
