@@ -13,11 +13,11 @@
 
 source $(dirname "$BASH_SOURCE")/build_setup.sh
 
-# or set navsat_tools=~/.local/gnsstk-apps
-#user_install_prefix+="/gnsstk-apps"
-user_install_prefix+="/gnsstk-apps"
-
-system_install_prefix+="/gnsstk-apps"
+# This is a bit of a hack.  
+# Downstream apps packages expect to find gnsstk-apps in gnsstk/bin 
+# Need to rework sgltk-apps to find rowdiff, and df_diff elsewhere so the tests pass.
+user_install_prefix+="/gnsstk"
+system_install_prefix+="/gnsstk"
 
 usage()
 {
