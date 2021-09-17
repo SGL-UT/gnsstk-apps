@@ -2,14 +2,14 @@ gnsstk-apps (12.0.0-1) stable; urgency=low
 
   * Updated to version 12.0.0
   * TKS Split out to separate lib and apps repository.
-  * gitlab yaml cleanup v2
-  * Try to make debian packaging consistent
-  * Remove unneeded debian package cruft and set package version for cpack
-  * Pull gpstk packages from split branch
-  * Remove all debian packages from control file except applications
-  * First cut at making an apps-only build/repo
+  * Fix name references in build.sh to use new name GNSSTk-Apps
+  * Update removed conda py 27 builds
+  * Rename gpstk library/package/namespace to gnsstk.
+  * Deprecate mergeRinObs application in favor of RinEdit which supports RINEX 3
+  * Remove python bindings for feature branch
+  * CI Updates for feature branch ci_issue_1 (TKS SPLIT OUT) big and small chains
 
- -- David Barber <dbarber@sgl-lap096.arlut.utexas.edu>  Thu, 19 Aug 2021 09:20:54 -0500
+ -- David Barber <dbarber@sgl-lap096.arlut.utexas.edu>  Wed, 15 Sep 2021 09:20:54 -0500
 
 gpstk (11.2.1-1) stable; urgency=low
 

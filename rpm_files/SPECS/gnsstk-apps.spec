@@ -51,14 +51,15 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Thu Aug 19 2021 David Barber <dbarber@arlut.utexas.edu>
+* Wed Sep 15 2021 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v12.0.0 release
-- gitlab yaml cleanup v2
-- Try to make debian packaging consistent
-- Remove unneeded debian package cruft and set package version for cpack
-- Pull gpstk packages from split branch
-- Remove all debian packages from control file except applications
-- First cut at making an apps-only build/repo
+- TKS Split out to separate lib and apps repository.
+- Fix name references in build.sh to use new name GNSSTk-Apps
+- Update removed conda py 27 builds
+- Rename gpstk library/package/namespace to gnsstk.
+- Deprecate mergeRinObs application in favor of RinEdit which supports RINEX 3
+- Remove python bindings for feature branch
+- CI Updates for feature branch ci_issue_1 (TKS SPLIT OUT) big and small chains
 * Thu Jul 22 2021 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v11.2.1 release
 - Updated git url ref to new sgl-git

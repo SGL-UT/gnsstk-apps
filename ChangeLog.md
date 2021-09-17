@@ -1,3 +1,45 @@
+# Version 12.0.0   Friday September 17, 2021
+
+Modifications by Author
+-----------------------
+     Andrew Kuck <kuck@arlut.utexas.edu> (2):
+           Test conda-recipe update.
+           Update build.sh to use GNSSTk terminology.
+
+     David Barber <dbarber@arlut.utexas.edu> (6):
+           CI Updates for feature branch ci_issue_1 (TKS SPLIT OUT)
+           Remove python bindings for feature branch ci_issue_1 (TKS SPLIT OUT)
+           adding small and big pipeline chaining
+           Ci readd conda builds
+           adding pkg flags to conda jobs and updating debian changelog to gnsstk
+           Ci drop conda py27
+
+     John Knutson <johnk@arlut.utexas.edu> (68):
+           First cut at making an apps-only build/repo
+           Install the right dependencies for CI, hopefully
+           Pull gpstk packages from split branch
+           Remove unneeded debian package cruft and set package version for cpack
+           Try to make debian packaging consistent
+           Replace changelog to avoid naming difference errors
+           continuing to hammer on debian packaging
+           Remove file that seems to be causing duplicate unwanted files in debian package
+           Rename RPM spec files to match package
+           Remove find command from rpm spec files that was looking for a directory that doesn't exist
+           Delete library files
+           Fix getopts in build.sh
+           Rename/move files as appropriate for new project name
+           Change namespace etc to gnsstk
+           Deprecate mergeRinObs
+           Revert unintentional history changes
+
+# Version 11.2.1   Thursday July 22, 2021
+
+Modifications by Author
+-----------------------
+
+     David Barber <dbarber@arlut.utexas.edu> (5):
+           Updated git url ref to new sgl-git
+
 # Version 11.0.0   Thursday March 18, 2021
 
 Modifications by Author
