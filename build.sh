@@ -1,10 +1,10 @@
 #!/bin/bash
 #----------------------------------------
 #
-# Purpose: gpstk-apps build and install script
+# Purpose: gnsstk-apps build and install script
 #
 #     Automate the use of CMake, Doxygen, etc.  to build and install
-#     the gpstk-apps Applications and documentation.
+#     the gnsstk-apps Applications and documentation.
 #
 # Help:
 #    $ build.sh -h
@@ -13,17 +13,17 @@
 
 source $(dirname "$BASH_SOURCE")/build_setup.sh
 
-# or set navsat_tools=~/.local/gpstk-apps
-#user_install_prefix+="/gpstk-apps"
-user_install_prefix+="/gpstk-apps"
+# or set navsat_tools=~/.local/gnsstk-apps
+#user_install_prefix+="/gnsstk-apps"
+user_install_prefix+="/gnsstk-apps"
 
-system_install_prefix+="/gpstk-apps"
+system_install_prefix+="/gnsstk-apps"
 
 usage()
 {
     cat << EOF
 purpose: This script automates and documents how to build, test, and
-  install gpstk-apps.
+  install gnsstk-apps.
 
 usage:     $(basename $0) [opts] [-- cmake options...]
 
@@ -158,7 +158,7 @@ fi
 
 if ((verbose>0)); then
     log "============================================================"
-    log "Gpstk-Apps build config ..."
+    log "GNSSTk-apps build config ..."
     log "repo                 = $repo"
     log "build_root           = $build_root"
     log "prefixes             = $prefixes"
@@ -200,9 +200,9 @@ if [ $build_docs ]; then
     log "Pre-build documentation processing ..."
     # Dynamically configure the Doxyfile with the source and destination paths
     log "Generating Doxygen files from C/C++ source ..."
-    sed -e "s#^INPUT *=.*#INPUT = $sources#" -e "s#gpstk-apps_sources#$sources#g" -e "s#gpstk-apps_doc_dir#$build_root/doc#g" $repo/Doxyfile >$repo/doxyfoo
-    sed -e "s#^INPUT *=.*#INPUT = $sources#" -e "s#gpstk-apps_sources#$sources#g" -e "s#gpstk-apps_doc_dir#$build_root/doc#g" $repo/Doxyfile | doxygen - >"$build_root"/Doxygen.log
-    tar -czf gpstk-apps_doc_cpp.tgz -C "$build_root"/doc/html .
+    sed -e "s#^INPUT *=.*#INPUT = $sources#" -e "s#gnsstk-apps_sources#$sources#g" -e "s#gnsstk-apps_doc_dir#$build_root/doc#g" $repo/Doxyfile >$repo/doxyfoo
+    sed -e "s#^INPUT *=.*#INPUT = $sources#" -e "s#gnsstk-apps_sources#$sources#g" -e "s#gnsstk-apps_doc_dir#$build_root/doc#g" $repo/Doxyfile | doxygen - >"$build_root"/Doxygen.log
+    tar -czf gnsstk-apps_doc_cpp.tgz -C "$build_root"/doc/html .
 fi
 
 # Create the External Linkage include file
@@ -221,7 +221,7 @@ args+=${build_ext:+" -DBUILD_EXT=ON"}
 args+=${verbose:+" -DDEBUG_SWITCH=ON"}
 args+=${user_install:+" -DPYTHON_USER_INSTALL=ON"}
 args+=${test_switch:+" -DTEST_SWITCH=ON"}
-args+=${build_docs:+" --graphviz=$build_root/doc/graphviz/gpstk-apps_graphviz.dot"}
+args+=${build_docs:+" --graphviz=$build_root/doc/graphviz/gnsstk-apps_graphviz.dot"}
 if [ $no_address_sanitizer ]; then
     args+=" -DADDRESS_SANITIZER=OFF"
 else
@@ -280,7 +280,7 @@ if [ $build_docs ]; then
     log "Post-build documentation processing ..."
 
     log "Generating GraphViz output PDF ..."
-    dot -Tpdf "$build_root"/doc/graphviz/gpstk-apps_graphviz.dot -o "$build_root"/doc/graphviz/gpstk-apps_graphviz.pdf
+    dot -Tpdf "$build_root"/doc/graphviz/gnsstk-apps_graphviz.dot -o "$build_root"/doc/graphviz/gnsstk-apps_graphviz.pdf
 fi
 
 if [ $build_packages ]; then
@@ -310,5 +310,5 @@ fi
 log "See $build_root/Testing/Temporary/LastTest.log for detailed test log"
 log "See $LOG for detailed build log"
 log
-log "gpstk-apps build done."
+log "gnsstk-apps build done."
 log `date`
