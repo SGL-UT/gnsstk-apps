@@ -21,6 +21,7 @@ stages:
   - test
   - install
   - package
+  - push
   - deploy
   - downstream_stack
 
