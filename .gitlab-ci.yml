@@ -11,6 +11,9 @@ include:
   - project: sgl-tks/ci-control
     file: /gnsstk-apps/ci_downstrm_chain.yml
     ref: main
+  - project: sgl-tks/ci-control
+    file: /general/artifactory-upload.yml
+    ref: main
 
 stages:
   - check
@@ -968,3 +971,9 @@ rhel8_deploy:
 #     - windows_build
 
 # Temporarily allow failures as Windows Runner issues are resolved
+
+push_artifacts:
+  extends: .push_artifacts
+  stage: push
+  needs: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
+  dependencies: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
