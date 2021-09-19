@@ -758,7 +758,6 @@ package_debian_8:
 package_debian_9:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -784,7 +783,6 @@ package_debian_9:
 package_debian_10:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -813,7 +811,6 @@ package_debian_10:
 package_conda:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -837,7 +834,6 @@ package_conda:
 package_redhat:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -856,7 +852,6 @@ package_redhat:
 package_redhat_8:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
