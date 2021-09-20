@@ -8,18 +8,18 @@
 add_test(NAME RinDump_help
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinDump>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # Test all satellites (default) with C1C data
-set( ARGS1 ${NAVSAT_TOOLS_TEST_DATA_DIR}/test_input_rinex3_obs_RinexObsFile.15o\ C1C\ )
+set( ARGS1 ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_rinex3_obs_RinexObsFile.15o\ C1C\ )
 add_test(NAME RinDump_Default_C1C
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinDump>
          -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=RinDump_sat_default_C1C
          -DTESTNAME=RinDump_sat_default_C1C
          -DARGS=${ARGS1}
@@ -28,13 +28,13 @@ add_test(NAME RinDump_Default_C1C
 set_property(TEST RinDump_Default_C1C PROPERTY LABELS Rinex3)
 
 # Test single satellite with C1C data
-set( ARGS2 ${NAVSAT_TOOLS_TEST_DATA_DIR}/test_input_rinex3_obs_RinexObsFile.15o\ G05\ C1C\ )
+set( ARGS2 ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_rinex3_obs_RinexObsFile.15o\ G05\ C1C\ )
 add_test(NAME RinDump_Single_C1C
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinDump>
          -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=RinDump_sat_single_C1C
          -DTESTNAME=RinDump_sat_single_C1C
          -DARGS=${ARGS2}
@@ -43,13 +43,13 @@ add_test(NAME RinDump_Single_C1C
 set_property(TEST RinDump_Single_C1C PROPERTY LABELS Rinex3)
 
 # Test Sat with C1C data with RINEX 2 file
-set( ARGS2 ${NAVSAT_TOOLS_TEST_DATA_DIR}/arlm200a.15o\ G23\ C1C\ )
+set( ARGS2 ${GNSSTK_APPS_TEST_DATA_DIR}/arlm200a.15o\ G23\ C1C\ )
 add_test(NAME RinDump_Rinex2Input
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinDump>
          -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=RinDump_Rinex2Input
          -DTESTNAME=RinDump_Rinex2Input
          -DARGS=${ARGS2}
@@ -61,7 +61,7 @@ test_app_with_stdout(
     RinDump_211Mixed
     RinDump
     Rinex2
-    ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/faa1170b00.16o\ GC1C\ RC1C\ EC1B\ SC5X
+    ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/faa1170b00.16o\ GC1C\ RC1C\ EC1B\ SC5X
     "-l7 -z1")
 
 
@@ -71,15 +71,15 @@ test_app_with_stdout(
 add_test(NAME RinEdit_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinEdit>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 test_app_with_file(
     RinEdit_Header #test_name
     RinEdit # application name
     Rinex2  # Lables for reporting
-    --IF\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/arlm200a.15o\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_Header.out\ --HDr\ RIGTC\ --HDx\ 3979316.4389,1050312.2534,4857066.9036\ --HDn\ 11502M002\ --HDm\ GOPE\ --HDa\ RIGTC\ GO\ PECNY
+    --IF\ ${GNSSTK_APPS_TEST_DATA_DIR}/arlm200a.15o\ --OF\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_Header.out\ --HDr\ RIGTC\ --HDx\ 3979316.4389,1050312.2534,4857066.9036\ --HDn\ 11502M002\ --HDm\ GOPE\ --HDa\ RIGTC\ GO\ PECNY
     -l2 # diff_args
     )
 
@@ -87,10 +87,10 @@ test_app_with_file(
 add_test(NAME RinEdit_ValidOutput
     COMMAND ${CMAKE_COMMAND}
     -DTEST_PROG=$<TARGET_FILE:rowcheck>
-    -DARGS=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_Header.out
+    -DARGS=${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_Header.out
     -DTESTBASE=RinEdit_ValidOutput
     -DTESTNAME=RinEdit_ValidOutput
-    -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+    -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
     -DNODIFF=1
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_tests_properties(RinEdit_ValidOutput PROPERTIES DEPENDS RinEdit_Header)
@@ -101,7 +101,7 @@ test_app_with_file(
     RinEdit_302to211Mixed # test name
     RinEdit # app name
     "Rinex2 Rinex3" # labels
-    --ID\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs\ --IF\ FAA100PYF_R_20161700100_15M_01S_MO\ --ver2\ --OD\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}\ --OF\ RinEdit_302to211Mixed.out
+    --ID\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs\ --IF\ FAA100PYF_R_20161700100_15M_01S_MO\ --ver2\ --OD\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}\ --OF\ RinEdit_302to211Mixed.out
     -l2)
 
 # Convert 3->2 and make a GPS only file, uses an input file to configure the editing
@@ -109,7 +109,7 @@ test_app_with_file(
     RinEdit_302to211GPS
     RinEdit
     "Rinex2 Rinex3"
-    --ID\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs\ --IF\ FAA100PYF_R_20161700100_15M_01S_MO\ --ver2\ --OD\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}\ --OF\ RinEdit_302to211GPS.out\ --file\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/RinEdit_GPS_only
+    --ID\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs\ --IF\ FAA100PYF_R_20161700100_15M_01S_MO\ --ver2\ --OD\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}\ --OF\ RinEdit_302to211GPS.out\ --file\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/RinEdit_GPS_only
     -l2)
 
 # Edit out the last part of a Rinex3 file
@@ -117,7 +117,7 @@ test_app_with_file(
     RinEdit_302split1
     RinEdit
     "Rinex3"
-    --IF\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_302split1.out\ --TE\ 2016,6,18,1,0,2
+    --IF\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO\ --OF\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_302split1.out\ --TE\ 2016,6,18,1,0,2
     -l2)
 
 # Edit out the first part of a Rinex3 file
@@ -125,7 +125,7 @@ test_app_with_file(
     RinEdit_302split2
     RinEdit
     "Rinex3"
-    --IF\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_302split2.out\ --TB\ 2016,6,18,1,0,3
+    --IF\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO\ --OF\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_302split2.out\ --TB\ 2016,6,18,1,0,3
     -l2)
 
 # Combine the previous two files together
@@ -133,7 +133,7 @@ test_app_with_file(
     RinEdit_302merge
     RinEdit
     "Rinex3"
-    --ID\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}\ --IF\ RinEdit_302split1.out\ --IF\ RinEdit_302split2.out\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_302merge.out
+    --ID\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}\ --IF\ RinEdit_302split1.out\ --IF\ RinEdit_302split2.out\ --OF\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_302merge.out
     -l2)
 set_tests_properties(RinEdit_302merge PROPERTIES DEPENDS "RinEdit_302split1;RinEdit_302split2")
 
@@ -142,15 +142,15 @@ test_app_with_file(
   RinEdit_210thin
   RinEdit
   "Rinex2"
-  --ID\ ${NAVSAT_TOOLS_TEST_DATA_DIR}\ --IF\ test_dfix_txau047.ed.12o\ --OF\ ${NAVSAT_TOOLS_TEST_OUTPUT_DIR}/RinEdit_210thin.out\ --TT\ 0.005\ --TN\ 30.0
+  --ID\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --IF\ test_dfix_txau047.ed.12o\ --OF\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/RinEdit_210thin.out\ --TT\ 0.005\ --TN\ 30.0
   "-l2 -v")
 
 # test merge rinex 2 obs
 add_test(NAME RinEdit_211_merge_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:RinEdit>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=RinEdit_211_merge_1
          -DTESTNAME=RinEdit_211_merge_1
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
@@ -164,8 +164,8 @@ add_test(NAME RinEdit_211_merge_1
 # add_test(NAME RinEdit_211_merge_2
 #          COMMAND ${CMAKE_COMMAND}
 #          -DTEST_PROG=$<TARGET_FILE:RinEdit>
-#          -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-#          -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+#          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+#          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
 #          -DTESTBASE=RinEdit_211_merge_2
 #          -DTESTNAME=RinEdit_211_merge_2
 #          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
@@ -183,38 +183,38 @@ add_test(NAME RinEdit_211_merge_1
 
 # Check RinSum with obspath and Rinex v2.11 file
 test_app_with_stdout(RinSum_obspath_v211 RinSum Rinex2
-    --obspath\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs\ --obs\ faa1170b00.16o
+    --obspath\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs\ --obs\ faa1170b00.16o
     "-l2 -v")
 
 # Check RinSum & Rinex v2.10 file
 test_app_with_stdout(RinSum_v210_osn3 RinSum Rinex2
-    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/osn31700.16o\ --ycode
+    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/osn31700.16o\ --ycode
     "-l2 -v")
 
 # Check RinSum & Rinex v2.11 file
 test_app_with_stdout(RinSum_v211_cags RinSum Rinex2
-    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/cags1700.16o
+    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/cags1700.16o
     "-l2 -v")
 
 # Check RinSum & Rinex v2.11 file
 test_app_with_stdout(RinSum_v211_kerg RinSum Rinex2
-    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/kerg1700.16o
+    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/kerg1700.16o
     "-l2 -v")
 
 # Check RinSum with Rinex v2.11 file with more obs types
 test_app_with_stdout(RinSum_v211_nklg RinSum Rinex2
-    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/nklg170b00.16o
+    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/nklg170b00.16o
     "-l2 -v")
 
 # Check RinSum Rinex v3.02 input
 test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
-    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO
+    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO
     "-l2 -v")
 
 # Check RinSum with Rinex v3.03 input
 # Uncomment this when Nathanial's changes make it in
 #test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
-#    --obs\ ${NAVSAT_TOOLS_TEST_DATA_DIR}/inputs/igs/UCAL00CAN_S_20161700100_15M_01S_MO
+#    --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/inputs/igs/UCAL00CAN_S_20161700100_15M_01S_MO
 #    "-l2 -v")
 
 
@@ -228,7 +228,7 @@ add_test(NAME ${test_name}
     -DTESTNAME=${test_name}
     -DTEST_PROG=$<TARGET_FILE:scanBrdcFile>
     -DDIFF_PROG=${df_diff}
-    -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-    -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+    -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+    -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
     -P ${CMAKE_CURRENT_SOURCE_DIR}/testScanBrdcFile.cmake)
 set_property(TEST  ${test_name} PROPERTY LABELS Rinex2)
