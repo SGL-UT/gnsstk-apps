@@ -103,9 +103,9 @@
  * \dicterm{-F, \--format=\argarg{ARG}}
  * \dicdef{Time format to use on output}
  * \dicterm{-a, \--add-offset=\argarg{NUM}}
- * \dicdef{add NUM seconds to specified time}
+ * \dicdef{Add NUM seconds to specified time}
  * \dicterm{-s, \--sub-offset=\argarg{NUM}}
- * \dicdef{subtract NUM seconds from specified time}
+ * \dicdef{Subtract NUM seconds from specified time}
  * \enddictionary
  *
  * \section timeconvert_examples EXAMPLES
@@ -380,9 +380,9 @@ TimCvt::TimCvt(char* arg0)
         inputTimeOption(0, "input-time",
                         "Time to be parsed by \"input-format\" option"),
         formatOption('F', "format", "Time format to use on output"),
-        addOption('a', "add-offset", "add NUM seconds to specified time"),
+        addOption('a', "add-offset", "Add NUM seconds to specified time"),
         subOption('s', "sub-offset",
-                  "subtract NUM seconds from specified time"),
+                  "Subtract NUM seconds from specified time"),
         timeSystemHelpOption(0, "systems", "List available time systems"),
         srcTSOption(0, "src-sys", "Source time system when converting between"
                     " systems"),
