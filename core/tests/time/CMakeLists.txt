@@ -215,6 +215,47 @@ add_test(NAME timeconvert_CmdOpt_Format
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
+# check GPS->UTC conversion
+set( TIMECONVERT_CMDOPT_GPS_UTC "-y 2021 2 0" )
+set( TIMECONVERT_CMDOPT_GPS_UTC_2 "--tgt-sys=UTC" )
+add_test(NAME timeconvert_CmdOpt_GPS_UTC
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:timeconvert>
+         -DPROG_OPTS=${TIMECONVERT_CMDOPT_GPS_UTC}
+         -DPROG_OPTS_2=${TIMECONVERT_CMDOPT_GPS_UTC_2}
+         -DTESTNAME=timeconvert_CmdOpt_GPS_UTC
+         -DTESTBASE=timeconvert_CmdOpt_GPS_UTC
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
+
+# check GPS->UTC conversion using nav data
+add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:timeconvert>
+         -DSPARG1=--ws=1854\ 233472
+         -DSPARG2=--nav=${GNSSTK_APPS_TEST_DATA_DIR}/test_input_mpsolve.15n
+         -DSPARG3=--tgt-sys=UTC
+         -DTESTNAME=timeconvert_CmdOpt_GPS_UTC_NAV
+         -DTESTBASE=timeconvert_CmdOpt_GPS_UTC_NAV
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
+
+# check GPS->UTC offset using nav data
+add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV_OFS
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:timeconvert>
+         -DEXP_RC=0
+         -DSPARG1=--ws=1854\ 233472
+         -DSPARG2=--nav=${GNSSTK_APPS_TEST_DATA_DIR}/test_input_mpsolve.15n
+         -DSPARG3=--tgt-sys=UTC
+         -DSPARG4=--offset
+         -DEXP_OUT=17.000000000931322575
+         -DTESTNAME=timeconvert_CmdOpt_GPS_UTC_NAV_OFS
+         -DTESTBASE=timeconvert_CmdOpt_GPS_UTC_NAV_OFS
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
+
 # MISSING:
 # --input-format / --input-time
 # --z29
