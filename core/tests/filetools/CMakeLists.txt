@@ -105,3 +105,56 @@ add_test(NAME smdscheck_missing
   -DTEST_PROG=$<TARGET_FILE:smdscheck>
   -DARGS=${SMDSCHECK_MISSING_ARGS}
   -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+###############################################################################
+# TEST navdump
+###############################################################################
+
+# check that -h option is valid
+add_test(NAME navdump_CmdOpt_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
+
+# check that navdump fails with no files specified
+add_test(NAME navdump_CmdOpt_2
+        COMMAND ${CMAKE_COMMAND}
+        -DTEST_PROG=$<TARGET_FILE:navdump>
+        -DSOURCEDIR=${SD}
+        -DTARGETDIR=${TD}
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# check that navdump fails with invalid input
+add_test(NAME navdump_InvalidInput
+        COMMAND ${CMAKE_COMMAND}
+        -DTEST_PROG=$<TARGET_FILE:navdump>
+        -DARGS=${SD}/timeconvert_2015_200_0.exp
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# note that the reference output doesn't need to be kept strictly consistent
+# check the output against prepared "truth" - SP3c case
+set(NAVDUMP_REGRESSION_1_ARGS "${SD}/test_input_SP3a.sp3")
+add_test(NAME navdump_Regression_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_Regression_1
+         -DTESTNAME=navdump_Regression_1
+         -DARGS=${NAVDUMP_REGRESSION_1_ARGS}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
+
+# note that the reference output doesn't need to be kept strictly consistent
+# check the output against prepared "truth" - RINEX case
+set(NAVDUMP_REGRESSION_2_ARGS "${SD}/arlm2000.15n")
+add_test(NAME navdump_Regression_2
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_Regression_2
+         -DTESTNAME=navdump_Regression_2
+         -DARGS=${NAVDUMP_REGRESSION_2_ARGS}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
