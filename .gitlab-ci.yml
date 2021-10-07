@@ -242,7 +242,7 @@ deb10_op1_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # Link optional library sgltk
+    # Link optional library
     - ./optional_package_add.sh $PACKAGE_CONFIG_1
     - mkdir -p build
     - cd build
@@ -262,7 +262,7 @@ deb10_op2_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # Link optional libraries sgltk, betatk, mdhtk
+    # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_2
     - mkdir -p build
     - cd build
@@ -308,9 +308,9 @@ conda_op2_py36_build:
     - conda activate conda_builder
     - conda index conda-bld
     - conda activate py36
-    # Install optional conda libraries sgltk, betatk, mdhtk_cpp
+    # Install optional conda libraries
     - conda install gnsstk $PACKAGE_CONFIG_CONDA_2 --override-channels -c file://$PWD/conda-bld/
-    # Link optional libraries sgltk, betatk, mdhtk
+    # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_2
     - mkdir -p build
     - cd build
@@ -359,33 +359,54 @@ rhel8_build:
       - build/
 
 windows_build:
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
   stage: build
   needs: []
   extends: .normal_job
   tags:
-    - win10
+    - win10-vs2019
   script:
-    - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'echo curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
-    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
+    - $env:PATH += ';c:\Program Files\7-Zip'
+    # Set variable below to ignore download display progress to speed up download time
+    - $global:progressPreference = 'silentlyContinue'
+    - 'Invoke-WebRequest -URI https://$env:REPO_HOST/api/v4/projects/$env:GNSSTK_PROJID/jobs/artifacts/$env:GNSSTK_COMMIT/download?job=user_install_windows -UserAgent "PRIVATE-TOKEN: $env:CI_API_TOKEN" -OutFile gnsstk_win.zip'
     - 7z x -olibrary gnsstk_win.zip
-    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
-# incremental builds
-#    - if not exist "%CI_PROJECT_DIR%/build/" mkdir "%CI_PROJECT_DIR%/build"
-# non-incremental builds
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
-    - cmake --build . --config Release
+    - cmake --build . --config Release -- /m
   artifacts:
     paths:
     - build/
-# used for incremental builds
-#  cache:
-#    paths:
-#    - build/
-  timeout: 30m
 
+windows_build_vs2019:
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
+  only:
+    variables:
+      - $BLD_VS2019 == "True"
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - win10-vs2019
+  script:
+    - $env:PATH += ';c:\Program Files\7-Zip'
+    # Set variable below to ignore download display progress to speed up download time
+    - $global:progressPreference = 'silentlyContinue'
+    - 'Invoke-WebRequest -URI https://$env:REPO_HOST/api/v4/projects/$env:GNSSTK_PROJID/jobs/artifacts/$env:GNSSTK_COMMIT/download?job=user_install_windows_vs2019 -UserAgent "PRIVATE-TOKEN: $env:CI_API_TOKEN" -OutFile gnsstk_win.zip'
+    - 7z x -olibrary gnsstk_win.zip
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
+    - cmake --build . --config Release  -- /m
+  artifacts:
+    paths:
+    - build/
+  allow_failure: true
 
 # Test Stage
 # Runs all tests of GNSSTK for each platform
@@ -498,16 +519,16 @@ rhel8_test:
     - rhel8_build
 
 windows_test:
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
+    GIT_STRATEGY: none
   stage: test
   needs: [windows_build]
   extends: .normal_job
   tags:
-    - win10
+    - win10-vs2019
   script:
-    - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
-    - 7z x -olibrary gnsstk_win.zip
-    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - cd build
     - cmake --build . --target RUN_TESTS --config Release
   artifacts:
@@ -516,7 +537,31 @@ windows_test:
     - build/Testing/Temporary/
   dependencies:
     - windows_build
-  timeout: 5m
+  timeout: 10m
+
+windows_test_vs2019:
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID_vs2019
+    GIT_STRATEGY: none
+  only:
+      variables:
+        - $BLD_VS2019 == "True"
+  stage: test
+  needs: [windows_build_vs2019]
+  extends: .normal_job
+  tags:
+    - win10-vs2019
+  script:
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
+    - cd build
+    - cmake --build . --target RUN_TESTS --config Release
+  artifacts:
+    when: on_failure
+    paths:
+    - build/Testing/Temporary/
+  dependencies:
+    - windows_build_vs2019
+  timeout: 10m
 
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
@@ -580,21 +625,46 @@ rhel8_user_install:
 
 user_install_windows:
   stage: install
-  needs: [windows_build]
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
+    GIT_STRATEGY: none
+  needs: [windows_build,windows_test]
   extends: .normal_job
   tags:
-    - win10
+    - win10-vs2019
   script:
-    - SET PATH=%PATH%;c:\Program Files\7-Zip
-    - 'curl --output gnsstk_win.zip --header "PRIVATE-TOKEN: %CI_API_TOKEN%" https://%REPO_HOST%/api/v4/projects/%GNSSTK_PROJID%/jobs/artifacts/%GNSSTK_COMMIT%/download?job=user_install_windows'
-    - 7z x -olibrary gnsstk_win.zip
-    - SET GNSSTK_DIR=%CI_PROJECT_DIR%\library\build\install\share\cmake\GNSSTK
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - cd build
     - cmake --build . --config Release --target install
   dependencies:
     - windows_build
-# Temporarily allow failures as Windows Runner issues are resolved
-  timeout: 10m
+    - windows_test
+  timeout: 20m
+  # Allow failures here to prevent blocking the rest of the pipeline.
+  allow_failure: true
+
+user_install_windows_vs2019:
+  stage: install
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID_vs2019
+    GIT_STRATEGY: none
+  only:
+    variables:
+      - $BLD_VS2019 == "True"
+  needs: [windows_build_vs2019,windows_test_vs2019]
+  extends: .normal_job
+  tags:
+    - win10-vs2019
+  script:
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
+    - cd build
+    - cmake --build . --config Release --target install
+  dependencies:
+    - windows_build_vs2019
+    - windows_test_vs2019
+  timeout: 20m
+  # Allow failures here to prevent blocking the rest of the pipeline.
+  allow_failure: true
 
 # System Stage
 # Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
