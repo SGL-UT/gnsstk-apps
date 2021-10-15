@@ -26,6 +26,9 @@
 # NODIFF: if set, do not compare the output to a reference file as
 #    part of the test.
 # DIFFSTDERR: if set, the stderr output will be compared to a reference file
+# DIFFLOG: if set, the application is expected to produce the file
+#    ${TARGETDIR}/${TESTNAME}.log, which will be compared with the
+#    file ${SOURCEDIR}/${TESTNAME}.log
 
 if(NOT EXP_RC)
     set(EXP_RC 0)
@@ -112,3 +115,31 @@ IF(DEFINED DIFFSTDERR)
        message(STATUS "Test passed")
    endif(DIFFERENT)
 ENDIF(DEFINED DIFFSTDERR)
+
+
+IF(DEFINED DIFFLOG)
+    IF(NOT DEFINED TESTBASE)
+       message(FATAL_ERROR "Test failed, TESTBASE is not set (log)")
+    ENDIF(NOT DEFINED TESTBASE)
+    IF(NOT DEFINED TESTNAME)
+       message(FATAL_ERROR "Test failed, TESTNAME is not set (log)")
+    ENDIF(NOT DEFINED TESTNAME)
+    set(exp "${SOURCEDIR}/${TESTBASE}.log")
+    set(out "${TARGETDIR}/${TESTNAME}.log")
+
+    if(DEFINED DIFF_PROG)
+        message(STATUS         "${DIFF_PROG} ${DIFF_ARGS} -1 ${out} -2 ${exp}")
+        execute_process(COMMAND ${DIFF_PROG} ${DIFF_ARGS} -1 ${out} -2 ${exp}
+            RESULT_VARIABLE DIFFERENT)
+    else()
+        message(STATUS "diff ${out} ${exp}")
+        execute_process(COMMAND ${CMAKE_COMMAND} -E compare_files ${out} ${exp}
+            RESULT_VARIABLE DIFFERENT)
+    endif()
+    
+   if(DIFFERENT)
+       message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
+   else()
+       message(STATUS "Test passed")
+   endif(DIFFERENT)
+ENDIF(DEFINED DIFFLOG)

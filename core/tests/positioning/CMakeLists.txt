@@ -33,6 +33,7 @@ add_test(NAME PRSolve_Rinexout
     -DARGS=${ARGS2}
     -DDIFF_ARGS=-l2
     -DOWNOUTPUT=1
+    -DDIFFLOG=1
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # Test that the output of PRSolve_Rinexout is a valid Rinex Obs file.
@@ -46,6 +47,29 @@ add_test(NAME PRSolve_ValidOutput
     -DNODIFF=1
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_tests_properties(PRSolve_ValidOutput PROPERTIES DEPENDS PRSolve_Rinexout)
+
+# Test using RINEX clock for input
+# NOTE: The final numerical quantity in the RMS records in the log
+# file are the Convergence values from PRSolution::outputRMSString.
+# This value may "wander" a bit, but the df_diff should have a
+# reasonable tolerance for this.  The critical issue is that the other
+# data are identical.
+# RPF GPS:12:PWXC RMS 2154 181830.000  9    0.955    0.95    1.83    2.06   5.2  4 2.21e-09 G02 G06 G12 G13 G15 G17 G19 G24 G25 (0 ok) V
+#                                                                                  ^^^^^^^^
+set( ARGSRINEXCLK --obs\ ${SD}/cord1100.21o\ --eph\ ${SD}/cod21542.sp3\ --clk\ ${SD}/cod21542.clk\ --sol\ GPS:12:PWXC\ -v\ --out\ ${TD}/PRSolve_RINEXClock.out\ --log\ ${TD}/PRSolve_RINEXClock.log )
+add_test(NAME PRSolve_RINEXClock
+  COMMAND ${CMAKE_COMMAND}
+  -DTEST_PROG=$<TARGET_FILE:PRSolve>
+  -DDIFF_PROG=${df_diff}
+  -DSOURCEDIR=${SD}
+  -DTARGETDIR=${TD}
+  -DTESTBASE=PRSolve_RINEXClock
+  -DTESTNAME=PRSolve_RINEXClock
+  -DARGS=${ARGSRINEXCLK}
+  -DDIFF_ARGS=-l2
+  -DOWNOUTPUT=1
+  -DDIFFLOG=1
+  -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 
 ###############################################################################
