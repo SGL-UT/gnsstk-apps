@@ -50,18 +50,18 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include "Namelist.hpp"
-#include "SRIFilter.hpp"
-#include "EphemerisRange.hpp"
-#include "PreciseRange.hpp"
-#include "Stats.hpp"
-#include "RobustStats.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Vector.hpp>
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Namelist.hpp>
+#include <gnsstk/SRIFilter.hpp>
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/PreciseRange.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
 // DDBase
 #include "DDBase.hpp"

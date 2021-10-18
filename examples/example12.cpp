@@ -48,10 +48,10 @@
 #include <map>
 #include <set>
 
-#include "ObsID.hpp"
-#include "RinexObsID.hpp"
-#include "Exception.hpp"
-#include "Rinex3ObsHeader.hpp"
+#include <gnsstk/ObsID.hpp>
+#include <gnsstk/RinexObsID.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
 
 
 int main(int argc, char *argv[])

@@ -37,9 +37,9 @@
 //==============================================================================
 
 
-#include <BasicFramework.hpp>
-#include <CommonTime.hpp>
-#include <CommandOptionWithCommonTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;

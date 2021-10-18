@@ -49,26 +49,26 @@
 #include <vector>
 #include <map>
 // GNSSTk
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "Epoch.hpp"
-#include "RinexSatID.hpp"
-#include "Position.hpp"
-#include "RinexUtilities.hpp"
-#include "EphemerisRange.hpp"
-#include "singleton.hpp"
-#include "GNSSconstants.hpp"
-#include "msecHandler.hpp"
-#include "stl_helpers.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/Position.hpp>
+#include <gnsstk/RinexUtilities.hpp>
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/GNSSconstants.hpp>
+#include <gnsstk/msecHandler.hpp>
+#include <gnsstk/stl_helpers.hpp>
 // geomatics
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "SatPass.hpp"
-#include "SatPassUtilities.hpp"
-#include "Rinex3ObsFileLoader.hpp"
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/SatPass.hpp>
+#include <gnsstk/SatPassUtilities.hpp>
+#include <gnsstk/Rinex3ObsFileLoader.hpp>
 // dfix
-#include "CommandLine.hpp"
-#include "gdc.hpp"
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/gdc.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

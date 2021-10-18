@@ -84,14 +84,14 @@
  * \ref mergeRinObs, \ref mergeRinMet
  */
 
-#include "Rinex3NavStream.hpp"
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavFilterOperators.hpp"
+#include <gnsstk/Rinex3NavStream.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavFilterOperators.hpp>
 
-#include "FileFilterFrameWithHeader.hpp"
-#include "SystemTime.hpp"
-#include "CivilTime.hpp"
+#include <gnsstk/FileFilterFrameWithHeader.hpp>
+#include <gnsstk/SystemTime.hpp>
+#include <gnsstk/CivilTime.hpp>
 
 #include "MergeFrame.hpp"
 

@@ -164,22 +164,22 @@
  * printTime()
  */
 
-#include "BasicFramework.hpp"
+#include <gnsstk/BasicFramework.hpp>
 
-#include "TimeString.hpp"
-#include "TimeConstants.hpp"
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/TimeConstants.hpp>
 
-#include "ANSITime.hpp"
-#include "CivilTime.hpp"
-#include "GPSWeekSecond.hpp"
-#include "GPSWeekZcount.hpp"
-#include "JulianDate.hpp"
-#include "MJD.hpp"
-#include "UnixTime.hpp"
-#include "YDSTime.hpp"
-#include "SystemTime.hpp"
+#include <gnsstk/ANSITime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/GPSWeekZcount.hpp>
+#include <gnsstk/JulianDate.hpp>
+#include <gnsstk/MJD.hpp>
+#include <gnsstk/UnixTime.hpp>
+#include <gnsstk/YDSTime.hpp>
+#include <gnsstk/SystemTime.hpp>
 
-#include "CommandOptionWithCommonTimeArg.hpp"
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;

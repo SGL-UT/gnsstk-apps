@@ -103,21 +103,21 @@
 #include <string>
 #include <vector>
 
-#include "RinexNavStream.hpp"
-#include "RinexNavHeader.hpp"
-#include "RinexNavData.hpp"
-#include "XvtStore.hpp"
-#include "GPSEphemerisStore.hpp"
-#include "SP3Stream.hpp"
-#include "SP3Header.hpp"
-#include "SP3Data.hpp"
-#include "CommonTime.hpp"
-#include "SatID.hpp"
-#include "StringUtils.hpp"
-#include "TimeString.hpp"
-#include "GPSWeekSecond.hpp"
-#include "BasicFramework.hpp"
-#include "CommandOptionWithCommonTimeArg.hpp"
+#include <gnsstk/RinexNavStream.hpp>
+#include <gnsstk/RinexNavHeader.hpp>
+#include <gnsstk/RinexNavData.hpp>
+#include <gnsstk/XvtStore.hpp>
+#include <gnsstk/GPSEphemerisStore.hpp>
+#include <gnsstk/SP3Stream.hpp>
+#include <gnsstk/SP3Header.hpp>
+#include <gnsstk/SP3Data.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/SatID.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;

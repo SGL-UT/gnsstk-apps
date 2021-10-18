@@ -84,9 +84,9 @@
 #include <cmath>
 
 // gnsstk
-#include "BasicFramework.hpp"
-#include "RationalizeRinexNav.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/RationalizeRinexNav.hpp>
+#include <gnsstk/StringUtils.hpp>
 
 using namespace std;
 using namespace gnsstk; 

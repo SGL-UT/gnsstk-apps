@@ -50,11 +50,11 @@
 // system includes
 
 // GNSSTk
-#include "EphemerisRange.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/TimeString.hpp>
 
 // DDBase
-//#include "PreciseRange.hpp"
+//#include <gnsstk/PreciseRange.hpp>
 #include "DDBase.hpp"
 #include "index.hpp"
 

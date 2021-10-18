@@ -50,8 +50,8 @@
 #include <vector>
 
 // GNSSTk
-#include "PRSolutionLegacy.hpp"
-#include "Stats.hpp"
+#include <gnsstk/PRSolutionLegacy.hpp>
+#include <gnsstk/Stats.hpp>
 
 // DDBase
 #include "DDBase.hpp"

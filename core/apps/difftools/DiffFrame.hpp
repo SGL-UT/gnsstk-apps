@@ -39,8 +39,8 @@
 #ifndef DIFFFRAME_HPP
 #define DIFFFRAME_HPP
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 
 class DiffFrame : public gnsstk::BasicFramework

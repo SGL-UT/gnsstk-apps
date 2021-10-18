@@ -44,13 +44,13 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
-#include <CivilTime.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/CivilTime.hpp>
 #include <time.h>
 
 // GNSSTk
 //#define RANGECHECK // throw on invalid ranges in Vector and Matrix
-#include "Epoch.hpp"
+#include <gnsstk/Epoch.hpp>
 
 // DDBase
 #include "DDBase.hpp"

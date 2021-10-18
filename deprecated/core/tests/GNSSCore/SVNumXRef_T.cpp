@@ -45,10 +45,10 @@
 #include <iostream>
 #include <cmath>
 
-#include "CivilTime.hpp"
+#include <gnsstk/CivilTime.hpp>
 #include "SVNumXRef.hpp"
 
-#include "TestUtil.hpp"
+#include <gnsstk/TestUtil.hpp>
 
 using namespace gnsstk;
 

@@ -92,9 +92,9 @@
 
 #include "CheckFrame.hpp"
 
-#include "RinexMetStream.hpp"
-#include "RinexMetData.hpp"
-#include "RinexMetFilterOperators.hpp"
+#include <gnsstk/RinexMetStream.hpp>
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetFilterOperators.hpp>
 
 using namespace std;
 using namespace gnsstk;

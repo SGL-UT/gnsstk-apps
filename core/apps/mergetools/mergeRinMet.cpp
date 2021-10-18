@@ -87,13 +87,13 @@
 // mergeRinMet
 // Merge and sort rinex metrological files
 
-#include "RinexMetStream.hpp"
-#include "RinexMetHeader.hpp"
-#include "RinexMetData.hpp"
-#include "RinexMetFilterOperators.hpp"
-#include "FileFilterFrameWithHeader.hpp"
-#include "CivilTime.hpp"
-#include "SystemTime.hpp"
+#include <gnsstk/RinexMetStream.hpp>
+#include <gnsstk/RinexMetHeader.hpp>
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetFilterOperators.hpp>
+#include <gnsstk/FileFilterFrameWithHeader.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/SystemTime.hpp>
 
 #include "MergeFrame.hpp"
 

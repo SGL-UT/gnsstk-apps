@@ -36,12 +36,12 @@
 //
 //==============================================================================
 
-#include "Rinex3ObsBase.hpp"
-#include "Rinex3ObsData.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsStream.hpp"
-#include "CivilTime.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Rinex3ObsBase.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 #include <iostream>
 
 

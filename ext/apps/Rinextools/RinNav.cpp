@@ -136,24 +136,24 @@
 #include <fstream>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "stl_helpers.hpp"
-#include "CommandLine.hpp"
-#include "CommonTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
 
-#include "RinexSatID.hpp"
+#include <gnsstk/RinexSatID.hpp>
 
-#include "Rinex3NavBase.hpp"
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
-#include "Rinex3EphemerisStore.hpp"
+#include <gnsstk/Rinex3NavBase.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
+#include <gnsstk/Rinex3EphemerisStore.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
