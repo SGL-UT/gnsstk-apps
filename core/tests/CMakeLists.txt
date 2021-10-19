@@ -10,8 +10,8 @@ function(test_app_with_file test_name app_name labels args diff_args)
         -DTEST_PROG=$<TARGET_FILE:${app_name}>
         -DTESTBASE=${test_name}
         -DTESTNAME=${test_name}
-        -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}/outputs
-        -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+        -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}/outputs
+        -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
         -DARGS=${args}
         -DOWNOUTPUT=1
         -DDIFF_PROG=${df_diff}
@@ -30,8 +30,8 @@ function(test_app_with_stdout test_name app_name labels args diff_args)
         -DTEST_PROG=$<TARGET_FILE:${app_name}>
         -DTESTBASE=${test_name}
         -DTESTNAME=${test_name}
-        -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}/outputs
-        -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+        -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}/outputs
+        -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
         -DARGS=${args}
         -DDIFF_PROG=${df_diff}
         -DDIFF_ARGS=${diff_args}
