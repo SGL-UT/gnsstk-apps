@@ -52,13 +52,13 @@
 // includes
 // system
 #include <deque>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // GNSSTk
-#include "GNSSconstants.hpp"             // DEG_TO_RAD
-#include "PolyFit.hpp"
-#include "EphemerisRange.hpp"
+#include <gnsstk/GNSSconstants.hpp>             // DEG_TO_RAD
+#include <gnsstk/PolyFit.hpp>
+#include <gnsstk/EphemerisRange.hpp>
 // geomatics
-#include "SunEarthSatGeometry.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
 #include "PhaseWindup.hpp"
 #include "index.hpp"
 // DDBase

@@ -38,7 +38,7 @@
 //==============================================================================
 #include <iostream>
 #include <fstream>
-#include <BasicFramework.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 using namespace std;
 using namespace gnsstk;

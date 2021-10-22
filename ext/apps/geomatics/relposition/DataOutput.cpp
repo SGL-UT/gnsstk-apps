@@ -55,8 +55,8 @@
 // DDBase
 #include "DDBase.hpp"
 #include "CommandInput.hpp"
-#include "format.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/format.hpp>
+#include <gnsstk/TimeString.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

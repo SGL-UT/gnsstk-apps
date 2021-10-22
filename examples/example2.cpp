@@ -39,10 +39,10 @@
 #include <iostream>
 #include <iomanip>
 
-#include "Rinex3ObsBase.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
-#include "Rinex3ObsStream.hpp"
+#include <gnsstk/Rinex3ObsBase.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
 
 using namespace std;
 using namespace gnsstk;

@@ -48,8 +48,8 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "StringUtils.hpp"
-#include "SRI.hpp"
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/SRI.hpp>
 
 using namespace std;
 using namespace gnsstk;

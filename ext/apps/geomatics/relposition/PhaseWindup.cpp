@@ -44,12 +44,12 @@
 
 // -----------------------------------------------------------------------------------
 // GNSSTk includes
-#include "Matrix.hpp"
-#include "GNSSconstants.hpp"             // DEG_TO_RAD
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/GNSSconstants.hpp>             // DEG_TO_RAD
 // geomatics
 #include "PhaseWindup.hpp"
-#include "SunEarthSatGeometry.hpp"
-#include "SolarPosition.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
+#include <gnsstk/SolarPosition.hpp>
 #include <math.h>
 
 using namespace std;

@@ -127,29 +127,29 @@
 #include <algorithm>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "stl_helpers.hpp"
-#include "logstream.hpp"
-#include "CommandLine.hpp"
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/CommandLine.hpp>
 
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
 
-#include "RinexSatID.hpp"
-#include "RinexObsID.hpp"
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
-#include "RinexUtilities.hpp"
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsID.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/RinexUtilities.hpp>
 
-#include "msecHandler.hpp"
+#include <gnsstk/msecHandler.hpp>
 
 //-----------------------------------------------------------------------------
 using namespace std;

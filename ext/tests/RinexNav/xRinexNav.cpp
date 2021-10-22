@@ -36,16 +36,16 @@
 //
 //==============================================================================
 
-#include "TestUtil.hpp"
-#include "Exception.hpp"
-#include "Rinex3EphemerisStore.hpp"
+#include <gnsstk/TestUtil.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/Rinex3EphemerisStore.hpp>
 #include <string>
 
 
-#include "RinexNavData.hpp"
-#include "RinexNavStream.hpp"
-#include "RinexNavFilterOperators.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/RinexNavData.hpp>
+#include <gnsstk/RinexNavStream.hpp>
+#include <gnsstk/RinexNavFilterOperators.hpp>
+#include <gnsstk/StringUtils.hpp>
 
 
 class xRinexNav

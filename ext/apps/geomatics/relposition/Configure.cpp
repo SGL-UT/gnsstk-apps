@@ -45,18 +45,18 @@
 // system includes
 
 // GNSSTk
-#include "Epoch.hpp"
-#include "YDSTime.hpp"
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/YDSTime.hpp>
 // DDBase
 #include "DDBase.hpp"
-#include "RinexUtilities.hpp"
+#include <gnsstk/RinexUtilities.hpp>
 
-#include "SimpleTropModel.hpp"
-#include "SaasTropModel.hpp"
-#include "NBTropModel.hpp"
-#include "GGTropModel.hpp"
-#include "GGHeightTropModel.hpp"
-#include "NeillTropModel.hpp"
+#include <gnsstk/SimpleTropModel.hpp>
+#include <gnsstk/SaasTropModel.hpp>
+#include <gnsstk/NBTropModel.hpp>
+#include <gnsstk/GGTropModel.hpp>
+#include <gnsstk/GGHeightTropModel.hpp>
+#include <gnsstk/NeillTropModel.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

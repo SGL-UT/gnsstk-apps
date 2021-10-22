@@ -46,11 +46,11 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-#include "StringUtils.hpp"
-#include "Exception.hpp"
-#include "logstream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsFileLoader.hpp"
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsFileLoader.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

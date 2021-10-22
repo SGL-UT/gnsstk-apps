@@ -38,15 +38,15 @@
 
 #include <cerrno>
 #include <cstdio>
-#include "BasicFramework.hpp"
-#include "Rinex3ClockHeader.hpp"
-#include "Rinex3ClockStream.hpp"
-#include "RinexMetHeader.hpp"
-#include "RinexMetStream.hpp"
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavStream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsStream.hpp"
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/Rinex3ClockHeader.hpp>
+#include <gnsstk/Rinex3ClockStream.hpp>
+#include <gnsstk/RinexMetHeader.hpp>
+#include <gnsstk/RinexMetStream.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
 
 using namespace std;
 using namespace gnsstk;

@@ -216,6 +216,11 @@
 #include <gnsstk/Rinex3ObsHeader.hpp>
 #include <gnsstk/Rinex3ObsData.hpp>
 
+#include <gnsstk/Rinex3NavBase.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
+
 #include <gnsstk/SP3Header.hpp>
 #include <gnsstk/SP3Data.hpp>
 #include <gnsstk/SP3Stream.hpp>

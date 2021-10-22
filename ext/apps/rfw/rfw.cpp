@@ -47,10 +47,10 @@
 #include <errno.h>   /* Error number definitions */
 #include <termios.h> /* POSIX terminal control definitions */
 
-#include <StringUtils.hpp>
-#include <LoopedFramework.hpp>
-#include <CommandOption.hpp>
-#include <TimeNamedFileStream.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/LoopedFramework.hpp>
+#include <gnsstk/CommandOption.hpp>
+#include <gnsstk/TimeNamedFileStream.hpp>
 
 #include "DeviceStream.hpp"
 

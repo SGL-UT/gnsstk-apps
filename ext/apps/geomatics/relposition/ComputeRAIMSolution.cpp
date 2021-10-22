@@ -46,7 +46,7 @@
 // includes
 // system
 #include <fstream>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
 
