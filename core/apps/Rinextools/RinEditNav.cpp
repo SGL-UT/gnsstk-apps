@@ -53,6 +53,9 @@ public:
       /// Map system to output stream.
    using OutputMap = map<SatelliteSystem, StrmPtr>;
 
+      /// RINEX version to use when writing out RINEX 2 format.
+   static constexpr double DefRINEX2Ver = 2.11;
+
       /// Minimal data for uniquely identifying nav data for the output file
    struct UniqueNav
    {
@@ -443,16 +446,20 @@ writeHeaders()
          // our best guess.  Otherwise, we know the file will only
          // contain the one system so use that instead.
       if (i.first == SatelliteSystem::Unknown)
+      {
          sat.system = mergedSys;
+      }
       else
+      {
          sat.system = i.first;
+      }
       merged.fileSys = string(1, sat.systemChar()) + ": " +
          sat.systemString();
       (*i.second) << merged;
    }
    for (auto& i : output2Map)
    {
-      merged.version = 2.11;
+      merged.version = DefRINEX2Ver;
       (*i.second) << merged;
    }
 }
