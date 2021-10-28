@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -68,7 +68,7 @@ using namespace gnsstk;
 // the nl+nr+1 data points surrounding the point.  Derivatives of the data
 // stream may also be computed with this routine; then g = dt**N * Nth deriv,
 // where N=lderiv.
-// 
+//
 // Usual values are m=2,4; nl+nr = 1-2 times desired feature widths in data.
 // Coefficients c[0,nl+nr] are in order -nl,...0...nr.
 //------------------------------------------------------------------------------------
@@ -105,7 +105,7 @@ int lsfilterCoefficients(double* c, int nl, int nr, int poly, int lderiv)
 		   for(j=0; j<poly; j++) sum += rhs(j+1)*(fac *= k);
 		   c[k+nl] = sum;
 	   }
-   
+
 	   return 0;
    }
    catch(Exception& e) { GNSSTK_RETHROW(e); }

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -113,7 +113,7 @@ public:
       /// Differences found in input files
    static const int DIFFS_CODE = 1;
    RMWDiff(char* arg0)
-         : DiffFrame(arg0, 
+         : DiffFrame(arg0,
                      std::string("RINEX Met"))
    {}
 
@@ -173,7 +173,7 @@ void RMWDiff::process()
       ff1.sort(RinexMetDataOperatorLessThanFull(intersection));
       ff2.sort(RinexMetDataOperatorLessThanFull(intersection));
 
-      pair< list<RinexMetData>, list<RinexMetData> > difflist = 
+      pair< list<RinexMetData>, list<RinexMetData> > difflist =
          ff1.diff(ff2, RinexMetDataOperatorLessThanFull(intersection));
 
       if (difflist.first.empty() && difflist.second.empty())
@@ -196,9 +196,9 @@ void RMWDiff::process()
             if (firstitr->time == seconditr->time)
             {
                YDSTime recTime(firstitr->time);
-               cout << setw(3) << recTime.doy << ' ' 
+               cout << setw(3) << recTime.doy << ' '
                     << setw(10) << setprecision(0) << fixed
-                    << recTime.sod << ' ' 
+                    << recTime.sod << ' '
                     << ff1.frontHeader().markerName << ' '
                     << ff2.frontHeader().markerName << ' ';
 
@@ -273,7 +273,7 @@ int main(int argc, char* argv[])
          return m.exitCode;
       if (!m.run())
          return m.exitCode;
-      
+
       return m.exitCode;
    }
    catch(Exception& e)

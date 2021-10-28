@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -98,8 +98,8 @@
  * \section timeconvert_examples EXAMPLES
  * \subsection timeconvert_example_default Get the current system time in UTC.
  * \code{.sh}
- * > timeconvert  
- * 
+ * > timeconvert
+ *
  *         Month/Day/Year H:M:S            08/10/2020 17:00:04
  *         Modified Julian Date            59071.708386331
  *         GPSweek DayOfWeek SecOfWeek     70 1  147604.579029
@@ -229,7 +229,7 @@ TimCvt::TimCvt(char* arg0)
                         "\"Month(numeric) DayOfMonth Year Hour:Minute:Second\""),
         RinexFileTimeOption('R', "rinex-file", "%y %m %d %H %M %S",
                             "\"Year(2-digit) Month(numeric) DayOfMonth Hour Minute Second\""),
-        GPSEWSOption('o', "ews", "%E %G %g", 
+        GPSEWSOption('o', "ews", "%E %G %g",
                      "\"GPSEpoch 10bitGPSweek SecondOfWeek\""),
         GPSWSOption('f', "ws", "%F %g", "\"FullGPSWeek SecondOfWeek\""),
         GPSWZOption('w', "wz", "%F %Z", "\"FullGPSWeek Zcount\""),
@@ -291,7 +291,7 @@ void TimCvt::process()
 
    if (whichOpt)
    {
-      CommandOptionWithCommonTimeArg *cta = 
+      CommandOptionWithCommonTimeArg *cta =
          dynamic_cast<CommandOptionWithCommonTimeArg *>(whichOpt);
       if (cta)
       {
@@ -300,7 +300,7 @@ void TimCvt::process()
       }
       else // whichOpt == &inputFormatAndTimeOption
       {
-         mixedScanTime( ct, 
+         mixedScanTime( ct,
                         inputTimeOption.getValue().front(),
                         inputFormatOption.getValue().front() );
          ct.setTimeSystem(TimeSystem::GPS);
@@ -309,7 +309,7 @@ void TimCvt::process()
    else
    {
       ct = SystemTime();
-      ct.setTimeSystem(TimeSystem::GPS); 
+      ct.setTimeSystem(TimeSystem::GPS);
    }
 
    int i;
@@ -328,12 +328,12 @@ void TimCvt::process()
    {
       using StringUtils::leftJustify;
       string eight(8, ' '); // eight spaces
-      
+
       GPSWeekZcount wz(ct);
       CivilTime civ(ct);
 
       cout << endl
-           << eight << leftJustify("Month/Day/Year H:M:S", 32) 
+           << eight << leftJustify("Month/Day/Year H:M:S", 32)
            << CivilTime(ct).printf("%02m/%02d/%04Y %02H:%02M:%02S") << endl
 
            << eight << leftJustify("Modified Julian Date", 32)
@@ -369,7 +369,7 @@ int main(int argc, char* argv[])
          return m.exitCode;
       if (!m.run())
          return m.exitCode;
-      
+
       return m.exitCode;
    }
    catch(Exception& e)
