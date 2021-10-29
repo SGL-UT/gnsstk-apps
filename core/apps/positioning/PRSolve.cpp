@@ -1085,13 +1085,11 @@ try {
          // set search method
          if(C.searchUser)
          {
-            C.searchOrder = CorrectedEphemerisRange::order =
-               NavSearchOrder::User;
+            C.searchOrder = NavSearchOrder::User;
          }
          else
          {
-            C.searchOrder = CorrectedEphemerisRange::order =
-               NavSearchOrder::Nearest;
+            C.searchOrder = NavSearchOrder::Nearest;
          }
       }
       catch(Exception& e) {
@@ -1649,7 +1647,8 @@ try {
                               && PrevPos.getCoordinateSystem() != Position::Unknown) {
                CorrectedEphemerisRange CER;
                try {
-                  CER.ComputeAtReceiveTime(Rdata.time, PrevPos, sat, C.navLib);
+                  CER.ComputeAtReceiveTime(Rdata.time, PrevPos, sat, C.navLib,
+                                           C.searchOrder);
                   elev = CER.elevation;
                   // const double azim = CER.azimuth;
                   if(C.ORDout) {

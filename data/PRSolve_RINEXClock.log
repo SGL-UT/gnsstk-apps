@@ -3,14 +3,14 @@ PRSolve, part of the GNSS Toolkit, Ver 5.3 1/27/20, Run 2021/10/15 13:14:18
 # Input via configuration file:
    Name of file with more options [#->EOL = comment] (--file) : <none>
 # Required input:
-   RINEX observation file name(s) (--obs) : /home/johnk/src/git/fgnss/gnsstk-apps/data/cord1100.21o
+   RINEX observation file name(s) (--obs) : ./gnsstk-apps/data/cord1100.21o
    Solution(s) to compute: Sys:Freqs:Codes (cf. --SOLhelp) (--sol) : GPS:12:PWXC
 #   (require --eph OR --nav, but NOT both)
-   Ephemeris+clock (SP3 format) file name(s) (--eph) : /home/johnk/src/git/fgnss/gnsstk-apps/data/cod21542.sp3
+   Ephemeris+clock (SP3 format) file name(s) (--eph) : ./gnsstk-apps/data/cod21542.sp3
    RINEX nav file name(s) (also cf. --BCEpast) (--nav) : <none>
 # Optional input
 # Other input files
-   Clock (RINEX format) file name(s) (--clk) : /home/johnk/src/git/fgnss/gnsstk-apps/data/cod21542.clk
+   Clock (RINEX format) file name(s) (--clk) : ./gnsstk-apps/data/cod21542.clk
    RINEX meteorological file name(s) (--met) : <none>
    Differential code bias (P1-C1) file name(s) (--dcb) : <none>
 # Paths of input files:
@@ -39,8 +39,8 @@ PRSolve, part of the GNSS Toolkit, Ver 5.3 1/27/20, Run 2021/10/15 13:14:18
    Trop model <m> [one of Zero,Black,Saas,NewB,Neill,GG,GGHt,Global
                       with optional weather T(C),P(mb),RH(%)] (--Trop) : NewB,20.0,1013.0,50.0
 # Output [for formats see GNSSTK::Position (--ref) and GNSSTK::Epoch (--timefmt)] :
-   Output log file name (--log) : /home/johnk/src/git/fgnss/gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.log
-   Output RINEX observations (with position solution in comments) (--out) : /home/johnk/src/git/fgnss/gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.out
+   Output log file name (--log) : ./gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.log
+   Output RINEX observations (with position solution in comments) (--out) : ./gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.out
    In output RINEX (--out), write RINEX version 2.11 [otherwise 3.01] (--ver2) : false
    Known position p in fmt f (def. '%x,%y,%z'), for resids, elev and ORDs (--ref) : <none>
    Output autonomous pseudorange solution [tag SPS, no RAIM] (--SPSout) : false
@@ -55,9 +55,9 @@ PRSolve, part of the GNSS Toolkit, Ver 5.3 1/27/20, Run 2021/10/15 13:14:18
    LOG level is VERBOSE
 ------ End configuration summary ------
 
-Found RINEX obs file /home/johnk/src/git/fgnss/gnsstk-apps/data/cord1100.21o
-Load SP3 file /home/johnk/src/git/fgnss/gnsstk-apps/data/cod21542.sp3
-Load Clock file /home/johnk/src/git/fgnss/gnsstk-apps/data/cod21542.clk
+Found RINEX obs file ./gnsstk-apps/data/cord1100.21o
+Load SP3 file ./gnsstk-apps/data/cod21542.sp3
+Load Clock file ./gnsstk-apps/data/cod21542.clk
 Read 1 RINEX clock files into store.
 RINEX clock file store contains 218879 data.
 Read 1 SP3 ephemeris files into store.
@@ -386,8 +386,8 @@ PRS configuration:
 Validate solution descriptor GPS:12:PWXC
  Found system GPS with 2976 ephemeris data.
  ...valid.
-Opened input file /home/johnk/src/git/fgnss/gnsstk-apps/data/cord1100.21o
-Input header for RINEX file /home/johnk/src/git/fgnss/gnsstk-apps/data/cord1100.21o
+Opened input file ./gnsstk-apps/data/cord1100.21o
+Input header for RINEX file ./gnsstk-apps/data/cord1100.21o
 ---------------------------------- REQUIRED ----------------------------------
 Rinex Version  2.11,  File type OBSERVATION DATA,  System MIXED.
 Prgm: JPS2RIN v.2.0.191,  Run: 20210421 000131 UTC,  By: gpsops
@@ -550,8 +550,8 @@ for use.  For further information, contact:
 Dave Stowers, NASA/JPL m/s 238-600
 4800 Oak Grove Drive, Pasadena CA 91109 USA
 -------------------------------- END OF HEADER --------------------------------
-Time system for RINEX file /home/johnk/src/git/fgnss/gnsstk-apps/data/cord1100.21o is GPS
-Opened output RINEX file /home/johnk/src/git/fgnss/gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.out
+Time system for RINEX file ./gnsstk-apps/data/cord1100.21o is GPS
+Opened output RINEX file ./gnsstk-apps/build/bpre009-tks-401-PRSolve/Testing/Temporary/PRSolve_RINEXClock.out
 
 Solutions to be computed for this file:
  OK 1 SOLN GPS:12:PWXC [0](G12PWXC) GPS [c=2.546 o=C1W,C1C] [c=-1.546 o=C2W]
