@@ -8566,346 +8566,2205 @@ Inclination:             9.46543175E-01 rad       6.15382776E-10 rad/sec
 Radial        Sine:   3.47812500E+01 m    Cosine:   2.12500000E+02 m
 Inclination   Sine:  -1.58324838E-07 rad  Cosine:  -5.40167093E-08 rad
 In-track      Sine:   8.32788646E-06 rad  Cosine:   1.76392496E-06 rad
-2015/07/19 200 00:00:00 Health subj:GPS 0 xmit:GPS 0 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 07:57:30 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:02:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 15:30:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 1 xmit:GPS 1 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 19:20:30 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:30 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:49:00 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:00 Health subj:GPS 2 xmit:GPS 2 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:54:30 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:44:00 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:30 Health subj:GPS 3 xmit:GPS 3 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:30:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:55:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:01:00 Health subj:GPS 4 xmit:GPS 4 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 5 xmit:GPS 5 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:10:00 Health subj:GPS 5 xmit:GPS 5 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 5 xmit:GPS 5 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 21:17:00 Health subj:GPS 5 xmit:GPS 5 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:30 Health subj:GPS 5 xmit:GPS 5 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:08:30 Health subj:GPS 6 xmit:GPS 6 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:55:30 Health subj:GPS 6 xmit:GPS 6 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 6 xmit:GPS 6 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:00 Health subj:GPS 6 xmit:GPS 6 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 11:54:00 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:03:30 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:51:00 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 7 xmit:GPS 7 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 11:24:30 Health subj:GPS 9 xmit:GPS 9 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:02:30 Health subj:GPS 9 xmit:GPS 9 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 9 xmit:GPS 9 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 9 xmit:GPS 9 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:35:30 Health subj:GPS 10 xmit:GPS 10 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 3f  Unhealthy
-2015/07/19 200 14:00:30 Health subj:GPS 10 xmit:GPS 10 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 3f  Unhealthy
-2015/07/19 200 19:48:00 Health subj:GPS 10 xmit:GPS 10 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 3f  Unhealthy
-2015/07/19 200 20:01:00 Health subj:GPS 10 xmit:GPS 10 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 3f  Unhealthy
-2015/07/19 200 22:00:00 Health subj:GPS 10 xmit:GPS 10 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 3f  Unhealthy
-2015/07/19 200 07:31:30 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:09:30 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:11:00 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 11 xmit:GPS 11 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:51:00 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:01:30 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:25:30 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:00 Health subj:GPS 12 xmit:GPS 12 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:16:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 13 xmit:GPS 13 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:11:00 Health subj:GPS 14 xmit:GPS 14 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 14 xmit:GPS 14 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 14 xmit:GPS 14 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 14 xmit:GPS 14 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:40:00 Health subj:GPS 14 xmit:GPS 14 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:02:00 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 17:40:30 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:30 Health subj:GPS 15 xmit:GPS 15 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:57:00 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 09:31:00 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 11:47:30 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 16 xmit:GPS 16 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:08:30 Health subj:GPS 17 xmit:GPS 17 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 17 xmit:GPS 17 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 17 xmit:GPS 17 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:00 Health subj:GPS 17 xmit:GPS 17 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:16:00 Health subj:GPS 18 xmit:GPS 18 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 18 xmit:GPS 18 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 18 xmit:GPS 18 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 18 xmit:GPS 18 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 18 xmit:GPS 18 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 05:17:00 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:04:30 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:02:00 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:23:30 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 19 xmit:GPS 19 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 20 xmit:GPS 20 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 20 xmit:GPS 20 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 20 xmit:GPS 20 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:01:30 Health subj:GPS 20 xmit:GPS 20 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 23:05:00 Health subj:GPS 20 xmit:GPS 20 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:04:00 Health subj:GPS 21 xmit:GPS 21 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 21 xmit:GPS 21 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 21 xmit:GPS 21 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 21 xmit:GPS 21 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:59:00 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:41:30 Health subj:GPS 22 xmit:GPS 22 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 09:42:00 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:03:00 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 13:55:30 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 23 xmit:GPS 23 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 03:22:30 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 19:18:00 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:00 Health subj:GPS 24 xmit:GPS 24 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:54:30 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:01:00 Health subj:GPS 25 xmit:GPS 25 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:40:30 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:07:00 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:26:30 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 09:43:00 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 26 xmit:GPS 26 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:30 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 05:23:30 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:00:00 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 11:35:00 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:00:00 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 27 xmit:GPS 27 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:10:00 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 17:58:00 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 22:00:30 Health subj:GPS 28 xmit:GPS 28 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 01:00:00 Health subj:GPS 29 xmit:GPS 29 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 02:00:00 Health subj:GPS 29 xmit:GPS 29 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 04:00:00 Health subj:GPS 29 xmit:GPS 29 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 23:03:30 Health subj:GPS 29 xmit:GPS 29 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 13:52:00 Health subj:GPS 30 xmit:GPS 30 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 14:01:30 Health subj:GPS 30 xmit:GPS 30 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 16:00:00 Health subj:GPS 30 xmit:GPS 30 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 18:00:00 Health subj:GPS 30 xmit:GPS 30 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 20:00:00 Health subj:GPS 30 xmit:GPS 30 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 06:24:30 Health subj:GPS 31 xmit:GPS 31 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:00 Health subj:GPS 31 xmit:GPS 31 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 31 xmit:GPS 31 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 31 xmit:GPS 31 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 07:13:00 Health subj:GPS 32 xmit:GPS 32 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 08:00:30 Health subj:GPS 32 xmit:GPS 32 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 10:00:00 Health subj:GPS 32 xmit:GPS 32 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
-2015/07/19 200 12:00:00 Health subj:GPS 32 xmit:GPS 32 GPS L1 GPSC/A navmsg GPS_LNAV
-svHealth = 0  Healthy
 ****************************************************************************
- Ionospheric correction data
+Satellite Health
+
+PRN : GPS 0 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)       0   Sun-0   200       0   07/19/2015   00:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28650   Sun-0   200   28650   07/19/2015   07:57:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28920   Sun-0   200   28920   07/19/2015   08:02:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   55800   Sun-0   200   55800   07/19/2015   15:30:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 1 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   69630   Sun-0   200   69630   07/19/2015   19:20:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72030   Sun-0   200   72030   07/19/2015   20:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   74940   Sun-0   200   74940   07/19/2015   20:49:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 2 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   32070   Sun-0   200   32070   07/19/2015   08:54:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   67440   Sun-0   200   67440   07/19/2015   18:44:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 3 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72030   Sun-0   200   72030   07/19/2015   20:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   23400   Sun-0   200   23400   07/19/2015   06:30:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   53700   Sun-0   200   53700   07/19/2015   14:55:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 4 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64860   Sun-0   200   64860   07/19/2015   18:01:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 5 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 5 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    4200   Sun-0   200    4200   07/19/2015   01:10:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 5 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 5 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   76620   Sun-0   200   76620   07/19/2015   21:17:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 5 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79230   Sun-0   200   79230   07/19/2015   22:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 6 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   65310   Sun-0   200   65310   07/19/2015   18:08:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 6 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   68130   Sun-0   200   68130   07/19/2015   18:55:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 6 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 6 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   42840   Sun-0   200   42840   07/19/2015   11:54:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43410   Sun-0   200   43410   07/19/2015   12:03:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   60660   Sun-0   200   60660   07/19/2015   16:51:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 7 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 9 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   41070   Sun-0   200   41070   07/19/2015   11:24:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 9 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43350   Sun-0   200   43350   07/19/2015   12:02:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 9 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 9 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 10 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   45330   Sun-0   200   45330   07/19/2015   12:35:30
+
+           HEALTH DATA
+Bits               0x3F
+Status             Unhealthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 10 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50430   Sun-0   200   50430   07/19/2015   14:00:30
+
+           HEALTH DATA
+Bits               0x3F
+Status             Unhealthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 10 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   71280   Sun-0   200   71280   07/19/2015   19:48:00
+
+           HEALTH DATA
+Bits               0x3F
+Status             Unhealthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 10 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72060   Sun-0   200   72060   07/19/2015   20:01:00
+
+           HEALTH DATA
+Bits               0x3F
+Status             Unhealthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 10 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x3F
+Status             Unhealthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   27090   Sun-0   200   27090   07/19/2015   07:31:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36570   Sun-0   200   36570   07/19/2015   10:09:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   51060   Sun-0   200   51060   07/19/2015   14:11:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 11 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   24660   Sun-0   200   24660   07/19/2015   06:51:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28890   Sun-0   200   28890   07/19/2015   08:01:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   73530   Sun-0   200   73530   07/19/2015   20:25:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 12 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   58560   Sun-0   200   58560   07/19/2015   16:16:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 13 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 14 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   15060   Sun-0   200   15060   07/19/2015   04:11:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 14 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 14 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 14 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 14 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   38400   Sun-0   200   38400   07/19/2015   10:40:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21720   Sun-0   200   21720   07/19/2015   06:02:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   63630   Sun-0   200   63630   07/19/2015   17:40:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 15 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64830   Sun-0   200   64830   07/19/2015   18:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   10620   Sun-0   200   10620   07/19/2015   02:57:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   34260   Sun-0   200   34260   07/19/2015   09:31:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   42450   Sun-0   200   42450   07/19/2015   11:47:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 16 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 17 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   58110   Sun-0   200   58110   07/19/2015   16:08:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 17 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 17 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 17 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 18 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    4560   Sun-0   200    4560   07/19/2015   01:16:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 18 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 18 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 18 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 18 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   19020   Sun-0   200   19020   07/19/2015   05:17:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21870   Sun-0   200   21870   07/19/2015   06:04:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28920   Sun-0   200   28920   07/19/2015   08:02:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   44610   Sun-0   200   44610   07/19/2015   12:23:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 19 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 20 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 20 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 20 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 20 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21690   Sun-0   200   21690   07/19/2015   06:01:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 20 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   83100   Sun-0   200   83100   07/19/2015   23:05:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 21 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3840   Sun-0   200    3840   07/19/2015   01:04:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 21 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 21 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 21 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   10740   Sun-0   200   10740   07/19/2015   02:59:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 22 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   38490   Sun-0   200   38490   07/19/2015   10:41:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   34920   Sun-0   200   34920   07/19/2015   09:42:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36180   Sun-0   200   36180   07/19/2015   10:03:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50130   Sun-0   200   50130   07/19/2015   13:55:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 23 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   12150   Sun-0   200   12150   07/19/2015   03:22:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   69480   Sun-0   200   69480   07/19/2015   19:18:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 24 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   24870   Sun-0   200   24870   07/19/2015   06:54:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 25 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79260   Sun-0   200   79260   07/19/2015   22:01:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    6030   Sun-0   200    6030   07/19/2015   01:40:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7620   Sun-0   200    7620   07/19/2015   02:07:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   30390   Sun-0   200   30390   07/19/2015   08:26:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   34980   Sun-0   200   34980   07/19/2015   09:43:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 26 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14430   Sun-0   200   14430   07/19/2015   04:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   19410   Sun-0   200   19410   07/19/2015   05:23:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   41700   Sun-0   200   41700   07/19/2015   11:35:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 27 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   51000   Sun-0   200   51000   07/19/2015   14:10:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64680   Sun-0   200   64680   07/19/2015   17:58:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 28 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   79230   Sun-0   200   79230   07/19/2015   22:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 29 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 29 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 29 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 29 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   83010   Sun-0   200   83010   07/19/2015   23:03:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 30 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   49920   Sun-0   200   49920   07/19/2015   13:52:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 30 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   50490   Sun-0   200   50490   07/19/2015   14:01:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 30 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 30 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 30 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 31 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   23070   Sun-0   200   23070   07/19/2015   06:24:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 31 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 31 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 31 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 32 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   25980   Sun-0   200   25980   07/19/2015   07:13:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 32 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   28830   Sun-0   200   28830   07/19/2015   08:00:30
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 32 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Satellite Health
+
+PRN : GPS 32 / SVN : 
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
+
+           HEALTH DATA
+Bits               0x0
+Status             Healthy
+****************************************************************************
+Ionospheric correction data
 
 PRN : GPS 0 / SVN : 
 
@@ -8935,16 +10794,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28650   Sun-0   200   28650   07/19/2015   07:57:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -8955,16 +10807,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28920   Sun-0   200   28920   07/19/2015   08:02:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -8975,16 +10820,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -8995,16 +10833,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   55800   Sun-0   200   55800   07/19/2015   15:30:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9015,16 +10846,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9035,16 +10859,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9055,16 +10872,9 @@ PRN : GPS 1 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9074,13 +10884,6 @@ PRN : GPS 2 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9094,13 +10897,6 @@ PRN : GPS 2 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9115,13 +10911,6 @@ PRN : GPS 2 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   69630   Sun-0   200   69630   07/19/2015   19:20:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.04890966E-08
@@ -9134,13 +10923,6 @@ PRN : GPS 2 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72030   Sun-0   200   72030   07/19/2015   20:00:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9155,13 +10937,6 @@ PRN : GPS 2 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   74940   Sun-0   200   74940   07/19/2015   20:49:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.04890966E-08
@@ -9174,13 +10949,6 @@ PRN : GPS 2 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9195,16 +10963,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   32070   Sun-0   200   32070   07/19/2015   08:54:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9215,16 +10976,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9235,16 +10989,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9255,16 +11002,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9275,16 +11015,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   67440   Sun-0   200   67440   07/19/2015   18:44:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9295,16 +11028,9 @@ PRN : GPS 3 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72030   Sun-0   200   72030   07/19/2015   20:00:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.86264515E-09
+Tgd:                 1.86264515E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9314,13 +11040,6 @@ PRN : GPS 4 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   23400   Sun-0   200   23400   07/19/2015   06:30:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9335,13 +11054,6 @@ PRN : GPS 4 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -6.51925802E-09
@@ -9354,13 +11066,6 @@ PRN : GPS 4 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9375,13 +11080,6 @@ PRN : GPS 4 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   53700   Sun-0   200   53700   07/19/2015   14:55:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -6.51925802E-09
@@ -9394,13 +11092,6 @@ PRN : GPS 4 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9415,13 +11106,6 @@ PRN : GPS 4 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64860   Sun-0   200   64860   07/19/2015   18:01:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -6.51925802E-09
@@ -9434,13 +11118,6 @@ PRN : GPS 5 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9455,13 +11132,6 @@ PRN : GPS 5 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    4200   Sun-0   200    4200   07/19/2015   01:10:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -9474,13 +11144,6 @@ PRN : GPS 5 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9495,13 +11158,6 @@ PRN : GPS 5 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   76620   Sun-0   200   76620   07/19/2015   21:17:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -9514,13 +11170,6 @@ PRN : GPS 5 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79230   Sun-0   200   79230   07/19/2015   22:00:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9535,16 +11184,9 @@ PRN : GPS 6 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   65310   Sun-0   200   65310   07/19/2015   18:08:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                4.19095159E-09
+Tgd:                 4.19095159E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9555,16 +11197,9 @@ PRN : GPS 6 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   68130   Sun-0   200   68130   07/19/2015   18:55:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                4.19095159E-09
+Tgd:                 4.19095159E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9575,16 +11210,9 @@ PRN : GPS 6 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                4.19095159E-09
+Tgd:                 4.19095159E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9595,16 +11223,9 @@ PRN : GPS 6 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                4.19095159E-09
+Tgd:                 4.19095159E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9614,13 +11235,6 @@ PRN : GPS 7 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   42840   Sun-0   200   42840   07/19/2015   11:54:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9635,13 +11249,6 @@ PRN : GPS 7 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43410   Sun-0   200   43410   07/19/2015   12:03:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -9655,13 +11262,6 @@ PRN : GPS 7 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -9674,13 +11274,6 @@ PRN : GPS 7 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9695,13 +11288,6 @@ PRN : GPS 7 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   60660   Sun-0   200   60660   07/19/2015   16:51:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -9714,13 +11300,6 @@ PRN : GPS 7 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9735,16 +11314,9 @@ PRN : GPS 9 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   41070   Sun-0   200   41070   07/19/2015   11:24:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                9.31322575E-10
+Tgd:                 9.31322575E-10
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9755,16 +11327,9 @@ PRN : GPS 9 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43350   Sun-0   200   43350   07/19/2015   12:02:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                9.31322575E-10
+Tgd:                 9.31322575E-10
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9775,16 +11340,9 @@ PRN : GPS 9 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                9.31322575E-10
+Tgd:                 9.31322575E-10
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9795,16 +11353,9 @@ PRN : GPS 9 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                9.31322575E-10
+Tgd:                 9.31322575E-10
 ****************************************************************************
 Inter-signal Corrections
 
@@ -9814,13 +11365,6 @@ PRN : GPS 10 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   45330   Sun-0   200   45330   07/19/2015   12:35:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9835,13 +11379,6 @@ PRN : GPS 10 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50430   Sun-0   200   50430   07/19/2015   14:00:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.79396772E-09
@@ -9854,13 +11391,6 @@ PRN : GPS 10 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   71280   Sun-0   200   71280   07/19/2015   19:48:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9875,13 +11405,6 @@ PRN : GPS 10 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72060   Sun-0   200   72060   07/19/2015   20:01:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.79396772E-09
@@ -9894,13 +11417,6 @@ PRN : GPS 10 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9915,13 +11431,6 @@ PRN : GPS 11 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   27090   Sun-0   200   27090   07/19/2015   07:31:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.21071935E-08
@@ -9934,13 +11443,6 @@ PRN : GPS 11 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9955,13 +11457,6 @@ PRN : GPS 11 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36570   Sun-0   200   36570   07/19/2015   10:09:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.21071935E-08
@@ -9974,13 +11469,6 @@ PRN : GPS 11 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   51060   Sun-0   200   51060   07/19/2015   14:11:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -9995,13 +11483,6 @@ PRN : GPS 11 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.21071935E-08
@@ -10014,13 +11495,6 @@ PRN : GPS 11 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10035,13 +11509,6 @@ PRN : GPS 12 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.25728548E-08
@@ -10054,13 +11521,6 @@ PRN : GPS 12 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10075,13 +11535,6 @@ PRN : GPS 12 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   24660   Sun-0   200   24660   07/19/2015   06:51:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.25728548E-08
@@ -10094,13 +11547,6 @@ PRN : GPS 12 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28890   Sun-0   200   28890   07/19/2015   08:01:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10115,13 +11561,6 @@ PRN : GPS 12 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   73530   Sun-0   200   73530   07/19/2015   20:25:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.25728548E-08
@@ -10134,13 +11573,6 @@ PRN : GPS 12 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10155,13 +11587,6 @@ PRN : GPS 13 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10175,13 +11600,6 @@ PRN : GPS 13 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10194,13 +11612,6 @@ PRN : GPS 13 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10215,13 +11626,6 @@ PRN : GPS 13 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   58560   Sun-0   200   58560   07/19/2015   16:16:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10235,13 +11639,6 @@ PRN : GPS 13 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10254,13 +11651,6 @@ PRN : GPS 13 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10275,13 +11665,6 @@ PRN : GPS 14 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   15060   Sun-0   200   15060   07/19/2015   04:11:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -9.31322575E-09
@@ -10294,13 +11677,6 @@ PRN : GPS 14 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10315,13 +11691,6 @@ PRN : GPS 14 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -9.31322575E-09
@@ -10334,13 +11703,6 @@ PRN : GPS 14 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10355,13 +11717,6 @@ PRN : GPS 14 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   38400   Sun-0   200   38400   07/19/2015   10:40:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -9.31322575E-09
@@ -10374,13 +11729,6 @@ PRN : GPS 15 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10395,13 +11743,6 @@ PRN : GPS 15 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -10414,13 +11755,6 @@ PRN : GPS 15 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10435,13 +11769,6 @@ PRN : GPS 15 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21720   Sun-0   200   21720   07/19/2015   06:02:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -10454,13 +11781,6 @@ PRN : GPS 15 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   63630   Sun-0   200   63630   07/19/2015   17:40:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10475,13 +11795,6 @@ PRN : GPS 15 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64830   Sun-0   200   64830   07/19/2015   18:00:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -10494,13 +11807,6 @@ PRN : GPS 16 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   10620   Sun-0   200   10620   07/19/2015   02:57:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10515,13 +11821,6 @@ PRN : GPS 16 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   34260   Sun-0   200   34260   07/19/2015   09:31:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.02445483E-08
@@ -10534,13 +11833,6 @@ PRN : GPS 16 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10555,13 +11847,6 @@ PRN : GPS 16 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   42450   Sun-0   200   42450   07/19/2015   11:47:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.02445483E-08
@@ -10575,13 +11860,6 @@ PRN : GPS 16 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.02445483E-08
@@ -10594,13 +11872,6 @@ PRN : GPS 16 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10615,13 +11886,6 @@ PRN : GPS 17 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   58110   Sun-0   200   58110   07/19/2015   16:08:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -10634,13 +11898,6 @@ PRN : GPS 17 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10655,13 +11912,6 @@ PRN : GPS 17 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.07102096E-08
@@ -10674,13 +11924,6 @@ PRN : GPS 17 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10695,13 +11938,6 @@ PRN : GPS 18 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    4560   Sun-0   200    4560   07/19/2015   01:16:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10714,13 +11950,6 @@ PRN : GPS 18 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10735,13 +11964,6 @@ PRN : GPS 18 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10755,13 +11977,6 @@ PRN : GPS 18 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -10774,13 +11989,6 @@ PRN : GPS 18 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10795,13 +12003,6 @@ PRN : GPS 19 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   19020   Sun-0   200   19020   07/19/2015   05:17:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.49011612E-08
@@ -10814,13 +12015,6 @@ PRN : GPS 19 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21870   Sun-0   200   21870   07/19/2015   06:04:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10835,13 +12029,6 @@ PRN : GPS 19 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28920   Sun-0   200   28920   07/19/2015   08:02:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.49011612E-08
@@ -10854,13 +12041,6 @@ PRN : GPS 19 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   44610   Sun-0   200   44610   07/19/2015   12:23:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10875,13 +12055,6 @@ PRN : GPS 19 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.49011612E-08
@@ -10894,13 +12067,6 @@ PRN : GPS 19 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10915,13 +12081,6 @@ PRN : GPS 20 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -8.38190317E-09
@@ -10935,13 +12094,6 @@ PRN : GPS 20 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -8.38190317E-09
@@ -10954,13 +12106,6 @@ PRN : GPS 20 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -10975,13 +12120,6 @@ PRN : GPS 20 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21690   Sun-0   200   21690   07/19/2015   06:01:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -8.38190317E-09
@@ -10994,13 +12132,6 @@ PRN : GPS 20 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   83100   Sun-0   200   83100   07/19/2015   23:05:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11015,13 +12146,6 @@ PRN : GPS 21 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3840   Sun-0   200    3840   07/19/2015   01:04:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.16415322E-08
@@ -11034,13 +12158,6 @@ PRN : GPS 21 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11055,13 +12172,6 @@ PRN : GPS 21 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.16415322E-08
@@ -11074,13 +12184,6 @@ PRN : GPS 21 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11095,13 +12198,6 @@ PRN : GPS 22 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   10740   Sun-0   200   10740   07/19/2015   02:59:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.76951289E-08
@@ -11114,13 +12210,6 @@ PRN : GPS 22 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11135,13 +12224,6 @@ PRN : GPS 22 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.76951289E-08
@@ -11155,13 +12237,6 @@ PRN : GPS 22 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.76951289E-08
@@ -11174,13 +12249,6 @@ PRN : GPS 22 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11195,13 +12263,6 @@ PRN : GPS 22 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   38490   Sun-0   200   38490   07/19/2015   10:41:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.76951289E-08
@@ -11214,13 +12275,6 @@ PRN : GPS 23 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   34920   Sun-0   200   34920   07/19/2015   09:42:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11235,13 +12289,6 @@ PRN : GPS 23 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36180   Sun-0   200   36180   07/19/2015   10:03:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.00234354E-08
@@ -11254,13 +12301,6 @@ PRN : GPS 23 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11275,13 +12315,6 @@ PRN : GPS 23 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50130   Sun-0   200   50130   07/19/2015   13:55:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.00234354E-08
@@ -11295,13 +12328,6 @@ PRN : GPS 23 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -2.00234354E-08
@@ -11314,13 +12340,6 @@ PRN : GPS 23 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11335,16 +12354,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   12150   Sun-0   200   12150   07/19/2015   03:22:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11355,16 +12367,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11375,16 +12380,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11395,16 +12393,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   69480   Sun-0   200   69480   07/19/2015   19:18:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11415,16 +12406,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11435,16 +12419,9 @@ PRN : GPS 24 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79200   Sun-0   200   79200   07/19/2015   22:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                2.32830644E-09
+Tgd:                 2.32830644E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11455,16 +12432,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11475,16 +12445,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11495,16 +12458,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   24870   Sun-0   200   24870   07/19/2015   06:54:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11515,16 +12471,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11535,16 +12484,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11555,16 +12497,9 @@ PRN : GPS 25 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79260   Sun-0   200   79260   07/19/2015   22:01:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                5.12227416E-09
+Tgd:                 5.12227416E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11575,16 +12510,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    6030   Sun-0   200    6030   07/19/2015   01:40:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11595,16 +12523,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7620   Sun-0   200    7620   07/19/2015   02:07:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11615,16 +12536,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   30390   Sun-0   200   30390   07/19/2015   08:26:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11635,16 +12549,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   34980   Sun-0   200   34980   07/19/2015   09:43:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11655,16 +12562,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11675,16 +12575,9 @@ PRN : GPS 26 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                7.45058060E-09
+Tgd:                 7.45058060E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11695,16 +12588,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14430   Sun-0   200   14430   07/19/2015   04:00:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11715,16 +12601,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   19410   Sun-0   200   19410   07/19/2015   05:23:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11735,16 +12614,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   21600   Sun-0   200   21600   07/19/2015   06:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11755,16 +12627,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   41700   Sun-0   200   41700   07/19/2015   11:35:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11775,16 +12640,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11795,16 +12653,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50400   Sun-0   200   50400   07/19/2015   14:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11815,16 +12666,9 @@ PRN : GPS 27 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                1.39698386E-09
+Tgd:                 1.39698386E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -11834,13 +12678,6 @@ PRN : GPS 28 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   51000   Sun-0   200   51000   07/19/2015   14:10:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11854,13 +12691,6 @@ PRN : GPS 28 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11875,13 +12705,6 @@ PRN : GPS 28 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64680   Sun-0   200   64680   07/19/2015   17:58:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -11895,13 +12718,6 @@ PRN : GPS 28 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -11914,13 +12730,6 @@ PRN : GPS 28 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11935,13 +12744,6 @@ PRN : GPS 28 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   79230   Sun-0   200   79230   07/19/2015   22:00:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.11758709E-08
@@ -11954,13 +12756,6 @@ PRN : GPS 29 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    3600   Sun-0   200    3600   07/19/2015   01:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -11975,13 +12770,6 @@ PRN : GPS 29 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)    7200   Sun-0   200    7200   07/19/2015   02:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.02445483E-08
@@ -11994,13 +12782,6 @@ PRN : GPS 29 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   14400   Sun-0   200   14400   07/19/2015   04:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -12015,13 +12796,6 @@ PRN : GPS 29 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   83010   Sun-0   200   83010   07/19/2015   23:03:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.02445483E-08
@@ -12035,16 +12809,9 @@ PRN : GPS 30 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   49920   Sun-0   200   49920   07/19/2015   13:52:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                3.25962901E-09
+Tgd:                 3.25962901E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -12055,16 +12822,9 @@ PRN : GPS 30 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   50490   Sun-0   200   50490   07/19/2015   14:01:30
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                3.25962901E-09
+Tgd:                 3.25962901E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -12075,16 +12835,9 @@ PRN : GPS 30 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   57600   Sun-0   200   57600   07/19/2015   16:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                3.25962901E-09
+Tgd:                 3.25962901E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -12095,16 +12848,9 @@ PRN : GPS 30 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   64800   Sun-0   200   64800   07/19/2015   18:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                3.25962901E-09
+Tgd:                 3.25962901E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -12115,16 +12861,9 @@ PRN : GPS 30 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   72000   Sun-0   200   72000   07/19/2015   20:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
-Tgd:                3.25962901E-09
+Tgd:                 3.25962901E-09
 ****************************************************************************
 Inter-signal Corrections
 
@@ -12134,13 +12873,6 @@ PRN : GPS 31 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   23070   Sun-0   200   23070   07/19/2015   06:24:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -12155,13 +12887,6 @@ PRN : GPS 31 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28800   Sun-0   200   28800   07/19/2015   08:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.35041773E-08
@@ -12175,13 +12900,6 @@ PRN : GPS 31 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -1.35041773E-08
@@ -12194,13 +12912,6 @@ PRN : GPS 31 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -12215,13 +12926,6 @@ PRN : GPS 32 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   25980   Sun-0   200   25980   07/19/2015   07:13:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -3.72529030E-09
@@ -12234,13 +12938,6 @@ PRN : GPS 32 / SVN :
 
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   28830   Sun-0   200   28830   07/19/2015   08:00:30
-
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
 
            CORRECTION
 
@@ -12255,13 +12952,6 @@ PRN : GPS 32 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   36000   Sun-0   200   36000   07/19/2015   10:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -3.72529030E-09
@@ -12275,31 +12965,38 @@ PRN : GPS 32 / SVN :
               Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
 Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
 
-           SIGNALS
-
-               BAND          CODE
-Reference:       L1        GPSC/A
-Reference:       L1          GPSY
-Valid:           L2          GPSY
-
            CORRECTION
 
 Tgd:                -3.72529030E-09
-2015/07/21 202 16:51:12 TimeOffset subj:Unknown 0 xmit:Unknown 0 Unknown UnknownBand UnknownCode UnknownType Unknown
-  src system = GPS
-  tgt system = UTC
-  A0         = -9.31322574615e-10
-  A1         = -3.5527136788e-15
-  delta tLS  = 17
-  ref time   = 2015/07/21 16:51:12
-  provider   =     
-  UTC        = Unknown
-2015/07/21 202 16:51:12 TimeOffset subj:Unknown 0 xmit:Unknown 0 Unknown UnknownBand UnknownCode UnknownType Unknown
-  src system = GPS
-  tgt system = UTC
-  A0         = -9.31322574615e-10
-  A1         = -3.5527136788e-15
-  delta tLS  = 17
-  ref time   = 2015/07/21 16:51:12
-  provider   =     
-  UTC        = Unknown
+****************************************************************************
+Time System Offset
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)  233472   Tue-2   202   60672   07/21/2015   16:51:12
+
+           GPS UTC PARAMETERS
+Parameter                 Value
+Reference   2015/07/21 16:51:12
+A0             -9.313225746e-10 sec
+A1             -3.552713679e-15 sec/sec
+dtLS                         17 sec
+Provider                       
+UTC                     Unknown
+****************************************************************************
+Time System Offset
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)  233472   Tue-2   202   60672   07/21/2015   16:51:12
+
+           GPS UTC PARAMETERS
+Parameter                 Value
+Reference   2015/07/21 16:51:12
+A0             -9.313225746e-10 sec
+A1             -3.552713679e-15 sec/sec
+dtLS                         17 sec
+Provider                       
+UTC                     Unknown
