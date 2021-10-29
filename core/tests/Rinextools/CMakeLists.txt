@@ -342,19 +342,3 @@ test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
 #test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
 #    --obs\ ${SD}/inputs/igs/UCAL00CAN_S_20161700100_15M_01S_MO
 #    "-l2 -v")
-
-
-###############################################################################
-# TEST scanBrdcFile
-###############################################################################
-set(test_name scanBrdcFile1)
-add_test(NAME ${test_name}
-    COMMAND ${CMAKE_COMMAND}
-    -DTESTBASE=${test_name}
-    -DTESTNAME=${test_name}
-    -DTEST_PROG=$<TARGET_FILE:scanBrdcFile>
-    -DDIFF_PROG=${df_diff}
-    -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-    -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-    -P ${CMAKE_CURRENT_SOURCE_DIR}/testScanBrdcFile.cmake)
-set_property(TEST  ${test_name} PROPERTY LABELS Rinex2)
