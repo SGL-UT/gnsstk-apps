@@ -365,7 +365,9 @@ try {
             try {
                   // update ephemeris range and elevation
                rawdat.ER[nc] =
-                  CER.ComputeAtReceiveTime(tt, statn.pos, sat, *pEph);
+                  CER.ComputeAtReceiveTime(tt, statn.pos, sat, navLib,
+                                           NavSearchOrder::Nearest,
+                                           SVHealth::Any, NavValidityType::Any);
                rawdat.elev[nc] = CER.elevation;
                rawdat.az[nc] = CER.azimuth;
 
