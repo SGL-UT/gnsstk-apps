@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -72,7 +72,7 @@ namespace gnsstk
       address = inet_addr(host_name.c_str());
       if ( address != (uint32_t)(-1) )
          return;
-   
+
       struct hostent *host_ptr = ::gethostbyname(host_name.c_str());
       if( host_ptr == 0 )
       {
@@ -93,7 +93,7 @@ namespace gnsstk
 //------------------------------------------------------------------------
    ostream& operator<<(ostream& os, const IPaddress addr)
    {
-      struct hostent * const host_ptr = 
+      struct hostent * const host_ptr =
          ::gethostbyaddr((char *)&addr.address,
                          sizeof(addr.address), AF_INET);
       if( host_ptr != 0 )
@@ -134,16 +134,16 @@ namespace gnsstk
          return -1;
 
       //  set_blocking_io(false);
-  
+
       int connect_status = -1;
       for (int i=0; i<5 && connect_status != 0; i++)
       {
-         connect_status = ::connect(handle, (sockaddr *)target_address, 
+         connect_status = ::connect(handle, (sockaddr *)target_address,
                                     sizeof(target_address));
       }
       if (connect_status !=0)
          return connect_status;
-  
+
       // We do our own buffering...
       char off=0;
       ::setsockopt(handle, IPPROTO_TCP, TCP_NODELAY, &off, sizeof(off));
@@ -153,14 +153,14 @@ namespace gnsstk
 
 //------------------------------------------------------------------------
 // Take a file handle (which is supposed to be a listening socket), accept
-// a connection if any, and return a TCPStreamBuff for that connection. On exit, 
+// a connection if any, and return a TCPStreamBuff for that connection. On exit,
 // peeraddr would be an addr of the connected peer.
    int TCPStreamBuff::accept(int listening_socket, SocketAddr& peeraddr)
    {
       // do nothing if we are already connected
       if (is_open())
          return 0;
-  
+
       for(;;)
       {
          socklen_t target_addr_size = sizeof(peeraddr);
@@ -173,7 +173,7 @@ namespace gnsstk
          else
             return 0;
       }
-  
+
       // We do our own buffering...
       char off=0;
       ::setsockopt(handle, IPPROTO_TCP, TCP_NODELAY, &off, sizeof(off));

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -44,33 +44,33 @@
 #include <vector>
 
    // Classes for handling observations RINEX files (data)
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
-#include "Rinex3ObsStream.hpp"
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
 
    // Classes for handling satellite navigation parameters RINEX
    // files (ephemerides)
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
 
    // Classes for handling RINEX files with meteorological parameters
-#include "RinexMetBase.hpp"
-#include "RinexMetData.hpp"
-#include "RinexMetHeader.hpp"
-#include "RinexMetStream.hpp"
+#include <gnsstk/RinexMetBase.hpp>
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetHeader.hpp>
+#include <gnsstk/RinexMetStream.hpp>
 
    // Class for handling tropospheric model
-#include "GGTropModel.hpp"
+#include <gnsstk/GGTropModel.hpp>
 
    // Class for storing "broadcast-type" ephemerides
-#include "GPSEphemerisStore.hpp"
+#include <gnsstk/GPSEphemerisStore.hpp>
 
    // Class for handling RAIM
-#include "PRSolutionLegacy.hpp"
+#include <gnsstk/PRSolutionLegacy.hpp>
 
    // Class defining GPS system constants
-#include "GNSSconstants.hpp"
+#include <gnsstk/GNSSconstants.hpp>
 
 
 using namespace std;
@@ -130,18 +130,18 @@ int main(int argc, char *argv[])
 
          // If provided, open and store met file into a linked list.
       list<RinexMetData> rml;
-        
+
       if( argc == 4 )
       {
 
          RinexMetStream rms(argv[3]);    // Open meteorological data file
          RinexMetHeader rmh;
-            
+
             // Let's read the header (may be skipped)
          rms >> rmh;
 
          RinexMetData rmd;
-            
+
             // If meteorological data is provided, let's change pointer to
             // a GG-model object
          tropModelPtr=&ggTropModel;
@@ -227,7 +227,7 @@ int main(int argc, char *argv[])
             vector<SatID> prnVec;
             vector<double> rangeVec;
 
-               // Define the "it" iterator to visit the observations PRN map. 
+               // Define the "it" iterator to visit the observations PRN map.
                // Rinex3ObsData::DataMap is a map from RinexSatID to
                // vector<RinexDatum>:
                //      std::map<RinexSatID, vector<RinexDatum> >

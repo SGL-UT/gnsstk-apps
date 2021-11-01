@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -50,21 +50,21 @@
 #include <string>
 #include <vector>
 // GNSSTk
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "Epoch.hpp"
-#include "Stats.hpp"
-#include "FirstDiffFilter.hpp"
-#include "WindowFilter.hpp"
-#include "FDiffFilter.hpp"
-#include "singleton.hpp"
-#include "WNJfilter.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/FirstDiffFilter.hpp>
+#include <gnsstk/WindowFilter.hpp>
+#include <gnsstk/FDiffFilter.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/WNJfilter.hpp>
 // geomatics
-#include "CommandLine.hpp"
-#include "RobustStats.hpp"
-#include "MostCommonValue.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/MostCommonValue.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -198,7 +198,7 @@ public:
    vector<double> xevalfit;            // evaluate fit at each x
    bool doSeq;                         // sequential stats
    bool doDisc;                        // discontinuities
-   string discstr;                     // 
+   string discstr;                     //
    double ytol,xtol;                   // tolerances to discontinuities
 
    // filters
@@ -340,7 +340,7 @@ try {
    // Build title
    GD.Title = GD.PrgmName + ", Ver. "
       + GD.Version + wallbeg.printf(", Run %04Y/%02m/%02d at %02H:%02M:%02S");
- 
+
    // display title on screen -- see below after cmdline input
 
    // process : loop once -----------------------------------------------------
@@ -1858,7 +1858,7 @@ try {
    //mcv.dump(cout,prec);
    int count(mcv.bestN());
    const double dt(mcv.bestDT()), tol(mcv.getTol());
-   cout << "#FFT Computed X-step is " << fixed << setprecision(GD.prec) << dt 
+   cout << "#FFT Computed X-step is " << fixed << setprecision(GD.prec) << dt
       << " with " << count << " occurances." << endl;
    if(GD.dtfft == 0.0) GD.dtfft = dt;
    else cout << "#FFT X-step is forced by user to be "

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -39,8 +39,8 @@
 #ifndef DIFFFRAME_HPP
 #define DIFFFRAME_HPP
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 
 class DiffFrame : public gnsstk::BasicFramework
@@ -52,8 +52,8 @@ public:
     * message is an extra message that gets passed to the
     * program description.
     */
-   DiffFrame(char* arg0, 
-             const std::string& type, 
+   DiffFrame(char* arg0,
+             const std::string& type,
              const std::string& message = std::string())
       : gnsstk::BasicFramework(arg0,
                               "Diffs input " + type + " files. " + message),
@@ -85,10 +85,10 @@ public:
          std::cerr << "This program requires two input files." << std::endl;
          return false;
       }
-      
+
       std::string fname1 = inputFileOption.getValue()[0];
       std::string fname2 = inputFileOption.getValue()[1];
-      
+
       //
 
       if (timeOption.getCount())
@@ -111,7 +111,7 @@ public:
 #pragma clang diagnostic pop
 protected:
    virtual void process() = 0;
-   
+
    /// start time for file record differencing
    gnsstk::CommandOptionWithSimpleTimeArg timeOption;
    /// end time for file record differencing

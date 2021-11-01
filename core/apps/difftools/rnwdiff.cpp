@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -118,7 +118,7 @@ public:
       /// Differences found in input files
    static const int DIFFS_CODE = 1;
    RNWDiff(char* arg0)
-         : DiffFrame(arg0, 
+         : DiffFrame(arg0,
                      std::string("RINEX Nav")),
            precisionOption('p',"precision", "Ignore diffs smaller than "
               "(data * (10 ^ -ARG). Default = 13")
@@ -184,7 +184,7 @@ void RNWDiff::process()
 
       pair< list<Rinex3NavData>, list<Rinex3NavData> > difflist =
          ff1.diff(ff2, op);
-      
+
       if (difflist.first.empty() && difflist.second.empty())
       {
          cout << "no differences were found" << endl;
@@ -211,9 +211,9 @@ void RNWDiff::process()
                 (firstitr->xmitTime == seconditr->xmitTime) )
             {
                YDSTime recTime(firstitr->time);
-               cout << fixed << setw(3) << recTime.doy << ' ' 
+               cout << fixed << setw(3) << recTime.doy << ' '
                     << setw(10) << setprecision(0)
-                    << recTime.sod << ' ' 
+                    << recTime.sod << ' '
                     << setw(19) << setprecision(12) << scientific
                     << (firstitr->af0      - seconditr->af0) << ' '
                     << (firstitr->af1      - seconditr->af1) << ' '
@@ -253,7 +253,7 @@ void RNWDiff::process()
             else
                seconditr++;
          }
-         
+
          if (!matched)
             firstitr++;
       }
@@ -305,7 +305,7 @@ int main(int argc, char* argv[])
          return m.exitCode;
       if (!m.run())
          return m.exitCode;
-      
+
       return m.exitCode;
    }
    catch(Exception& e)

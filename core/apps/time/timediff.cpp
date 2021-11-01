@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -37,9 +37,9 @@
 //==============================================================================
 
 
-#include <BasicFramework.hpp>
-#include <CommonTime.hpp>
-#include <CommandOptionWithCommonTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;
@@ -98,7 +98,7 @@ TimeDiff::TimeDiff(char* arg0)
         RinexFileTimeOption('R', "rinex-file", "%y %m %d %H %M %S",
                             "\"Year(2-digit) Month(numeric) DayOfMonth Hour"
                             " Minute Second\""),
-        GPSEWSOption('o', "ews", "%E %G %g", 
+        GPSEWSOption('o', "ews", "%E %G %g",
                      "\"GPSEpoch 10bitGPSweek SecondOfWeek\""),
         GPSWSOption('f', "ws", "%F %g", "\"FullGPSWeek SecondOfWeek\""),
         GPSWZOption('w', "wz", "%F %Z", "\"FullGPSWeek Zcount\""),

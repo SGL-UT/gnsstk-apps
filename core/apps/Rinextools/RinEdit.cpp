@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -83,7 +83,7 @@
  * \dicterm{\--help}
  * \dicdef{Print this syntax page, and quit (don't)}
  * \enddictionary
- * 
+ *
  * Editing commands
  * RINEX header modifications (arguments with whitespace must be quoted)
  * \dictionary
@@ -238,24 +238,24 @@
 #include <algorithm>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "CommandLine.hpp"
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/CommandLine.hpp>
 
-#include "CommonTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
 
-#include "RinexSatID.hpp"
-#include "RinexObsID.hpp"
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsID.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
 
 //------------------------------------------------------------------------------
 using namespace std;
@@ -368,7 +368,7 @@ private:
       beginTime = CivilTime(1980,1,6,0,0,0.0,TimeSystem::GPS).convertToCommonTime();
       endTime = CommonTime::END_OF_TIME;
       decimate = 0.0;
-   
+
       help = verbose = outver2 = false;
       debug = -1;
 
@@ -461,7 +461,7 @@ int main(int argc, char **argv)
          // build title = first line of output
       C.Title = "# " + C.prgmName + ", part of the GNSS Toolkit, Ver " + version
          + ", Run " + printTime(wallclkbeg,C.calfmt);
-   
+
       for(;;) {
             // get information from the command line
             // iret -2 -3 -4
@@ -659,7 +659,7 @@ int processFiles(void)
          for (it = C.vecCmds.begin(); it != C.vecCmds.end(); it++)
          {
             LOG(DEBUG) << "Killing " << it->asString() << " " << it->sat;
-            
+
                // DO delete obs without sign
             if (it->type == EditCmd::doCT)
             {
@@ -713,7 +713,7 @@ int processFiles(void)
                   Rinex3ObsHeader::PRNNumObsMap::iterator jt = RHout.numObsForSat.find(it->sat);
                   if (jt != RHout.numObsForSat.end())
                      RHout.numObsForSat.erase(jt);
-                  
+
                   Rinex3ObsHeader::GLOFreqNumMap::iterator kt = RHout.glonassFreqNo.find(it->sat);
                   if (kt != RHout.glonassFreqNo.end())
                      RHout.glonassFreqNo.erase(kt);
@@ -756,7 +756,7 @@ int processFiles(void)
                }
             }
          }
-         
+
 
          if (C.outver2)
          {
@@ -767,10 +767,10 @@ int processFiles(void)
             }
             RHout.prepareVer2Write();
          }
-         
+
             // NB. header will be written by executeEditCmd
             // -----------------------------------------------------------------
-         
+
          if (C.debug > -1)
          {
             LOG(DEBUG) << "Output header";
@@ -850,7 +850,7 @@ int processFiles(void)
                         RDout.obs[sat].push_back(Rdata.obs[sat][i]);
                }  // end loop over sats
             }
-            
+
                // apply editing commands, including open files, write out headers
             iret = processOneEpoch(Rhead, RHout, Rdata, RDout);
             if(iret < 0) break;
@@ -903,7 +903,7 @@ int processOneEpoch(Rinex3ObsHeader& Rhead, Rinex3ObsHeader& RHout,
       int iret(0);
       RinexSatID sat;
       CommonTime now(Rdata.time);         // TD what if its aux data w/o an epoch?
-      
+
          // if aux header data, either output or skip
       if (RDout.epochFlag > 1)
       {           // aux header data
@@ -916,7 +916,7 @@ int processOneEpoch(Rinex3ObsHeader& Rhead, Rinex3ObsHeader& RHout,
       {                              // regular data
          vector<EditCmd>::iterator it, jt;
          vector<EditCmd> toCurr;
-         
+
             // for cmds with ttag <= now either execute and delete, or move to current
          it = C.vecCmds.begin();
          while(it != C.vecCmds.end())
@@ -952,7 +952,7 @@ int processOneEpoch(Rinex3ObsHeader& Rhead, Rinex3ObsHeader& RHout,
             else
                ++it;
          }
-      
+
             // apply current commands, deleting obsolete ones
          it = C.currCmds.begin();
          while(it != C.currCmds.end())
@@ -1028,7 +1028,7 @@ int executeEditCmd(const vector<EditCmd>::iterator& it, Rinex3ObsHeader& Rhead,
             if(!C.messHDa.empty()) Rhead.agency = C.messHDa;
             if(!C.messHDj.empty()) Rhead.recNo = C.messHDj;
             if(!C.messHDk.empty()) Rhead.recType = C.messHDk;
-            if(!C.messHDl.empty()) Rhead.recVers = C.messHDl;            
+            if(!C.messHDl.empty()) Rhead.recVers = C.messHDl;
             if(!C.messHDs.empty()) Rhead.antNo = C.messHDs;
             if(!C.messHDx.empty())
             {
@@ -1104,7 +1104,7 @@ int executeEditCmd(const vector<EditCmd>::iterator& it, Rinex3ObsHeader& Rhead,
          vector<RinexSatID> sats;
          if (it->sign == -1)
             return 0;                 // delete the (-) command
-         
+
          LOG(DEBUG) << " Delete sat " << it->asString();
          if (it->sat.id > 0)
          {
@@ -1122,14 +1122,14 @@ int executeEditCmd(const vector<EditCmd>::iterator& it, Rinex3ObsHeader& Rhead,
                if (kt->first.system == it->sat.system)
                   sats.push_back(kt->first);
          }
-         
+
          LOG(DEBUG) << " sats.size() " << sats.size() << " Rdata.obs.size() " << Rdata.obs.size();
-         
+
          for (j=0; j<sats.size(); j++)
             Rdata.obs.erase(sats[j]);
-         
+
          Rdata.numSVs = Rdata.obs.size();
-         
+
          if (it->sign == 0)
             return 0;                  // delete the one-time command
       }

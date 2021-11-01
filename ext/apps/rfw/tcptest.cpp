@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -44,8 +44,8 @@ using std::cout;
 using std::endl;
 
 #include "TCPStream.hpp"
-#include "CommandOption.hpp"
-#include "CommandOptionParser.hpp"
+#include <gnsstk/CommandOption.hpp>
+#include <gnsstk/CommandOptionParser.hpp>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -83,23 +83,23 @@ int main(int argc, char* argv[])
          if (listening_socket < 0)
             cout << "Couldn't create listening socket"
                  << " (" << strerror(errno) << ")" << endl, exit(-1);
-         
+
          int value = 1;
          int rc=0;
-         
+
          if (::setsockopt(listening_socket, SOL_SOCKET, SO_REUSEADDR,
                           (char*)&value, sizeof(value)))
             cout << "Couldn't set reuse address"
                  << " (" << strerror(errno) << ")" << endl, exit(-1);
-         
+
          if (::bind(listening_socket, (sockaddr *)server, sizeof(sockaddr)))
             cout << "Couldn't bind"
                  << " (" << strerror(errno) << ")" << endl, exit(-1);
-         
+
          if (::listen(listening_socket, 5))
             cout << "Couldn't listen"
                  << " (" << strerror(errno) << ")" << endl, exit(-1);
-         
+
          gnsstk::TCPStream link;
          gnsstk::SocketAddr peeraddr = gnsstk::SocketAddr(any,1);
          link.rdbuf()->accept(listening_socket,peeraddr);
@@ -109,7 +109,7 @@ int main(int argc, char* argv[])
       else
       {
          cout << "Running as client, :" << client << endl;
-         
+
          tcpStream.connect(client);
          if( !tcpStream.good() )
             cout << "Connection failed!" << endl, exit(0);

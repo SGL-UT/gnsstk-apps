@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -215,6 +215,11 @@
 #include <gnsstk/Rinex3ObsStream.hpp>
 #include <gnsstk/Rinex3ObsHeader.hpp>
 #include <gnsstk/Rinex3ObsData.hpp>
+
+#include <gnsstk/Rinex3NavBase.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
 
 #include <gnsstk/SP3Header.hpp>
 #include <gnsstk/SP3Data.hpp>
@@ -1801,10 +1806,10 @@ try {
 
          // write file name and header line(s)
          if(C.havePOS)
-            LOG(INFO) << "# wk secs-of-wk POS" 
+            LOG(INFO) << "# wk secs-of-wk POS"
                << " Sol-Desc        X            Y           Z"
                << "     SYS Clk[...] Nsats PDOP GDOP RMS";
-               
+
          if(C.haveRCL)
             LOG(INFO) << "# wk secs-of-wk RCL clock_bias(m)";
 
@@ -2355,7 +2360,7 @@ bool LinCom::ParseAndSave(const string& lab, bool save)
                   TECUperM = GLOL1*GLOL1/40.28;
                }
             }
- 
+
             //LOG(DEBUG2) << "Parse alpha is " << fixed << setprecision(4) << alpha
             //   << " for sat " << sat << " and TECUperM " << scientific << TECUperM;
             sysConsts[sys].push_back(TECUperM/alpha);

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -52,13 +52,13 @@
 // includes
 // system
 #include <deque>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // GNSSTk
-#include "GNSSconstants.hpp"             // DEG_TO_RAD
-#include "PolyFit.hpp"
-#include "EphemerisRange.hpp"
+#include <gnsstk/GNSSconstants.hpp>             // DEG_TO_RAD
+#include <gnsstk/PolyFit.hpp>
+#include <gnsstk/EphemerisRange.hpp>
 // geomatics
-#include "SunEarthSatGeometry.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
 #include "PhaseWindup.hpp"
 #include "index.hpp"
 // DDBase
@@ -107,7 +107,7 @@ try {
       }  // loop over sats
 
    }  // loop over stations
-   
+
    return 0;
 }
 catch(Exception& e) { GNSSTK_RETHROW(e); }
@@ -137,7 +137,7 @@ try {
    int i,j;
    double x,x0,d0,dx,dph;
    PolyFit<double> PF;// fit polynomials to phase
-   deque<int> dc;     // the sliding window : time -- keep the deques 
+   deque<int> dc;     // the sliding window : time -- keep the deques
    deque<double> dp;  // the sliding window : data -- parallel
 
    //if(CI.Verbose) oflog << "BEGIN FitPhasesAndMoveData() for site " << site
