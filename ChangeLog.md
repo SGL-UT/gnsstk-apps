@@ -1,3 +1,18 @@
+# Version 12.0.1   Friday October 29, 2021
+
+Modifications by Author
+-----------------------
+     Andrew Kuck <kuck@arlut.utexas.edu> (1):
+           Update copyright header.
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           adding vs2019 and new windows VM powershell support and update
+
+     John Knutson <johnk@arlut.utexas.edu> (1):
+           Remove references to latex documentation that no longer exists
+
+
+
 # Version 12.0.0   Friday September 17, 2021
 
 Modifications by Author

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -71,17 +71,17 @@ public:
    bool initialize(int argc, char *argv[]) throw()
    {
       CommandOptionWithAnyArg inputOpt(
-         'i', "input", 
+         'i', "input",
          "Where to get the data from. Can be a regular file, a serial "
          "device (ser:/dev/ttyS0), a tcp port (tcp:hostname:port), or "
          "standard input. The default is just to take standard input.");
 
       CommandOptionWithAnyArg passwordOpt(
-         '\0', "password", 
+         '\0', "password",
          "Provide a login password to tcp device.");
 
       CommandOptionWithAnyArg usernameOpt(
-         '\0', "username", 
+         '\0', "username",
          "Provide a login username to tcp device.");
 
       CommandOptionWithAnyArg sendStringOpt(
@@ -130,10 +130,10 @@ public:
 
       if (output.getFilespec() == "-")
          output.setFilespec("<stdout>");
-      
+
       for (size_t i=0; i<sendStringOpt.getCount(); i++)
          sendString.push_back(sendStringOpt.getValue()[i]);
-      
+
       for (size_t i=0; i<sendPeriodOpt.getCount(); i++)
          sendPeriod.push_back(StringUtils::asInt(sendPeriodOpt.getValue()[i]));
 
@@ -150,7 +150,7 @@ public:
 
       if (debugLevel)
       {
-         cout << "Using " << output.getFilespec() 
+         cout << "Using " << output.getFilespec()
               << " for output files" << endl;
          if (username != "" || password != "")
             cout << "Sending username:" << username

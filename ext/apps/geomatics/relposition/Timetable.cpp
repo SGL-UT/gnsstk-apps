@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -136,7 +136,7 @@ catch(Exception& e) { GNSSTK_RETHROW(e); }
 catch(std::exception& e) { Exception E("std except: "+string(e.what())); GNSSTK_THROW(E); }
 catch(...) { Exception e("Unknown exception"); GNSSTK_THROW(e); }
 }
-    
+
 //------------------------------------------------------------------------------------
 // Find the start and stop counts in the timetable which applies to the given baseline
 int QueryTimeTable(string baseline, int& beg, int& end)
@@ -371,7 +371,7 @@ try {
       ts.findElev();
       SegList.push_back(ts);
    }
-   
+
    if(SegList.size() == 0) return -2;
 
    // figure out the time table from the list of segments
@@ -615,7 +615,7 @@ try {
    }
    else {
       // 2.
-      // start with 
+      // start with
       // |======1st Seg======|            gap                 |=====last Seg======|
       //
       // in general, new segs can be added, so Segs looks like this:
@@ -658,7 +658,7 @@ try {
       // }
       // } // end of loop over segments i
       // if(keep) add this segment to the time table
-      // 
+      //
       // loop over all segments, in decreasing order of metric()
       for(i=1,ttit=TTS.begin(); ttit != TTS.end(); i++,ttit++) { // i temp
 

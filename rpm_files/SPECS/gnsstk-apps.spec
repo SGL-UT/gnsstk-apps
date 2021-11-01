@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 12.0.0
+%define version 12.0.1
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -51,6 +51,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Oct 29 2021 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v12.0.1 release
+- Update copyright statement.
+- Remove references to latex documentation that no longer exists
+- Update pipeline for new windows VM and vs2019 support.  Update conda recipe to use local src
 * Wed Sep 15 2021 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v12.0.0 release
 - TKS Split out to separate lib and apps repository.

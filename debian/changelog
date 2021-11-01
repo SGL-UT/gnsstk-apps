@@ -1,3 +1,13 @@
+gnsstk-apps (12.0.1-1) stable; urgency=low
+
+  * Updated to version 12.0.1
+  * Update pipeline for new windows VM and vs2019 support. Update conda
+    recipe to use local src
+  * Remove references to latex documentation that no longer exists
+  * Update copyright statement.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Fri, 29 Oct 2021 15:36:31 -0500
+
 gnsstk-apps (12.0.0-1) stable; urgency=low
 
   * Updated to version 12.0.0

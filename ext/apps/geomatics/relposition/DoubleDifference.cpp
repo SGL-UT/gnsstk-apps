@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -141,7 +141,7 @@ try {
 
          // delete marked SD buffers
       for(i=0; i<Remove.size(); i++) SDmap.erase(Remove[i]);
-   
+
          // ----------------------------------------------------------
          // now compute double differences - according to timetable
       if(ComputeDoubleDifferences(SDmap)) return 1;
@@ -214,7 +214,7 @@ try {
                //it2->second.elev[j] > CI.MinElevation) {
             if(ElevationMask(it1->second.elev[i],it1->second.az[i]) &&
                ElevationMask(it2->second.elev[j],it2->second.az[j])) {
-            
+
                   // buffer the differences
                sddata.count.push_back(it1->second.count[i]);
                sddata.L1.push_back(it1->second.L1[i] - it2->second.L1[j]);
@@ -271,13 +271,13 @@ try {
    frst = true;
    for(it=SDmap.begin(); it != SDmap.end(); it++) {
       int jj=0;
-      Inext[it->first] = jj;  
+      Inext[it->first] = jj;
       if(frst || it->second.count[0] < count) {
          count = it->second.count[0];
          frst = false;
       }
    }
-   
+
       // ref will be the SDid for the reference satellite
    SDid ref = SDmap.begin()->first;        // ref.sat is TBD by timetable
 
@@ -357,7 +357,7 @@ try {
             tddb.prevL2 = (ddL2-ddER)+tddb.L2bias;
             DDDataMap[ddid] = tddb;
          }
-               
+
             // get the current DDData structure, and relative sign
          jt = DDDataMap.find(ddid); // never fail...
          ddsign = DDid::compare(ddid,jt->first);
@@ -405,7 +405,7 @@ try {
       }  // end loop over SD's in SDmap
 
       Inext[ref]++;
-      
+
          // find the next count
          // quit when all Inext are at end
       frst = true;

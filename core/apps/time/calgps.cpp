@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -93,22 +93,22 @@ using namespace gnsstk;
 void printMonth(short month, short year)
 {
    CivilTime civ(year, month, 1, 0, 0, 0.0);
-  
+
    cout << endl << civ.printf("%26b %4Y") << endl;
-   
+
    GPSWeekSecond gws(civ);
 
    for (; civ.month == month; ++gws.week, gws.sow = 0, civ = gws)
    {
       cout << setw(4) << gws.week << "  ";
-      
+
       for (short thisDow = 0; thisDow < 7; ++thisDow)
       {
          gws.sow = thisDow * SEC_PER_DAY;
          CommonTime com(gws);
          if (CivilTime(com).month == month)
 	   cout << printTime(com, "%2d-%03j ");
-         else 
+         else
            cout << "       ";
       }
       cout << endl;
@@ -119,12 +119,12 @@ int main(int argc, char* argv[])
 {
 
    try {
-      
+
       CommandOptionNoArg helpOption('h',"help","Display argument list.",false);
       CommandOptionNoArg threeOption('3',"three-months","Display last, this and next months.",false);
       CommandOptionNoArg thisYearOption('y',"year","Display all months for the current year");
       CommandOptionWithNumberArg givenYearOption('Y',"specific-year","Display all months for a given year");
-      
+
       CommandOptionParser cop("GNSSTk GPS Calendar Generator");
       cop.parseOptions(argc, argv);
 
@@ -140,8 +140,8 @@ int main(int argc, char* argv[])
          cop.displayUsage(cout);
          return 0;
       }
-    
-      
+
+
       // Print this month
       SystemTime st;
       CivilTime now(st);
@@ -155,15 +155,15 @@ int main(int argc, char* argv[])
          firstMonth =1;
          lastMonth  =12;
       }
-      
+
       if (givenYearOption.getCount())
       {
          firstMonth =1;
          lastMonth  =12;
-         
+
          firstYear = gnsstk::StringUtils::asInt((givenYearOption.getValue())[0]);
          lastYear = firstYear;
-         
+
       }
 
       if (threeOption.getCount())
@@ -174,7 +174,7 @@ int main(int argc, char* argv[])
             firstMonth = 12;
             firstYear--;
          }
-         
+
          lastMonth++;
          if (lastMonth==13)
          {
@@ -182,10 +182,10 @@ int main(int argc, char* argv[])
             lastYear++;
          }
       }
-      
+
       int mcount=0;
       for (short m=firstMonth, y=firstYear;
-          (y<lastYear) || ((m<=lastMonth) && (y==lastYear)); 
+          (y<lastYear) || ((m<=lastMonth) && (y==lastYear));
            m++)
       {
          if (m==13)
@@ -193,13 +193,13 @@ int main(int argc, char* argv[])
             m=1;
             y++;
          }
-         
+
           printMonth(m, y);
       }
-  
+
       cout << endl;
-      
-      
+
+
    }
    catch (Exception& error)
    {

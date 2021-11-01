@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -52,10 +52,10 @@ public:
        * message is an extra message that gets passed to the
        * program description.
        */
-   MergeFrame(char* arg0, 
-              const std::string& type, 
+   MergeFrame(char* arg0,
+              const std::string& type,
               const std::string& message = std::string())
-         : gnsstk::BasicFramework(arg0, 
+         : gnsstk::BasicFramework(arg0,
                                  "Sorts and merges input " + type +
                                  " files into a single file. " + message),
            inputFileOption("<" + type + " file> [...]", true),
@@ -63,7 +63,7 @@ public:
                             "output",
                             "Name for the merged output " + type + " file."
                             " Any existing file with that name will be"
-                            " overwritten.", 
+                            " overwritten.",
                             true)
    {
       outputFileOption.setMaxCount(1);
