@@ -901,7 +901,7 @@ deb9_deploy:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
-    - python -c "import gnsstk"
+    - python3 -c "import gnsstk"
     - timeconvert
   dependencies:
     - package_debian_9
@@ -918,7 +918,7 @@ deb10_deploy:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd debs
     - sudo apt-get -y install ./*.deb
-    - python -c "import gnsstk"
+    - python3 -c "import gnsstk"
     - timeconvert
   dependencies:
     - package_debian_10
