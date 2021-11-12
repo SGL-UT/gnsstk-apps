@@ -53,7 +53,7 @@
 #include <gnsstk/CommandOption.hpp>
 #include <gnsstk/CommandOptionParser.hpp>
 #include <gnsstk/TimeString.hpp>
-#include <gnsstk/PRSolutionLegacy.hpp>
+#include <gnsstk/PRSolution.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -101,7 +101,7 @@ try {
    StochasticModel = string("cos2");      // cos, cos2, SNR
       // for pseudorange solution
    {
-      PRSolutionLegacy dummy;
+      PRSolution dummy;
       PRSrmsLimit = dummy.RMSLimit; // 6.5;
       PRSnIter = dummy.MaxNIterations; // 10;
       PRSconverge = dummy.ConvergenceLimit; // 1.e-9;
