@@ -280,7 +280,6 @@ initialize(int argc, char *argv[], bool pretty) throw()
    if (!BasicFramework::initialize(argc, argv, pretty))
       return false;
    navLib.addFactory(ndfp);
-   ndfp->debugLevel = debugLevel;
       // process nav message type command line arguments
    vector<string> types(typesOpt.getValue());
    NavMessageTypeSet nmts;
