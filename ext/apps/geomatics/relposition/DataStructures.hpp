@@ -50,7 +50,7 @@
 #include <vector>
 
 // GNSSTk
-#include <gnsstk/PRSolutionLegacy.hpp>
+#include <gnsstk/PRSolution.hpp>
 #include <gnsstk/Stats.hpp>
 
 // DDBase
@@ -115,7 +115,7 @@ public:
    bool fixed;                      // if true, hold position fixed, else solve for it
    bool usePRS;                     // if true, use ave. PR solution as position
    gnsstk::Position pos;             // either known or solution or apriori
-   gnsstk::PRSolutionLegacy PRS;     // pseudorange solution, includes clock bias
+   gnsstk::PRSolution PRS;           // pseudorange solution, includes clock bias
    gnsstk::Stats<double> PRSXstats;  // stats on pseudorange solution
    gnsstk::Stats<double> PRSYstats;  // stats on pseudorange solution
    gnsstk::Stats<double> PRSZstats;  // stats on pseudorange solution

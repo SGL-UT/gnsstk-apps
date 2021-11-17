@@ -80,6 +80,12 @@ Station::Station(void) throw()
    pTropModel = NULL;
    TropType = "Saas";
    ant_azimuth = 0.0;
+      // shove all known systems into the allowed list as there are no
+      // restrictions.
+   for (SatelliteSystem i : SatelliteSystemIterator())
+   {
+      PRS.allowedGNSS.push_back(i);
+   }
 }
 
 //------------------------------------------------------------------------------------

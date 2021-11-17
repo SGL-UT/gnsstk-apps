@@ -63,8 +63,8 @@
 #include <gnsstk/StringUtils.hpp>
 #include <gnsstk/CommonTime.hpp>
 #include <gnsstk/TropModel.hpp>
-#include <gnsstk/SP3EphemerisStore.hpp>
-#include <gnsstk/GPSEphemerisStore.hpp>
+#include <gnsstk/NavLibrary.hpp>
+#include <gnsstk/MultiFormatNavDataFactory.hpp>
 #include <gnsstk/EarthOrientation.hpp>
 #include <gnsstk/EOPStore.hpp>
 #include <gnsstk/Position.hpp>
@@ -163,7 +163,8 @@ extern int Count;
 extern int maxCount;
 extern double wave;
 
-extern gnsstk::XvtStore<gnsstk::SatID> *pEph;
+extern gnsstk::NavLibrary navLib;
+extern std::shared_ptr<gnsstk::NavDataFactory> ndfp;
 extern gnsstk::EOPStore EOPList;
 extern gnsstk::EarthOrientation eorient;
 
