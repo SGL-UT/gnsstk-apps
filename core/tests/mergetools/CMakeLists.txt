@@ -1,5 +1,5 @@
-set( SD ${NAVSAT_TOOLS_TEST_DATA_DIR} )
-set( TD ${NAVSAT_TOOLS_TEST_OUTPUT_DIR} )
+set( SD ${GNSSTK_APPS_TEST_DATA_DIR} )
+set( TD ${GNSSTK_APPS_TEST_OUTPUT_DIR} )
 ###############################################################################
 # TEST mergeRinMet
 ###############################################################################
@@ -8,15 +8,15 @@ set( TD ${NAVSAT_TOOLS_TEST_OUTPUT_DIR} )
 add_test(NAME mergeRinMet_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME mergeRinMet_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=mergeRinMet_1
          -DTESTNAME=mergeRinMet_1
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
@@ -41,8 +41,8 @@ set_tests_properties(mergeRinMet_ValidOutput PROPERTIES DEPENDS mergeRinMet_1)
 add_test(NAME mergeRinMet_2
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=mergeRinMet_2
          -DTESTNAME=mergeRinMet_2
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
@@ -70,15 +70,15 @@ add_test(NAME mergeRinMet_2
 add_test(NAME mergeRinNav_CmdOpt_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME mergeRinNav_1
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=mergeRinNav_1
          -DTESTNAME=mergeRinNav_1
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
@@ -104,8 +104,8 @@ set_tests_properties(mergeRinNav_ValidOutput PROPERTIES DEPENDS mergeRinNav_1)
 add_test(NAME mergeRinNav_2
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
-         -DSOURCEDIR=${NAVSAT_TOOLS_TEST_DATA_DIR}
-         -DTARGETDIR=${NAVSAT_TOOLS_TEST_OUTPUT_DIR}
+         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
+         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DTESTBASE=mergeRinNav_2
          -DTESTNAME=mergeRinNav_2
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>

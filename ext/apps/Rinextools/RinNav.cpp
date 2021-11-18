@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -136,24 +136,24 @@
 #include <fstream>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "stl_helpers.hpp"
-#include "CommandLine.hpp"
-#include "CommonTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
 
-#include "RinexSatID.hpp"
+#include <gnsstk/RinexSatID.hpp>
 
-#include "Rinex3NavBase.hpp"
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
-#include "Rinex3EphemerisStore.hpp"
+#include <gnsstk/Rinex3NavBase.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
+#include <gnsstk/Rinex3EphemerisStore.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -615,7 +615,7 @@ try {
 
    size_t nfiles(0);
    for(size_t nfile=0; nfile<C.InputNavFiles.size(); nfile++) {
-      
+
       string filename(C.InputNavFiles[nfile]);
 
       // load filename

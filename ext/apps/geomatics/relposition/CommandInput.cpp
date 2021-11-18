@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -50,21 +50,21 @@
 #include <cstring>
 
 // GNSSTk
-#include "CommandOption.hpp"
-#include "CommandOptionParser.hpp"
-#include "TimeString.hpp"
-#include "PRSolutionLegacy.hpp"
+#include <gnsstk/CommandOption.hpp>
+#include <gnsstk/CommandOptionParser.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/PRSolution.hpp>
 
 // DDBase
 #include "DDBase.hpp"
 // DDBase.hpp includes CommandInput.hpp
 
-#include "SimpleTropModel.hpp"
-#include "SaasTropModel.hpp"
-#include "NBTropModel.hpp"
-#include "GGTropModel.hpp"
-#include "GGHeightTropModel.hpp"
-#include "NeillTropModel.hpp"
+#include <gnsstk/SimpleTropModel.hpp>
+#include <gnsstk/SaasTropModel.hpp>
+#include <gnsstk/NBTropModel.hpp>
+#include <gnsstk/GGTropModel.hpp>
+#include <gnsstk/GGHeightTropModel.hpp>
+#include <gnsstk/NeillTropModel.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -101,7 +101,7 @@ try {
    StochasticModel = string("cos2");      // cos, cos2, SNR
       // for pseudorange solution
    {
-      PRSolutionLegacy dummy;
+      PRSolution dummy;
       PRSrmsLimit = dummy.RMSLimit; // 6.5;
       PRSnIter = dummy.MaxNIterations; // 10;
       PRSconverge = dummy.ConvergenceLimit; // 1.e-9;
@@ -179,7 +179,7 @@ try {
    CommandOption dashl(CommandOption::hasArgument, CommandOption::stdType,
       0,"Log"," --Log <file>          Name of output log file (" + LogFile + ")");
    dashl.setMaxCount(1);
-   
+
    // files
    // observation
    CommandOption dashop(CommandOption::hasArgument, CommandOption::stdType,
@@ -290,19 +290,19 @@ try {
       "intervals (" + asString(NRZDintervals) + ")\n"
       "                         [enter 0 to turn off estimation of RZD]");
    dashntrop.setMaxCount(1);
-   
+
    CommandOption dashttrop(CommandOption::hasArgument, CommandOption::stdType,
       0,"RZDtimeconst",
       " --RZDtimeconst <tau>  Time constant in hours for multiple RZD intervals ("
       + asString(RZDtimeconst,2) + ")");
    dashttrop.setMaxCount(1);
-   
+
    CommandOption dashstrop(CommandOption::hasArgument, CommandOption::stdType,
       0,"RZDsigma",
       " --RZDsigma <sig>      A priori sigma in m for residual zenith delay ("
       + asString(RZDsigma,2) + ")");
    dashstrop.setMaxCount(1);
-   
+
    // TD need baseline identifier: --Tight <id,id,ppm>. also for Loose
    CommandOption dashtight(CommandOption::hasArgument, CommandOption::stdType,
       0,"Tight"," --Tight <ppm>         Tight a priori constraint, a fraction "
@@ -339,7 +339,7 @@ try {
       "Ref", " --Ref <sat>           Use <sat> as 'reference' "
       "in DDs; don't use a timetable ()");
    dashRef.setMaxCount(1);
-   
+
    // data editing
    CommandOption dashelev(CommandOption::hasArgument, CommandOption::stdType,
       0,"MinElev","\n# Data editing:\n --MinElev <elev>      Ignore data "
@@ -1333,7 +1333,7 @@ try {
    }
    for(i=0; i<notfixed.size(); i++) {
       Baselines.push_back(fixed[0] + string("-") + notfixed[i]);
-      if(CI.Verbose) 
+      if(CI.Verbose)
          oflog << " Compute baseline : " << Baselines.back() << endl;
       if(CI.Screen)
          cout << " Compute baseline : " << Baselines.back() << endl;
@@ -1345,7 +1345,7 @@ try {
       site2 = word(CI.OutputBaselines[i],1,'-');
       if(  Stations.find(site1) == Stations.end()
         || Stations.find(site2) == Stations.end()) {
-         
+
          cerr << "Input ERROR: Invalid output baseline : '" << CI.OutputBaselines[i]
                << "', station not found. Abort.\n";
          oflog << "Input ERROR: Invalid output baseline : '" << CI.OutputBaselines[i]
@@ -1488,7 +1488,7 @@ try {
    if(!OutputDDDFile.empty())
       ofs << " Output file name: " << OutputDDDFile << " for edited DD data." << endl;
    if(!OutputDDRFile.empty())
-      ofs << " Output file name: " << OutputDDRFile<< " for DD post-fit residuals." 
+      ofs << " Output file name: " << OutputDDRFile<< " for DD post-fit residuals."
          << endl;
    if(!OutputTDDFile.empty())
       ofs << " Output file name: " << OutputTDDFile << " for triple diff data."

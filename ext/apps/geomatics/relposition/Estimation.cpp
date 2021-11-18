@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -50,18 +50,18 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include "Namelist.hpp"
-#include "SRIFilter.hpp"
-#include "EphemerisRange.hpp"
-#include "PreciseRange.hpp"
-#include "Stats.hpp"
-#include "RobustStats.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Vector.hpp>
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Namelist.hpp>
+#include <gnsstk/SRIFilter.hpp>
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/PreciseRange.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -133,7 +133,7 @@ static Vector<double> NominalState;// save the nominal state to output with solu
 // invert to get solution
 //
 // inupt batch size : number of epochs / batch (nepb)
-// 
+//
 // start with state of length np, nepb
 // loop over data epochs
 //    fill a data vector for this epoch, length nd
@@ -837,7 +837,9 @@ try {
       }
          // sat 1 -----------------------------------------------------
          // should you use CER.rawrange here?
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat1,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat1,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st1.pTropModel->correction(st1.pos,SatR,SolutionEpoch);
       f(m) += ER+trop;
@@ -850,7 +852,7 @@ try {
       if(CI.NRZDintervals > 0) {
          n = StateNL.index(site1 + string("-RZD") + asString(ntrop));
          if(n == -1) {
-            Exception e("RZD states confused: unable to find state " + 
+            Exception e("RZD states confused: unable to find state " +
                site1 + string("-RZD") + asString(ntrop));
             GNSSTK_THROW(e);
          }
@@ -860,7 +862,9 @@ try {
       }
 
          // sat 2 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat2,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat2,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st1.pTropModel->correction(st1.pos,SatR,SolutionEpoch);
       f(m) -= ER+trop;
@@ -888,7 +892,9 @@ try {
          }
       }
          // sat 1 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat1,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat1,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st2.pTropModel->correction(st2.pos,SatR,SolutionEpoch);
       f(m) -= ER+trop;
@@ -901,7 +907,7 @@ try {
       if(CI.NRZDintervals > 0) {
          n = StateNL.index(site2 + string("-RZD") + asString(ntrop));
          if(n == -1) {
-            Exception e("RZD states confused: unable to find state " + 
+            Exception e("RZD states confused: unable to find state " +
                site2 + string("-RZD") + asString(ntrop));
             GNSSTK_THROW(e);
          }
@@ -911,7 +917,9 @@ try {
       }
 
          // sat 2 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat2,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat2,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st2.pTropModel->correction(st2.pos,SatR,SolutionEpoch);
       f(m) += ER+trop;
@@ -1158,7 +1166,7 @@ try {
             << converge << " m; (" << CI.convergence << " m)" << endl;
       done += 2;
    }
-   
+
    if(!done && CI.Verbose) {
       oflog << "DDBase: " << iter_n << " iterations"
             << ", convergence criterion = " << scientific << setprecision(3)
@@ -1205,15 +1213,15 @@ string ComposeName(const DDid& ddid)
 {
 try {
    if(ddid.ssite > 0) {
-      if(ddid.ssat > 0) 
+      if(ddid.ssat > 0)
          return ComposeName(ddid.site1,ddid.site2,ddid.sat1,ddid.sat2);
-      else 
+      else
          return ComposeName(ddid.site1,ddid.site2,ddid.sat2,ddid.sat1);
    }
    else {
-      if(ddid.ssat > 0) 
+      if(ddid.ssat > 0)
          return ComposeName(ddid.site2,ddid.site1,ddid.sat1,ddid.sat2);
-      else 
+      else
          return ComposeName(ddid.site2,ddid.site1,ddid.sat2,ddid.sat1);
    }
 }

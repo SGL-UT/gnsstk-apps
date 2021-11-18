@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -157,7 +157,7 @@
  * This is followed by a listing of the contents of the ephemeris data.
  *
  * Which is in turn followed by a series of results, one epoch per line with the format:
- * 
+ *
  * \cmdex{TAG,Nrej week sow Nsat X Y Z T RMS slope nit conv sat sat .. (code) [N]V}
  *
  * \dictable
@@ -209,64 +209,63 @@
 #include <algorithm>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "MathBase.hpp"
-#include "GNSSconstants.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/MathBase.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "CommandLine.hpp"
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/CommandLine.hpp>
 
-#include "CommonTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
-#include "GPSWeekSecond.hpp"
-#include "ObsID.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/ObsID.hpp>
 
-#include "RinexSatID.hpp"
-#include "RinexObsID.hpp"
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsID.hpp>
 
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
 
-#include "Rinex3NavBase.hpp"
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
+#include <gnsstk/Rinex3NavBase.hpp>
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
 
-#include "RinexMetHeader.hpp"
-#include "RinexMetData.hpp"
-#include "RinexMetStream.hpp"
+#include <gnsstk/RinexMetHeader.hpp>
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetStream.hpp>
 
-#include "SP3Header.hpp"
-#include "SP3Data.hpp"
-#include "SP3Stream.hpp"
+#include <gnsstk/SP3Header.hpp>
+#include <gnsstk/SP3Data.hpp>
+#include <gnsstk/SP3Stream.hpp>
+#include <gnsstk/NavLibrary.hpp>
+#include <gnsstk/MultiFormatNavDataFactory.hpp>
+#include <gnsstk/SP3NavDataFactory.hpp>
 
-#include "SP3EphemerisStore.hpp"
-#include "Rinex3EphemerisStore.hpp"
+#include <gnsstk/Position.hpp>
+#include <gnsstk/SimpleTropModel.hpp>
+#include <gnsstk/SaasTropModel.hpp>
+#include <gnsstk/NBTropModel.hpp>
+#include <gnsstk/GGTropModel.hpp>
+#include <gnsstk/GGHeightTropModel.hpp>
+#include <gnsstk/NeillTropModel.hpp>
+#include <gnsstk/GlobalTropModel.hpp>
 
-#include "Position.hpp"
-#include "SimpleTropModel.hpp"
-#include "SaasTropModel.hpp"
-#include "NBTropModel.hpp"
-#include "GGTropModel.hpp"
-#include "GGHeightTropModel.hpp"
-#include "NeillTropModel.hpp"
-#include "GlobalTropModel.hpp"
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/RinexUtilities.hpp>
 
-#include "EphemerisRange.hpp"
-#include "RinexUtilities.hpp"
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/Namelist.hpp>
+#include <gnsstk/HelmertTransform.hpp>
 
-#include "Stats.hpp"
-#include "Namelist.hpp"
-#include "HelmertTransform.hpp"
+#include <gnsstk/PRSolution.hpp>
 
-#include "PRSolution.hpp"
-
-#include "BasicFramework.hpp"
+#include <gnsstk/BasicFramework.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -345,7 +344,8 @@ public:
    double decimate;           // decimate input data
    double elevLimit;          // limit sats to elevation mask
    bool forceElev;            // use elevLimit even without --ref
-   bool searchUser;           // use SearchUser() for BCE, else SearchNear()
+   bool searchUser;           // use User for NavLibrary, else use Nearest
+   NavSearchOrder searchOrder;///< Order to search NavLibrary with (searchUser)
    vector<RinexSatID> exclSat;// exclude satellites
 
    bool PisY;                 // Interpret RINEX 2 P code as if the receiver was keyed
@@ -379,9 +379,10 @@ public:
    static const string calfmt, gpsfmt, longfmt;
 
    // stores
-   XvtStore<SatID> *pEph;
-   SP3EphemerisStore SP3EphStore;
-   Rinex3EphemerisStore RinEphStore;
+      /// High level nav store interface.
+   NavLibrary navLib;
+      /// nav data file reader
+   std::shared_ptr<NavDataFactory> ndfp;
    list<RinexMetData> MetStore;
    map<RinexSatID,double> P1C1bias;
    map<RinexSatID,int> GLOfreqChannel;
@@ -824,10 +825,17 @@ int Initialize(string& errors)
 try {
    Configuration& C(Configuration::Instance());
    bool isValid(true);
-   int nread,nrec;
+   int nread;
    size_t i,j,nfile;
    ostringstream ossE;
    CommonTime typtime;        // typical time for the dataset
+
+   C.ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
+   gnsstk::MultiFormatNavDataFactory *mfndfp =
+      dynamic_cast<gnsstk::MultiFormatNavDataFactory *>(C.ndfp.get());
+   C.navLib.addFactory(C.ndfp);
+      // without clock, SP3 doesn't work.
+   C.navLib.setTypeFilter({NavMessageType::Ephemeris, NavMessageType::Clock});
 
    errors = string("");
 
@@ -889,14 +897,22 @@ try {
    // if Rinex clock files are to be loaded, tell the SP3 reader so
    bool useSP3clocks(C.InputClkFiles.size() == 0);
 
+   shared_ptr<SP3NavDataFactory> sp3fact =
+      mfndfp->getFactory<SP3NavDataFactory>();
+   if (!sp3fact)
+   {
+      ossE << "Internal error: Unable to find SP3NavDataFactory" << endl;
+      return -5;
+   }
+
    // read ephemeris files and fill store
    // first sort them on start time; this for ultra-rapid files, which overlap in time
    if(C.InputSP3Files.size() > 0) {
       if(!useSP3clocks) {
          // if RINEX clocks are to be loaded, ignore the clock in the SP3 files
-         C.SP3EphStore.rejectBadClocks(false);
+         sp3fact->rejectBadClocks(false);
          // this causes the store to ignore the SP3 clock; read RINEX clock later
-         C.SP3EphStore.useRinexClockData();
+         sp3fact->useRinexClockData();
       }
 
       ostringstream os;
@@ -933,7 +949,7 @@ try {
          try {
             if(isValid) for(nread=0,nfile=0; nfile<C.InputSP3Files.size(); nfile++) {
                LOG(VERBOSE) << "Load SP3 file " << C.InputSP3Files[nfile];
-               C.SP3EphStore.loadSP3File(C.InputSP3Files[nfile]);
+               C.ndfp->addDataSource(C.InputSP3Files[nfile]);
                nread++;
             }
          }
@@ -954,8 +970,8 @@ try {
       try {
          for(nread=0,nfile=0; nfile<C.InputClkFiles.size(); nfile++) {
             LOG(VERBOSE) << "Load Clock file " << C.InputClkFiles[nfile];
-            C.SP3EphStore.loadRinexClockFile(C.InputClkFiles[nfile]);
-            nread++;
+            if (C.ndfp->addDataSource(C.InputClkFiles[nfile]))
+               nread++;
          }
       }
       catch(Exception& e) {
@@ -964,28 +980,29 @@ try {
       }
 
       LOG(VERBOSE) << "Read " << nread << " RINEX clock files into store.\n"
-         << "RINEX clock file store contains " << C.SP3EphStore.ndataClock()
-         << " data.";
+         << "RINEX clock file store contains "
+         << sp3fact->count(NavMessageType::Clock) << " data.";
    }
    else LOG(VERBOSE) << "No RINEX clock files";
 
    // ------------- configure and dump SP3 and clock stores -----------------
-   if(isValid && C.SP3EphStore.ndata() > 0) {
+   if(isValid && sp3fact->size() > 0) {
       LOG(VERBOSE) << "Read " << nread << " SP3 ephemeris files into store.";
       LOG(VERBOSE) << "SP3 Ephemeris store contains "
-         << C.SP3EphStore.ndata() << " data";
+         << sp3fact->size() << " data";
 
       // set to linear interpolation, as this is best estimate for clocks - TD input?
-      C.SP3EphStore.setClockLinearInterp();     // changes 'interp order' to 1
+      sp3fact->setClockLinearInterp();     // changes 'interp order' to 1
 
-      vector<SatID> sats(C.SP3EphStore.getSatList());
-      RinexSatID sat(sats[sats.size()-1]);
-      double dtp = C.SP3EphStore.getPositionTimeStep(sat);
-      double dtc = C.SP3EphStore.getClockTimeStep(sat);
+      set<SatID> sats(sp3fact->getIndexSet(CommonTime::BEGINNING_OF_TIME,
+                                           CommonTime::END_OF_TIME));
+      RinexSatID sat(*sats.rbegin());
+      double dtp = sp3fact->getPositionTimeStep(sat);
+      double dtc = sp3fact->getClockTimeStep(sat);
       LOG(VERBOSE) << "\nSP3 Ephemeris Store time intervals for " << sat
          << " are " << dtp << " (pos), and " << dtc << " (clk)";
       LOG(VERBOSE) << "SP3 Ephemeris store time system "
-                   << gnsstk::StringUtils::asString(C.SP3EphStore.getTimeSystem());
+                   << gnsstk::StringUtils::asString(sp3fact->getTimeSystem());
 
       // set gap checking - don't b/c TimeStep may vary GPS/GLO
       // TD this is a problem
@@ -993,43 +1010,52 @@ try {
       //C.SP3EphStore.setClockMaxInterval(2*C.SP3EphStore.getClockTimeStep()+1.);
 
       // ignore predictions for now // TD make user input?
-      C.SP3EphStore.rejectPredPositions(true);
-      C.SP3EphStore.rejectPredClocks(true);
+      sp3fact->rejectPredPositions(true);
+      sp3fact->rejectPredClocks(true);
 
       // set gap checking  NB be sure InterpolationOrder is set first
-      C.SP3EphStore.setPositionInterpOrder(10);
-      C.SP3EphStore.setPosGapInterval(dtp+1.);
-      C.SP3EphStore.setPosMaxInterval(
-         (C.SP3EphStore.getInterpolationOrder()-1) * dtp + 1.);
+      sp3fact->setPositionInterpOrder(10);
+      sp3fact->setPosGapInterval(dtp+1.);
+      sp3fact->setPosMaxInterval(
+         (sp3fact->getPositionInterpOrder()-1) * dtp + 1.);
 
       // dump the SP3 ephemeris store; while looping, check the GLO freq channel
       LOG(VERBOSE) << "\nDump clock and position stores, including file stores";
       // NB clock dumps are huge!
-      if(C.verbose) C.SP3EphStore.dump(LOGstrm, (C.debug > 6 ? 2 : 1));
+      if(C.verbose)
+      {
+         sp3fact->dumpConfig(LOGstrm);
+         sp3fact->dump(LOGstrm, (C.debug > 6 ? DumpDetail::Full
+                                 : DumpDetail::OneLine));
+      }
       LOG(VERBOSE) << "End of clock store and ephemeris store dumps.";
 
       // dump a list of satellites, with counts, times and GLO channel
       C.msg = "";
       LOG(VERBOSE) << "\nDump ephemeris sat list with count, times and GLO channel.";
-      for(i=0; i<sats.size(); i++) {                           // loop over sats
+      for (const auto& sat : sats)
+      {
          // check for some GLO channel - can't compute b/c we don't have data yet
-         if(sats[i].system == SatelliteSystem::Glonass) {
-            map<RinexSatID,int>::const_iterator it(C.GLOfreqChannel.find(sats[i]));
+         if (sat.system == SatelliteSystem::Glonass)
+         {
+            map<RinexSatID,int>::const_iterator it(C.GLOfreqChannel.find(sat));
             if(it == C.GLOfreqChannel.end()
-                           && sats[i].system == SatelliteSystem::Glonass) {
+               && sat.system == SatelliteSystem::Glonass)
+            {
                //LOG(WARNING) << "Warning - no input GLONASS frequency channel "
-               //   << "for satellite " << RinexSatID(sats[i]);
+               //   << "for satellite " << RinexSatID(sat);
                // set it to zero
-               C.GLOfreqChannel.insert(map<RinexSatID,int>::value_type(sats[i],0));
-               it = C.GLOfreqChannel.find(sats[i]);
+               C.GLOfreqChannel.insert(map<RinexSatID,int>::value_type(sat,0));
+               it = C.GLOfreqChannel.find(sat);
             }
             C.msg = string(" frch ") + rightJustify(asString(it->second),2);
          }
 
-         LOG(VERBOSE) << " Sat: " << RinexSatID(sats[i])
-            << " Neph: " << setw(3) << C.SP3EphStore.ndata(sats[i])
-            << " Beg: " << printTime(C.SP3EphStore.getInitialTime(sats[i]),C.longfmt)
-            << " End: " << printTime(C.SP3EphStore.getFinalTime(sats[i]),C.longfmt)
+         LOG(VERBOSE) << " Sat: " << RinexSatID(sat)
+            << " Neph: " << setw(3) 
+            << sp3fact->count(sat,NavMessageType::Ephemeris)
+            << " Beg: " << printTime(sp3fact->getFirstTime(sat),C.longfmt)
+            << " End: " << printTime(sp3fact->getLastTime(sat),C.longfmt)
             << C.msg;
       }  // end loop over sats
    }
@@ -1038,45 +1064,33 @@ try {
    // NB Nav files may set GLOfreqChannel
    if(C.InputNavFiles.size() > 0) {
       try {
-         // configure - input?
-         C.RinEphStore.setOnlyHealthyFlag(true);   // keep only healthy ephemerides
-
-         for(nrec=0,nread=0,nfile=0; nfile < C.InputNavFiles.size(); nfile++) {
+         for(nread=0,nfile=0; nfile < C.InputNavFiles.size(); nfile++) {
             string filename(C.InputNavFiles[nfile]);
-            int n(C.RinEphStore.loadFile(filename,(C.debug > -1),LOGstrm));
-            if(n == -1) {        // failed to open
-               LOG(WARNING) << C.RinEphStore.what;
-               continue;
-            }
-            else if(n == -2) {   // failed to read header
-               LOG(WARNING) << "Warning - Failed to read header: "
-                  << C.RinEphStore.what << "\nHeader dump follows.";
-               C.RinEphStore.Rhead.dump(LOGstrm);
-               continue;
-            }
-            else if(n == -3) {   // failed to read data
-               LOG(WARNING) << "Warning - Failed to read data: "
-                  << C.RinEphStore.what << "\nData dump follows.";
-               C.RinEphStore.Rdata.dump(LOGstrm);
+            if (!C.ndfp->addDataSource(filename))
+            {
                continue;
             }
 
-            nrec += n;           // number of records read
             nread += 1;
 
             if(C.verbose) {
-               LOG(VERBOSE) << "Read " << n << " ephemeris data from file "
-                  << filename << "; header follows.";
-               C.RinEphStore.Rhead.dump(LOGstrm);
+                  // This used to say how many records were read,
+                  // NavLibrary doesn't support that.  Nor does it
+                  // retain the RINEX header.
+               LOG(VERBOSE) << "Read ephemeris data from file "
+                            << filename << ".";
             }
          }  // end loop over InputNavFiles
 
-         // expand the network of time system corrections
-         C.RinEphStore.expandTimeCorrMap();
-
          // set search method
-         if(C.searchUser) C.RinEphStore.SearchUser();
-         else             C.RinEphStore.SearchNear();
+         if(C.searchUser)
+         {
+            C.searchOrder = NavSearchOrder::User;
+         }
+         else
+         {
+            C.searchOrder = NavSearchOrder::Nearest;
+         }
       }
       catch(Exception& e) {
          ossE << "Error : while reading RINEX nav files: " << e.what() << endl;
@@ -1090,28 +1104,26 @@ try {
 
       if(isValid) {
          LOG(VERBOSE) << "Read " << nread << " RINEX navigation files, containing "
-            << nrec << " records, into store.";
+            << mfndfp->size() << " messages, into store.";
          LOG(VERBOSE) << "GPS ephemeris store contains "
-            << C.RinEphStore.size(SatelliteSystem::GPS) << " ephemerides.";
+            << mfndfp->count(SatelliteSystem::GPS, NavMessageType::Ephemeris)
+            << " ephemerides.";
          LOG(VERBOSE) << "GAL ephemeris store contains "
-            << C.RinEphStore.size(SatelliteSystem::Galileo) << " ephemerides.";
+            << mfndfp->count(SatelliteSystem::Galileo,NavMessageType::Ephemeris)
+            << " ephemerides.";
          LOG(VERBOSE) << "BDS ephemeris store contains "
-            << C.RinEphStore.size(SatelliteSystem::BeiDou) << " ephemerides.";
+            << mfndfp->count(SatelliteSystem::BeiDou, NavMessageType::Ephemeris)
+            << " ephemerides.";
          LOG(VERBOSE) << "QZS ephemeris store contains "
-            << C.RinEphStore.size(SatelliteSystem::QZSS) << " ephemerides.";
+            << mfndfp->count(SatelliteSystem::QZSS, NavMessageType::Ephemeris)
+            << " ephemerides.";
          LOG(VERBOSE) << "GLO ephemeris store contains "
-            << C.RinEphStore.size(SatelliteSystem::Glonass) << " satellites.";
+            << mfndfp->count(SatelliteSystem::Glonass,NavMessageType::Ephemeris)
+            << " satellites.";
          // dump the entire store
-         C.RinEphStore.dump(LOGstrm,(C.debug > -1 ? 2:0));
+         C.navLib.dump(LOGstrm,(C.debug > -1 ? DumpDetail::Full
+                                : DumpDetail::OneLine));
       }
-   }
-
-   // assign pEph
-   if(isValid) {
-      if(C.SP3EphStore.ndata() > 0)
-         C.pEph = &C.SP3EphStore;
-      else if(C.RinEphStore.size() > 0)
-         C.pEph = &C.RinEphStore;
    }
 
    // -------- Met files --------------------------
@@ -1339,9 +1351,7 @@ try {
       for(size_t k=0; k<SObj.sysChars.size(); k++) {
          RinexSatID sat;
          sat.fromString(SObj.sysChars[k]);
-         int n;
-         if(C.pEph == &C.RinEphStore) n = C.RinEphStore.size(sat.system);
-         if(C.pEph == &C.SP3EphStore) n = C.SP3EphStore.ndata(sat.system);
+         int n = mfndfp->count(sat.system, NavMessageType::Ephemeris);
          if(n == 0) {
             LOG(WARNING) << "Warning - no ephemeris found for system "
                << RinexObsID::map1to3sys[SObj.sysChars[k]] << ", in solution descriptor "
@@ -1526,7 +1536,14 @@ try {
             if(C.SolObjs[i].sysChars[j] == "C") ts = TimeSystem::BDT;
             if(C.SolObjs[i].sysChars[j] == "S") ts = TimeSystem::GPS;
             if(C.SolObjs[i].sysChars[j] == "J") ts = TimeSystem::QZS;
-            LOG(INFO) << C.RinEphStore.dumpTimeSystemCorrection(istrm.timesystem,ts);
+            NavDataPtr ndp;
+            if (C.navLib.getOffset(istrm.timesystem, ts, C.beginTime, ndp,
+                                   SVHealth::Healthy))
+            {
+               ostringstream s;
+               ndp->dump(s, DumpDetail::Full);
+               LOG(INFO) << s.str();
+            }
          }
       }
 
@@ -1630,7 +1647,8 @@ try {
                               && PrevPos.getCoordinateSystem() != Position::Unknown) {
                CorrectedEphemerisRange CER;
                try {
-                  CER.ComputeAtReceiveTime(Rdata.time, PrevPos, sat, *C.pEph);
+                  CER.ComputeAtReceiveTime(Rdata.time, PrevPos, sat, C.navLib,
+                                           C.searchOrder);
                   elev = CER.elevation;
                   // const double azim = CER.azimuth;
                   if(C.ORDout) {
@@ -2587,7 +2605,8 @@ int SolutionObject::ComputeSolution(const CommonTime& ttag)
       // get the straight solution --------------------------------------
       if(C.SPSout) {
          Matrix<double> SVP;
-         iret=prs.PreparePRSolution(ttag, Satellites, PRanges, C.pEph, SVP);
+         iret=prs.PreparePRSolution(ttag, Satellites, PRanges, C.navLib, SVP,
+                                    C.searchOrder);
 
          if(iret > -3) {
             Vector<double> Resid,Slopes;
@@ -2646,7 +2665,8 @@ int SolutionObject::ComputeSolution(const CommonTime& ttag)
       }  // end if SPSout
 
       // get the RAIM solution ------------------------------------------
-      iret = prs.RAIMCompute(ttag, Satellites, PRanges, invMCov, C.pEph, C.pTrop);
+      iret = prs.RAIMCompute(ttag, Satellites, PRanges, invMCov, C.navLib,
+                             C.pTrop, C.searchOrder);
 
       if(iret < 0) {
          LOG(VERBOSE) << "RAIMCompute failed "

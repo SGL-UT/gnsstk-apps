@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 #==============================================================================
 #
-#  This file is part of GNSSTk, the GNSS Toolkit.
+#  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 #
 #  The GNSSTk is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU Lesser General Public License as published
@@ -154,7 +154,7 @@ END_OF_SYNTAX
       elsif(m/^\s+--/) {
          ($arg) = /^\s+--(\S+) /;
          $self->{debug} and print "arg: $arg ";
-         if(m/^\s+--$arg\s+<[^>]+> / and m/ \(.*\)$/) { #m/ \([^\)]*\)$/) 
+         if(m/^\s+--$arg\s+<[^>]+> / and m/ \(.*\)$/) { #m/ \([^\)]*\)$/)
             ($self->{$arg}) = / \(([^)]*)\)$/;
             $self->{valueArgs}->{$arg} = 1;
             $self->{debug} and print " => '$self->{$arg}'\n";

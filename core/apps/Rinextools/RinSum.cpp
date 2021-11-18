@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -127,29 +127,29 @@
 #include <algorithm>
 
 // GNSSTK
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "stl_helpers.hpp"
-#include "logstream.hpp"
-#include "CommandLine.hpp"
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/CommandLine.hpp>
 
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
 
-#include "RinexSatID.hpp"
-#include "RinexObsID.hpp"
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
-#include "RinexUtilities.hpp"
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsID.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/RinexUtilities.hpp>
 
-#include "msecHandler.hpp"
+#include <gnsstk/msecHandler.hpp>
 
 //-----------------------------------------------------------------------------
 using namespace std;
@@ -556,7 +556,7 @@ string Configuration::BuildCommandLine(void) throw()
    opts.Add(0, "onlySat", "sat", true, false, &onlySats, "",
             "Include ONLY satellites (or systems) <sat> e.g. G,R");
 
-   
+
    string rvstr("# Rinex version (current, latest version is "
                   + asString(Rinex3ObsBase::currentVersion,2) + "):");
    opts.Add(0, "currentRinex", "", false, false, &doCurrRversion, rvstr,
@@ -796,7 +796,7 @@ int ProcessFiles()
             Rhead.PisY = true;
             Rheadout.PisY = true;
          }
-      
+
          cacheon = false;
          cache.clear();
          cachetime.clear();
@@ -954,7 +954,7 @@ int ProcessFiles()
                         ii = asInt(string(1,tag[1]));
                         waves.push_back(getWavelength(sid.system, ii));
                      }
-                     else 
+                     else
                         waves.push_back(0.0);
                   }
                }
@@ -1280,7 +1280,7 @@ int ProcessFiles()
                    << dt << " seconds.";
          LOG(INFO) << "Computed first epoch: " << printTime(firstObsTime,C.longfmt);
          LOG(INFO) << "Computed last  epoch: " << printTime(lastObsTime,C.longfmt);
-      
+
             // compute time span of dataset in days/hours/minutes/seconds
          oss.str("");
          oss << "Computed time span: ";
@@ -1747,7 +1747,7 @@ int ProcessFiles()
                             << sat.systemString() << " should be removed from the header.";
             }
          }
-      
+
             // look for obs types that are completely empty
             // sit declared above map<std::string,vector<RinexObsID> >::const_iterator sit;
          for(sit=Rhead.mapObsTypes.begin(); sit != Rhead.mapObsTypes.end(); ++sit)
@@ -1791,7 +1791,7 @@ int ProcessFiles()
                }
             }
          }
-         
+
             // failure due to critical error
          if(iret < 0)
             break;

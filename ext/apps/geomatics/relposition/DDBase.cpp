@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -44,13 +44,13 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
-#include <CivilTime.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/CivilTime.hpp>
 #include <time.h>
 
 // GNSSTk
 //#define RANGECHECK // throw on invalid ranges in Vector and Matrix
-#include "Epoch.hpp"
+#include <gnsstk/Epoch.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -129,7 +129,10 @@ int minCount,maxCount;        // minimum and maximum timetag count seen
 int begcount,endcount;        // first and last counts of *good* data in buffers
 double wave;                  // wavelength (m) being processed (see CI.Frequency)
 
-XvtStore<SatID> *pEph;        // pointer to ephemeris store (BC or SP3)
+   /// High level nav store interface.
+NavLibrary navLib;
+   /// nav data file reader
+std::shared_ptr<NavDataFactory> ndfp;
 EOPStore EOPList;             // store of EarthOrientation parameters
 EarthOrientation eorient;     // earth orientation parameters at mean time of dataset
 
@@ -236,10 +239,6 @@ try {
          // ------------------------------------------------------------------
          // correct ephemeris range, elevation, and compute phase windup
       if((iret = RecomputeFromEphemeris())) break;
-
-         // ------------------------------------------------------------------
-         // Orbit processing
-      if((iret = EphemerisImprovement())) break;
 
          // ------------------------------------------------------------------
          // output 'raw' data here

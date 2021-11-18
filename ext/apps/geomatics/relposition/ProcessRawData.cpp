@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -50,11 +50,11 @@
 // system includes
 
 // GNSSTk
-#include "EphemerisRange.hpp"
-#include "TimeString.hpp"
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/TimeString.hpp>
 
 // DDBase
-//#include "PreciseRange.hpp"
+//#include <gnsstk/PreciseRange.hpp>
 #include "DDBase.hpp"
 #include "index.hpp"
 
@@ -115,20 +115,18 @@ try {
          << endl;
       // TD change this -- or user input ?
       //if(iret > 0)   iret = 0;      // suspect solution
-      if(iret) {
-         Stations[obsfile.label].PRS.Valid = false;   // remove data in RAIMedit
-      }
    }
 
       // save statistics on PR solution
    Station& st=Stations[obsfile.label];
-   if(st.PRS.Valid) {
+   if (st.PRS.isValid())
+   {
       st.PRSXstats.Add(st.PRS.Solution(0));
       st.PRSYstats.Add(st.PRS.Solution(1));
       st.PRSZstats.Add(st.PRS.Solution(2));
    }
 
-      // if user wants PRSolutionLegacy as a priori, update it here so that the
+      // if user wants PRSolution as a priori, update it here so that the
       // elevation can be computed - this serves to eliminate the low-elevation
       // data from the raw data buffers and simplifies processing.
       // it does not seem to affect the final estimation processing at all...
@@ -259,11 +257,11 @@ try {
    for(it=st.RawDataMap.begin(); it != st.RawDataMap.end(); it++) {
 
       // ER cannot be used until the a priori positions are computed --
-      // because user may want the PRSolutionLegacy as the a priori, we must wait.
+      // because user may want the PRSolution as the a priori, we must wait.
       // This will be updated in RecomputeFromEphemeris(), after Synchronization()
       it->second.ER = 0.0;
 
-      // this will happen when user has chosen to use the PRSolutionLegacy as the a priori
+      // this will happen when user has chosen to use the PRSolution as the a priori
       // and the st.pos has not yet been updated
       if(st.pos.getCoordinateSystem() == Position::Unknown) {
          it->second.elev = 90.0;       // include it in the PRS
@@ -275,11 +273,14 @@ try {
       // catch NoEphemerisFound and set elevation -90 --> edited out later
       try {
          //it->second.ER =
-            CER.ComputeAtReceiveTime(timetag, st.pos, it->first, *pEph);
+         CER.ComputeAtReceiveTime(timetag, st.pos, it->first, navLib,
+                                  NavSearchOrder::Nearest, SVHealth::Any,
+                                  NavValidityType::Any);
          it->second.elev = CER.elevation;  // this will be compared to PRS elev Limit
          it->second.az = CER.azimuth;
       }
-      catch(InvalidRequest& e) {
+      catch(AssertionFailure& e)
+      {
          if(CI.Verbose)
             oflog << "No ephemeris found for sat " << it->first << " at time "
                   << printTime(timetag,"%Y/%02m/%02d %2H:%02M:%6.3f=%F/%10.3g") << endl;

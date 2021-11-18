@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -210,26 +210,26 @@
 #include <fstream>
 #include <algorithm>
 // gnsstk
-#include "MathBase.hpp"
-#include "RinexSatID.hpp"
-#include "RinexObsBase.hpp"
-#include "RinexObsData.hpp"
-#include "RinexObsHeader.hpp"
-#include "RinexObsStream.hpp"
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "GPSWeekSecond.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/MathBase.hpp>
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsBase.hpp>
+#include <gnsstk/RinexObsData.hpp>
+#include <gnsstk/RinexObsHeader.hpp>
+#include <gnsstk/RinexObsStream.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/StringUtils.hpp>
 // geomatics
-#include "logstream.hpp"
-#include "stl_helpers.hpp"
-#include "expandtilde.hpp"
-#include "CommandLine.hpp"
-#include "SatPass.hpp"
-#include "SatPassUtilities.hpp"
-#include "DiscCorr.hpp"
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/SatPass.hpp>
+#include <gnsstk/SatPassUtilities.hpp>
+#include <gnsstk/DiscCorr.hpp>
 
 using namespace std;
 using namespace gnsstk;
@@ -785,7 +785,7 @@ try {
       }  // end reading file
 
       LOG(DEBUG) << "End reading file " << cfg.obsfiles[i] << flush;
-      
+
    }  // end loop over cfg.obsfiles
    cfg.dt0 = fileDT[0];
 
@@ -878,7 +878,7 @@ try {
    LOG(VERBOSE) << "Write the output RINEX file " << cfg.OutRinexObs;
 
    // copy user input into the last input header
-   RinexObsHeader rheadout(cfg.rhead);   
+   RinexObsHeader rheadout(cfg.rhead);
 
    // change the obs type list to include only P1(C1) P2 L1 L2
    rheadout.obsTypeList.clear();
@@ -987,7 +987,7 @@ try {
    cfg.doGLO = false;      // if true, process GLONASS sats
 
    cfg.dt = -1.0;
-   
+
    cfg.HDPrgm = PrgmName + string(" v.") + DiscFixVersion.substr(0,4);
    cfg.HDRunby = string("ARL:UT/SGL/GNSSTk");
 
@@ -1030,7 +1030,7 @@ try {
    vector<string> GLOfreqStrs;
 
    // required
-   opts.Add(0,"obs","file", true, true, &cfg.obsfiles,"\n# File I/O:", 
+   opts.Add(0,"obs","file", true, true, &cfg.obsfiles,"\n# File I/O:",
       "Input RINEX obs file - may be repeated");
 
    // optional
@@ -1242,19 +1242,19 @@ try {
       LOG(INFO) << " End time is "
          << printTime(cfg.endTime,"%04Y/%02m/%02d %02H:%02M:%.3f")
          << " = " << printTime(cfg.endTime,"%04F/%10.3g");
-   if(cfg.useCA1) 
+   if(cfg.useCA1)
       {
          LOG(INFO) << " Use the L1 C/A pseudorange if P-code is not found";
       }
-   else 
+   else
       {
          LOG(INFO) << " Do not use L1 C/A code range (C1)";
       }
-   if(cfg.useCA2) 
+   if(cfg.useCA2)
       {
          LOG(INFO) << " Use the L2 C/A pseudorange if P-code is not found";
       }
-   else 
+   else
       {
          LOG(INFO) << " Do not use L2 C/A code range (C2)";
       }

@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -46,7 +46,7 @@
 // includes
 // system
 #include <fstream>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
 
@@ -110,7 +110,8 @@ try {
       return -2;
    }
 
-   iret = st.PRS.RAIMCompute(tt, Sats, Ranges, *pEph, CI.pTropModel);
+   iret = st.PRS.RAIMComputeUnweighted(tt, Sats, Ranges, navLib, CI.pTropModel,
+                                       NavSearchOrder::Nearest);
 
    if(iret < 0) {
       if(iret == -4)
@@ -134,7 +135,6 @@ try {
    if(iret < 0 || nsvs <= 4) {                // did not compute a solution
       if(CI.Verbose) oflog << "At " << SolutionEpoch
          << " RAIM returned " << iret << endl;
-      st.PRS.Valid = false;
       if(iret >= 0) return -3;
       return iret;
    }
@@ -181,7 +181,8 @@ try {
    size_t i;
    Station& st=Stations[of.label];
 
-   if(!st.PRS.Valid) {
+   if(!st.PRS.isValid())
+   {
       st.RawDataMap.clear();
       return;
    }

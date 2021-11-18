@@ -1,6 +1,6 @@
 //==============================================================================
 //
-//  This file is part of GNSSTk, the GNSS Toolkit.
+//  This file is part of GNSSTk, the ARL:UT GNSS Toolkit.
 //
 //  The GNSSTk is free software; you can redistribute it and/or modify
 //  it under the terms of the GNU Lesser General Public License as published
@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2021, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -41,9 +41,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "FileFilterFrame.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/FileFilterFrame.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 template <class FileData>
 struct NullTimeFilter : public std::unary_function<FileData, bool>
@@ -58,7 +58,7 @@ public:
       return false;
    }
 };
- 
+
 
 template <class FileStream, class FileData, class FilterTimeOperator = NullTimeFilter<FileData> >
 class CheckFrame : public gnsstk::BasicFramework
@@ -66,7 +66,7 @@ class CheckFrame : public gnsstk::BasicFramework
 public:
    CheckFrame(char* arg0, std::string fileType) :
          gnsstk::BasicFramework(arg0,
-                               "Reads given input " + fileType + 
+                               "Reads given input " + fileType +
                                " files and check for errors. This will only"
                                " report the first error found in each file. "
                                " The entire file is always checked, regardless"
@@ -114,7 +114,7 @@ protected:
       std::vector<std::string> inputFiles = inputFileOption.getValue();
       std::vector<std::string>::iterator itr = inputFiles.begin();
       FilterTimeOperator timeFilt(startTime, endTime);
-  
+
       while (itr != inputFiles.end())
       {
 
@@ -122,7 +122,7 @@ protected:
          unsigned long recCount = 0;
          try
          {
-       
+
 	    FileStream f((*itr).c_str());
             f.exceptions(std::ios::failbit);
             FileData temp;
@@ -131,7 +131,7 @@ protected:
                if (!timeFilt(temp))
                   recCount++;
             }
-            std::cout << "Read " << recCount << " records." 
+            std::cout << "Read " << recCount << " records."
                       << std::endl << std::endl;
          }
          catch (gnsstk::Exception& e)
@@ -155,20 +155,20 @@ protected:
             if (quitOnFirstError)
                throw;
          }
-         
+
          itr++;
       }
 
       if (errors > 0)
       {
             // Throw an exception so the app returns 1 on any errors.
-         gnsstk::Exception exc("Encountered " + 
+         gnsstk::Exception exc("Encountered " +
                               gnsstk::StringUtils::asString(errors) +
                               " error(s).");
          GNSSTK_THROW(exc);
       }
    }
-   
+
       /// Quit on first error.
    gnsstk::CommandOptionNoArg firstErrorOption;
       /// start time for record counting
@@ -178,10 +178,10 @@ protected:
       /// if either of the time options are set
    gnsstk::CommandOptionGroupOr timeOptions;
    gnsstk::CommandOptionRest inputFileOption;
-   
+
    bool quitOnFirstError;
    gnsstk::CommonTime startTime, endTime;
-   
+
 };
 
 #endif
