@@ -420,7 +420,7 @@ add_test(NAME test_dfix_karr
          -DTESTNAME=test_dfix_karr
          -DTESTBASE=test_dfix_karr
          -DARGS=--obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_dfix_karr0880.ed.10o
-         -DDIFF_ARGS=-l101\ -z1
+         -DDIFF_ARGS=-l101\ -z1\ -v
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_property(TEST test_dfix_karr PROPERTY LABELS Geomatics)
 

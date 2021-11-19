@@ -16,7 +16,7 @@ add_test(NAME PRSolve_Required
     -DTESTBASE=PRSolve_Required
     -DTESTNAME=PRSolve_Required
     -DARGS=${ARGS1}
-    -DDIFF_ARGS=-l52\ -z1
+    -DDIFF_ARGS=-I\ 12,RPF.*RMS\ -l52\ -z1
     -DOWNOUTPUT=1
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
@@ -24,7 +24,7 @@ add_test(NAME PRSolve_Required
 # This tests assumes you've got your build directory as gnsstk-apps.
 # If the directory name is something else, it will fail.
 set( ARGS2 --obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/arlm200b.15o\ --eph\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_sp3_nav_2015_200.sp3\ --sol\ GPS:12:WC\ --out\ ${TD}/PRSolve_Rinexout.out\ --log\ ${TD}/PRSolve_Rinexout.log)
-set(DIFF_ARGS_2 -v\ -l2\ -X\ /gnsstk-apps/\ -X\ DATE )
+set(DIFF_ARGS_2 -I\ 12,RPF.*RMS\ -v\ -l2\ -X\ /gnsstk-apps/\ -X\ DATE )
 add_test(NAME PRSolve_Rinexout
     COMMAND ${CMAKE_COMMAND}
     -DTEST_PROG=$<TARGET_FILE:PRSolve>
@@ -60,7 +60,7 @@ set_tests_properties(PRSolve_ValidOutput PROPERTIES DEPENDS PRSolve_Rinexout)
 # RPF GPS:12:PWXC RMS 2154 181830.000  9    0.955    0.95    1.83    2.06   5.2  4 2.21e-09 G02 G06 G12 G13 G15 G17 G19 G24 G25 (0 ok) V
 #                                                                                  ^^^^^^^^
 set( ARGSRINEXCLK --obs\ ${SD}/cord1100.21o\ --eph\ ${SD}/cod21542.sp3\ --clk\ ${SD}/cod21542.clk\ --sol\ GPS:12:PWXC\ -v\ --out\ ${TD}/PRSolve_RINEXClock.out\ --log\ ${TD}/PRSolve_RINEXClock.log )
-set(DIFF_ARGS_CLK -v\ -l2\ -X\ /gnsstk-apps/\ -X\ DATE )
+set(DIFF_ARGS_CLK -I\ 12,RPF.*RMS\ -v\ -l2\ -X\ /gnsstk-apps/\ -X\ DATE )
 add_test(NAME PRSolve_RINEXClock
   COMMAND ${CMAKE_COMMAND}
   -DTEST_PROG=$<TARGET_FILE:PRSolve>
@@ -70,7 +70,7 @@ add_test(NAME PRSolve_RINEXClock
   -DTESTBASE=PRSolve_RINEXClock
   -DTESTNAME=PRSolve_RINEXClock
   -DARGS=${ARGSRINEXCLK}
-  -DDIFF_ARGS=${DIFF_ARGS_2}
+  -DDIFF_ARGS=${DIFF_ARGS_CLK}
   -DOWNOUTPUT=1
   -DDIFFLOG=1
   -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
