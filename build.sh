@@ -83,12 +83,14 @@ OPTIONS:
    -t                   Build and run tests.
    -T                   Build and run tests but don't stop on test failures.
 
+   -K                   Enable profiler.  Implies static linked debug build.
+
    -v                   Include debugging output.
 EOF
 }
 
 
-while getopts ":hb:cdepi:j:nP:F:sutTv" OPTION; do
+while getopts ":hb:cdepi:j:nP:F:sutTKv" OPTION; do
     case $OPTION in
         h) usage
            exit 0
@@ -124,6 +126,11 @@ while getopts ":hb:cdepi:j:nP:F:sutTv" OPTION; do
         t) test_switch=1
            ;;
         T) test_switch=-1
+           ;;
+        K) enable_profiler=1
+           link_static=1
+           no_address_sanitizer=1
+           EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DCMAKE_BUILD_TYPE=debug"
            ;;
         v) verbose+=1
            ;;
@@ -172,6 +179,8 @@ if ((verbose>0)); then
     log "build_packages       = $(ptof $build_packages)"
     log "test_switch          = $(ptof $test_switch)"
     log "clean                = $(ptof $clean)"
+    log "link_static          = $(ptof $link_static)"
+    log "enable_profiler      = $(ptof $enable_profiler)"
     log "verbose              = $(ptof $verbose)"
     log "num_threads          = $num_threads"
     log "cmake args           = $@"
@@ -221,6 +230,9 @@ args+=${build_ext:+" -DBUILD_EXT=ON"}
 args+=${verbose:+" -DDEBUG_SWITCH=ON"}
 args+=${user_install:+" -DPYTHON_USER_INSTALL=ON"}
 args+=${test_switch:+" -DTEST_SWITCH=ON"}
+args+=${link_static:+" -DLINK_STATIC=ON"}
+# RPATH can't be used with statically linked executables
+args+=${enable_profiler:+" -DPROFILER=ON -DUSE_RPATH=OFF"}
 args+=${build_docs:+" --graphviz=$build_root/doc/graphviz/gnsstk-apps_graphviz.dot"}
 if [ $no_address_sanitizer ]; then
     args+=" -DADDRESS_SANITIZER=OFF"

@@ -23,7 +23,11 @@ set( CPACK_PACKAGE_VERSION ${NAVSAT_TOOLS_VERSION} )
 include( GNUInstallDirs )
 
 # always link gnsstk
-list( APPEND SUPPORTLIBS gnsstk )
+if ( ${PROFILER} )
+  list( APPEND SUPPORTLIBS gnsstkStatic )
+else()
+  list( APPEND SUPPORTLIBS gnsstk )
+endif()
 
 # Include any optional desired linkage
 include( ExtLinkage.cmake OPTIONAL )
