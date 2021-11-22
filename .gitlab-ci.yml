@@ -11,6 +11,9 @@ include:
   - project: sgl-tks/ci-control
     file: /gnsstk-apps/ci_downstrm_chain.yml
     ref: main
+  - project: sgl-tks/ci-control
+    file: /general/artifactory-upload.yml
+    ref: main
 
 stages:
   - check
@@ -18,6 +21,7 @@ stages:
   - test
   - install
   - package
+  - push
   - deploy
   - downstream_stack
 
@@ -754,7 +758,6 @@ package_debian_8:
 package_debian_9:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -780,7 +783,6 @@ package_debian_9:
 package_debian_10:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -809,7 +811,6 @@ package_debian_10:
 package_conda:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/deb9_conda_py36
@@ -833,7 +834,6 @@ package_conda:
 package_redhat:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -852,7 +852,6 @@ package_redhat:
 package_redhat_8:
   stage: package
   needs: []
-  extends: .package_build
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -968,3 +967,14 @@ rhel8_deploy:
 #     - windows_build
 
 # Temporarily allow failures as Windows Runner issues are resolved
+
+push_artifacts:
+  extends: .push_selected_artifacts
+  stage: push
+  variables:
+    # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
+    DEB_9_PACKAGES: "debs/*-1_amd64.deb"
+    DEB_10_PACKAGES: "debs/*bpo10*.deb"
+    #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
+  needs: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
+  dependencies: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
