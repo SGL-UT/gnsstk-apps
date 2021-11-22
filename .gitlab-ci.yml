@@ -969,7 +969,12 @@ rhel8_deploy:
 # Temporarily allow failures as Windows Runner issues are resolved
 
 push_artifacts:
-  extends: .push_artifacts
+  extends: .push_selected_artifacts
   stage: push
+  variables:
+    # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
+    DEB_9_PACKAGES: "debs/*-1_amd64.deb"
+    DEB_10_PACKAGES: "debs/*bpo10*.deb"
+    #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
   needs: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
   dependencies: [package_conda, package_debian_9, package_debian_10, package_redhat, package_redhat_8]
