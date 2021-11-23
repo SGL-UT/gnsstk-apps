@@ -181,25 +181,6 @@ repository_validation:
 # Build Stage - Try building in several environments.
 #
 
-deb8_build:
-  stage: build
-  needs: []
-  extends: .big_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/debian8_fai_ish
-  script:
-    # Install dependencies from latest CI first. latest deb CI artifacts first.
-    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DCMAKE_PREFIX_PATH=/usr -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
 deb9_build:
   stage: build
   needs: []
@@ -414,24 +395,6 @@ windows_build_vs2019:
 
 # Test Stage
 # Runs all tests of GNSSTK for each platform
-deb8_test:
-  stage: test
-  needs: [deb8_build]
-  extends: .big_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/debian8_fai_ish
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - deb8_build
-
 deb9_test:
   stage: test
   needs: [deb9_build]
@@ -725,36 +688,6 @@ rhel8_system_install:
 # Tests packaging of GNSSTk-apps on all platforms
 # Temporarily changing name back to old name so repo_utils can find this job.
 # We will standardize job names per Jira SIM-55
-package_debian_8:
-  stage: package
-  needs: []
-  extends: .package_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/debian8_fai_ish
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
-    # Remove any directories left over from the above script.
-    - rm -rf packages repo_utils
-    # Mark the debian log so that this package is a backport.
-    # Use the most recent Maintainer as current maintainer.
-    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
-    - dch --bpo "No Changes"
-    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=jessie-sgl"
-    - mkdir debs
-    - mv ../*.deb debs
-    - mv ../*.changes debs
-    - mv ../*.dsc debs
-    - mv ../*.git debs
-  artifacts:
-    when: always
-    paths:
-        - debs/
-        - debian/
-  dependencies:
-    - deb8_build
-
 package_debian_9:
   stage: package
   needs: []
@@ -872,22 +805,6 @@ package_redhat_8:
 
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
-deb8_deploy:
-  stage: deploy
-  needs: [package_debian_8]
-  extends: .package_build
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/debian8_fai_ish
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_8 pkg_min
-    - cd debs
-    - sudo dpkg -i ./*.deb
-    - timeconvert
-  dependencies:
-    - package_debian_8
-
 deb9_deploy:
   stage: deploy
   needs: [package_debian_9]
