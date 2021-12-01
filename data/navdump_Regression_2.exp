@@ -5,10 +5,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28656  Sun-0:07:57:36   0x020      0      on
-SF2 HOW:     28662  Sun-0:07:57:42    0x20      0      on
-SF3 HOW:     28668  Sun-0:07:57:48    0x20      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28656  Sun-0:07:57:36   0x020      0      on   legacy
+SF2 HOW:     28662  Sun-0:07:57:42    0x20      0      on   legacy
+SF3 HOW:     28668  Sun-0:07:57:48    0x20      0      on   legacy
 
            SV STATUS
 
@@ -56,10 +56,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28926  Sun-0:08:02:06   0x029      0      on
-SF2 HOW:     28932  Sun-0:08:02:12    0x29      0      on
-SF3 HOW:     28938  Sun-0:08:02:18    0x29      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28926  Sun-0:08:02:06   0x029      0      on   legacy
+SF2 HOW:     28932  Sun-0:08:02:12    0x29      0      on   legacy
+SF3 HOW:     28938  Sun-0:08:02:18    0x29      0      on   legacy
 
            SV STATUS
 
@@ -107,10 +107,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x02a      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x2a      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x2a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x02a      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x2a      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x2a      0      on   legacy
 
            SV STATUS
 
@@ -158,10 +158,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     55806  Sun-0:15:30:06   0x02c      0      on
-SF2 HOW:     55812  Sun-0:15:30:12    0x2c      0      on
-SF3 HOW:     55818  Sun-0:15:30:18    0x2c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     55806  Sun-0:15:30:06   0x02c      0      on   legacy
+SF2 HOW:     55812  Sun-0:15:30:12    0x2c      0      on   legacy
+SF3 HOW:     55818  Sun-0:15:30:18    0x2c      0      on   legacy
 
            SV STATUS
 
@@ -209,10 +209,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x03f      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x3f      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x3f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x03f      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x3f      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x3f      0      on   legacy
 
            SV STATUS
 
@@ -260,10 +260,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x040      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x40      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x40      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x040      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x40      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x40      0      on   legacy
 
            SV STATUS
 
@@ -311,10 +311,10 @@ PRN : GPS 1 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x041      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x41      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x41      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x041      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x41      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x41      0      on   legacy
 
            SV STATUS
 
@@ -362,10 +362,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x007      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x07      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x07      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x007      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x07      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x07      0      on   legacy
 
            SV STATUS
 
@@ -413,10 +413,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x012      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x12      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x12      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x012      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x12      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x12      0      on   legacy
 
            SV STATUS
 
@@ -464,10 +464,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     69636  Sun-0:19:20:36   0x053      0      on
-SF2 HOW:     69642  Sun-0:19:20:42    0x53      0      on
-SF3 HOW:     69648  Sun-0:19:20:48    0x53      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     69636  Sun-0:19:20:36   0x053      0      on   legacy
+SF2 HOW:     69642  Sun-0:19:20:42    0x53      0      on   legacy
+SF3 HOW:     69648  Sun-0:19:20:48    0x53      0      on   legacy
 
            SV STATUS
 
@@ -515,10 +515,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72036  Sun-0:20:00:36   0x054      0      on
-SF2 HOW:     72042  Sun-0:20:00:42    0x54      0      on
-SF3 HOW:     72048  Sun-0:20:00:48    0x54      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72036  Sun-0:20:00:36   0x054      0      on   legacy
+SF2 HOW:     72042  Sun-0:20:00:42    0x54      0      on   legacy
+SF3 HOW:     72048  Sun-0:20:00:48    0x54      0      on   legacy
 
            SV STATUS
 
@@ -566,10 +566,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     74946  Sun-0:20:49:06   0x008      0      on
-SF2 HOW:     74952  Sun-0:20:49:12    0x08      0      on
-SF3 HOW:     74958  Sun-0:20:49:18    0x08      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     74946  Sun-0:20:49:06   0x008      0      on   legacy
+SF2 HOW:     74952  Sun-0:20:49:12    0x08      0      on   legacy
+SF3 HOW:     74958  Sun-0:20:49:18    0x08      0      on   legacy
 
            SV STATUS
 
@@ -617,10 +617,10 @@ PRN : GPS 2 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x009      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x09      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x09      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x009      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x09      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x09      0      on   legacy
 
            SV STATUS
 
@@ -668,10 +668,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     32076  Sun-0:08:54:36   0x02b      0      on
-SF2 HOW:     32082  Sun-0:08:54:42    0x2b      0      on
-SF3 HOW:     32088  Sun-0:08:54:48    0x2b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     32076  Sun-0:08:54:36   0x02b      0      on   legacy
+SF2 HOW:     32082  Sun-0:08:54:42    0x2b      0      on   legacy
+SF3 HOW:     32088  Sun-0:08:54:48    0x2b      0      on   legacy
 
            SV STATUS
 
@@ -719,10 +719,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x02c      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x2c      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x2c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x02c      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x2c      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x2c      0      on   legacy
 
            SV STATUS
 
@@ -770,10 +770,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x05d      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x5d      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x5d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x05d      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x5d      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x5d      0      on   legacy
 
            SV STATUS
 
@@ -821,10 +821,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x065      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x65      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x65      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x065      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x65      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x65      0      on   legacy
 
            SV STATUS
 
@@ -872,10 +872,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     67446  Sun-0:18:44:06   0x067      0      on
-SF2 HOW:     67452  Sun-0:18:44:12    0x67      0      on
-SF3 HOW:     67458  Sun-0:18:44:18    0x67      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     67446  Sun-0:18:44:06   0x067      0      on   legacy
+SF2 HOW:     67452  Sun-0:18:44:12    0x67      0      on   legacy
+SF3 HOW:     67458  Sun-0:18:44:18    0x67      0      on   legacy
 
            SV STATUS
 
@@ -923,10 +923,10 @@ PRN : GPS 3 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72036  Sun-0:20:00:36   0x068      0      on
-SF2 HOW:     72042  Sun-0:20:00:42    0x68      0      on
-SF3 HOW:     72048  Sun-0:20:00:48    0x68      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72036  Sun-0:20:00:36   0x068      0      on   legacy
+SF2 HOW:     72042  Sun-0:20:00:42    0x68      0      on   legacy
+SF3 HOW:     72048  Sun-0:20:00:48    0x68      0      on   legacy
 
            SV STATUS
 
@@ -974,10 +974,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     23406  Sun-0:06:30:06   0x050      0      on
-SF2 HOW:     23412  Sun-0:06:30:12    0x50      0      on
-SF3 HOW:     23418  Sun-0:06:30:18    0x50      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     23406  Sun-0:06:30:06   0x050      0      on   legacy
+SF2 HOW:     23412  Sun-0:06:30:12    0x50      0      on   legacy
+SF3 HOW:     23418  Sun-0:06:30:18    0x50      0      on   legacy
 
            SV STATUS
 
@@ -1025,10 +1025,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x061      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x61      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x61      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x061      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x61      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x61      0      on   legacy
 
            SV STATUS
 
@@ -1076,10 +1076,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x074      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x74      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x74      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x074      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x74      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x74      0      on   legacy
 
            SV STATUS
 
@@ -1127,10 +1127,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     53706  Sun-0:14:55:06   0x078      0      on
-SF2 HOW:     53712  Sun-0:14:55:12    0x78      0      on
-SF3 HOW:     53718  Sun-0:14:55:18    0x78      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     53706  Sun-0:14:55:06   0x078      0      on   legacy
+SF2 HOW:     53712  Sun-0:14:55:12    0x78      0      on   legacy
+SF3 HOW:     53718  Sun-0:14:55:18    0x78      0      on   legacy
 
            SV STATUS
 
@@ -1178,10 +1178,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x079      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x79      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x79      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x079      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x79      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x79      0      on   legacy
 
            SV STATUS
 
@@ -1229,10 +1229,10 @@ PRN : GPS 4 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64866  Sun-0:18:01:06   0x07a      0      on
-SF2 HOW:     64872  Sun-0:18:01:12    0x7a      0      on
-SF3 HOW:     64878  Sun-0:18:01:18    0x7a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64866  Sun-0:18:01:06   0x07a      0      on   legacy
+SF2 HOW:     64872  Sun-0:18:01:12    0x7a      0      on   legacy
+SF3 HOW:     64878  Sun-0:18:01:18    0x7a      0      on   legacy
 
            SV STATUS
 
@@ -1280,10 +1280,10 @@ PRN : GPS 5 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x05a      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x5a      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x5a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x05a      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x5a      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x5a      0      on   legacy
 
            SV STATUS
 
@@ -1331,10 +1331,10 @@ PRN : GPS 5 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      4206  Sun-0:01:10:06   0x012      0      on
-SF2 HOW:      4212  Sun-0:01:10:12    0x12      0      on
-SF3 HOW:      4218  Sun-0:01:10:18    0x12      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      4206  Sun-0:01:10:06   0x012      0      on   legacy
+SF2 HOW:      4212  Sun-0:01:10:12    0x12      0      on   legacy
+SF3 HOW:      4218  Sun-0:01:10:18    0x12      0      on   legacy
 
            SV STATUS
 
@@ -1382,10 +1382,10 @@ PRN : GPS 5 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x013      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x13      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x13      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x013      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x13      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x13      0      on   legacy
 
            SV STATUS
 
@@ -1433,10 +1433,10 @@ PRN : GPS 5 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     76626  Sun-0:21:17:06   0x059      0      on
-SF2 HOW:     76632  Sun-0:21:17:12    0x59      0      on
-SF3 HOW:     76638  Sun-0:21:17:18    0x59      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     76626  Sun-0:21:17:06   0x059      0      on   legacy
+SF2 HOW:     76632  Sun-0:21:17:12    0x59      0      on   legacy
+SF3 HOW:     76638  Sun-0:21:17:18    0x59      0      on   legacy
 
            SV STATUS
 
@@ -1484,10 +1484,10 @@ PRN : GPS 5 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79236  Sun-0:22:00:36   0x05b      0      on
-SF2 HOW:     79242  Sun-0:22:00:42    0x5b      0      on
-SF3 HOW:     79248  Sun-0:22:00:48    0x5b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79236  Sun-0:22:00:36   0x05b      0      on   legacy
+SF2 HOW:     79242  Sun-0:22:00:42    0x5b      0      on   legacy
+SF3 HOW:     79248  Sun-0:22:00:48    0x5b      0      on   legacy
 
            SV STATUS
 
@@ -1535,10 +1535,10 @@ PRN : GPS 6 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     65316  Sun-0:18:08:36   0x061      0      on
-SF2 HOW:     65322  Sun-0:18:08:42    0x61      0      on
-SF3 HOW:     65328  Sun-0:18:08:48    0x61      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     65316  Sun-0:18:08:36   0x061      0      on   legacy
+SF2 HOW:     65322  Sun-0:18:08:42    0x61      0      on   legacy
+SF3 HOW:     65328  Sun-0:18:08:48    0x61      0      on   legacy
 
            SV STATUS
 
@@ -1586,10 +1586,10 @@ PRN : GPS 6 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     68136  Sun-0:18:55:36   0x005      0      on
-SF2 HOW:     68142  Sun-0:18:55:42    0x05      0      on
-SF3 HOW:     68148  Sun-0:18:55:48    0x05      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     68136  Sun-0:18:55:36   0x005      0      on   legacy
+SF2 HOW:     68142  Sun-0:18:55:42    0x05      0      on   legacy
+SF3 HOW:     68148  Sun-0:18:55:48    0x05      0      on   legacy
 
            SV STATUS
 
@@ -1637,10 +1637,10 @@ PRN : GPS 6 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x006      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x06      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x06      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x006      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x06      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x06      0      on   legacy
 
            SV STATUS
 
@@ -1688,10 +1688,10 @@ PRN : GPS 6 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x007      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x07      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x07      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x007      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x07      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x07      0      on   legacy
 
            SV STATUS
 
@@ -1739,10 +1739,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     42846  Sun-0:11:54:06   0x045      0      on
-SF2 HOW:     42852  Sun-0:11:54:12    0x45      0      on
-SF3 HOW:     42858  Sun-0:11:54:18    0x45      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     42846  Sun-0:11:54:06   0x045      0      on   legacy
+SF2 HOW:     42852  Sun-0:11:54:12    0x45      0      on   legacy
+SF3 HOW:     42858  Sun-0:11:54:18    0x45      0      on   legacy
 
            SV STATUS
 
@@ -1790,10 +1790,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43416  Sun-0:12:03:36   0x046      0      on
-SF2 HOW:     43422  Sun-0:12:03:42    0x46      0      on
-SF3 HOW:     43428  Sun-0:12:03:48    0x46      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43416  Sun-0:12:03:36   0x046      0      on   legacy
+SF2 HOW:     43422  Sun-0:12:03:42    0x46      0      on   legacy
+SF3 HOW:     43428  Sun-0:12:03:48    0x46      0      on   legacy
 
            SV STATUS
 
@@ -1841,10 +1841,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x04f      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x4f      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x4f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x04f      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x4f      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x4f      0      on   legacy
 
            SV STATUS
 
@@ -1892,10 +1892,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x057      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x57      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x57      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x057      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x57      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x57      0      on   legacy
 
            SV STATUS
 
@@ -1943,10 +1943,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     60666  Sun-0:16:51:06   0x00a      0      on
-SF2 HOW:     60672  Sun-0:16:51:12    0x0a      0      on
-SF3 HOW:     60678  Sun-0:16:51:18    0x0a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     60666  Sun-0:16:51:06   0x00a      0      on   legacy
+SF2 HOW:     60672  Sun-0:16:51:12    0x0a      0      on   legacy
+SF3 HOW:     60678  Sun-0:16:51:18    0x0a      0      on   legacy
 
            SV STATUS
 
@@ -1994,10 +1994,10 @@ PRN : GPS 7 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x00b      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x0b      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x0b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x00b      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x0b      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x0b      0      on   legacy
 
            SV STATUS
 
@@ -2045,10 +2045,10 @@ PRN : GPS 9 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     41076  Sun-0:11:24:36   0x01f      0      on
-SF2 HOW:     41082  Sun-0:11:24:42    0x1f      0      on
-SF3 HOW:     41088  Sun-0:11:24:48    0x1f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     41076  Sun-0:11:24:36   0x01f      0      on   legacy
+SF2 HOW:     41082  Sun-0:11:24:42    0x1f      0      on   legacy
+SF3 HOW:     41088  Sun-0:11:24:48    0x1f      0      on   legacy
 
            SV STATUS
 
@@ -2096,10 +2096,10 @@ PRN : GPS 9 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43356  Sun-0:12:02:36   0x030      0      on
-SF2 HOW:     43362  Sun-0:12:02:42    0x30      0      on
-SF3 HOW:     43368  Sun-0:12:02:48    0x30      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43356  Sun-0:12:02:36   0x030      0      on   legacy
+SF2 HOW:     43362  Sun-0:12:02:42    0x30      0      on   legacy
+SF3 HOW:     43368  Sun-0:12:02:48    0x30      0      on   legacy
 
            SV STATUS
 
@@ -2147,10 +2147,10 @@ PRN : GPS 9 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x036      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x36      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x36      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x036      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x36      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x36      0      on   legacy
 
            SV STATUS
 
@@ -2198,10 +2198,10 @@ PRN : GPS 9 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x037      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x37      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x37      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x037      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x37      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x37      0      on   legacy
 
            SV STATUS
 
@@ -2249,10 +2249,10 @@ PRN : GPS 10 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     45336  Sun-0:12:35:36   0x040      0      on
-SF2 HOW:     45342  Sun-0:12:35:42    0x40      0      on
-SF3 HOW:     45348  Sun-0:12:35:48    0x40      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     45336  Sun-0:12:35:36   0x040      0      on   legacy
+SF2 HOW:     45342  Sun-0:12:35:42    0x40      0      on   legacy
+SF3 HOW:     45348  Sun-0:12:35:48    0x40      0      on   legacy
 
            SV STATUS
 
@@ -2300,10 +2300,10 @@ PRN : GPS 10 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50436  Sun-0:14:00:36   0x041      0      on
-SF2 HOW:     50442  Sun-0:14:00:42    0x41      0      on
-SF3 HOW:     50448  Sun-0:14:00:48    0x41      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50436  Sun-0:14:00:36   0x041      0      on   legacy
+SF2 HOW:     50442  Sun-0:14:00:42    0x41      0      on   legacy
+SF3 HOW:     50448  Sun-0:14:00:48    0x41      0      on   legacy
 
            SV STATUS
 
@@ -2351,10 +2351,10 @@ PRN : GPS 10 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     71286  Sun-0:19:48:06   0x043      0      on
-SF2 HOW:     71292  Sun-0:19:48:12    0x43      0      on
-SF3 HOW:     71298  Sun-0:19:48:18    0x43      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     71286  Sun-0:19:48:06   0x043      0      on   legacy
+SF2 HOW:     71292  Sun-0:19:48:12    0x43      0      on   legacy
+SF3 HOW:     71298  Sun-0:19:48:18    0x43      0      on   legacy
 
            SV STATUS
 
@@ -2402,10 +2402,10 @@ PRN : GPS 10 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72066  Sun-0:20:01:06   0x044      0      on
-SF2 HOW:     72072  Sun-0:20:01:12    0x44      0      on
-SF3 HOW:     72078  Sun-0:20:01:18    0x44      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72066  Sun-0:20:01:06   0x044      0      on   legacy
+SF2 HOW:     72072  Sun-0:20:01:12    0x44      0      on   legacy
+SF3 HOW:     72078  Sun-0:20:01:18    0x44      0      on   legacy
 
            SV STATUS
 
@@ -2453,10 +2453,10 @@ PRN : GPS 10 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x066      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x66      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x66      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x066      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x66      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x66      0      on   legacy
 
            SV STATUS
 
@@ -2504,10 +2504,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     27096  Sun-0:07:31:36   0x01f      0      on
-SF2 HOW:     27102  Sun-0:07:31:42    0x1f      0      on
-SF3 HOW:     27108  Sun-0:07:31:48    0x1f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     27096  Sun-0:07:31:36   0x01f      0      on   legacy
+SF2 HOW:     27102  Sun-0:07:31:42    0x1f      0      on   legacy
+SF3 HOW:     27108  Sun-0:07:31:48    0x1f      0      on   legacy
 
            SV STATUS
 
@@ -2555,10 +2555,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x020      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x20      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x20      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x020      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x20      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x20      0      on   legacy
 
            SV STATUS
 
@@ -2606,10 +2606,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36576  Sun-0:10:09:36   0x021      0      on
-SF2 HOW:     36582  Sun-0:10:09:42    0x21      0      on
-SF3 HOW:     36588  Sun-0:10:09:48    0x21      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36576  Sun-0:10:09:36   0x021      0      on   legacy
+SF2 HOW:     36582  Sun-0:10:09:42    0x21      0      on   legacy
+SF3 HOW:     36588  Sun-0:10:09:48    0x21      0      on   legacy
 
            SV STATUS
 
@@ -2657,10 +2657,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     51066  Sun-0:14:11:06   0x023      0      on
-SF2 HOW:     51072  Sun-0:14:11:12    0x23      0      on
-SF3 HOW:     51078  Sun-0:14:11:18    0x23      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     51066  Sun-0:14:11:06   0x023      0      on   legacy
+SF2 HOW:     51072  Sun-0:14:11:12    0x23      0      on   legacy
+SF3 HOW:     51078  Sun-0:14:11:18    0x23      0      on   legacy
 
            SV STATUS
 
@@ -2708,10 +2708,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x044      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x44      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x44      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x044      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x44      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x44      0      on   legacy
 
            SV STATUS
 
@@ -2759,10 +2759,10 @@ PRN : GPS 11 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x045      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x45      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x45      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x045      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x45      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x45      0      on   legacy
 
            SV STATUS
 
@@ -2810,10 +2810,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x022      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x22      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x22      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x022      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x22      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x22      0      on   legacy
 
            SV STATUS
 
@@ -2861,10 +2861,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x023      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x23      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x23      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x023      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x23      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x23      0      on   legacy
 
            SV STATUS
 
@@ -2912,10 +2912,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     24666  Sun-0:06:51:06   0x030      0      on
-SF2 HOW:     24672  Sun-0:06:51:12    0x30      0      on
-SF3 HOW:     24678  Sun-0:06:51:18    0x30      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     24666  Sun-0:06:51:06   0x030      0      on   legacy
+SF2 HOW:     24672  Sun-0:06:51:12    0x30      0      on   legacy
+SF3 HOW:     24678  Sun-0:06:51:18    0x30      0      on   legacy
 
            SV STATUS
 
@@ -2963,10 +2963,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28896  Sun-0:08:01:36   0x037      0      on
-SF2 HOW:     28902  Sun-0:08:01:42    0x37      0      on
-SF3 HOW:     28908  Sun-0:08:01:48    0x37      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28896  Sun-0:08:01:36   0x037      0      on   legacy
+SF2 HOW:     28902  Sun-0:08:01:42    0x37      0      on   legacy
+SF3 HOW:     28908  Sun-0:08:01:48    0x37      0      on   legacy
 
            SV STATUS
 
@@ -3014,10 +3014,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     73536  Sun-0:20:25:36   0x006      0      on
-SF2 HOW:     73542  Sun-0:20:25:42    0x06      0      on
-SF3 HOW:     73548  Sun-0:20:25:48    0x06      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     73536  Sun-0:20:25:36   0x006      0      on   legacy
+SF2 HOW:     73542  Sun-0:20:25:42    0x06      0      on   legacy
+SF3 HOW:     73548  Sun-0:20:25:48    0x06      0      on   legacy
 
            SV STATUS
 
@@ -3065,10 +3065,10 @@ PRN : GPS 12 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x007      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x07      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x07      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x007      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x07      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x07      0      on   legacy
 
            SV STATUS
 
@@ -3116,10 +3116,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x00a      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x0a      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x0a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x00a      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x0a      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x0a      0      on   legacy
 
            SV STATUS
 
@@ -3167,10 +3167,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x00b      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x0b      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x0b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x00b      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x0b      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x0b      0      on   legacy
 
            SV STATUS
 
@@ -3218,10 +3218,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x01d      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x1d      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x1d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x01d      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x1d      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x1d      0      on   legacy
 
            SV STATUS
 
@@ -3269,10 +3269,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     58566  Sun-0:16:16:06   0x04d      0      on
-SF2 HOW:     58572  Sun-0:16:16:12    0x4d      0      on
-SF3 HOW:     58578  Sun-0:16:16:18    0x4d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     58566  Sun-0:16:16:06   0x04d      0      on   legacy
+SF2 HOW:     58572  Sun-0:16:16:12    0x4d      0      on   legacy
+SF3 HOW:     58578  Sun-0:16:16:18    0x4d      0      on   legacy
 
            SV STATUS
 
@@ -3320,10 +3320,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x052      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x52      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x52      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x052      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x52      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x52      0      on   legacy
 
            SV STATUS
 
@@ -3371,10 +3371,10 @@ PRN : GPS 13 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x063      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x63      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x63      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x063      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x63      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x63      0      on   legacy
 
            SV STATUS
 
@@ -3422,10 +3422,10 @@ PRN : GPS 14 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     15066  Sun-0:04:11:06   0x046      0      on
-SF2 HOW:     15072  Sun-0:04:11:12    0x46      0      on
-SF3 HOW:     15078  Sun-0:04:11:18    0x46      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     15066  Sun-0:04:11:06   0x046      0      on   legacy
+SF2 HOW:     15072  Sun-0:04:11:12    0x46      0      on   legacy
+SF3 HOW:     15078  Sun-0:04:11:18    0x46      0      on   legacy
 
            SV STATUS
 
@@ -3473,10 +3473,10 @@ PRN : GPS 14 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x049      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x49      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x49      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x049      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x49      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x49      0      on   legacy
 
            SV STATUS
 
@@ -3524,10 +3524,10 @@ PRN : GPS 14 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x04d      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x4d      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x4d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x04d      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x4d      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x4d      0      on   legacy
 
            SV STATUS
 
@@ -3575,10 +3575,10 @@ PRN : GPS 14 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x04e      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x4e      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x4e      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x04e      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x4e      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x4e      0      on   legacy
 
            SV STATUS
 
@@ -3626,10 +3626,10 @@ PRN : GPS 14 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     38406  Sun-0:10:40:06   0x005      0      on
-SF2 HOW:     38412  Sun-0:10:40:12    0x05      0      on
-SF3 HOW:     38418  Sun-0:10:40:18    0x05      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     38406  Sun-0:10:40:06   0x005      0      on   legacy
+SF2 HOW:     38412  Sun-0:10:40:12    0x05      0      on   legacy
+SF3 HOW:     38418  Sun-0:10:40:18    0x05      0      on   legacy
 
            SV STATUS
 
@@ -3677,10 +3677,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x011      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x11      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x11      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x011      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x11      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x11      0      on   legacy
 
            SV STATUS
 
@@ -3728,10 +3728,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x02b      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x2b      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x2b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x02b      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x2b      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x2b      0      on   legacy
 
            SV STATUS
 
@@ -3779,10 +3779,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x02c      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x2c      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x2c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x02c      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x2c      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x2c      0      on   legacy
 
            SV STATUS
 
@@ -3830,10 +3830,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21726  Sun-0:06:02:06   0x02d      0      on
-SF2 HOW:     21732  Sun-0:06:02:12    0x2d      0      on
-SF3 HOW:     21738  Sun-0:06:02:18    0x2d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21726  Sun-0:06:02:06   0x02d      0      on   legacy
+SF2 HOW:     21732  Sun-0:06:02:12    0x2d      0      on   legacy
+SF3 HOW:     21738  Sun-0:06:02:18    0x2d      0      on   legacy
 
            SV STATUS
 
@@ -3881,10 +3881,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     63636  Sun-0:17:40:36   0x001      0      on
-SF2 HOW:     63642  Sun-0:17:40:42    0x01      0      on
-SF3 HOW:     63648  Sun-0:17:40:48    0x01      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     63636  Sun-0:17:40:36   0x001      0      on   legacy
+SF2 HOW:     63642  Sun-0:17:40:42    0x01      0      on   legacy
+SF3 HOW:     63648  Sun-0:17:40:48    0x01      0      on   legacy
 
            SV STATUS
 
@@ -3932,10 +3932,10 @@ PRN : GPS 15 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64836  Sun-0:18:00:36   0x002      0      on
-SF2 HOW:     64842  Sun-0:18:00:42    0x02      0      on
-SF3 HOW:     64848  Sun-0:18:00:48    0x02      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64836  Sun-0:18:00:36   0x002      0      on   legacy
+SF2 HOW:     64842  Sun-0:18:00:42    0x02      0      on   legacy
+SF3 HOW:     64848  Sun-0:18:00:48    0x02      0      on   legacy
 
            SV STATUS
 
@@ -3983,10 +3983,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     10626  Sun-0:02:57:06   0x035      0      on
-SF2 HOW:     10632  Sun-0:02:57:12    0x35      0      on
-SF3 HOW:     10638  Sun-0:02:57:18    0x35      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     10626  Sun-0:02:57:06   0x035      0      on   legacy
+SF2 HOW:     10632  Sun-0:02:57:12    0x35      0      on   legacy
+SF3 HOW:     10638  Sun-0:02:57:18    0x35      0      on   legacy
 
            SV STATUS
 
@@ -4034,10 +4034,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     34266  Sun-0:09:31:06   0x038      0      on
-SF2 HOW:     34272  Sun-0:09:31:12    0x38      0      on
-SF3 HOW:     34278  Sun-0:09:31:18    0x38      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     34266  Sun-0:09:31:06   0x038      0      on   legacy
+SF2 HOW:     34272  Sun-0:09:31:12    0x38      0      on   legacy
+SF3 HOW:     34278  Sun-0:09:31:18    0x38      0      on   legacy
 
            SV STATUS
 
@@ -4085,10 +4085,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x06e      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x6e      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x6e      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x06e      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x6e      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x6e      0      on   legacy
 
            SV STATUS
 
@@ -4136,10 +4136,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     42456  Sun-0:11:47:36   0x015      0      on
-SF2 HOW:     42462  Sun-0:11:47:42    0x15      0      on
-SF3 HOW:     42468  Sun-0:11:47:48    0x15      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     42456  Sun-0:11:47:36   0x015      0      on   legacy
+SF2 HOW:     42462  Sun-0:11:47:42    0x15      0      on   legacy
+SF3 HOW:     42468  Sun-0:11:47:48    0x15      0      on   legacy
 
            SV STATUS
 
@@ -4187,10 +4187,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x016      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x16      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x16      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x016      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x16      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x16      0      on   legacy
 
            SV STATUS
 
@@ -4238,10 +4238,10 @@ PRN : GPS 16 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x028      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x28      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x28      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x028      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x28      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x28      0      on   legacy
 
            SV STATUS
 
@@ -4289,10 +4289,10 @@ PRN : GPS 17 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     58116  Sun-0:16:08:36   0x00c      0      on
-SF2 HOW:     58122  Sun-0:16:08:42    0x0c      0      on
-SF3 HOW:     58128  Sun-0:16:08:48    0x0c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     58116  Sun-0:16:08:36   0x00c      0      on   legacy
+SF2 HOW:     58122  Sun-0:16:08:42    0x0c      0      on   legacy
+SF3 HOW:     58128  Sun-0:16:08:48    0x0c      0      on   legacy
 
            SV STATUS
 
@@ -4340,10 +4340,10 @@ PRN : GPS 17 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x014      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x14      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x14      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x014      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x14      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x14      0      on   legacy
 
            SV STATUS
 
@@ -4391,10 +4391,10 @@ PRN : GPS 17 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x02b      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x2b      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x2b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x02b      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x2b      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x2b      0      on   legacy
 
            SV STATUS
 
@@ -4442,10 +4442,10 @@ PRN : GPS 17 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x02c      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x2c      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x2c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x02c      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x2c      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x2c      0      on   legacy
 
            SV STATUS
 
@@ -4493,10 +4493,10 @@ PRN : GPS 18 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      4566  Sun-0:01:16:06   0x017      0      on
-SF2 HOW:      4572  Sun-0:01:16:12    0x17      0      on
-SF3 HOW:      4578  Sun-0:01:16:18    0x17      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      4566  Sun-0:01:16:06   0x017      0      on   legacy
+SF2 HOW:      4572  Sun-0:01:16:12    0x17      0      on   legacy
+SF3 HOW:      4578  Sun-0:01:16:18    0x17      0      on   legacy
 
            SV STATUS
 
@@ -4544,10 +4544,10 @@ PRN : GPS 18 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x02f      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x2f      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x2f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x02f      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x2f      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x2f      0      on   legacy
 
            SV STATUS
 
@@ -4595,10 +4595,10 @@ PRN : GPS 18 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x03f      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x3f      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x3f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x03f      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x3f      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x3f      0      on   legacy
 
            SV STATUS
 
@@ -4646,10 +4646,10 @@ PRN : GPS 18 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x040      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x40      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x40      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x040      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x40      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x40      0      on   legacy
 
            SV STATUS
 
@@ -4697,10 +4697,10 @@ PRN : GPS 18 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x041      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x41      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x41      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x041      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x41      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x41      0      on   legacy
 
            SV STATUS
 
@@ -4748,10 +4748,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     19026  Sun-0:05:17:06   0x026      0      on
-SF2 HOW:     19032  Sun-0:05:17:12    0x26      0      on
-SF3 HOW:     19038  Sun-0:05:17:18    0x26      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     19026  Sun-0:05:17:06   0x026      0      on   legacy
+SF2 HOW:     19032  Sun-0:05:17:12    0x26      0      on   legacy
+SF3 HOW:     19038  Sun-0:05:17:18    0x26      0      on   legacy
 
            SV STATUS
 
@@ -4799,10 +4799,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21876  Sun-0:06:04:36   0x027      0      on
-SF2 HOW:     21882  Sun-0:06:04:42    0x27      0      on
-SF3 HOW:     21888  Sun-0:06:04:48    0x27      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21876  Sun-0:06:04:36   0x027      0      on   legacy
+SF2 HOW:     21882  Sun-0:06:04:42    0x27      0      on   legacy
+SF3 HOW:     21888  Sun-0:06:04:48    0x27      0      on   legacy
 
            SV STATUS
 
@@ -4850,10 +4850,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28926  Sun-0:08:02:06   0x036      0      on
-SF2 HOW:     28932  Sun-0:08:02:12    0x36      0      on
-SF3 HOW:     28938  Sun-0:08:02:18    0x36      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28926  Sun-0:08:02:06   0x036      0      on   legacy
+SF2 HOW:     28932  Sun-0:08:02:12    0x36      0      on   legacy
+SF3 HOW:     28938  Sun-0:08:02:18    0x36      0      on   legacy
 
            SV STATUS
 
@@ -4901,10 +4901,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     44616  Sun-0:12:23:36   0x038      0      on
-SF2 HOW:     44622  Sun-0:12:23:42    0x38      0      on
-SF3 HOW:     44628  Sun-0:12:23:48    0x38      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     44616  Sun-0:12:23:36   0x038      0      on   legacy
+SF2 HOW:     44622  Sun-0:12:23:42    0x38      0      on   legacy
+SF3 HOW:     44628  Sun-0:12:23:48    0x38      0      on   legacy
 
            SV STATUS
 
@@ -4952,10 +4952,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x039      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x39      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x39      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x039      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x39      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x39      0      on   legacy
 
            SV STATUS
 
@@ -5003,10 +5003,10 @@ PRN : GPS 19 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x03a      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x3a      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x3a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x03a      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x3a      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x3a      0      on   legacy
 
            SV STATUS
 
@@ -5054,10 +5054,10 @@ PRN : GPS 20 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x002      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x02      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x02      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x002      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x02      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x02      0      on   legacy
 
            SV STATUS
 
@@ -5105,10 +5105,10 @@ PRN : GPS 20 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x003      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x03      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x03      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x003      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x03      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x03      0      on   legacy
 
            SV STATUS
 
@@ -5156,10 +5156,10 @@ PRN : GPS 20 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x004      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x04      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x04      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x004      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x04      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x04      0      on   legacy
 
            SV STATUS
 
@@ -5207,10 +5207,10 @@ PRN : GPS 20 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21696  Sun-0:06:01:36   0x005      0      on
-SF2 HOW:     21702  Sun-0:06:01:42    0x05      0      on
-SF3 HOW:     21708  Sun-0:06:01:48    0x05      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21696  Sun-0:06:01:36   0x005      0      on   legacy
+SF2 HOW:     21702  Sun-0:06:01:42    0x05      0      on   legacy
+SF3 HOW:     21708  Sun-0:06:01:48    0x05      0      on   legacy
 
            SV STATUS
 
@@ -5258,10 +5258,10 @@ PRN : GPS 20 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     83106  Sun-0:23:05:06   0x06f      0      on
-SF2 HOW:     83112  Sun-0:23:05:12    0x6f      0      on
-SF3 HOW:     83118  Sun-0:23:05:18    0x6f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     83106  Sun-0:23:05:06   0x06f      0      on   legacy
+SF2 HOW:     83112  Sun-0:23:05:12    0x6f      0      on   legacy
+SF3 HOW:     83118  Sun-0:23:05:18    0x6f      0      on   legacy
 
            SV STATUS
 
@@ -5309,10 +5309,10 @@ PRN : GPS 21 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3846  Sun-0:01:04:06   0x021      0      on
-SF2 HOW:      3852  Sun-0:01:04:12    0x21      0      on
-SF3 HOW:      3858  Sun-0:01:04:18    0x21      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3846  Sun-0:01:04:06   0x021      0      on   legacy
+SF2 HOW:      3852  Sun-0:01:04:12    0x21      0      on   legacy
+SF3 HOW:      3858  Sun-0:01:04:18    0x21      0      on   legacy
 
            SV STATUS
 
@@ -5360,10 +5360,10 @@ PRN : GPS 21 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x022      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x22      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x22      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x022      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x22      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x22      0      on   legacy
 
            SV STATUS
 
@@ -5411,10 +5411,10 @@ PRN : GPS 21 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x023      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x23      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x23      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x023      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x23      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x23      0      on   legacy
 
            SV STATUS
 
@@ -5462,10 +5462,10 @@ PRN : GPS 21 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x031      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x31      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x31      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x031      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x31      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x31      0      on   legacy
 
            SV STATUS
 
@@ -5513,10 +5513,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     10746  Sun-0:02:59:06   0x028      0      on
-SF2 HOW:     10752  Sun-0:02:59:12    0x28      0      on
-SF3 HOW:     10758  Sun-0:02:59:18    0x28      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     10746  Sun-0:02:59:06   0x028      0      on   legacy
+SF2 HOW:     10752  Sun-0:02:59:12    0x28      0      on   legacy
+SF3 HOW:     10758  Sun-0:02:59:18    0x28      0      on   legacy
 
            SV STATUS
 
@@ -5564,10 +5564,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x04c      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x4c      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x4c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x04c      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x4c      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x4c      0      on   legacy
 
            SV STATUS
 
@@ -5615,10 +5615,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x067      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x67      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x67      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x067      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x67      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x67      0      on   legacy
 
            SV STATUS
 
@@ -5666,10 +5666,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x068      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x68      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x68      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x068      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x68      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x68      0      on   legacy
 
            SV STATUS
 
@@ -5717,10 +5717,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x073      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x73      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x73      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x073      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x73      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x73      0      on   legacy
 
            SV STATUS
 
@@ -5768,10 +5768,10 @@ PRN : GPS 22 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     38496  Sun-0:10:41:36   0x00a      0      on
-SF2 HOW:     38502  Sun-0:10:41:42    0x0a      0      on
-SF3 HOW:     38508  Sun-0:10:41:48    0x0a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     38496  Sun-0:10:41:36   0x00a      0      on   legacy
+SF2 HOW:     38502  Sun-0:10:41:42    0x0a      0      on   legacy
+SF3 HOW:     38508  Sun-0:10:41:48    0x0a      0      on   legacy
 
            SV STATUS
 
@@ -5819,10 +5819,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     34926  Sun-0:09:42:06   0x04f      0      on
-SF2 HOW:     34932  Sun-0:09:42:12    0x4f      0      on
-SF3 HOW:     34938  Sun-0:09:42:18    0x4f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     34926  Sun-0:09:42:06   0x04f      0      on   legacy
+SF2 HOW:     34932  Sun-0:09:42:12    0x4f      0      on   legacy
+SF3 HOW:     34938  Sun-0:09:42:18    0x4f      0      on   legacy
 
            SV STATUS
 
@@ -5870,10 +5870,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36186  Sun-0:10:03:06   0x059      0      on
-SF2 HOW:     36192  Sun-0:10:03:12    0x59      0      on
-SF3 HOW:     36198  Sun-0:10:03:18    0x59      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36186  Sun-0:10:03:06   0x059      0      on   legacy
+SF2 HOW:     36192  Sun-0:10:03:12    0x59      0      on   legacy
+SF3 HOW:     36198  Sun-0:10:03:18    0x59      0      on   legacy
 
            SV STATUS
 
@@ -5921,10 +5921,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x05b      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x5b      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x5b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x05b      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x5b      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x5b      0      on   legacy
 
            SV STATUS
 
@@ -5972,10 +5972,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50136  Sun-0:13:55:36   0x000      0      on
-SF2 HOW:     50142  Sun-0:13:55:42    0x00      0      on
-SF3 HOW:     50148  Sun-0:13:55:48    0x00      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50136  Sun-0:13:55:36   0x000      0      on   legacy
+SF2 HOW:     50142  Sun-0:13:55:42    0x00      0      on   legacy
+SF3 HOW:     50148  Sun-0:13:55:48    0x00      0      on   legacy
 
            SV STATUS
 
@@ -6023,10 +6023,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x005      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x05      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x05      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x005      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x05      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x05      0      on   legacy
 
            SV STATUS
 
@@ -6074,10 +6074,10 @@ PRN : GPS 23 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x006      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x06      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x06      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x006      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x06      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x06      0      on   legacy
 
            SV STATUS
 
@@ -6125,10 +6125,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     12156  Sun-0:03:22:36   0x03e      0      on
-SF2 HOW:     12162  Sun-0:03:22:42    0x3e      0      on
-SF3 HOW:     12168  Sun-0:03:22:48    0x3e      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     12156  Sun-0:03:22:36   0x03e      0      on   legacy
+SF2 HOW:     12162  Sun-0:03:22:42    0x3e      0      on   legacy
+SF3 HOW:     12168  Sun-0:03:22:48    0x3e      0      on   legacy
 
            SV STATUS
 
@@ -6176,10 +6176,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x042      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x42      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x42      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x042      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x42      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x42      0      on   legacy
 
            SV STATUS
 
@@ -6227,10 +6227,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x043      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x43      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x43      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x043      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x43      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x43      0      on   legacy
 
            SV STATUS
 
@@ -6278,10 +6278,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     69486  Sun-0:19:18:06   0x04a      0      on
-SF2 HOW:     69492  Sun-0:19:18:12    0x4a      0      on
-SF3 HOW:     69498  Sun-0:19:18:18    0x4a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     69486  Sun-0:19:18:06   0x04a      0      on   legacy
+SF2 HOW:     69492  Sun-0:19:18:12    0x4a      0      on   legacy
+SF3 HOW:     69498  Sun-0:19:18:18    0x4a      0      on   legacy
 
            SV STATUS
 
@@ -6329,10 +6329,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x04b      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x4b      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x4b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x04b      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x4b      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x4b      0      on   legacy
 
            SV STATUS
 
@@ -6380,10 +6380,10 @@ PRN : GPS 24 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79206  Sun-0:22:00:06   0x04d      0      on
-SF2 HOW:     79212  Sun-0:22:00:12    0x4d      0      on
-SF3 HOW:     79218  Sun-0:22:00:18    0x4d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79206  Sun-0:22:00:06   0x04d      0      on   legacy
+SF2 HOW:     79212  Sun-0:22:00:12    0x4d      0      on   legacy
+SF3 HOW:     79218  Sun-0:22:00:18    0x4d      0      on   legacy
 
            SV STATUS
 
@@ -6431,10 +6431,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x04d      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x4d      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x4d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x04d      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x4d      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x4d      0      on   legacy
 
            SV STATUS
 
@@ -6482,10 +6482,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x055      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x55      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x55      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x055      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x55      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x55      0      on   legacy
 
            SV STATUS
 
@@ -6533,10 +6533,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     24876  Sun-0:06:54:36   0x00a      0      on
-SF2 HOW:     24882  Sun-0:06:54:42    0x0a      0      on
-SF3 HOW:     24888  Sun-0:06:54:48    0x0a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     24876  Sun-0:06:54:36   0x00a      0      on   legacy
+SF2 HOW:     24882  Sun-0:06:54:42    0x0a      0      on   legacy
+SF3 HOW:     24888  Sun-0:06:54:48    0x0a      0      on   legacy
 
            SV STATUS
 
@@ -6584,10 +6584,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x00b      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x0b      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x0b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x00b      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x0b      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x0b      0      on   legacy
 
            SV STATUS
 
@@ -6635,10 +6635,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x027      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x27      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x27      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x027      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x27      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x27      0      on   legacy
 
            SV STATUS
 
@@ -6686,10 +6686,10 @@ PRN : GPS 25 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79266  Sun-0:22:01:06   0x054      0      on
-SF2 HOW:     79272  Sun-0:22:01:12    0x54      0      on
-SF3 HOW:     79278  Sun-0:22:01:18    0x54      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79266  Sun-0:22:01:06   0x054      0      on   legacy
+SF2 HOW:     79272  Sun-0:22:01:12    0x54      0      on   legacy
+SF3 HOW:     79278  Sun-0:22:01:18    0x54      0      on   legacy
 
            SV STATUS
 
@@ -6737,10 +6737,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      6036  Sun-0:01:40:36   0x019      0      on
-SF2 HOW:      6042  Sun-0:01:40:42    0x19      0      on
-SF3 HOW:      6048  Sun-0:01:40:48    0x19      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      6036  Sun-0:01:40:36   0x019      0      on   legacy
+SF2 HOW:      6042  Sun-0:01:40:42    0x19      0      on   legacy
+SF3 HOW:      6048  Sun-0:01:40:48    0x19      0      on   legacy
 
            SV STATUS
 
@@ -6788,10 +6788,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7626  Sun-0:02:07:06   0x031      0      on
-SF2 HOW:      7632  Sun-0:02:07:12    0x31      0      on
-SF3 HOW:      7638  Sun-0:02:07:18    0x31      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7626  Sun-0:02:07:06   0x031      0      on   legacy
+SF2 HOW:      7632  Sun-0:02:07:12    0x31      0      on   legacy
+SF3 HOW:      7638  Sun-0:02:07:18    0x31      0      on   legacy
 
            SV STATUS
 
@@ -6839,10 +6839,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     30396  Sun-0:08:26:36   0x034      0      on
-SF2 HOW:     30402  Sun-0:08:26:42    0x34      0      on
-SF3 HOW:     30408  Sun-0:08:26:48    0x34      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     30396  Sun-0:08:26:36   0x034      0      on   legacy
+SF2 HOW:     30402  Sun-0:08:26:42    0x34      0      on   legacy
+SF3 HOW:     30408  Sun-0:08:26:48    0x34      0      on   legacy
 
            SV STATUS
 
@@ -6890,10 +6890,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     34986  Sun-0:09:43:06   0x01a      0      on
-SF2 HOW:     34992  Sun-0:09:43:12    0x1a      0      on
-SF3 HOW:     34998  Sun-0:09:43:18    0x1a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     34986  Sun-0:09:43:06   0x01a      0      on   legacy
+SF2 HOW:     34992  Sun-0:09:43:12    0x1a      0      on   legacy
+SF3 HOW:     34998  Sun-0:09:43:18    0x1a      0      on   legacy
 
            SV STATUS
 
@@ -6941,10 +6941,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x01b      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x1b      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x1b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x01b      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x1b      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x1b      0      on   legacy
 
            SV STATUS
 
@@ -6992,10 +6992,10 @@ PRN : GPS 26 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x01c      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x1c      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x1c      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x01c      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x1c      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x1c      0      on   legacy
 
            SV STATUS
 
@@ -7043,10 +7043,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14436  Sun-0:04:00:36   0x048      0      on
-SF2 HOW:     14442  Sun-0:04:00:42    0x48      0      on
-SF3 HOW:     14448  Sun-0:04:00:48    0x48      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14436  Sun-0:04:00:36   0x048      0      on   legacy
+SF2 HOW:     14442  Sun-0:04:00:42    0x48      0      on   legacy
+SF3 HOW:     14448  Sun-0:04:00:48    0x48      0      on   legacy
 
            SV STATUS
 
@@ -7094,10 +7094,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     19416  Sun-0:05:23:36   0x004      0      on
-SF2 HOW:     19422  Sun-0:05:23:42    0x04      0      on
-SF3 HOW:     19428  Sun-0:05:23:48    0x04      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     19416  Sun-0:05:23:36   0x004      0      on   legacy
+SF2 HOW:     19422  Sun-0:05:23:42    0x04      0      on   legacy
+SF3 HOW:     19428  Sun-0:05:23:48    0x04      0      on   legacy
 
            SV STATUS
 
@@ -7145,10 +7145,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     21606  Sun-0:06:00:06   0x008      0      on
-SF2 HOW:     21612  Sun-0:06:00:12    0x08      0      on
-SF3 HOW:     21618  Sun-0:06:00:18    0x08      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     21606  Sun-0:06:00:06   0x008      0      on   legacy
+SF2 HOW:     21612  Sun-0:06:00:12    0x08      0      on   legacy
+SF3 HOW:     21618  Sun-0:06:00:18    0x08      0      on   legacy
 
            SV STATUS
 
@@ -7196,10 +7196,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     41706  Sun-0:11:35:06   0x019      0      on
-SF2 HOW:     41712  Sun-0:11:35:12    0x19      0      on
-SF3 HOW:     41718  Sun-0:11:35:18    0x19      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     41706  Sun-0:11:35:06   0x019      0      on   legacy
+SF2 HOW:     41712  Sun-0:11:35:12    0x19      0      on   legacy
+SF3 HOW:     41718  Sun-0:11:35:18    0x19      0      on   legacy
 
            SV STATUS
 
@@ -7247,10 +7247,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x01a      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x1a      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x1a      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x01a      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x1a      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x1a      0      on   legacy
 
            SV STATUS
 
@@ -7298,10 +7298,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50406  Sun-0:14:00:06   0x01b      0      on
-SF2 HOW:     50412  Sun-0:14:00:12    0x1b      0      on
-SF3 HOW:     50418  Sun-0:14:00:18    0x1b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50406  Sun-0:14:00:06   0x01b      0      on   legacy
+SF2 HOW:     50412  Sun-0:14:00:12    0x1b      0      on   legacy
+SF3 HOW:     50418  Sun-0:14:00:18    0x1b      0      on   legacy
 
            SV STATUS
 
@@ -7349,10 +7349,10 @@ PRN : GPS 27 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x032      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x32      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x32      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x032      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x32      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x32      0      on   legacy
 
            SV STATUS
 
@@ -7400,10 +7400,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     51006  Sun-0:14:10:06   0x037      0      on
-SF2 HOW:     51012  Sun-0:14:10:12    0x37      0      on
-SF3 HOW:     51018  Sun-0:14:10:18    0x37      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     51006  Sun-0:14:10:06   0x037      0      on   legacy
+SF2 HOW:     51012  Sun-0:14:10:12    0x37      0      on   legacy
+SF3 HOW:     51018  Sun-0:14:10:18    0x37      0      on   legacy
 
            SV STATUS
 
@@ -7451,10 +7451,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x038      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x38      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x38      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x038      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x38      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x38      0      on   legacy
 
            SV STATUS
 
@@ -7502,10 +7502,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64686  Sun-0:17:58:06   0x008      0      on
-SF2 HOW:     64692  Sun-0:17:58:12    0x08      0      on
-SF3 HOW:     64698  Sun-0:17:58:18    0x08      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64686  Sun-0:17:58:06   0x008      0      on   legacy
+SF2 HOW:     64692  Sun-0:17:58:12    0x08      0      on   legacy
+SF3 HOW:     64698  Sun-0:17:58:18    0x08      0      on   legacy
 
            SV STATUS
 
@@ -7553,10 +7553,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x009      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x09      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x09      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x009      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x09      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x09      0      on   legacy
 
            SV STATUS
 
@@ -7604,10 +7604,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x00e      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x0e      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x0e      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x00e      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x0e      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x0e      0      on   legacy
 
            SV STATUS
 
@@ -7655,10 +7655,10 @@ PRN : GPS 28 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     79236  Sun-0:22:00:36   0x060      0      on
-SF2 HOW:     79242  Sun-0:22:00:42    0x60      0      on
-SF3 HOW:     79248  Sun-0:22:00:48    0x60      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     79236  Sun-0:22:00:36   0x060      0      on   legacy
+SF2 HOW:     79242  Sun-0:22:00:42    0x60      0      on   legacy
+SF3 HOW:     79248  Sun-0:22:00:48    0x60      0      on   legacy
 
            SV STATUS
 
@@ -7706,10 +7706,10 @@ PRN : GPS 29 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      3606  Sun-0:01:00:06   0x04f      0      on
-SF2 HOW:      3612  Sun-0:01:00:12    0x4f      0      on
-SF3 HOW:      3618  Sun-0:01:00:18    0x4f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      3606  Sun-0:01:00:06   0x04f      0      on   legacy
+SF2 HOW:      3612  Sun-0:01:00:12    0x4f      0      on   legacy
+SF3 HOW:      3618  Sun-0:01:00:18    0x4f      0      on   legacy
 
            SV STATUS
 
@@ -7757,10 +7757,10 @@ PRN : GPS 29 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:      7206  Sun-0:02:00:06   0x050      0      on
-SF2 HOW:      7212  Sun-0:02:00:12    0x50      0      on
-SF3 HOW:      7218  Sun-0:02:00:18    0x50      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:      7206  Sun-0:02:00:06   0x050      0      on   legacy
+SF2 HOW:      7212  Sun-0:02:00:12    0x50      0      on   legacy
+SF3 HOW:      7218  Sun-0:02:00:18    0x50      0      on   legacy
 
            SV STATUS
 
@@ -7808,10 +7808,10 @@ PRN : GPS 29 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     14406  Sun-0:04:00:06   0x051      0      on
-SF2 HOW:     14412  Sun-0:04:00:12    0x51      0      on
-SF3 HOW:     14418  Sun-0:04:00:18    0x51      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     14406  Sun-0:04:00:06   0x051      0      on   legacy
+SF2 HOW:     14412  Sun-0:04:00:12    0x51      0      on   legacy
+SF3 HOW:     14418  Sun-0:04:00:18    0x51      0      on   legacy
 
            SV STATUS
 
@@ -7859,10 +7859,10 @@ PRN : GPS 29 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     83016  Sun-0:23:03:36   0x036      0      on
-SF2 HOW:     83022  Sun-0:23:03:42    0x36      0      on
-SF3 HOW:     83028  Sun-0:23:03:48    0x36      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     83016  Sun-0:23:03:36   0x036      0      on   legacy
+SF2 HOW:     83022  Sun-0:23:03:42    0x36      0      on   legacy
+SF3 HOW:     83028  Sun-0:23:03:48    0x36      0      on   legacy
 
            SV STATUS
 
@@ -7910,10 +7910,10 @@ PRN : GPS 30 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     49926  Sun-0:13:52:06   0x012      0      on
-SF2 HOW:     49932  Sun-0:13:52:12    0x12      0      on
-SF3 HOW:     49938  Sun-0:13:52:18    0x12      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     49926  Sun-0:13:52:06   0x012      0      on   legacy
+SF2 HOW:     49932  Sun-0:13:52:12    0x12      0      on   legacy
+SF3 HOW:     49938  Sun-0:13:52:18    0x12      0      on   legacy
 
            SV STATUS
 
@@ -7961,10 +7961,10 @@ PRN : GPS 30 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     50496  Sun-0:14:01:36   0x01b      0      on
-SF2 HOW:     50502  Sun-0:14:01:42    0x1b      0      on
-SF3 HOW:     50508  Sun-0:14:01:48    0x1b      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     50496  Sun-0:14:01:36   0x01b      0      on   legacy
+SF2 HOW:     50502  Sun-0:14:01:42    0x1b      0      on   legacy
+SF3 HOW:     50508  Sun-0:14:01:48    0x1b      0      on   legacy
 
            SV STATUS
 
@@ -8012,10 +8012,10 @@ PRN : GPS 30 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     57606  Sun-0:16:00:06   0x024      0      on
-SF2 HOW:     57612  Sun-0:16:00:12    0x24      0      on
-SF3 HOW:     57618  Sun-0:16:00:18    0x24      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     57606  Sun-0:16:00:06   0x024      0      on   legacy
+SF2 HOW:     57612  Sun-0:16:00:12    0x24      0      on   legacy
+SF3 HOW:     57618  Sun-0:16:00:18    0x24      0      on   legacy
 
            SV STATUS
 
@@ -8063,10 +8063,10 @@ PRN : GPS 30 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     64806  Sun-0:18:00:06   0x025      0      on
-SF2 HOW:     64812  Sun-0:18:00:12    0x25      0      on
-SF3 HOW:     64818  Sun-0:18:00:18    0x25      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     64806  Sun-0:18:00:06   0x025      0      on   legacy
+SF2 HOW:     64812  Sun-0:18:00:12    0x25      0      on   legacy
+SF3 HOW:     64818  Sun-0:18:00:18    0x25      0      on   legacy
 
            SV STATUS
 
@@ -8114,10 +8114,10 @@ PRN : GPS 30 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     72006  Sun-0:20:00:06   0x034      0      on
-SF2 HOW:     72012  Sun-0:20:00:12    0x34      0      on
-SF3 HOW:     72018  Sun-0:20:00:18    0x34      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     72006  Sun-0:20:00:06   0x034      0      on   legacy
+SF2 HOW:     72012  Sun-0:20:00:12    0x34      0      on   legacy
+SF3 HOW:     72018  Sun-0:20:00:18    0x34      0      on   legacy
 
            SV STATUS
 
@@ -8165,10 +8165,10 @@ PRN : GPS 31 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     23076  Sun-0:06:24:36   0x03d      0      on
-SF2 HOW:     23082  Sun-0:06:24:42    0x3d      0      on
-SF3 HOW:     23088  Sun-0:06:24:48    0x3d      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     23076  Sun-0:06:24:36   0x03d      0      on   legacy
+SF2 HOW:     23082  Sun-0:06:24:42    0x3d      0      on   legacy
+SF3 HOW:     23088  Sun-0:06:24:48    0x3d      0      on   legacy
 
            SV STATUS
 
@@ -8216,10 +8216,10 @@ PRN : GPS 31 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28806  Sun-0:08:00:06   0x03e      0      on
-SF2 HOW:     28812  Sun-0:08:00:12    0x3e      0      on
-SF3 HOW:     28818  Sun-0:08:00:18    0x3e      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28806  Sun-0:08:00:06   0x03e      0      on   legacy
+SF2 HOW:     28812  Sun-0:08:00:12    0x3e      0      on   legacy
+SF3 HOW:     28818  Sun-0:08:00:18    0x3e      0      on   legacy
 
            SV STATUS
 
@@ -8267,10 +8267,10 @@ PRN : GPS 31 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x03f      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x3f      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x3f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x03f      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x3f      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x3f      0      on   legacy
 
            SV STATUS
 
@@ -8318,10 +8318,10 @@ PRN : GPS 31 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x040      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x40      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x40      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x040      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x40      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x40      0      on   legacy
 
            SV STATUS
 
@@ -8369,10 +8369,10 @@ PRN : GPS 32 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     25986  Sun-0:07:13:06   0x007      0      on
-SF2 HOW:     25992  Sun-0:07:13:12    0x07      0      on
-SF3 HOW:     25998  Sun-0:07:13:18    0x07      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     25986  Sun-0:07:13:06   0x007      0      on   legacy
+SF2 HOW:     25992  Sun-0:07:13:12    0x07      0      on   legacy
+SF3 HOW:     25998  Sun-0:07:13:18    0x07      0      on   legacy
 
            SV STATUS
 
@@ -8420,10 +8420,10 @@ PRN : GPS 32 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     28836  Sun-0:08:00:36   0x00f      0      on
-SF2 HOW:     28842  Sun-0:08:00:42    0x0f      0      on
-SF3 HOW:     28848  Sun-0:08:00:48    0x0f      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     28836  Sun-0:08:00:36   0x00f      0      on   legacy
+SF2 HOW:     28842  Sun-0:08:00:42    0x0f      0      on   legacy
+SF3 HOW:     28848  Sun-0:08:00:48    0x0f      0      on   legacy
 
            SV STATUS
 
@@ -8471,10 +8471,10 @@ PRN : GPS 32 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     36006  Sun-0:10:00:06   0x010      0      on
-SF2 HOW:     36012  Sun-0:10:00:12    0x10      0      on
-SF3 HOW:     36018  Sun-0:10:00:18    0x10      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     36006  Sun-0:10:00:06   0x010      0      on   legacy
+SF2 HOW:     36012  Sun-0:10:00:12    0x10      0      on   legacy
+SF3 HOW:     36018  Sun-0:10:00:18    0x10      0      on   legacy
 
            SV STATUS
 
@@ -8522,10 +8522,10 @@ PRN : GPS 32 / SVN :
 
            SUBFRAME OVERHEAD
 
-               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S
-SF1 HOW:     43206  Sun-0:12:00:06   0x011      0      on
-SF2 HOW:     43212  Sun-0:12:00:12    0x11      0      on
-SF3 HOW:     43218  Sun-0:12:00:18    0x11      0      on
+               SOW    DOW:HH:MM:SS     IOD    ALERT   A-S   ISF
+SF1 HOW:     43206  Sun-0:12:00:06   0x011      0      on   legacy
+SF2 HOW:     43212  Sun-0:12:00:12    0x11      0      on   legacy
+SF3 HOW:     43218  Sun-0:12:00:18    0x11      0      on   legacy
 
            SV STATUS
 
