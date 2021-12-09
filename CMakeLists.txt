@@ -107,3 +107,21 @@ add_subdirectory( core )
 if( BUILD_EXT )
    add_subdirectory( ext )
 endif()
+
+#----------------------------------------
+# Export the project import cmake files.
+#----------------------------------------
+include( CMakePackageConfigHelpers )
+set( INSTALL_CONFIG_DIR ${CMAKE_INSTALL_DATADIR}/cmake/GNSSTK-Apps )
+configure_package_config_file( ${CMAKE_CURRENT_SOURCE_DIR}/GNSSTK-AppsConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfig.cmake
+    INSTALL_DESTINATION ${INSTALL_CONFIG_DIR}
+    PATH_VARS CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR CMAKE_INSTALL_BINDIR CMAKE_INSTALL_PREFIX INSTALL_CONFIG_DIR )
+write_basic_package_version_file( ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfigVersion.cmake
+    VERSION ${GNSSTK_VERSION}
+    COMPATIBILITY ExactVersion )
+install( FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfigVersion.cmake
+    DESTINATION
+    ${INSTALL_CONFIG_DIR} )

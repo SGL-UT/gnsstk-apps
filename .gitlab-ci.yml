@@ -797,11 +797,9 @@ package_redhat_8:
   artifacts:
     when: always
     paths:
-      - rpm_files/
+     - rpm_files/RPMS/x86_64/gnsstk-*
+     - rpm_files/SRPMS/gnsstk-*
   dependencies: []
-
-#      - rpm_files/RPMS/x86_64/gnsstk-*
-#      - rpm_files/SRPMS/gnsstk-*
 
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
