@@ -145,7 +145,7 @@ try {
    Position XT,YT,ZT,Sun;
    double AR;
    Sun = SolarPosition(tt,AR);
-   Matrix<double> Att = SatelliteAttitude(SV,Sun);
+   Matrix<double> Att = satelliteAttitude(SV,Sun);
    XT = Position(Att(0,0),Att(0,1),Att(0,2));      // Cartesian is default
    YT = Position(Att(1,0),Att(1,1),Att(1,2));
    ZT = Position(Att(2,0),Att(2,1),Att(2,2));
