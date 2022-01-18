@@ -18,7 +18,7 @@
 
 # Generate the merged file
 
-cmake_minimum_required(VERSION 3.12)
+#cmake_minimum_required(VERSION 3.12)
 if (DEFINED OUTPUTS)
   message(STATUS "OUTPUTS is defined as ${OUTPUTS}")
 endif()
