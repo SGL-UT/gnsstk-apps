@@ -1,10 +1,10 @@
 
-        Month/Day/Year H:M:S            01/01/2021 23:59:42
-        Modified Julian Date            59215.999791667
-        GPSweek DayOfWeek SecOfWeek     90 5  518382.000000
-        FullGPSweek Zcount              2138 345588
-        Year DayOfYear SecondOfDay      2021 001  86382.000000
-        Unix: Second Microsecond        1609545582      0
-        Zcount: 29-bit (32-bit)         47531508 (1121273332)
+        Month/Day/Year H:M:S            01/02/2021 00:00:18
+        Modified Julian Date            59216.000208333
+        GPSweek DayOfWeek SecOfWeek     90 6  518418.000000
+        FullGPSweek Zcount              2138 345612
+        Year DayOfYear SecondOfDay      2021 002    18.000000
+        Unix: Second Microsecond        1609545618      0
+        Zcount: 29-bit (32-bit)         47531532 (1121273356)
 
 
