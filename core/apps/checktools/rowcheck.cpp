@@ -92,8 +92,8 @@
 
 #include "CheckFrame.hpp"
 
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsData.hpp"
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
 
 using namespace std;
 using namespace gnsstk;

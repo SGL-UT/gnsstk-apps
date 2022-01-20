@@ -93,14 +93,14 @@
  * \ref rnwdiff, \ref rowdiff
  */
 
-#include "FileFilterFrameWithHeader.hpp"
+#include <gnsstk/FileFilterFrameWithHeader.hpp>
 
-#include "RinexMetData.hpp"
-#include "RinexMetStream.hpp"
-#include "RinexMetFilterOperators.hpp"
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetStream.hpp>
+#include <gnsstk/RinexMetFilterOperators.hpp>
 
 #include "DiffFrame.hpp"
-#include "YDSTime.hpp"
+#include <gnsstk/YDSTime.hpp>
 
 using namespace std;
 using namespace gnsstk;

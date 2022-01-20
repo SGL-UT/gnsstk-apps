@@ -50,21 +50,21 @@
 #include <cstring>
 
 // GNSSTk
-#include "CommandOption.hpp"
-#include "CommandOptionParser.hpp"
-#include "TimeString.hpp"
-#include "PRSolutionLegacy.hpp"
+#include <gnsstk/CommandOption.hpp>
+#include <gnsstk/CommandOptionParser.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/PRSolution.hpp>
 
 // DDBase
 #include "DDBase.hpp"
 // DDBase.hpp includes CommandInput.hpp
 
-#include "SimpleTropModel.hpp"
-#include "SaasTropModel.hpp"
-#include "NBTropModel.hpp"
-#include "GGTropModel.hpp"
-#include "GGHeightTropModel.hpp"
-#include "NeillTropModel.hpp"
+#include <gnsstk/SimpleTropModel.hpp>
+#include <gnsstk/SaasTropModel.hpp>
+#include <gnsstk/NBTropModel.hpp>
+#include <gnsstk/GGTropModel.hpp>
+#include <gnsstk/GGHeightTropModel.hpp>
+#include <gnsstk/NeillTropModel.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -101,7 +101,7 @@ try {
    StochasticModel = string("cos2");      // cos, cos2, SNR
       // for pseudorange solution
    {
-      PRSolutionLegacy dummy;
+      PRSolution dummy;
       PRSrmsLimit = dummy.RMSLimit; // 6.5;
       PRSnIter = dummy.MaxNIterations; // 10;
       PRSconverge = dummy.ConvergenceLimit; // 1.e-9;

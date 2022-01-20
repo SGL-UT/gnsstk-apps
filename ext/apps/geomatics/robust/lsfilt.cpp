@@ -49,8 +49,8 @@
 #include <vector>
 #include <time.h>
 
-#include "StringUtils.hpp"
-#include "Matrix.hpp"
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Matrix.hpp>
 
 using namespace std;
 using namespace gnsstk;

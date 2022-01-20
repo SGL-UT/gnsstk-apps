@@ -41,9 +41,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "FileFilterFrame.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/FileFilterFrame.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 template <class FileData>
 struct NullTimeFilter : public std::unary_function<FileData, bool>

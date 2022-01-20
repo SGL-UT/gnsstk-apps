@@ -46,7 +46,7 @@
 
 //------------------------------------------------------------------------------------
 // GNSSTk
-#include "GNSSconstants.hpp"
+#include <gnsstk/GNSSconstants.hpp>
 
 //------------------------------------------------------------------------------------
 const double CFF=gnsstk::C_MPS/gnsstk::OSC_FREQ_GPS;

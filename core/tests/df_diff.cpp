@@ -45,8 +45,8 @@
 #include <string>
 #include <cmath>
 
-#include "BasicFramework.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/StringUtils.hpp>
 
 using namespace std;
 

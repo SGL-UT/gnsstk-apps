@@ -45,12 +45,12 @@
 // system includes
 
 // GNSSTk
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include "Namelist.hpp"
-#include "GNSSconstants.hpp"
-#include "RobustStats.hpp"
-#include "format.hpp"
+#include <gnsstk/Vector.hpp>
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Namelist.hpp>
+#include <gnsstk/GNSSconstants.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/format.hpp>
 
 // DDBase
 #include "DDBase.hpp"

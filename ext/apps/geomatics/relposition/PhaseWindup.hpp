@@ -44,10 +44,10 @@
 #ifndef PHASE_WINDUP_INCLUDE
 #define PHASE_WINDUP_INCLUDE
 
-#include "CommonTime.hpp"
-#include "Position.hpp"
-#include "SolarSystem.hpp"
-#include "EarthOrientation.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/Position.hpp>
+#include <gnsstk/SolarSystem.hpp>
+#include <gnsstk/EarthOrientation.hpp>
 
 namespace gnsstk {
 

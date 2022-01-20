@@ -39,10 +39,10 @@
 /// @file StatsFilter_T.cpp Test classes in StatsFilter.hpp
 
 #include <vector>
-#include "FirstDiffFilter.hpp"
-#include "FDiffFilter.hpp"
-#include "WindowFilter.hpp"
-#include "logstream.hpp"
+#include <gnsstk/FirstDiffFilter.hpp>
+#include <gnsstk/FDiffFilter.hpp>
+#include <gnsstk/WindowFilter.hpp>
+#include <gnsstk/logstream.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

@@ -38,13 +38,13 @@
 
 #include <iostream>
 #include <vector>
-#include "NavFilterMgr.hpp"
-#include "LNavFilterData.hpp"
-#include "LNavParityFilter.hpp"
-#include "LNavCookFilter.hpp"
-#include "CommonTime.hpp"
-#include "TimeString.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/NavFilterMgr.hpp>
+#include <gnsstk/LNavFilterData.hpp>
+#include <gnsstk/LNavParityFilter.hpp>
+#include <gnsstk/LNavCookFilter.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/StringUtils.hpp>
 
 using namespace std;
 using namespace gnsstk;

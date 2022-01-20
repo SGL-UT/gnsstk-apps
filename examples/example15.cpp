@@ -44,9 +44,9 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "RobustStats.hpp"
-#include "random.hpp"
-#include "Stats.hpp"
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/random.hpp>
+#include <gnsstk/Stats.hpp>
 
 using namespace std;
 using namespace gnsstk;

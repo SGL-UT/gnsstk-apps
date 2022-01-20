@@ -47,15 +47,15 @@
 
 //------------------------------------------------------------------------------------
 // includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // system
 #include <vector>
 
 // GNSSTk
-#include "Matrix.hpp"
-#include "Stats.hpp"
-#include "RobustStats.hpp"
-//#include "SRIFilter.hpp"
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/RobustStats.hpp>
+//#include <gnsstk/SRIFilter.hpp>
 
 // DDBase
 #include "DDBase.hpp"

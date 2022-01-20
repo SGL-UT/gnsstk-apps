@@ -46,20 +46,20 @@
 #include <iomanip>
 #include <fstream>
 // gnsstk
-#include "Exception.hpp"
-#include "EphTime.hpp"
-#include "Position.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/EphTime.hpp>
+#include <gnsstk/Position.hpp>
 // geomatics
-#include "CommandLine.hpp"
-#include "logstream.hpp"
-#include "singleton.hpp"
-#include "expandtilde.hpp"
-#include "SolarPosition.hpp"
-#include "SolarSystem.hpp"
-#include "SunEarthSatGeometry.hpp"
-#include "OceanLoadTides.hpp"
-#include "AtmLoadTides.hpp"
-#include "logstream.hpp"
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/SolarPosition.hpp>
+#include <gnsstk/SolarSystem.hpp>
+#include <gnsstk/SunEarthSatGeometry.hpp>
+#include <gnsstk/OceanLoadTides.hpp>
+#include <gnsstk/AtmLoadTides.hpp>
+#include <gnsstk/logstream.hpp>
 
 using namespace std;
 using namespace gnsstk;
@@ -334,9 +334,9 @@ try {
 
    // get rotation matrix XYZ->NEU for pos
    Matrix<double> Rotate,RotOTL,RotATM;
-   Rotate = NorthEastUp(C.posset);
-   RotOTL = NorthEastUp(C.posotl);
-   RotATM = NorthEastUp(C.posatm);
+   Rotate = northEastUp(C.posset);
+   RotOTL = northEastUp(C.posotl);
+   RotATM = northEastUp(C.posatm);
 
    // -------------------------------------------------------------------------
    if(!isValid) {

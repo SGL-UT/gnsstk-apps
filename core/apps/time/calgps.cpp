@@ -75,16 +75,16 @@
 
 #include <iostream>
 #include <iomanip>
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "YDSTime.hpp"
-#include "GPSWeekSecond.hpp"
-#include "TimeConstants.hpp"
-#include "TimeString.hpp"
-#include "SystemTime.hpp"
-#include "CommandOptionParser.hpp"
-#include "StringUtils.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/YDSTime.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/TimeConstants.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/SystemTime.hpp>
+#include <gnsstk/CommandOptionParser.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 using namespace std;
 using namespace gnsstk;

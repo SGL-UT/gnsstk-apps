@@ -44,15 +44,15 @@
 // system includes
 #include <string>
 // gnsstk
-#include "Exception.hpp"
-#include "GNSSconstants.hpp"
-#include "Matrix.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/GNSSconstants.hpp>
+#include <gnsstk/Matrix.hpp>
 // geomatics
-#include "EphTime.hpp"
-#include "CommandLine.hpp"
-#include "SolarSystem.hpp"
-#include "EarthOrientation.hpp"
-#include "logstream.hpp"
+#include <gnsstk/EphTime.hpp>
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/SolarSystem.hpp>
+#include <gnsstk/EarthOrientation.hpp>
+#include <gnsstk/logstream.hpp>
 
 using namespace std;
 using namespace gnsstk;

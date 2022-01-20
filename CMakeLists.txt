@@ -23,7 +23,11 @@ set( CPACK_PACKAGE_VERSION ${NAVSAT_TOOLS_VERSION} )
 include( GNUInstallDirs )
 
 # always link gnsstk
-list( APPEND SUPPORTLIBS gnsstk )
+if ( ${PROFILER} )
+  list( APPEND SUPPORTLIBS gnsstkStatic )
+else()
+  list( APPEND SUPPORTLIBS gnsstk )
+endif()
 
 # Include any optional desired linkage
 include( ExtLinkage.cmake OPTIONAL )
@@ -75,9 +79,9 @@ if( TEST_SWITCH )
   enable_testing()
 
   # Test data file source directory
-  set( NAVSAT_TOOLS_TEST_DATA_DIR ${PROJECT_SOURCE_DIR}/data )
+  set( GNSSTK_APPS_TEST_DATA_DIR ${PROJECT_SOURCE_DIR}/data )
   # Test output directory
-  set( NAVSAT_TOOLS_TEST_OUTPUT_DIR ${PROJECT_BINARY_DIR}/Testing/Temporary )
+  set( GNSSTK_APPS_TEST_OUTPUT_DIR ${PROJECT_BINARY_DIR}/Testing/Temporary )
   # Some cmake scripts used with testing
   set(df_diff ${GNSSTK_BINDIR}/df_diff)
   set(difftest ${PROJECT_SOURCE_DIR}/tests/difftest.cmake)

@@ -96,13 +96,13 @@
 
 /// This utility assumes that epochs are in ascending time order
 
-#include "FileFilterFrameWithHeader.hpp"
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsFilterOperators.hpp"
+#include <gnsstk/FileFilterFrameWithHeader.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsFilterOperators.hpp>
 
 #include "DiffFrame.hpp"
 
-#include "YDSTime.hpp"
+#include <gnsstk/YDSTime.hpp>
 
 using namespace std;
 using namespace gnsstk;

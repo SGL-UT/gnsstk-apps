@@ -43,8 +43,8 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
-#include "GPSWeekSecond.hpp"
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -167,10 +167,6 @@ try {
       Stations[ObsFileList[i].label].PRSXstats.Reset();
       Stations[ObsFileList[i].label].PRSYstats.Reset();
       Stations[ObsFileList[i].label].PRSZstats.Reset();
-      if(CI.Debug) {
-         Stations[ObsFileList[i].label].PRS.Debug = true;
-         Stations[ObsFileList[i].label].PRS.pDebugStream = &oflog;
-      }
 
          // read some obs records to compute the first time and the nominal DT
       {

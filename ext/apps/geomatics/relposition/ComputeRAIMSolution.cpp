@@ -46,7 +46,7 @@
 // includes
 // system
 #include <fstream>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
 
@@ -110,7 +110,8 @@ try {
       return -2;
    }
 
-   iret = st.PRS.RAIMCompute(tt, Sats, Ranges, *pEph, CI.pTropModel);
+   iret = st.PRS.RAIMComputeUnweighted(tt, Sats, Ranges, navLib, CI.pTropModel,
+                                       NavSearchOrder::Nearest);
 
    if(iret < 0) {
       if(iret == -4)
@@ -134,7 +135,6 @@ try {
    if(iret < 0 || nsvs <= 4) {                // did not compute a solution
       if(CI.Verbose) oflog << "At " << SolutionEpoch
          << " RAIM returned " << iret << endl;
-      st.PRS.Valid = false;
       if(iret >= 0) return -3;
       return iret;
    }
@@ -181,7 +181,8 @@ try {
    size_t i;
    Station& st=Stations[of.label];
 
-   if(!st.PRS.Valid) {
+   if(!st.PRS.isValid())
+   {
       st.RawDataMap.clear();
       return;
    }

@@ -49,9 +49,9 @@
 // includes
 // system
 #include <fstream>
-#include "TimeString.hpp"
-#include "Epoch.hpp"
-#include "GPSWeekSecond.hpp"
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
 
 // GNSSTk
 

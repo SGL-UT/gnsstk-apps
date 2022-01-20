@@ -50,18 +50,18 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
-#include "Vector.hpp"
-#include "Matrix.hpp"
-#include "Namelist.hpp"
-#include "SRIFilter.hpp"
-#include "EphemerisRange.hpp"
-#include "PreciseRange.hpp"
-#include "Stats.hpp"
-#include "RobustStats.hpp"
-#include "GNSSconstants.hpp"
+#include <gnsstk/Vector.hpp>
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Namelist.hpp>
+#include <gnsstk/SRIFilter.hpp>
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/PreciseRange.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/GNSSconstants.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -837,7 +837,9 @@ try {
       }
          // sat 1 -----------------------------------------------------
          // should you use CER.rawrange here?
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat1,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat1,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st1.pTropModel->correction(st1.pos,SatR,SolutionEpoch);
       f(m) += ER+trop;
@@ -860,7 +862,9 @@ try {
       }
 
          // sat 2 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat2,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st1.pos,sat2,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st1.pTropModel->correction(st1.pos,SatR,SolutionEpoch);
       f(m) -= ER+trop;
@@ -888,7 +892,9 @@ try {
          }
       }
          // sat 1 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat1,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat1,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st2.pTropModel->correction(st2.pos,SatR,SolutionEpoch);
       f(m) -= ER+trop;
@@ -911,7 +917,9 @@ try {
       }
 
          // sat 2 -----------------------------------------------------
-      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat2,*pEph);
+      ER = CER.ComputeAtReceiveTime(SolutionEpoch,st2.pos,sat2,navLib,
+                                    NavSearchOrder::Nearest, SVHealth::Any,
+                                    NavValidityType::Any);
       SatR.setECEF(CER.svPosVel.x[0],CER.svPosVel.x[1],CER.svPosVel.x[2]);
       trop = st2.pTropModel->correction(st2.pos,SatR,SolutionEpoch);
       f(m) += ER+trop;

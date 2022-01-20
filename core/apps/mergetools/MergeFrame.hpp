@@ -39,7 +39,7 @@
 #ifndef MERGEFRAME_HPP
 #define MERGEFRAME_HPP
 
-#include "BasicFramework.hpp"
+#include <gnsstk/BasicFramework.hpp>
 
 /// Base class for writing utilities that merge files
 

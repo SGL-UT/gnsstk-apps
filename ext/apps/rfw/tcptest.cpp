@@ -44,8 +44,8 @@ using std::cout;
 using std::endl;
 
 #include "TCPStream.hpp"
-#include "CommandOption.hpp"
-#include "CommandOptionParser.hpp"
+#include <gnsstk/CommandOption.hpp>
+#include <gnsstk/CommandOptionParser.hpp>
 
 #include <sys/types.h>
 #include <sys/socket.h>

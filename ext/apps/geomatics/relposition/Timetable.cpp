@@ -45,8 +45,8 @@
 //------------------------------------------------------------------------------------
 // includes
 // system
-#include "TimeString.hpp"
-#include "GPSWeekSecond.hpp"
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
 
 // GNSSTk
 // Geomatics

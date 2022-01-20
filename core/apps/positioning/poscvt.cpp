@@ -92,9 +92,9 @@
  * \enddictable
  */
 
-#include "BasicFramework.hpp"
-#include "Position.hpp"
-#include "CommandOptionWithPositionArg.hpp"
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/Position.hpp>
+#include <gnsstk/CommandOptionWithPositionArg.hpp>
 
 using namespace std;
 using namespace gnsstk;

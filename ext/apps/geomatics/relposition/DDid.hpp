@@ -51,9 +51,9 @@
 #include <ostream>
 
 // GNSSTk
-#include "Exception.hpp"
+#include <gnsstk/Exception.hpp>
 // Geomatics
-#include "GSatID.hpp"
+#include <gnsstk/GSatID.hpp>
 
 namespace gnsstk {
 //------------------------------------------------------------------------------------

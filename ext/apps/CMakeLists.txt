@@ -8,6 +8,4 @@ if (UNIX)
     add_subdirectory (rfw)
 endif (UNIX)
 
-add_subdirectory (Rinextools)
-
 

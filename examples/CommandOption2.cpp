@@ -38,10 +38,10 @@
 //==============================================================================
 #include <iostream>
 #include <fstream>
-#include <BasicFramework.hpp>
-#include <StringUtils.hpp>
-#include <CommandOptionWithCommonTimeArg.hpp>
-#include <TimeString.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
+#include <gnsstk/TimeString.hpp>
 
 using namespace std;
 using namespace gnsstk;

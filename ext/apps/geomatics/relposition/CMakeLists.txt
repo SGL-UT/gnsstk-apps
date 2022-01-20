@@ -6,7 +6,6 @@ CommandInput.cpp
 Configure.cpp
 ReadRawData.cpp
 ReadObsFiles.cpp
-EphemerisImprovement.cpp
 ClockModel.cpp
 Synchronization.cpp
 DDid.cpp

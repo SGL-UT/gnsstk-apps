@@ -45,9 +45,9 @@
 // system includes
 
 // GNSSTk
-#include "GNSSconstants.hpp"                // for DEG_TO_RAD
+#include <gnsstk/GNSSconstants.hpp>                // for DEG_TO_RAD
 // geomatics
-#include "SunEarthSatGeometry.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
 // DDBase
 #include "DDBase.hpp"
 

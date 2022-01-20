@@ -99,12 +99,12 @@
 #include <string>
 #include <vector>
 
-#include "SP3Stream.hpp"
-#include "SP3Header.hpp"
-#include "SP3Data.hpp"
-#include "CommonTime.hpp"
-#include "SatID.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/SP3Stream.hpp>
+#include <gnsstk/SP3Header.hpp>
+#include <gnsstk/SP3Data.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/SatID.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 using namespace std;
 using namespace gnsstk;

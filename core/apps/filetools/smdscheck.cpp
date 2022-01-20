@@ -36,8 +36,8 @@
 //
 //==============================================================================
 
-#include "BasicFramework.hpp"
-#include "SatMetaDataStore.hpp"
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/SatMetaDataStore.hpp>
 
 using namespace std;
 using namespace gnsstk;

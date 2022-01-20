@@ -47,7 +47,7 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // GNSSTk
 
 // DDBase

@@ -92,8 +92,8 @@
 
 #include "CheckFrame.hpp"
 
-#include "Rinex3NavStream.hpp"
-#include "Rinex3NavData.hpp"
+#include <gnsstk/Rinex3NavStream.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
 
 using namespace std;
 using namespace gnsstk;

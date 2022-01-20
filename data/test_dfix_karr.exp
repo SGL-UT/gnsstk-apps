@@ -1,4 +1,4 @@
-dfix ver 2.0 5/20/17, Run 2017/07/13 at 10:45:28
+dfix ver 3.0 6/20/19, Run 2021/10/28 at 10:19:49
 
 Load the RINEX files using Rinex3ObsFileLoader -------
  Add obs type GL1C =~ GL1* from /local/Code/gnsstk/data/test_dfix_karr0880.ed.10o
@@ -23,7 +23,7 @@ Header for file /local/Code/gnsstk/data/test_dfix_karr0880.ed.10o
 ---------------------------------- REQUIRED ----------------------------------
 Rinex Version  2.11,  File type OBSERVATION DATA,  System G (GPS).
 Prgm: RinEdit,  Run: 06/14/2017 15:52:01,  By: Michael Moore
-Marker type: .
+Marker name: KARR, Marker type: .
 Observer : GEOSCIENCE AUSTRALIA,  Agency: GEOSCIENCE AUSTRALIA
 Rec#: UC2200302005,  Type: ASHTECH UZ-12,  Vers: CN00
 Antenna # : 320,  Type : AOAD/M_T        AUST
@@ -102,4 +102,4 @@ GDC   1 SPS  187 G28  186  0 1577  86400.000 1577  92670.000 30.0 L1 L2 P1 P2
 DFX   1 G28 BEG    0 1577  86400.000  158  150 WL  150   0.374 +-   0.544 GF  150  17.791 +-   1.321
 DFX   1 G28 REJ  158 1577  91830.000    1    0 WL   28   0.470 +-   0.753 GF   28 13310.734 +- 67681.685 n(WL,GF) -59217,0
 DFX   1 G28 FIX  159 1577  91860.000   28   27 WL   27   0.486 +-   0.762 GF   27  54.985 +-   0.161 n(WL,GF) -2,371174
-dfix timing: 0.021 seconds. (0.000 sec)
+dfix timing: 0.033 seconds. (0.000 sec)

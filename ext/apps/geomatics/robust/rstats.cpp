@@ -50,21 +50,21 @@
 #include <string>
 #include <vector>
 // GNSSTk
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "Epoch.hpp"
-#include "Stats.hpp"
-#include "FirstDiffFilter.hpp"
-#include "WindowFilter.hpp"
-#include "FDiffFilter.hpp"
-#include "singleton.hpp"
-#include "WNJfilter.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/FirstDiffFilter.hpp>
+#include <gnsstk/WindowFilter.hpp>
+#include <gnsstk/FDiffFilter.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/WNJfilter.hpp>
 // geomatics
-#include "CommandLine.hpp"
-#include "RobustStats.hpp"
-#include "MostCommonValue.hpp"
-#include "expandtilde.hpp"
-#include "logstream.hpp"
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/RobustStats.hpp>
+#include <gnsstk/MostCommonValue.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

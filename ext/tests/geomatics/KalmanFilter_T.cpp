@@ -84,13 +84,13 @@
 #include <string>
 #include <map>
 // gnsstk
-#include "GNSSconstants.hpp"
-#include "StringUtils.hpp"
-#include "Matrix.hpp"
-#include "Stats.hpp"
+#include <gnsstk/GNSSconstants.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Stats.hpp>
 // geomatics
-#include "SRIFilter.hpp"
-#include "logstream.hpp"
+#include <gnsstk/SRIFilter.hpp>
+#include <gnsstk/logstream.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

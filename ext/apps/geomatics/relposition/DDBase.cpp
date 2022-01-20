@@ -44,13 +44,13 @@
 
 //------------------------------------------------------------------------------------
 // system includes
-#include "TimeString.hpp"
-#include <CivilTime.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/CivilTime.hpp>
 #include <time.h>
 
 // GNSSTk
 //#define RANGECHECK // throw on invalid ranges in Vector and Matrix
-#include "Epoch.hpp"
+#include <gnsstk/Epoch.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -129,7 +129,10 @@ int minCount,maxCount;        // minimum and maximum timetag count seen
 int begcount,endcount;        // first and last counts of *good* data in buffers
 double wave;                  // wavelength (m) being processed (see CI.Frequency)
 
-XvtStore<SatID> *pEph;        // pointer to ephemeris store (BC or SP3)
+   /// High level nav store interface.
+NavLibrary navLib;
+   /// nav data file reader
+std::shared_ptr<NavDataFactory> ndfp;
 EOPStore EOPList;             // store of EarthOrientation parameters
 EarthOrientation eorient;     // earth orientation parameters at mean time of dataset
 
@@ -236,10 +239,6 @@ try {
          // ------------------------------------------------------------------
          // correct ephemeris range, elevation, and compute phase windup
       if((iret = RecomputeFromEphemeris())) break;
-
-         // ------------------------------------------------------------------
-         // Orbit processing
-      if((iret = EphemerisImprovement())) break;
 
          // ------------------------------------------------------------------
          // output 'raw' data here
