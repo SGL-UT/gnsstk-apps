@@ -801,6 +801,21 @@ package_redhat_8:
      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
 
+package_windows:
+  stage: package
+  needs: [windows_build]
+  tags:
+    - win10-vs2019
+  script:
+    - cd build
+    - cpack -C Release
+#    - cpack -G WIX -C Release
+  dependencies:
+    - windows_build
+  artifacts:
+    paths:
+      - build/_CPack_Packages
+
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
 deb9_deploy:
@@ -868,20 +883,6 @@ rhel8_deploy:
     - timeconvert
   dependencies:
     - package_redhat_8
-
-# This requires a third-party package called NSIS.  We don't have it
-# installed and don't have the resources to make it work right now.
-# windows_package:
-#   stage: package
-#   tags:
-#     - win10
-#   script:
-#     - cd build
-#     - cpack -C Release
-#   dependencies:
-#     - windows_build
-
-# Temporarily allow failures as Windows Runner issues are resolved
 
 push_artifacts:
   extends: .push_selected_artifacts
