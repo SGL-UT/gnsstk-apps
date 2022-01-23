@@ -1,3 +1,58 @@
+# Version 13.0.0   Saturday January 22, 2022
+
+Modifications by Author
+-----------------------
+     Andrew Kuck <kuck@arlut.utexas.edu> (5):
+           Debian packages now use python3.
+           Update .gitlab-ci.yml
+           Update .gitlab-ci.yml
+           Update .gitlab-ci.yml
+           Update .gitlab-ci.yml
+
+     David Barber <dbarber@arlut.utexas.edu> (7):
+           Remove debian 8 jobs
+           Update to export config cmake file
+           Updating copyright header to pass sgllint test job
+           commenting out cmake_minimum_required (VERSION 3.12) for unit tests
+           Removing deb9_test job and allowing windows test job to fail.
+           update copyright header to year 2022
+           Add windows packaging
+
+     David Rainwater <rain@arlut.utexas.edu> (1):
+           Follow GNSSTk migration of SESG to core
+
+     John Knutson <johnk@arlut.utexas.edu> (28):
+           Rename cmake test directory variables
+           Add timeconvert support for time system conversion with or without nav data
+           Update bc2sp3 to use new nav classes and update truth data to account for slight differences in chosen broadcast ephemerides
+           Update dfix to use gnsstk newnav
+           Update RinDump to use gnsstk newnav
+           Resolve issues from code review
+           initial implementation of new navdump
+           Create RinEditNav to replace RinNav and mergeRinNav
+           Refactor PRSolve to use gnsstk new nav library
+           Update include usage so toolkit path must be included
+           Delete SVNumXRef_T which never should have been in gnsstk-apps
+           Rename cmake config file to be different from library one.
+           Fix contents of cmake config to distinguish it from gnsstk lib
+           Updates from review
+           Update truth data to match changes to gnsstk FreqConsts WAVELENGTH constants
+           Deprecate scanBrdcFile: 'It was written to allow us to use flawed RINEX nav, but there are SO MANY flaws.....'
+           Deprecate scanBrdcFile: 'It was written to allow us to use flawed RINEX nav, but there are SO MANY flaws.....'
+           Update navdump regression data to match recent changes to NewNav dump methods
+           Update PRSolve to reflect changes to how CorrectedEphemerisRange search order is specified
+           Update ddbase to use gnsstk NewNav and NOT use PRSolutionLegacy
+           Add profiler support to build process
+           Remove deprecated newnav debug use from navdump
+           change the PRSolve log convergence values again
+           Update PRSolve tests to ignore the integration convergence value
+           Remove unmaintained copy of testsuccexp.cmake that was in ext
+           Add integrity status flag to GPS LNAV data structures
+           Deprecate old nav
+           Fix test truth values due to sign error in time offset
+
+
+
 # Version 12.0.1   Friday October 29, 2021
 
 Modifications by Author

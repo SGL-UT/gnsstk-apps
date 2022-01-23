@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 12.0.1
+%define version 13.0.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -10,6 +10,7 @@ License:        LGPL
 Source:         %{name}-master.tar.gz
 URL:            https://github.com/SGL-UT/GNSSTk
 Group:          Development/Libraries
+Requires: gnsstk >= 13.0.0, gnsstk < 14.0.0
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -52,6 +53,19 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Jan 22 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.0.0 release
+-  Add windows packaging job to pipeline
+-  Update copyright header to year 2022
+-  Update ddbase to use gnsstk NewNav and NOT use PRSolutionLegacy
+-  Update PRSolve and dfix truth data to account for small changes in WAVELENGTH constants
+-  Add integrity status flag to GPS LNAV data structures
+-  Refactor PRSolve to use gnsstk new nav
+-  Add new navdump tool
+-  Add export of config cmake files
+-  Update Remove debian 8 jobs
+-  Store CI artifacts in artifactory.
+-  Update ci-pipelines to expect python3 bindings, instead of python2.
 * Fri Oct 29 2021 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v12.0.1 release
 - Update copyright statement.

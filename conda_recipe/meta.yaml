@@ -17,10 +17,10 @@ requirements:
   host:
     - python {{ python }}
     - setuptools
-    - gnsstk >=12.0.0,<13
+    - gnsstk >=13.0.0,<14
   run:
     - python {{ python }}
-    - gnsstk >=12.0.0,<13
+    - gnsstk >=13.0.0,<14
 
 test:
   imports:
