@@ -506,7 +506,7 @@ windows_test:
   dependencies:
     - windows_build
   timeout: 10m
-  # Allow windows tests to fail since some unit tests are failing that need to be investigated later.
+  # Allow windows tests to fail since some unit tests are failing that need to be investigated later.  See Gitlab Issue#4.
   allow_failure: true
 
 windows_test_vs2019:

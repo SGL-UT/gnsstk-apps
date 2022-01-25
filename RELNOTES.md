@@ -9,6 +9,7 @@ GNSSTk-APPs 13.0.0 Release Notes
      * Refactor uses of gnsstk/SunEarthSatGeometry in gnsstk-apps
    * Addition of new NavDump tool and RinEditNav class (see new modules list below)
  * Additionally, it contains minor library updates, bug fixes, and CI updates
+ * Please see Known Issues list below regarding latest update
 
 Updates since v12.0.1
 ---------------------
@@ -46,3 +47,19 @@ New Modules
 -------------------------------
      core/apps/Rinextools/RinEditNav.cpp
      core/apps/filetools/navdump.cpp
+
+Known Issues
+--------------------
+1.  The following unit tests are failing in windows environment only and have been tracked for further investigation.
+```
+      116 - RinEditNav_merge_1 (Failed)
+      117 - RinEditNav_merge_2 (Failed)
+      118 - RinEditNav_merge_3 (Failed)
+      119 - RinEditNav_merge_4 (Failed)
+      120 - RinEditNav_outputs_1 (Failed)
+      121 - RinEditNav_exclude_1 (Failed)
+      122 - RinEditNav_exclude_2 (Failed)
+      123 - RinEditNav_time_1 (Failed)
+      124 - RinEditNav_time_2 (Failed)
+      125 - RinEditNav_time_3 (Failed)
+```
