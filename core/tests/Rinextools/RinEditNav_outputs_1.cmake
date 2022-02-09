@@ -7,9 +7,9 @@
 # RINDIFF: location of RINEX diff tool for the format being tested
 # RINHEADDIFF: location of rinheaddiff application
 
-message(STATUS "running ${TEST_PROG} -o gps:${TARGETDIR}/RinEditNav_outputs_1.gps.out -o gal:${TARGETDIR}/RinEditNav_outputs_1.gal.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n")
+message(STATUS "running ${TEST_PROG} -o gps@${TARGETDIR}/RinEditNav_outputs_1.gps.out -o gal@${TARGETDIR}/RinEditNav_outputs_1.gal.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n")
 
-execute_process(COMMAND ${TEST_PROG} -o gps:${TARGETDIR}/RinEditNav_outputs_1.gps.out -o gal:${TARGETDIR}/RinEditNav_outputs_1.gal.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n
+execute_process(COMMAND ${TEST_PROG} -o gps@${TARGETDIR}/RinEditNav_outputs_1.gps.out -o gal@${TARGETDIR}/RinEditNav_outputs_1.gal.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n
                 OUTPUT_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
@@ -25,7 +25,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/RinEditNav_outputs_1.gps.exp ${T
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 message(STATUS "running ${RINDIFF} ${SOURCEDIR}/RinEditNav_outputs_1.gal.exp ${TARGETDIR}/RinEditNav_outputs_1.gal.out")
@@ -34,7 +34,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/RinEditNav_outputs_1.gal.exp ${T
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 
@@ -47,7 +47,7 @@ message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_outpu
 execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_outputs_1.gps.exp ${TARGETDIR}/RinEditNav_outputs_1.gps.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - headers differ")
+    message(FATAL_ERROR "Test failed - headers differ: ${DIFFERENT}")
 endif()
 
 message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_outputs_1.gal.exp ${TARGETDIR}/RinEditNav_outputs_1.gal.out")
@@ -55,5 +55,5 @@ message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_outpu
 execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_outputs_1.gal.exp ${TARGETDIR}/RinEditNav_outputs_1.gal.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - headers differ")
+    message(FATAL_ERROR "Test failed - headers differ: ${DIFFERENT}")
 endif()

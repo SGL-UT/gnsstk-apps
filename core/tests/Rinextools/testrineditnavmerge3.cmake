@@ -41,7 +41,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE}.exp ${TARGETDIR}/${T
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 
@@ -54,5 +54,5 @@ message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE}.exp 
 execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE}.exp ${TARGETDIR}/${TESTBASE}.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - headers differ")
+    message(FATAL_ERROR "Test failed - headers differ: ${DIFFERENT}")
 endif()

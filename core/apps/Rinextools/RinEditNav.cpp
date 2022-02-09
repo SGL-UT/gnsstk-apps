@@ -155,9 +155,9 @@ RinEditNav(const string& applName)
                  " processing"),
         excludeOpt('x', "exclude", "Exclude satellite [system] from output"
                    " [e.g. G17,R]"),
-        output3Opt('o', "out", "Output (ARG=[sys:]filename) to RINEX ver. 3"
+        output3Opt('o', "out", "Output (ARG=[sys@]filename) to RINEX ver. 3"
                    " file fn [repeatable]"),
-        output2Opt('2', "out2", "Output (ARG=[sys:]filename) to RINEX ver. 2"
+        output2Opt('2', "out2", "Output (ARG=[sys@]filename) to RINEX ver. 2"
                    " file fn [repeatable]"),
         filesOpt("RINEX-NAV-FILE [...]", true),
         minTime(CommonTime::BEGINNING_OF_TIME),
@@ -320,9 +320,9 @@ parseOut(const CommandOptionWithAnyArg& opt, OutputMap& outMap,
          // sysFn[0] = system, sysFn[1] = file name
       vector<string> sysFn;
       SatelliteSystem sys;
-      if (outs[i].find(':') != string::npos)
+      if (outs[i].find('@') != string::npos)
       {
-         sysFn = gnsstk::StringUtils::split(outs[i], ':');
+         sysFn = gnsstk::StringUtils::split(outs[i], '@');
          string sysUp = sysFn[0];
          StringUtils::upperCase(sysUp);
          if (id1map.find(sysUp) != id1map.end())
