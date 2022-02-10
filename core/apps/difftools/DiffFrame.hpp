@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -39,8 +39,8 @@
 #ifndef DIFFFRAME_HPP
 #define DIFFFRAME_HPP
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 
 class DiffFrame : public gnsstk::BasicFramework

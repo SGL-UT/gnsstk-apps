@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -50,8 +50,8 @@
 #include <vector>
 
 // GNSSTk
-#include "PRSolutionLegacy.hpp"
-#include "Stats.hpp"
+#include <gnsstk/PRSolution.hpp>
+#include <gnsstk/Stats.hpp>
 
 // DDBase
 #include "DDBase.hpp"
@@ -115,7 +115,7 @@ public:
    bool fixed;                      // if true, hold position fixed, else solve for it
    bool usePRS;                     // if true, use ave. PR solution as position
    gnsstk::Position pos;             // either known or solution or apriori
-   gnsstk::PRSolutionLegacy PRS;     // pseudorange solution, includes clock bias
+   gnsstk::PRSolution PRS;           // pseudorange solution, includes clock bias
    gnsstk::Stats<double> PRSXstats;  // stats on pseudorange solution
    gnsstk::Stats<double> PRSYstats;  // stats on pseudorange solution
    gnsstk::Stats<double> PRSZstats;  // stats on pseudorange solution

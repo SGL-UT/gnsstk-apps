@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -46,7 +46,7 @@
 // includes
 // system
 #include <fstream>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 
 // GNSSTk
 
@@ -110,7 +110,8 @@ try {
       return -2;
    }
 
-   iret = st.PRS.RAIMCompute(tt, Sats, Ranges, *pEph, CI.pTropModel);
+   iret = st.PRS.RAIMComputeUnweighted(tt, Sats, Ranges, navLib, CI.pTropModel,
+                                       NavSearchOrder::Nearest);
 
    if(iret < 0) {
       if(iret == -4)
@@ -134,7 +135,6 @@ try {
    if(iret < 0 || nsvs <= 4) {                // did not compute a solution
       if(CI.Verbose) oflog << "At " << SolutionEpoch
          << " RAIM returned " << iret << endl;
-      st.PRS.Valid = false;
       if(iret >= 0) return -3;
       return iret;
    }
@@ -181,7 +181,8 @@ try {
    size_t i;
    Station& st=Stations[of.label];
 
-   if(!st.PRS.Valid) {
+   if(!st.PRS.isValid())
+   {
       st.RawDataMap.clear();
       return;
    }

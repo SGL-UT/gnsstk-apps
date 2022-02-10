@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -47,15 +47,15 @@
 
 //------------------------------------------------------------------------------------
 // includes
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // system
 #include <vector>
 
 // GNSSTk
-#include "Matrix.hpp"
-#include "Stats.hpp"
-#include "RobustStats.hpp"
-//#include "SRIFilter.hpp"
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/Stats.hpp>
+#include <gnsstk/RobustStats.hpp>
+//#include <gnsstk/SRIFilter.hpp>
 
 // DDBase
 #include "DDBase.hpp"

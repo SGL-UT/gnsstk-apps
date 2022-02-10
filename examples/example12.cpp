@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -48,10 +48,10 @@
 #include <map>
 #include <set>
 
-#include "ObsID.hpp"
-#include "RinexObsID.hpp"
-#include "Exception.hpp"
-#include "Rinex3ObsHeader.hpp"
+#include <gnsstk/ObsID.hpp>
+#include <gnsstk/RinexObsID.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
 
 
 int main(int argc, char *argv[])

@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -37,9 +37,9 @@
 //==============================================================================
 
 
-#include <BasicFramework.hpp>
-#include <CommonTime.hpp>
-#include <CommandOptionWithCommonTimeArg.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;

@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -44,12 +44,12 @@
 
 // -----------------------------------------------------------------------------------
 // GNSSTk includes
-#include "Matrix.hpp"
-#include "GNSSconstants.hpp"             // DEG_TO_RAD
+#include <gnsstk/Matrix.hpp>
+#include <gnsstk/GNSSconstants.hpp>             // DEG_TO_RAD
 // geomatics
 #include "PhaseWindup.hpp"
-#include "SunEarthSatGeometry.hpp"
-#include "SolarPosition.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
+#include <gnsstk/SolarPosition.hpp>
 #include <math.h>
 
 using namespace std;
@@ -145,7 +145,7 @@ try {
    Position XT,YT,ZT,Sun;
    double AR;
    Sun = SolarPosition(tt,AR);
-   Matrix<double> Att = SatelliteAttitude(SV,Sun);
+   Matrix<double> Att = satelliteAttitude(SV,Sun);
    XT = Position(Att(0,0),Att(0,1),Att(0,2));      // Cartesian is default
    YT = Position(Att(1,0),Att(1,1),Att(1,2));
    ZT = Position(Att(2,0),Att(2,1),Att(2,2));

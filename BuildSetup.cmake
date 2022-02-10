@@ -13,6 +13,18 @@ elseif( WIN32 )
     set( STADYN "STATIC" )
 endif()
 
+# profiler stuff
+if( ${PROFILER} )
+  set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg -no-pie -static" )
+  set( CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -pg -no-pie -static" )
+  set( HDF5_USE_STATIC_LIBRARIES ON )
+  set( AEC_LIBRARIES "aec" )
+  message(STATUS "Profiler is enabled")
+else()
+  set( AEC_LIBRARIES "" )
+  message(STATUS "Profiler is disabled")
+endif()
+
 
 #----------------------------------------
 # Platform-dependent Compiler flags
@@ -180,16 +192,16 @@ elseif( ${CMAKE_SYSTEM_NAME} MATCHES "Windows" )
     set( CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE.md")
 endif()
 
-set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "Libraries and applications for the GNSS processing GNSSTk toolkit.") 
+set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "Applications for the GNSS processing GNSSTk toolkit.") 
 set( CPACK_PACKAGE_VENDOR "ARL:UT SGL" )
-set( CPACK_PACKAGE_CONTACT "Bryan Parsons <bparsons@arlut.utexas.edu>" )
+set( CPACK_PACKAGE_CONTACT "David Barber <dbarber@arlut.utexas.edu>" )
 set( CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/README.md" )
 set( CPACK_PACKAGE_VERSION_MAJOR "${GNSSTK_VERSION_MAJOR}" )
 set( CPACK_PACKAGE_VERSION_MINOR "${GNSSTK_VERSION_MINOR}" )
 set( CPACK_PACKAGE_VERSION_PATCH "${GNSSTK_VERSION_PATCH}" )
 set( CPACK_INCLUDE_TOPLEVEL_DIRECTORY "OFF" )
-set( CPACK_PACKAGE_INSTALL_DIRECTORY "gnsstk")
-set( CPACK_TOPLEVEL_TAG "gnsstk" ) 
+set( CPACK_PACKAGE_INSTALL_DIRECTORY "gnsstk-apps${GNSSTK_VERSION_MAJOR}.${GNSSTK_VERSION_MINOR}${GNSSTK_VERSION_PATCH}" )
+set( CPACK_TOPLEVEL_TAG "gnsstk-apps" ) 
 
 set( CPACK_DEBIAN_PACKAGE_DEPENDS "libc6 (>= 2.13), gnsstk (>= 11.0.0)" )
 set( CPACK_DEBIAN_SECTION "stable" )

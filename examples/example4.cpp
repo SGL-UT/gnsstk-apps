@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -44,33 +44,33 @@
 #include <vector>
 
    // Classes for handling observations RINEX files (data)
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsData.hpp"
-#include "Rinex3ObsStream.hpp"
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
+#include <gnsstk/Rinex3ObsStream.hpp>
 
    // Classes for handling satellite navigation parameters RINEX
    // files (ephemerides)
-#include "Rinex3NavHeader.hpp"
-#include "Rinex3NavData.hpp"
-#include "Rinex3NavStream.hpp"
+#include <gnsstk/Rinex3NavHeader.hpp>
+#include <gnsstk/Rinex3NavData.hpp>
+#include <gnsstk/Rinex3NavStream.hpp>
 
    // Classes for handling RINEX files with meteorological parameters
-#include "RinexMetBase.hpp"
-#include "RinexMetData.hpp"
-#include "RinexMetHeader.hpp"
-#include "RinexMetStream.hpp"
+#include <gnsstk/RinexMetBase.hpp>
+#include <gnsstk/RinexMetData.hpp>
+#include <gnsstk/RinexMetHeader.hpp>
+#include <gnsstk/RinexMetStream.hpp>
 
    // Class for handling tropospheric model
-#include "GGTropModel.hpp"
+#include <gnsstk/GGTropModel.hpp>
 
    // Class for storing "broadcast-type" ephemerides
-#include "GPSEphemerisStore.hpp"
+#include <gnsstk/GPSEphemerisStore.hpp>
 
    // Class for handling RAIM
-#include "PRSolutionLegacy.hpp"
+#include <gnsstk/PRSolutionLegacy.hpp>
 
    // Class defining GPS system constants
-#include "GNSSconstants.hpp"
+#include <gnsstk/GNSSconstants.hpp>
 
 
 using namespace std;

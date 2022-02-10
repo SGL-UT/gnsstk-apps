@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -80,6 +80,12 @@ Station::Station(void) throw()
    pTropModel = NULL;
    TropType = "Saas";
    ant_azimuth = 0.0;
+      // shove all known systems into the allowed list as there are no
+      // restrictions.
+   for (SatelliteSystem i : SatelliteSystemIterator())
+   {
+      PRS.allowedGNSS.push_back(i);
+   }
 }
 
 //------------------------------------------------------------------------------------

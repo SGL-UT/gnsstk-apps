@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -54,14 +54,14 @@
 #include <cmath>
 
 // GNSSTk
-#include "TimeString.hpp"
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "CommonTime.hpp"
-#include "SystemTime.hpp"
-#include "SolarSystemEphemeris.hpp"
-#include "logstream.hpp"
-#include "FormattedDouble.hpp"
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/SystemTime.hpp>
+#include <gnsstk/SolarSystemEphemeris.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/FormattedDouble.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

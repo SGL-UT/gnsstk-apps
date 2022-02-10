@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -103,21 +103,22 @@
 #include <string>
 #include <vector>
 
-#include "RinexNavStream.hpp"
-#include "RinexNavHeader.hpp"
-#include "RinexNavData.hpp"
-#include "XvtStore.hpp"
-#include "GPSEphemerisStore.hpp"
-#include "SP3Stream.hpp"
-#include "SP3Header.hpp"
-#include "SP3Data.hpp"
-#include "CommonTime.hpp"
-#include "SatID.hpp"
-#include "StringUtils.hpp"
-#include "TimeString.hpp"
-#include "GPSWeekSecond.hpp"
-#include "BasicFramework.hpp"
-#include "CommandOptionWithCommonTimeArg.hpp"
+#include <gnsstk/RinexNavStream.hpp>
+#include <gnsstk/RinexNavHeader.hpp>
+#include <gnsstk/RinexNavData.hpp>
+#include <gnsstk/NavLibrary.hpp>
+#include <gnsstk/MultiFormatNavDataFactory.hpp>
+#include <gnsstk/GPSLNavEph.hpp>
+#include <gnsstk/SP3Stream.hpp>
+#include <gnsstk/SP3Header.hpp>
+#include <gnsstk/SP3Data.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/SatID.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 
 using namespace std;
 using namespace gnsstk;
@@ -140,15 +141,19 @@ public:
    CommandOptionRest inFile2Opt;
       /// Make sure at least one of inFileOpt and/or inFile2Opt is used
    CommandOptionOneOf inFileOneOf;
+      /// High level nav store interface.
+   NavLibrary navLib;
+      /// nav data file reader
+   gnsstk::NavDataFactoryPtr ndfp;
 };
 
 
 BC2SP3 ::
 BC2SP3(const string& applName)
-      : BasicFramework(applName, "Read RINEX nav file(s) and write to SP3(a or"
+      : BasicFramework(applName, "Read GPS LNAV file(s) and write to SP3(a or"
                        " c) file."),
         inFileOpt(0, "in", "Read the input file(s)"),
-        inFile2Opt("[RINEX nav file] ..."),
+        inFile2Opt("[nav file] ..."),
         outFileOpt(0, "out", "Name the output file (default=sp3.out)"),
         beginOpt(0, "tb", "%F,%g", "Output beginning epoch (week,sec-of-week)"),
         endOpt(0, "te", "%F,%g", "Output ending epoch (week,sec-of-week)"),
@@ -157,6 +162,12 @@ BC2SP3(const string& applName)
                 " default=a)"),
         msgOpt(0, "msg", "Add a comment to the output header")
 {
+      // Initialize these two items in here rather than in the
+      // initializer list to guarantee execution order and avoid seg
+      // faults.
+   ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
+   inFileOpt.setDescription("Where to get the ephemeris data. Can be " +
+                            ndfp->getFactoryFormats() + ".");
    outFileOpt.setMaxCount(1);
    beginOpt.setMaxCount(1);
    endOpt.setMaxCount(1);
@@ -182,31 +193,44 @@ process()
       CommonTime begTime=CommonTime::BEGINNING_OF_TIME;
       CommonTime endTime=CommonTime::END_OF_TIME;
       CommonTime tt;
-      GPSEphemerisStore BCEph;
       SP3Header sp3header;
       SP3Data sp3data;
       double cadence = 300.0;       // Cadence of epochs.  Default to 5 minutes.
 
+      navLib.addFactory(ndfp);
+         // without clock, SP3 doesn't work.
+      navLib.setTypeFilter({NavMessageType::Ephemeris, NavMessageType::Clock});
       if (sp3cOpt)
       {
          versionOut = SP3Header::SP3c;   //'c';
          if (verboseLevel)
             cout << " Output version c\n";
       }
-      if (inFileOpt.getCount())
+         // get the ephemeris source(s)
+      std::vector<string> values(inFileOpt.getValue());
+      for (size_t i=0; i<values.size(); i++)
       {
-         inputFiles = inFileOpt.getValue();
-      }
-      if (inFile2Opt.getCount())
-      {
-         const std::vector<std::string>& if2o(inFileOpt.getValue());
-         inputFiles.insert(inputFiles.end(), if2o.begin(), if2o.end());
-      }
-      if (verboseLevel)
-      {
-         for (unsigned i = 0; i < inputFiles.size(); i++)
+         if (verboseLevel)
          {
-            cout << " Input file name " << inputFiles[i] << endl;
+            cout << " Input file name " << values[i] << endl;
+         }
+         if (!ndfp->addDataSource(values[i]))
+         {
+            cerr << "Unable to load \"" << values[i] << "\"" << endl;
+            exitCode = BasicFramework::EXIST_ERROR;            
+         }
+      }
+      values = inFile2Opt.getValue();
+      for (size_t i=0; i<values.size(); i++)
+      {
+         if (verboseLevel)
+         {
+            cout << " Input file name " << values[i] << endl;
+         }
+         if (!ndfp->addDataSource(values[i]))
+         {
+            cerr << "Unable to load \"" << values[i] << "\"" << endl;
+            exitCode = BasicFramework::EXIST_ERROR;            
          }
       }
       if (outFileOpt.getCount())
@@ -255,70 +279,28 @@ process()
          }
       }
 
-      bool existPass = true;
-      for (nfile=0; nfile<inputFiles.size(); nfile++)
-      {
-         RinexNavStream rns(inputFiles[nfile].c_str());
-         if (!rns)
-         {
-            cerr << "File " << inputFiles[nfile]
-                 << " cannot be opened for input." << endl;
-            existPass =false;
-         }
-      }
-      if (!existPass)
-      {
-         exitCode = BasicFramework::EXIST_ERROR;
-         return;
-      }
-
          // open the output SP3 file
       SP3Stream outstrm(fileout.c_str(),ios::out);
       outstrm.exceptions(ifstream::failbit);
 
-      for (nfile=0; nfile<inputFiles.size(); nfile++)
-      {
-         RinexNavHeader rnh;
-         RinexNavData rnd;
-
-         RinexNavStream rns(inputFiles[nfile].c_str());
-         rns.exceptions(ifstream::failbit);
-
-         if (verboseLevel)
-            cout << "Reading file " << inputFiles[nfile] << endl;
-
-         rns >> rnh;
-         if (verboseLevel)
-         {
-            cout << "Input";
-            rnh.dump(cout);
-         }
-
-         while (rns >> rnd)
-         {
-            if (rnd.health == 0)
-            {
-               BCEph.addEphemeris(rnd);
-            }
-         }
-      }
-
       if (verboseLevel)
       {
-         cout << "Number of ephemerides loaded: " << BCEph.size() << endl
-              << " Initial time: " << printTime(BCEph.getInitialTime(),
+         cout << "Number of ephemerides loaded: "
+              << dynamic_cast<MultiFormatNavDataFactory*>(ndfp.get())->size()
+              << endl
+              << " Initial time: " << printTime(navLib.getInitialTime(),
                                                 "%03j.%02H:%02M:%02S, %P")
               << endl
-              << "   Final time: " << printTime(BCEph.getFinalTime(),
+              << "   Final time: " << printTime(navLib.getFinalTime(),
                                                 "%03j.%02H:%02M:%02S, %P")
               << endl;
       }
 
          // time limits, if not given by user
       if (begTime == CommonTime::BEGINNING_OF_TIME)
-         begTime = BCEph.getInitialTime();
+         begTime = navLib.getInitialTime();
       if (endTime == CommonTime::END_OF_TIME)
-         endTime = BCEph.getFinalTime();
+         endTime = navLib.getFinalTime();
 
          // define the data version and the header info
       if (versionOut == SP3Header::SP3c)
@@ -359,15 +341,17 @@ process()
          for (i=1; i<33; i++)              // for each PRN ...
          {
             SatID sat(i,SatelliteSystem::GPS);
-            try
-            {
-               GPSEphemeris ee = BCEph.findEphemeris(sat, tt);
-            }
-            catch(InvalidRequest& nef)
+            NavMessageID nmid(NavSatelliteID(i,i,SatelliteSystem::GPS,
+                                             CarrierBand::Any,
+                                             TrackingCode::Any,
+                                             NavType::GPSLNAV),
+                              NavMessageType::Ephemeris);
+            NavDataPtr navOut;
+            if (!navLib.find(nmid, tt, navOut, SVHealth::Healthy,
+                             NavValidityType::ValidOnly, NavSearchOrder::User))
             {
                continue;
             }
-
             if (sp3header.satList.find(sat) == sp3header.satList.end())
             {
                sp3header.satList[sat] = 0;        // sat accuracy = ?
@@ -422,19 +406,24 @@ process()
             long iode;
             SatID sat(i,SatelliteSystem::GPS);
             Xvt xvt;
-            GPSEphemeris ee;
-
-            try
-            {
-               ee = BCEph.findEphemeris(sat, tt);
-            }
-            catch(InvalidRequest& nef)
+               // code below depends on IODE so we require LNAV
+            NavMessageID nmid(NavSatelliteID(i,i,SatelliteSystem::GPS,
+                                             CarrierBand::Any,
+                                             TrackingCode::Any,
+                                             NavType::GPSLNAV),
+                              NavMessageType::Ephemeris);
+            NavDataPtr navOut;
+            if (!navLib.find(nmid, tt, navOut, SVHealth::Healthy,
+                             NavValidityType::ValidOnly, NavSearchOrder::User))
             {
                continue;
             }
-
             sp3data.sat = sat;
-            xvt = BCEph.getXvt(sat, tt);
+            GPSLNavEph *eph = dynamic_cast<GPSLNavEph*>(navOut.get());
+            if (!eph->getXvt(tt, xvt))
+            {
+               continue;
+            }
 
                // epoch
             if (!epochOut)
@@ -454,7 +443,7 @@ process()
             sp3data.clk = xvt.clkbias * 1.0e6;    // microseconds
 
                //if (versionOut == 'c') for (j=0; j<4; j++) sp3data.sig[j]=...
-            iode = ee.IODE;
+            iode = eph->iode;
             if (IODEmap[sat] == -1)
                IODEmap[sat] = iode;
             if (IODEmap[sat] != iode)

@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -92,8 +92,8 @@
 
 #include "CheckFrame.hpp"
 
-#include "Rinex3ObsStream.hpp"
-#include "Rinex3ObsData.hpp"
+#include <gnsstk/Rinex3ObsStream.hpp>
+#include <gnsstk/Rinex3ObsData.hpp>
 
 using namespace std;
 using namespace gnsstk;

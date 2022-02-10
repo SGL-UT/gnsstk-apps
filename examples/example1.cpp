@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -37,12 +37,12 @@
 //==============================================================================
 
 #include <iostream>
-#include "SystemTime.hpp"
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "YDSTime.hpp"
-#include "GPSWeekSecond.hpp"
-#include "MJD.hpp"
+#include <gnsstk/SystemTime.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/YDSTime.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/MJD.hpp>
 
 using namespace std;
 using namespace gnsstk;

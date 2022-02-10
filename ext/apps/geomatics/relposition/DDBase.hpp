@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -59,28 +59,28 @@
 
 // GNSSTk
 //#define RANGECHECK // if defined, Vector and Matrix will throw on invalid index.
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "CommonTime.hpp"
-#include "TropModel.hpp"
-#include "SP3EphemerisStore.hpp"
-#include "GPSEphemerisStore.hpp"
-#include "EarthOrientation.hpp"
-#include "EOPStore.hpp"
-#include "Position.hpp"
-#include "RinexObsBase.hpp"
-#include "RinexObsData.hpp"
-#include "RinexObsHeader.hpp"
-#include "RinexObsStream.hpp"
-#include "Epoch.hpp"
-#include "Matrix.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/TropModel.hpp>
+#include <gnsstk/NavLibrary.hpp>
+#include <gnsstk/MultiFormatNavDataFactory.hpp>
+#include <gnsstk/EarthOrientation.hpp>
+#include <gnsstk/EOPStore.hpp>
+#include <gnsstk/Position.hpp>
+#include <gnsstk/RinexObsBase.hpp>
+#include <gnsstk/RinexObsData.hpp>
+#include <gnsstk/RinexObsHeader.hpp>
+#include <gnsstk/RinexObsStream.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/Matrix.hpp>
 
 // DDBase
-#include "GSatID.hpp"             // this one first
+#include <gnsstk/GSatID.hpp>             // this one first
 #include "DataStructures.hpp"
 #include "DDid.hpp"
 #include "constants.hpp"
-#include "format.hpp"
+#include <gnsstk/format.hpp>
 
 //------------------------------------------------------------------------------------
 extern clock_t totaltime;        // for timing tests
@@ -163,7 +163,8 @@ extern int Count;
 extern int maxCount;
 extern double wave;
 
-extern gnsstk::XvtStore<gnsstk::SatID> *pEph;
+extern gnsstk::NavLibrary navLib;
+extern std::shared_ptr<gnsstk::NavDataFactory> ndfp;
 extern gnsstk::EOPStore EOPList;
 extern gnsstk::EarthOrientation eorient;
 

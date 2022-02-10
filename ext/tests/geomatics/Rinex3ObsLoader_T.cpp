@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -46,11 +46,11 @@
 #include <map>
 #include <iostream>
 #include <fstream>
-#include "StringUtils.hpp"
-#include "Exception.hpp"
-#include "logstream.hpp"
-#include "Rinex3ObsHeader.hpp"
-#include "Rinex3ObsFileLoader.hpp"
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/Rinex3ObsHeader.hpp>
+#include <gnsstk/Rinex3ObsFileLoader.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

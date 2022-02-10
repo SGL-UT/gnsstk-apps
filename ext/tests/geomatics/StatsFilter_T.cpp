@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -39,10 +39,10 @@
 /// @file StatsFilter_T.cpp Test classes in StatsFilter.hpp
 
 #include <vector>
-#include "FirstDiffFilter.hpp"
-#include "FDiffFilter.hpp"
-#include "WindowFilter.hpp"
-#include "logstream.hpp"
+#include <gnsstk/FirstDiffFilter.hpp>
+#include <gnsstk/FDiffFilter.hpp>
+#include <gnsstk/WindowFilter.hpp>
+#include <gnsstk/logstream.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;

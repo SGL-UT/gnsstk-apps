@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -44,19 +44,20 @@
 //------------------------------------------------------------------------------------
 // system includes
 
+#include <gnsstk/RinexNavDataFactory.hpp>
 // GNSSTk
-#include "Epoch.hpp"
-#include "YDSTime.hpp"
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/YDSTime.hpp>
 // DDBase
 #include "DDBase.hpp"
-#include "RinexUtilities.hpp"
+#include <gnsstk/RinexUtilities.hpp>
 
-#include "SimpleTropModel.hpp"
-#include "SaasTropModel.hpp"
-#include "NBTropModel.hpp"
-#include "GGTropModel.hpp"
-#include "GGHeightTropModel.hpp"
-#include "NeillTropModel.hpp"
+#include <gnsstk/SimpleTropModel.hpp>
+#include <gnsstk/SaasTropModel.hpp>
+#include <gnsstk/NBTropModel.hpp>
+#include <gnsstk/GGTropModel.hpp>
+#include <gnsstk/GGHeightTropModel.hpp>
+#include <gnsstk/NeillTropModel.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -120,9 +121,6 @@ int Initialize(void)
 {
 try {
    size_t i;
-   // global pEph will point to one of these
-   static GPSEphemerisStore BCEphList;
-   static SP3EphemerisStore SP3EphList;
 
    if(CI.Verbose) oflog << "BEGIN Configure(1)"
       << " at total time " << fixed << setprecision(3)
@@ -133,14 +131,23 @@ try {
       // NB wave should never be used for L3 -- see warning in CommandInput.cpp
    else if(CI.Frequency == 3) wave = wl1;
 
-      // open nav files, if any, and read EphemerisStore into EphLists
-   if(CI.NavFileNames.size() > 0) {
-      if(!CI.NavPath.empty())
-         for(i=0; i<CI.NavFileNames.size(); i++)
-            CI.NavFileNames[i] = CI.NavPath + "/" + CI.NavFileNames[i];
+   ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
+   navLib.addFactory(ndfp);
+      // without clock, SP3 doesn't work.
+   navLib.setTypeFilter({NavMessageType::Ephemeris, NavMessageType::Clock});
 
-      // fill ephemeris store -- this routine in RinexUtilities.cpp
-      FillEphemerisStore(CI.NavFileNames, SP3EphList, BCEphList);
+      // open nav files, if any, and read EphemerisStore into EphLists
+   if (CI.NavFileNames.size() > 0)
+   {
+      if (!CI.NavPath.empty())
+      {
+         for (i=0; i<CI.NavFileNames.size(); i++)
+         {
+            CI.NavFileNames[i] = CI.NavPath + "/" + CI.NavFileNames[i];
+            if (!ndfp->addDataSource(CI.NavFileNames[i]))
+               return 1;
+         }
+      }
    }
 
       // read all headers and store information in Station object
@@ -168,32 +175,9 @@ try {
          << CI.DataInterval << " seconds." << endl;
    }
 
-      // dump SP3 store to log
-   if(SP3EphList.size()) {
-      if(CI.Verbose) SP3EphList.dump(oflog,0);
-   }
-   else if(CI.Verbose) oflog << "SP3 Ephemeris store is empty" << endl;
-
-      // dump BCE store to log
-   if(BCEphList.size()) {
-         // this causes the CorrectedEphemerisRange routines to pick the
-         // closest TOE in either future or past of the epoch, rather
-         // than the closest in the past -- see GPSEphemerisStore.hpp
-      BCEphList.SearchNear();
-
-      if(CI.Debug) BCEphList.dump(oflog,1);
-      else if(CI.Verbose) BCEphList.dump(oflog,0);
-   }
-   else if(CI.Verbose) oflog << "BC Ephemeris store is empty" << endl;
-
-      // assign pointer
-      // NB SP3 takes precedence
-   if(SP3EphList.size())     pEph = &SP3EphList;
-   else if(BCEphList.size()) pEph = &BCEphList;
-   else {
-      cerr << "Initialize ERROR: no ephemeris. Abort." << endl;
-      oflog << "Initialize ERROR: no ephemeris. Abort." << endl;
-      return 1;
+   if (CI.Verbose)
+   {
+      navLib.dump(oflog,DumpDetail::OneLine);
    }
 
       // open all EOP files and fill the EOPstore

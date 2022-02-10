@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -49,26 +49,28 @@
 #include <vector>
 #include <map>
 // GNSSTk
-#include "Exception.hpp"
-#include "StringUtils.hpp"
-#include "Epoch.hpp"
-#include "RinexSatID.hpp"
-#include "Position.hpp"
-#include "RinexUtilities.hpp"
-#include "EphemerisRange.hpp"
-#include "singleton.hpp"
-#include "GNSSconstants.hpp"
-#include "msecHandler.hpp"
-#include "stl_helpers.hpp"
+#include <gnsstk/Exception.hpp>
+#include <gnsstk/StringUtils.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/Position.hpp>
+#include <gnsstk/RinexUtilities.hpp>
+#include <gnsstk/EphemerisRange.hpp>
+#include <gnsstk/singleton.hpp>
+#include <gnsstk/GNSSconstants.hpp>
+#include <gnsstk/msecHandler.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/NavLibrary.hpp>
+#include <gnsstk/MultiFormatNavDataFactory.hpp>
 // geomatics
-#include "expandtilde.hpp"
-#include "logstream.hpp"
-#include "SatPass.hpp"
-#include "SatPassUtilities.hpp"
-#include "Rinex3ObsFileLoader.hpp"
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/SatPass.hpp>
+#include <gnsstk/SatPassUtilities.hpp>
+#include <gnsstk/Rinex3ObsFileLoader.hpp>
 // dfix
-#include "CommandLine.hpp"
-#include "gdc.hpp"
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/gdc.hpp>
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -149,9 +151,8 @@ public:
    vector<string> SP3files;      ///< SP3 ephemeris file names
    vector<string> RNavfiles;     ///< RINEX nav file names
    string ephpath;               ///< path for nav/ephemeris files
-   SP3EphemerisStore SP3EphList; ///< Store of SP3 ephemeris data
-   GPSEphemerisStore BCEphList;  ///< Store of NAV ephemeris data
-   XvtStore<SatID> *pEph;        ///< Pointer to chosen ephemeris store
+   NavLibrary navLib;            ///< High level nav store interface.
+   NavDataFactoryPtr ndfp;       ///< nav data file reader
    Position Rx;                  ///< Receiver position provided by user
    double elevLimit;             ///< Elevation angle lower limit (deg)
    bool doElev;                  ///< set true if elevation screening is to be done
@@ -254,6 +255,10 @@ try {
    ttag.setLocalTime();
    GD.Title = GD.PrgmName + " ver " + GD.Version
                            + ttag.printf(", Run %04Y/%02m/%02d at %02H:%02M:%02S");
+
+      // initialize nav library
+   GD.ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
+   GD.navLib.addFactory(GD.ndfp);
 
    // display title on screen
    LOG(INFO) << GD.Title;
@@ -846,22 +851,31 @@ try {
    // exclude small elevation --------------------------------------
    // get nav files and build EphemerisStore
    if(GD.SP3files.size() > 0) {
-      n = FillEphemerisStore(GD.SP3files, GD.SP3EphList, GD.BCEphList);
-      if(GD.verbose) {
-         LOG(VERBOSE) << "Added " << n << " SP3 ephemeris files to store.";
+      for (size_t i = 0; i < GD.SP3files.size(); i++)
+      {
+         if (!GD.ndfp->addDataSource(GD.SP3files[i]))
+            return -5;
       }
    }
    else if(GD.RNavfiles.size() > 0) {
-      n = FillEphemerisStore(GD.RNavfiles, GD.SP3EphList, GD.BCEphList);
-      if(GD.verbose) {
-         LOG(VERBOSE) << "Added " << n << " nav ephemeris files to store.";
+      for (size_t i = 0; i < GD.RNavfiles.size(); i++)
+      {
+         if (!GD.ndfp->addDataSource(GD.RNavfiles[i]))
+            return -5;
       }
    }
 
    if(GD.SP3files.size() > 0 && GD.RNavfiles.size() > 0)
       LOG(WARNING) << " Warning - SP3 ephemeris used; RINEX nav ignored.";
 
-   if(GD.SP3EphList.ndata() > 0) {
+      // guaranteed success if we haven't somehow managed to already
+      // run out of memory.
+   MultiFormatNavDataFactory *ndfp = dynamic_cast<MultiFormatNavDataFactory*>(
+      GD.ndfp.get());
+
+   if(ndfp->size() > 0) {
+         /// @todo Determine if this block of code needs to be handled in newnav
+#if 0
       // set gap and interval checking, based on nominal timestep
       // take default GD.SP3EphList.setPositionInterpOrder(order);
       int order = GD.SP3EphList.getPositionInterpOrder();
@@ -874,13 +888,15 @@ try {
       dt = GD.SP3EphList.getPositionTimeStep(sats[0]);
       GD.SP3EphList.setPosGapInterval(dt+1);
       GD.SP3EphList.setPosMaxInterval((order-1)*dt+1);
-      if(GD.debug >= 0) GD.SP3EphList.dump(LOGstrm,1);
-      else if(GD.verbose) GD.SP3EphList.dump(LOGstrm,0);
-      GD.pEph = &GD.SP3EphList;
-   }
-   else if(GD.BCEphList.size() > 0) {
-      if(GD.verbose) GD.BCEphList.dump(LOGstrm,1);
-      GD.pEph = &GD.BCEphList;
+#endif
+      if (GD.debug >= 0)
+      {
+         GD.navLib.dump(LOGstrm,DumpDetail::Brief);
+      }
+      else if(GD.verbose)
+      {
+         GD.navLib.dump(LOGstrm,DumpDetail::OneLine);
+      }
    }
    else if(GD.elevLimit > 0.0) {
       GD.elevLimit = 0.0;
@@ -888,7 +904,7 @@ try {
    }
 
    // is it there?
-   if(GD.pEph != NULL) {
+   if (ndfp->size() != 0) {
       if(GD.Rx.getCoordinateSystem() != Position::Unknown && GD.elevLimit > 0.0)
          GD.doElev = true;
       else if(GD.Rx.getCoordinateSystem() != Position::Unknown) {
@@ -1126,7 +1142,7 @@ try {
             Epoch ttag = GD.SPList[i].time(j);
             try {
                //double ER =
-               CER.ComputeAtReceiveTime(ttag, GD.Rx, sat, *GD.pEph);
+               CER.ComputeAtReceiveTime(ttag, GD.Rx, sat, GD.navLib);
                if(CER.elevation >= GD.elevLimit) continue;
             }
             catch(InvalidRequest&) {

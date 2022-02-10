@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -41,9 +41,9 @@
 #include <iostream>
 #include <fstream>
 
-#include "CommandOptionWithTimeArg.hpp"
-#include "FileFilterFrame.hpp"
-#include "BasicFramework.hpp"
+#include <gnsstk/CommandOptionWithTimeArg.hpp>
+#include <gnsstk/FileFilterFrame.hpp>
+#include <gnsstk/BasicFramework.hpp>
 
 template <class FileData>
 struct NullTimeFilter : public std::unary_function<FileData, bool>

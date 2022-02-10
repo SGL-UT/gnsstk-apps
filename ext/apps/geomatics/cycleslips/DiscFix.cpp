@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -210,26 +210,26 @@
 #include <fstream>
 #include <algorithm>
 // gnsstk
-#include "MathBase.hpp"
-#include "RinexSatID.hpp"
-#include "RinexObsBase.hpp"
-#include "RinexObsData.hpp"
-#include "RinexObsHeader.hpp"
-#include "RinexObsStream.hpp"
-#include "CommonTime.hpp"
-#include "CivilTime.hpp"
-#include "GPSWeekSecond.hpp"
-#include "Epoch.hpp"
-#include "TimeString.hpp"
-#include "StringUtils.hpp"
+#include <gnsstk/MathBase.hpp>
+#include <gnsstk/RinexSatID.hpp>
+#include <gnsstk/RinexObsBase.hpp>
+#include <gnsstk/RinexObsData.hpp>
+#include <gnsstk/RinexObsHeader.hpp>
+#include <gnsstk/RinexObsStream.hpp>
+#include <gnsstk/CommonTime.hpp>
+#include <gnsstk/CivilTime.hpp>
+#include <gnsstk/GPSWeekSecond.hpp>
+#include <gnsstk/Epoch.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/StringUtils.hpp>
 // geomatics
-#include "logstream.hpp"
-#include "stl_helpers.hpp"
-#include "expandtilde.hpp"
-#include "CommandLine.hpp"
-#include "SatPass.hpp"
-#include "SatPassUtilities.hpp"
-#include "DiscCorr.hpp"
+#include <gnsstk/logstream.hpp>
+#include <gnsstk/stl_helpers.hpp>
+#include <gnsstk/expandtilde.hpp>
+#include <gnsstk/CommandLine.hpp>
+#include <gnsstk/SatPass.hpp>
+#include <gnsstk/SatPassUtilities.hpp>
+#include <gnsstk/DiscCorr.hpp>
 
 using namespace std;
 using namespace gnsstk;

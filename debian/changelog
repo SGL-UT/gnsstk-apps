@@ -1,3 +1,24 @@
+gnsstk-apps (13.0.0-1) stable; urgency=low
+
+  * Updated to version 13.0.0
+  * Update ci-pipelines to expect python3 bindings, instead of python2.
+  * Store CI artifacts in artifactory.
+  * Update Remove debian 8 jobs
+  * Add export of config cmake files
+  * Add new navdump tool
+  * Refactor PRSolve to use gnsstk new nav
+  * Add integrity status flag to GPS LNAV data structures
+  * Update PRSolve and dfix truth data to account for small changes in
+    WAVELENGTH constants
+  * Deprecate RinNav in favor of rineditnav
+  * Fix timeconvert tests truth data for time offset error
+  * Refactor uses of gnsstk / SunEarthSatGeometry in gnsstk-apps
+  * Update ddbase to use gnsstk NewNav and NOT use PRSolutionLegacy
+  * Update copyright header to year 2022
+  * Add windows packaging job to pipeline
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Sat, 22 Jan 2022 22:15:25 -0600
+
 gnsstk-apps (12.0.1-1) stable; urgency=low
 
   * Updated to version 12.0.1

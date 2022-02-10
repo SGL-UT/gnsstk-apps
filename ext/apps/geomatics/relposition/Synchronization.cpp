@@ -18,7 +18,7 @@
 //
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
-//  Copyright 2004-2021, The Board of Regents of The University of Texas System
+//  Copyright 2004-2022, The Board of Regents of The University of Texas System
 //
 //==============================================================================
 
@@ -52,13 +52,13 @@
 // includes
 // system
 #include <deque>
-#include "TimeString.hpp"
+#include <gnsstk/TimeString.hpp>
 // GNSSTk
-#include "GNSSconstants.hpp"             // DEG_TO_RAD
-#include "PolyFit.hpp"
-#include "EphemerisRange.hpp"
+#include <gnsstk/GNSSconstants.hpp>             // DEG_TO_RAD
+#include <gnsstk/PolyFit.hpp>
+#include <gnsstk/EphemerisRange.hpp>
 // geomatics
-#include "SunEarthSatGeometry.hpp"
+#include <gnsstk/SunEarthSatGeometry.hpp>
 #include "PhaseWindup.hpp"
 #include "index.hpp"
 // DDBase
@@ -338,7 +338,7 @@ try {
       angle = statn.ant_azimuth * DEG_TO_RAD;
       if(fabs(angle) > 0.0001) {    // also below..
          Matrix<double> Rot;
-         Rot = SingleAxisRotation(angle,1) * UpEastNorth(statn.pos);
+         Rot = SingleAxisRotation(angle,1) * upEastNorth(statn.pos);
          West = Position(-Rot(1,0),-Rot(1,1),-Rot(1,2));
          North = Position(Rot(2,0),Rot(2,1),Rot(2,2));
       }
@@ -365,7 +365,9 @@ try {
             try {
                   // update ephemeris range and elevation
                rawdat.ER[nc] =
-                  CER.ComputeAtReceiveTime(tt, statn.pos, sat, *pEph);
+                  CER.ComputeAtReceiveTime(tt, statn.pos, sat, navLib,
+                                           NavSearchOrder::Nearest,
+                                           SVHealth::Any, NavValidityType::Any);
                rawdat.elev[nc] = CER.elevation;
                rawdat.az[nc] = CER.azimuth;
 
