@@ -81,7 +81,7 @@ try {
 
    // get satellite attitude
    Position XT,YT,ZT;
-   Matrix<double> Att = SSEph.SatelliteAttitude(tt, SV);
+   Matrix<double> Att = SSEph.satelliteAttitude(tt, SV);
    XT = Position(Att(0,0),Att(0,1),Att(0,2));      // Cartesian is default
    YT = Position(Att(1,0),Att(1,1),Att(1,2));
    ZT = Position(Att(2,0),Att(2,1),Att(2,2));
@@ -144,7 +144,7 @@ try {
    // get satellite attitude
    Position XT,YT,ZT,Sun;
    double AR;
-   Sun = SolarPosition(tt,AR);
+   Sun = solarPosition(tt,AR);
    Matrix<double> Att = satelliteAttitude(SV,Sun);
    XT = Position(Att(0,0),Att(0,1),Att(0,2));      // Cartesian is default
    YT = Position(Att(1,0),Att(1,1),Att(1,2));
