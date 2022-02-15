@@ -29,6 +29,16 @@ else()
   list( APPEND SUPPORTLIBS gnsstk )
 endif()
 
+# do all the needed linking in a way that works for all supported platforms
+function(linkum target_name)
+  if( ${CMAKE_SYSTEM_NAME} MATCHES "Windows" )
+    string(JOIN " /WHOLEARCHIVE:" WINLIBFLAGS ${SUPPORTLIBS})
+    SET_TARGET_PROPERTIES(${target_name} PROPERTIES LINK_FLAGS_DEBUG "/WHOLEARCHIVE:${WINLIBFLAGS}")
+    SET_TARGET_PROPERTIES(${target_name} PROPERTIES LINK_FLAGS_RELEASE "/WHOLEARCHIVE:${WINLIBFLAGS}")
+  endif()
+  target_link_libraries(${target_name} ${SUPPORTLIBS} ${ARGN})
+endfunction()
+
 # Include any optional desired linkage
 include( ExtLinkage.cmake OPTIONAL )
 

@@ -1,9 +1,9 @@
 # apps/positioning/CMakeListt.txt
 
 add_executable(poscvt poscvt.cpp)
-target_link_libraries(poscvt ${SUPPORTLIBS})
+linkum(poscvt)
 install (TARGETS poscvt DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(PRSolve PRSolve.cpp)
-target_link_libraries(PRSolve ${SUPPORTLIBS})
+linkum(PRSolve)
 install (TARGETS PRSolve DESTINATION "${CMAKE_INSTALL_BINDIR}")

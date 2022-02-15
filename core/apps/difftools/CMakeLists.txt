@@ -1,17 +1,17 @@
 # apps/difftools/CMakeLists.txt
 
 add_executable(rowdiff rowdiff.cpp)
-target_link_libraries(rowdiff ${SUPPORTLIBS})
+linkum(rowdiff)
 install (TARGETS rowdiff DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(rnwdiff rnwdiff.cpp)
-target_link_libraries(rnwdiff ${SUPPORTLIBS})
+linkum(rnwdiff)
 install (TARGETS rnwdiff DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(rmwdiff rmwdiff.cpp)
-target_link_libraries(rmwdiff ${SUPPORTLIBS})
+linkum(rmwdiff)
 install (TARGETS rmwdiff DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(rinheaddiff rinheaddiff.cpp)
-target_link_libraries(rinheaddiff ${SUPPORTLIBS})
+linkum(rinheaddiff)
 install (TARGETS rinheaddiff DESTINATION "${CMAKE_INSTALL_BINDIR}")

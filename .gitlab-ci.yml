@@ -28,38 +28,32 @@ stages:
 variables:
   # Default cmake arguments
   CMAKE_ARG_DEFAULT: "-DBUILD_EXT=ON -DTEST_SWITCH=ON ../"
-  # this can be used for incremental builds
-  # GIT_CLEAN_FLAGS: none
-  # This can be set to True by Gitlab UI to only build/test packages.
-  RELEASE_ONLY: "False"
-  # If set to "True" then only only chained jobs from upstream pipelines are executed.
   GNSSTK_COMMIT:
     value: "main"
     description: "Upstream gnsstk lib branch to link. Defaults to main"
-  # The default project id for gnsstk to download windows install artifact
-  GNSSTK_PROJID: "164"
+  # By default, pipeline will build with both VS 2015 and VS 2019 windows jobs along with rest of platform jobs.
+  # If you want to build only VS 2019 windows jobs, then set BLD_ONLY_VS2019 to True. It will exclude rest of platform jobs.
+  # If you want to exclude VS 2019 windows jobs, then set BLD_VS2019 to False.
   BLD_VS2019:
     value: "True"
-    description: "If True, then build under Windows using Visual Studio 2019"
+    description: "If True, then build under Windows using Visual Studio 2019. Defaults to True"
+  BLD_ONLY_VS2019:
+    value: "False"
+    description: "If True, then ONLY build Windows using Visual Studio 2019 and skips Visual Studio 2015 jobs. Defaults to False"
 
 # Template for all normal jobs.
 .normal_job:
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
+
+.vs2019_job:
   only:
     variables:
-      - $RELEASE_ONLY != "True"
+      - $BLD_VS2019 == "True"
 
-# Template for all "big" builds.
-.big_build:
-  only:
-    refs:
-      - main
-      - /^ci_.*$/
-      - /^version_.*_prep$/
-    variables:
-      - $RELEASE_ONLY != "True"
-
-# Template for all builds that should produce packages.
-.package_build:
+# Template for all jobs that should deploy packages.
+.package_deploy:
   only:
     refs:
       - main
@@ -67,6 +61,8 @@ variables:
       - /^version_.*_prep$/
       - tags
       - /^tag_.*$/
+    variables:
+      - $BLD_ONLY_VS2019 != "True"
 
 # Check Stage
 # Runs static analysis on code.
@@ -353,13 +349,9 @@ windows_build:
   needs: []
   extends: .normal_job
   tags:
-    - win10-vs2019
+    - win10-vs2015
   script:
-    - $env:PATH += ';c:\Program Files\7-Zip'
-    # Set variable below to ignore download display progress to speed up download time
-    - $global:progressPreference = 'silentlyContinue'
-    - 'Invoke-WebRequest -URI https://$env:REPO_HOST/api/v4/projects/$env:GNSSTK_PROJID/jobs/artifacts/$env:GNSSTK_COMMIT/download?job=user_install_windows -UserAgent "PRIVATE-TOKEN: $env:CI_API_TOKEN" -OutFile gnsstk_win.zip'
-    - 7z x -olibrary gnsstk_win.zip
+    - windows/install_required_deps_windows.ps1 user_install_windows pkg_min
     - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - mkdir build
     - cd build
@@ -372,21 +364,42 @@ windows_build:
 windows_build_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
-  only:
-    variables:
-      - $BLD_VS2019 == "True"
   stage: build
   needs: []
-  extends: .normal_job
+  extends: .vs2019_job
   tags:
     - win10-vs2019
   script:
-    - $env:PATH += ';c:\Program Files\7-Zip'
-    # Set variable below to ignore download display progress to speed up download time
-    - $global:progressPreference = 'silentlyContinue'
-    - 'Invoke-WebRequest -URI https://$env:REPO_HOST/api/v4/projects/$env:GNSSTK_PROJID/jobs/artifacts/$env:GNSSTK_COMMIT/download?job=user_install_windows_vs2019 -UserAgent "PRIVATE-TOKEN: $env:CI_API_TOKEN" -OutFile gnsstk_win.zip'
-    - 7z x -olibrary gnsstk_win.zip
+    - windows/install_required_deps_windows.ps1 user_install_windows_vs2019 pkg_min
     - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
+    - cmake --build . --config Release  -- /m
+  artifacts:
+    paths:
+    - build/
+  allow_failure: true
+
+windows_op1_build_vs2019:
+  variables:
+    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
+  stage: build
+  needs: []
+  extends: .vs2019_job
+  tags:
+    - win10-vs2019
+  script:
+    - $linkfile=".\ExtLinkage.cmake"
+    - $str1="find_package("
+    - $str2=$env:PACKAGE_CONFIG_1.ToUpper()
+    - $str3=" CONFIG)"
+    - if (Test-Path $linkfile) { Remove-Item $linkfile }
+    - foreach ($pkg in $str2) { "$str1$pkg$str3" | Out-File -FilePath $linkfile -Append -Encoding UTF8 }
+    - type $linkfile
+    - windows/install_required_deps_windows.ps1 user_install_windows_vs2019 pkg_max
+    - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
+    - $env:SGLTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\SGLTK"
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
@@ -497,7 +510,7 @@ windows_test:
   needs: [windows_build]
   extends: .normal_job
   tags:
-    - win10-vs2019
+    - win10-vs2015
   script:
     - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - cd build
@@ -516,12 +529,9 @@ windows_test_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
     GIT_STRATEGY: none
-  only:
-      variables:
-        - $BLD_VS2019 == "True"
   stage: test
   needs: [windows_build_vs2019]
-  extends: .normal_job
+  extends: .vs2019_job
   tags:
     - win10-vs2019
   script:
@@ -605,7 +615,7 @@ user_install_windows:
   needs: [windows_build,windows_test]
   extends: .normal_job
   tags:
-    - win10-vs2019
+    - win10-vs2015
   script:
     - $env:GNSSTK_DIR = "$env:CI_PROJECT_DIR\library\build\install\share\cmake\GNSSTK"
     - cd build
@@ -625,11 +635,8 @@ user_install_windows_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
     GIT_STRATEGY: none
-  only:
-    variables:
-      - $BLD_VS2019 == "True"
   needs: [windows_build_vs2019,windows_test_vs2019]
-  extends: .normal_job
+  extends: .vs2019_job
   tags:
     - win10-vs2019
   script:
@@ -645,6 +652,8 @@ user_install_windows_vs2019:
   timeout: 20m
   # Allow failures here to prevent blocking the rest of the pipeline.
   allow_failure: true
+
+# user_install_windows_op1_vs2019: Moved to sgl-tks/ci-control/gnsstk-apps/ci_downstrm_chain.yml
 
 # System Stage
 # Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
@@ -706,6 +715,9 @@ package_debian_9:
   needs: []
   tags:
     - docker-executor
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   image: $DOCKER_REGISTRY/debian9_fai_ish
   script:
     # Install dependencies from latest CI first.
@@ -731,6 +743,9 @@ package_debian_10:
   needs: []
   tags:
     - docker-executor
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   image: $DOCKER_REGISTRY/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
@@ -759,6 +774,9 @@ package_conda:
   needs: []
   tags:
     - docker-executor
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   image: $DOCKER_REGISTRY/deb9_conda_py36
   script:
     - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
@@ -782,6 +800,9 @@ package_redhat:
   needs: []
   tags:
     - docker-executor
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   image: $DOCKER_REGISTRY/centos7_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
@@ -800,6 +821,9 @@ package_redhat_8:
   needs: []
   tags:
     - docker-executor
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   image: $DOCKER_REGISTRY/centos8_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -818,7 +842,10 @@ package_windows:
   stage: package
   needs: [windows_build]
   tags:
-    - win10-vs2019
+    - win10-vs2015
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   script:
     - cd build
     - cpack -C Release
@@ -829,12 +856,30 @@ package_windows:
     paths:
       - build/_CPack_Packages
 
+package_windows_op1_vs2019:
+  stage: package
+  needs: [windows_op1_build_vs2019]
+  tags:
+    - win10-vs2019
+  only:
+    variables:
+      - $BLD_VS2019 == "True"
+  script:
+    - cd build
+    - cpack -C Release
+#    - cpack -G WIX -C Release
+  dependencies:
+    - windows_op1_build_vs2019
+  artifacts:
+    paths:
+      - build/_CPack_Packages
+
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
 deb9_deploy:
   stage: deploy
   needs: [package_debian_9]
-  extends: .package_build
+  extends: .package_deploy
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian9_fai_ish
@@ -851,7 +896,7 @@ deb9_deploy:
 deb10_deploy:
   stage: deploy
   needs: [package_debian_10]
-  extends: .package_build
+  extends: .package_deploy
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/debian10_fai_ish
@@ -868,7 +913,7 @@ deb10_deploy:
 rhel7_deploy:
   stage: deploy
   needs: [package_redhat]
-  extends: .package_build
+  extends: .package_deploy
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos7_sgl
@@ -884,7 +929,7 @@ rhel7_deploy:
 rhel8_deploy:
   stage: deploy
   needs: [package_redhat_8]
-  extends: .package_build
+  extends: .package_deploy
   tags:
     - docker-executor
   image: $DOCKER_REGISTRY/centos8_sgl
@@ -900,6 +945,9 @@ rhel8_deploy:
 push_artifacts:
   extends: .push_selected_artifacts
   stage: push
+  except:
+    variables:
+      - $BLD_ONLY_VS2019 == "True"
   variables:
     # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
     DEB_9_PACKAGES: "debs/*-1_amd64.deb"
