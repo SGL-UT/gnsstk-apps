@@ -1,13 +1,13 @@
 # apps/filetools/CMakeLists.txt
 
 add_executable(bc2sp3 bc2sp3.cpp)
-target_link_libraries(bc2sp3 ${SUPPORTLIBS})
+linkum(bc2sp3)
 install (TARGETS bc2sp3 DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(smdscheck smdscheck.cpp)
-target_link_libraries(smdscheck ${SUPPORTLIBS})
+linkum(smdscheck)
 install (TARGETS smdscheck DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(navdump navdump.cpp)
-target_link_libraries(navdump ${SUPPORTLIBS})
+linkum(navdump)
 install (TARGETS navdump DESTINATION "${CMAKE_INSTALL_BINDIR}")

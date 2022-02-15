@@ -1,10 +1,10 @@
 # apps/geomatics/robust/CMakeLists.txt
 
 add_executable(lsfilt lsfilt.cpp)
-target_link_libraries(lsfilt ${SUPPORTLIBS})
+linkum(lsfilt)
 install (TARGETS lsfilt DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 add_executable(rstats rstats.cpp)
-target_link_libraries(rstats ${SUPPORTLIBS})
+linkum(rstats)
 install (TARGETS rstats DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
