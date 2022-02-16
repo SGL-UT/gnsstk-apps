@@ -265,7 +265,7 @@
 
 #include <gnsstk/PRSolution.hpp>
 
-#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/BasicFramework.hpp>   // for EXCEPTION_ERROR
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -830,6 +830,7 @@ try {
    ostringstream ossE;
    CommonTime typtime;        // typical time for the dataset
 
+   // set up ephemeris+clock store
    C.ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
    gnsstk::MultiFormatNavDataFactory *mfndfp =
       dynamic_cast<gnsstk::MultiFormatNavDataFactory *>(C.ndfp.get());
@@ -897,8 +898,7 @@ try {
    // if Rinex clock files are to be loaded, tell the SP3 reader so
    bool useSP3clocks(C.InputClkFiles.size() == 0);
 
-   shared_ptr<SP3NavDataFactory> sp3fact =
-      mfndfp->getFactory<SP3NavDataFactory>();
+   shared_ptr<SP3NavDataFactory> sp3fact = mfndfp->getFactory<SP3NavDataFactory>();
    if (!sp3fact)
    {
       ossE << "Internal error: Unable to find SP3NavDataFactory" << endl;
@@ -960,7 +960,7 @@ try {
          }
 
       }
-   }
+   }  // end if InputSP3Files
 
    // -------- RINEX clock files --------------------------
    // Read RINEX clock files for clock (only) store.
@@ -992,7 +992,7 @@ try {
          << sp3fact->size() << " data";
 
       // set to linear interpolation, as this is best estimate for clocks - TD input?
-      sp3fact->setClockLinearInterp();     // changes 'interp order' to 1
+      sp3fact->setClockLinearInterp();     // changes 'interp order' to 2: linear
 
       set<SatID> sats(sp3fact->getIndexSet(CommonTime::BEGINNING_OF_TIME,
                                            CommonTime::END_OF_TIME));
