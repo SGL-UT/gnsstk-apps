@@ -15,7 +15,6 @@ source $(dirname "$BASH_SOURCE")/build_setup.sh
 
 # This is a bit of a hack.  
 # Downstream apps packages expect to find gnsstk-apps in gnsstk/bin 
-# Need to rework sgltk-apps to find rowdiff, and df_diff elsewhere so the tests pass.
 user_install_prefix+="/gnsstk"
 system_install_prefix+="/gnsstk"
 
@@ -217,7 +216,7 @@ fi
 # Create the External Linkage include file
 rm -f ExtLinkage.cmake
 for pkg in $extpkg ; do
-    echo "find_package( $pkg CONFIG )" >>ExtLinkage.cmake
+    echo "find_package( ${pkg^^} CONFIG )" >>ExtLinkage.cmake
 done
 
 cd "$build_root"
