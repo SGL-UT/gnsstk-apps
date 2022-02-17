@@ -1354,7 +1354,8 @@ try {
          int n = mfndfp->count(sat.system, NavMessageType::Ephemeris);
          if(n == 0) {
             LOG(WARNING) << "Warning - no ephemeris found for system "
-               << RinexObsID::map1to3sys[SObj.sysChars[k]] << ", in solution descriptor "
+               << RinexObsID::map1to3sys[SObj.sysChars[k]]
+               << ", in solution descriptor "
                << C.inSolDesc[i] << " => invalidate.";
             ok = false;
          }
