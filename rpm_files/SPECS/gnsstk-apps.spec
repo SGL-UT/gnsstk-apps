@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.0.0
+%define version 13.1.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Feb 24 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.1.0 release
+- Fix build.sh for ExtLinkage.cmake find_package and removed protected term hit.
+- Update cmake linkage so that optional libs work under windows
+- Fix Windows CI issues
+- Update rineditnav output arguments to use @ instead of : for Windows compatibility.
 * Sat Jan 22 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.0.0 release
 -  Add windows packaging job to pipeline
