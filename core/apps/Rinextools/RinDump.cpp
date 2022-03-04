@@ -187,6 +187,7 @@
 /// combinations or other computed quantities in tabular form.
 
 // system
+#include "NewNavInc.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -437,6 +438,7 @@ double getNonObsData(string tag, RinexSatID sat, const CommonTime& time);
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    // get the (single) instance of the configuration
    Configuration& C(Configuration::Instance());
 

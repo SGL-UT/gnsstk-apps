@@ -44,6 +44,7 @@
 
 //------------------------------------------------------------------------------------
 // system includes
+#include "NewNavInc.h"
 #include <gnsstk/TimeString.hpp>
 #include <gnsstk/CivilTime.hpp>
 #include <time.h>
@@ -151,6 +152,7 @@ int OutputRawData(void);                     // DataOutput.cpp
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
 try {
       // ------------------------------------------------------------------
       // START

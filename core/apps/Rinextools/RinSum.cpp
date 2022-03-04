@@ -119,6 +119,7 @@
 /// Read Rinex observation files (version 2 or 3) and output a summary of the content.
 
 // system
+#include "NewNavInc.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -297,6 +298,7 @@ int ProcessFiles(void);
 //-----------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
       // get the (single) instance of the configuration
    Configuration& C(Configuration::Instance());
 

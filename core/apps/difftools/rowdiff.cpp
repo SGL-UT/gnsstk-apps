@@ -96,6 +96,7 @@
 
 /// This utility assumes that epochs are in ascending time order
 
+#include "NewNavInc.h"
 #include <gnsstk/FileFilterFrameWithHeader.hpp>
 #include <gnsstk/Rinex3ObsStream.hpp>
 #include <gnsstk/Rinex3ObsFilterOperators.hpp>
@@ -429,6 +430,7 @@ void ROWDiff::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       ROWDiff m(argv[0]);

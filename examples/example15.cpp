@@ -40,6 +40,7 @@
 // compute Robust statistics. Also demonstrate the use
 // of random number generators.
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -55,6 +56,7 @@ using namespace Robust;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    double *s = 0; // NULL isn't part of the C++ std.
    double mean = 10.0;
    double std_dev = 2.0;

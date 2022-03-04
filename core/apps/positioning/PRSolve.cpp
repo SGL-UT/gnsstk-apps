@@ -201,6 +201,7 @@
 /// a pseudorange-only position solution.
 
 // system
+#include "NewNavInc.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -754,6 +755,7 @@ int ProcessFiles(void);
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    // get the (single) instance of the configuration
    Configuration& C(Configuration::Instance());
 

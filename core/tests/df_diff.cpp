@@ -40,6 +40,7 @@
 // failing on small differences in floating point values.
 
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -252,6 +253,7 @@ public:
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    DFDiff crap(argv[0]);
 
    if (crap.initialize(argc, argv))

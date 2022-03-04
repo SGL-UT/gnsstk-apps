@@ -92,6 +92,7 @@
  * \enddictable
  */
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/Position.hpp>
 #include <gnsstk/CommandOptionWithPositionArg.hpp>
@@ -241,6 +242,7 @@ void PosCvt::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       PosCvt pc(argv[0]);

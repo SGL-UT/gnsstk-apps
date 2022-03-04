@@ -36,6 +36,7 @@
 //                            release, distribution is unlimited.
 //
 //==============================================================================
+#include "NewNavInc.h"
 #include <iostream>
 #include <fstream>
 #include <gnsstk/BasicFramework.hpp>
@@ -191,6 +192,7 @@ shutDown()
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       CommandOption3Example app(argv[0]);

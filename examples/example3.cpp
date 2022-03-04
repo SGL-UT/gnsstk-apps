@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <gnsstk/Rinex3ObsBase.hpp>
 #include <gnsstk/Rinex3ObsData.hpp>
 #include <gnsstk/Rinex3ObsHeader.hpp>
@@ -52,6 +53,7 @@ using namespace gnsstk;
    // ISO C++ forbids declaration of `main' with no type
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
 
    int myprn;
 

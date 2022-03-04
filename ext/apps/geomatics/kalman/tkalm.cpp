@@ -72,6 +72,7 @@
 
 //------------------------------------------------------------------------------------
 // system
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -91,6 +92,7 @@ using namespace gnsstk;
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
 try {
    int i;
 

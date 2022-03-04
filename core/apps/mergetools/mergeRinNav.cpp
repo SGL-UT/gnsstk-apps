@@ -84,6 +84,7 @@
  * \ref mergeRinObs, \ref mergeRinMet
  */
 
+#include "NewNavInc.h"
 #include <gnsstk/Rinex3NavStream.hpp>
 #include <gnsstk/Rinex3NavHeader.hpp>
 #include <gnsstk/Rinex3NavData.hpp>
@@ -146,6 +147,7 @@ void MergeRinNav::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       MergeRinNav m(argv[0]);

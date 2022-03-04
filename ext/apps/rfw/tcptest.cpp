@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -53,6 +54,7 @@ using std::endl;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       gnsstk::SocketAddr client(std::string("localhost"), 4621);
