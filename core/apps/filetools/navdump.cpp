@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/NavLibrary.hpp>
 #include <gnsstk/MultiFormatNavDataFactory.hpp>
@@ -338,6 +339,7 @@ process()
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       NavDump app(argv[0]);

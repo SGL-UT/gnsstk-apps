@@ -90,6 +90,7 @@
  * \ref rmwcheck, \ref rowcheck
  */
 
+#include "NewNavInc.h"
 #include "CheckFrame.hpp"
 
 #include <gnsstk/Rinex3NavStream.hpp>
@@ -100,6 +101,7 @@ using namespace gnsstk;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       CheckFrame<Rinex3NavStream, Rinex3NavData> cf(argv[0],

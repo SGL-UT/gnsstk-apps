@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <cerrno>
 #include <cstdio>
 #include <gnsstk/BasicFramework.hpp>
@@ -287,6 +288,7 @@ identFile(const string& fname, FFData*& hdr)
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       RinexHeaderDiff m(argv[0]);

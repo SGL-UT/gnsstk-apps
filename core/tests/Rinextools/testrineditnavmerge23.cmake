@@ -19,6 +19,11 @@
 # ${SOURCEDIR}/${TESTBASE3}.exp (RINEX 3)
 # ${SOURCEDIR}/${TESTBASE2}.exp (RINEX 2)
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 # Generate the merged file
 
 message(STATUS "running ${TEST_PROG} -o ${TARGETDIR}/${TESTBASE3}.out -2 ${TARGETDIR}/${TESTBASE2}.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}")
@@ -39,7 +44,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 message(STATUS "running ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.out")
@@ -48,7 +53,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 

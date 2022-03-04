@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <vector>
 #include <gnsstk/NavFilterMgr.hpp>
@@ -51,6 +52,7 @@ using namespace gnsstk;
 
 int main()
 {
+#include "NewNavInit.h"
    NavFilterMgr mgr;
    LNavCookFilter filtCook;
    LNavParityFilter filtParity;

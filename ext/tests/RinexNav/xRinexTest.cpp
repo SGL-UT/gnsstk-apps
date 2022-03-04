@@ -37,6 +37,7 @@
 //==============================================================================
 
 
+#include "NewNavInc.h"
 #include "Rinex3NavData.cpp"
 #include <iostream>
 
@@ -46,6 +47,7 @@ using namespace gnsstk;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
       // Set time to Day 153, 2011 (6/2/2011) at noon
    CivilTime g( 2011, 6, 2, 12, 14, 44.0, TimeSystem::GPS );
    CommonTime dt = g.convertToCommonTime();

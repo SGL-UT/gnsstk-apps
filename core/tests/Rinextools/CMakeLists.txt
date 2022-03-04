@@ -13,6 +13,7 @@ add_test(NAME RinDump_help
          -DTEST_PROG=$<TARGET_FILE:RinDump>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # Test all satellites (default) with C1C data
@@ -27,6 +28,7 @@ add_test(NAME RinDump_Default_C1C
          -DTESTNAME=RinDump_sat_default_C1C
          -DARGS=${ARGS1}
          -DDIFF_ARGS=-l7\ -z2
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_property(TEST RinDump_Default_C1C PROPERTY LABELS Rinex3)
 
@@ -42,6 +44,7 @@ add_test(NAME RinDump_Single_C1C
          -DTESTNAME=RinDump_sat_single_C1C
          -DARGS=${ARGS2}
          -DDIFF_ARGS=-l7\ -z2
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_property(TEST RinDump_Single_C1C PROPERTY LABELS Rinex3)
 
@@ -57,6 +60,7 @@ add_test(NAME RinDump_Rinex2Input
          -DTESTNAME=RinDump_Rinex2Input
          -DARGS=${ARGS2}
          -DDIFF_ARGS=-l7\ -z2
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_property(TEST RinDump_Rinex2Input PROPERTY LABELS Rinex2)
 
@@ -76,6 +80,7 @@ add_test(NAME RinEdit_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:RinEdit>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 test_app_with_file(
@@ -95,6 +100,7 @@ add_test(NAME RinEdit_ValidOutput
     -DTESTNAME=RinEdit_ValidOutput
     -DTARGETDIR=${TD}
     -DNODIFF=1
+    -DEXTPATH=${EXTPATH}
     -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_tests_properties(RinEdit_ValidOutput PROPERTIES DEPENDS RinEdit_Header)
 set_property(TEST RinEdit_ValidOutput PROPERTY LABELS Rinex2)
@@ -160,6 +166,7 @@ add_test(NAME RinEdit_211_merge_1
          -DRINDIFF=$<TARGET_FILE:rowdiff>
          -DINFILE1=arlm200a.15o
          -DINFILE2=arlm200b.15o
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditmerge.cmake)
 
 # Merge the same file twice. Should get the same file back.
@@ -175,6 +182,7 @@ add_test(NAME RinEdit_211_merge_1
 #          -DRINDIFF=$<TARGET_FILE:rowdiff>
 #          -DINFILE1=RinEdit_211_merge_2.exp
 #          -DINFILE2=RinEdit_211_merge_2.exp
+#          -DEXTPATH=${EXTPATH}
 #          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditmerge.cmake)
 
 ###############################################################################
@@ -185,6 +193,7 @@ add_test(NAME RinEditNav_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:rineditnav>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 
@@ -199,6 +208,7 @@ add_test(NAME RinEditNav_merge_1
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=arlm200a.15n
          -DINFILE2=arlm200b.15n
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditnavmerge3.cmake)
 
 # merge 2x RINEX 2 to a single RINEX 2
@@ -212,6 +222,7 @@ add_test(NAME RinEditNav_merge_2
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=arlm200a.15n
          -DINFILE2=arlm200b.15n
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditnavmerge2.cmake)
 
 # Merge the same file twice. Should get the same file back.
@@ -225,6 +236,7 @@ add_test(NAME RinEditNav_merge_3
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=RinEditNav_merge_3.exp
          -DINFILE2=RinEditNav_merge_3.exp
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditnavmerge2.cmake)
 
 # merge 2x RINEX 2 to a RINEX 2 and a RINEX 3
@@ -239,6 +251,7 @@ add_test(NAME RinEditNav_merge_4
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=arlm200a.15n
          -DINFILE2=arlm200b.15n
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrineditnavmerge23.cmake)
 
 # Test multiple outputs with system specified
@@ -249,6 +262,7 @@ add_test(NAME RinEditNav_outputs_1
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_outputs_1.cmake)
 
 # Test system exclusion with system specified
@@ -259,6 +273,7 @@ add_test(NAME RinEditNav_exclude_1
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_exclude_1.cmake)
 
 # Test system exclusion with satellite specified
@@ -269,6 +284,7 @@ add_test(NAME RinEditNav_exclude_2
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_exclude_2.cmake)
 
 # Test filtering via time (start time only)
@@ -279,6 +295,7 @@ add_test(NAME RinEditNav_time_1
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_time_1.cmake)
 
 # Test filtering via time (end time only)
@@ -289,6 +306,7 @@ add_test(NAME RinEditNav_time_2
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_time_2.cmake)
 
 # Test filtering via time (start and end time)
@@ -299,6 +317,7 @@ add_test(NAME RinEditNav_time_3
          -DTARGETDIR=${TD}
          -DRINHEADDIFF=$<TARGET_FILE:rinheaddiff>
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/RinEditNav_time_3.cmake)
 
 ###############################################################################

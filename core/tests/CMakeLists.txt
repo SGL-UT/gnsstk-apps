@@ -16,6 +16,7 @@ function(test_app_with_file test_name app_name labels args diff_args)
         -DOWNOUTPUT=1
         -DDIFF_PROG=${df_diff}
         -DDIFF_ARGS=${diff_args}
+        -DEXTPATH=${EXTPATH}
         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
     set_property(TEST ${test_name} PROPERTY LABELS ${labels})
 endfunction()
@@ -35,6 +36,7 @@ function(test_app_with_stdout test_name app_name labels args diff_args)
         -DARGS=${args}
         -DDIFF_PROG=${df_diff}
         -DDIFF_ARGS=${diff_args}
+        -DEXTPATH=${EXTPATH}
         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
     set_property(TEST ${test_name} PROPERTY LABELS ${labels})
 endfunction()

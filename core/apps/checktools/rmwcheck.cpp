@@ -90,6 +90,7 @@
  * \ref rnwcheck, \ref rowcheck
  */
 
+#include "NewNavInc.h"
 #include "CheckFrame.hpp"
 
 #include <gnsstk/RinexMetStream.hpp>
@@ -101,6 +102,7 @@ using namespace gnsstk;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       CheckFrame<RinexMetStream, RinexMetData, RinexMetDataFilterTime>

@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 
@@ -49,6 +50,7 @@ using namespace gnsstk;
 
 int main(void)
 {
+#include "NewNavInit.h"
 
       // Create the input file stream
    Rinex3ObsStream rin("bahr1620.04o");
