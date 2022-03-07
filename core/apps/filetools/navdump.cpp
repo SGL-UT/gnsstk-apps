@@ -114,29 +114,6 @@ public:
 };
 
 
-
-/// Get command-line option help for DumpDetail strings.
-class CommandOptionHelpDumpDetail : public CommandOptionHelp
-{
-public:
-      /** Constructor.
-       * @param[in] shOpt The one character command line option.
-       *   Set to 0 if unused.
-       * @param[in] loOpt The long command option.  Set to
-       *   std::string() if unused.
-       * @param[in] desc A string describing what this option does.
-       */ 
-   CommandOptionHelpDumpDetail(const char shOpt,
-                               const std::string& loOpt,
-                               const std::string& desc);
-
-      /** Print the requested help information.
-       * @param[in] out The stream to which the help text will be printed.
-       * @param[in] pretty Unused in this child class. */
-   void printHelp(std::ostream& out, bool pretty = true) override;
-};
-
-
 /// Command-line option specifically for NavLibrary queries.
 class CommandOptionNavLibraryFind : public CommandOptionWithAnyArg
 {
@@ -177,9 +154,8 @@ public:
  *
  * \section navdump_synopsis SYNOPSIS
  * <b>navdump</b>  <b>-h</b> <br/>
- * <b>navdump</b>  <b>-T</b> <br/>
- * <b>navdump</b>  <b>-L</b> <br/>
- * <b>navdump</b> <b>[-d</b><b>]</b> <b>[-v</b><b>]</b> <b>[-t</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-l</b>&nbsp;\argarg{ARG}<b>]</b> \argarg{ARG} <b>[</b>...<b>]</b>
+ * <b>navdump</b>  <b>-E</b>&nbsp;\argarg{ARG} <br/>
+ * <b>navdump</b> <b>[-d</b><b>]</b> <b>[-v</b><b>]</b> <b>[-t</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-l</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-F</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-X</b>&nbsp;\argarg{ARG}<b>]</b> \argarg{ARG} <b>[</b>...<b>]</b>
  *
  * \section navdump_description DESCRIPTION
  * Print (to standard output) the parsed contents of any number of
@@ -193,13 +169,15 @@ public:
  * \dicterm{-h, \--help}
  * \dicdef{Print help usage}
  * \dicterm{-t, \--type=\argarg{ARG}}
- * \dicdef{Navigation data type(s) to dump (use -T for list, default=all types)}
- * \dicterm{-T, \--typelist}
- * \dicdef{List out valid nav message types and quit}
+ * \dicdef{Navigation data type(s) to dump (use "-E navmsgtype" for list, default=all types)}
+ * \dicterm{-E, \--enum=\argarg{ARG}}
+ * \dicdef{Get help for enums, specify one of system, obstype, carrier, range, antenna, navtype, navmsgtype, health, validity, order, detail}
  * \dicterm{-l, \--level=\argarg{ARG}}
- * \dicdef{Specify detail level of output (default=Full)}
- * \dicterm{-L, \--levellist}
- * \dicdef{List out valid detail levels}
+ * \dicdef{Specify detail level of output (use "-E detail" for list, default=Full)}
+ * \dicterm{-F, \--find=\argarg{ARG}}
+ * \dicdef{Find a specific object in the input matching "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier [range [navtype [xmit-health [validity-type [xmit-sat-id system]]]]]]"}
+ * \dicterm{-X, \--xvt=\argarg{ARG}}
+ * \dicdef{Compute a satellite XVT using nav data matching "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier [range [navtype [xmit-health [validity-type [xmit-sat-id system]]]]]]"  (navmsgtype must be Ephemeris, Almanac or Unknown for Almanac-if-no-Ephemeris)}
  * \enddictionary
  *
  * \section navdump_examples EXAMPLES
@@ -224,10 +202,6 @@ public:
  * \dictentry{2,One or both of the input files does not exist, or a bad command 
  *   line was used}
  * \enddictable
- *
- * \section rnwdiff_see_also SEE ALSO
- * \ref rmwdiff, \ref rowdiff, \ref timeconvert
- * navdump will return 
  */
 class NavDump : public BasicFramework
 {
@@ -239,14 +213,10 @@ public:
 
       /// Command-line option for specifying the type of data to dump.
    CommandOptionWithAnyArg typesOpt;
-      /// Get a list of nav message types.
-   CommandOptionHelpNavMessageType typesHelpOpt;
       /// Get a list of some other type of enum.
    CommandOptionNavEnumHelp enumHelpOpt;
       /// Specify the detail level.
    CommandOptionWithAnyArg detailOpt;
-      /// Get a list of detail levels.
-   CommandOptionHelpDumpDetail detailHelpOpt;
       /// All remaining command-line arguments are treated as input files.
    CommandOptionRest filesOpt;
       /// Get a specific object
@@ -260,80 +230,6 @@ public:
       /// Dump output level of detail
    DumpDetail detail;
 };
-
-
-CommandOptionHelpNavMessageType ::
-CommandOptionHelpNavMessageType(const char shOpt,
-                                const std::string& loOpt,
-                                const std::string& desc)
-      : CommandOptionHelp(gnsstk::CommandOption::noArgument, shOpt, loOpt,
-                          desc)
-{
-}
-
-
-void CommandOptionHelpNavMessageType ::
-printHelp(std::ostream& out, bool pretty)
-{
-   ostringstream s;
-   char *colch = getenv("COLUMNS");
-   int columns = 80;
-   unsigned maxlen = 0;
-   if (colch)
-   {
-      string colStr(colch);
-      columns = StringUtils::asInt(colStr);
-   }
-   s << "Types:";
-   for (NavMessageType i : NavMessageTypeIterator())
-   {
-      if (i != NavMessageType::Unknown)
-         s << " " << StringUtils::asString(i);
-   }
-   if (pretty)
-      out << StringUtils::prettyPrint(s.str(),"\n","   ","",columns);
-   else
-      out << s.str();
-   out << endl;
-}
-
-
-
-
-CommandOptionHelpDumpDetail ::
-CommandOptionHelpDumpDetail(const char shOpt,
-                                const std::string& loOpt,
-                                const std::string& desc)
-      : CommandOptionHelp(gnsstk::CommandOption::noArgument, shOpt, loOpt,
-                          desc)
-{
-}
-
-
-void CommandOptionHelpDumpDetail ::
-printHelp(std::ostream& out, bool pretty)
-{
-   ostringstream s;
-   char *colch = getenv("COLUMNS");
-   int columns = 80;
-   unsigned maxlen = 0;
-   if (colch)
-   {
-      string colStr(colch);
-      columns = StringUtils::asInt(colStr);
-   }
-   s << "Detail levels:";
-   for (DumpDetail i : DumpDetailIterator())
-   {
-      if (i != DumpDetail::Unknown)
-         s << " " << StringUtils::asString(i);
-   }
-   if (pretty)
-      out << StringUtils::prettyPrint(s.str(),"\n","   ","",columns);
-   else
-      out << s.str();
-   out << endl;
-}
 
 
 CommandOptionNavLibraryFind ::
@@ -470,20 +366,18 @@ NavDump(const string& applName)
       : BasicFramework(applName, "Dump any and all navigation data (that we"
                        " support).  Debug will enable tracing (if tracing was"
                        " compiled into the libraries)"),
-        typesOpt('t', "type", "Navigation data type(s) to dump (use -T for"
-                 " list, default=all types)"),
-        typesHelpOpt('T', "typelist", "List out valid nav message types and"
-                     " quit"),
-        detailOpt('l',"level","Specify detail level of output (default=Full)"),
-        detailHelpOpt('L', "levellist", "List out valid detail levels"),
-        inqOpt('F', "find", "Find a specfic object in the input matching \""
+        typesOpt('t', "type", "Navigation data type(s) to dump (use \"-E"
+                 " navmsgtype\" for list, default=all types)"),
+        detailOpt('l',"level","Specify detail level of output (use \"-E"
+                  " detail\" for list, default=Full)"),
+        inqOpt('F', "find", "Find a specific object in the input matching \""
                "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier"
                " [range [navtype [xmit-health [validity-type [xmit-sat-id"
-               " system]]]]]]"),
+               " system]]]]]]\""),
         xvtOpt('X', "xvt", "Compute a satellite XVT using nav data matching \""
                "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier"
                " [range [navtype [xmit-health [validity-type [xmit-sat-id"
-               " system]]]]]]  (navmsgtype must be Ephemeris, Almanac or"
+               " system]]]]]]\"  (navmsgtype must be Ephemeris, Almanac or"
                " Unknown for Almanac-if-no-Ephemeris)", false),
         enumHelpOpt('E', "enum"),
         detail(DumpDetail::Full),
