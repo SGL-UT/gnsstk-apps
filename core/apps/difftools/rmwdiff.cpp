@@ -93,6 +93,7 @@
  * \ref rnwdiff, \ref rowdiff
  */
 
+#include "NewNavInc.h"
 #include <gnsstk/FileFilterFrameWithHeader.hpp>
 
 #include <gnsstk/RinexMetData.hpp>
@@ -266,6 +267,7 @@ void RMWDiff::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       RMWDiff m(argv[0]);

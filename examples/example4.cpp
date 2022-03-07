@@ -40,6 +40,7 @@
 
 
    // First, let's include Standard Template Library classes
+#include "NewNavInc.h"
 #include <string>
 #include <vector>
 
@@ -79,6 +80,7 @@ using namespace gnsstk;
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
 
       // Declaration of objects for storing ephemerides and handling RAIM
    GPSEphemerisStore bcestore;

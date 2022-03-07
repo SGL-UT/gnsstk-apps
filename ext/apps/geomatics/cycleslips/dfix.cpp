@@ -41,6 +41,7 @@
 
 //------------------------------------------------------------------------------------
 // system includes
+#include "NewNavInc.h"
 #include <ctime>
 #include <iostream>
 #include <iomanip>
@@ -238,6 +239,7 @@ const string GlobalData::Version(string("3.0 6/20/19"));
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    string PrgmName;        // for catch only
 try {
    // begin counting time

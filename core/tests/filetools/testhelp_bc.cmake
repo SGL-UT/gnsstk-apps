@@ -2,6 +2,11 @@
 # Since bc2sp3 doesn't use the usual app framework, 
 # it needs a special check. 
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 # help alone
 execute_process(COMMAND ${TEST_PROG} --help
                 OUTPUT_QUIET

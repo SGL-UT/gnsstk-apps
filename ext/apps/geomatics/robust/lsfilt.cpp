@@ -42,6 +42,7 @@
  * version of the data.
  */
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -128,6 +129,7 @@ int BadOption(string& arg) {
 // TD add option to filter on data value (string)
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    clock_t totaltime;            // for timing tests
    // begin counting time
    totaltime = clock();

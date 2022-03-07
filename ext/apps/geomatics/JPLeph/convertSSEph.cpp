@@ -44,6 +44,7 @@
 
 //------------------------------------------------------------------------------------
 // system includes
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -83,6 +84,7 @@ ofstream logstrm;
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
 try {
    clock_t totaltime;            // for timing
    totaltime = clock();

@@ -15,6 +15,11 @@
 #
 # Reference file is ${SOURCEDIR}/${TESTBASE}.exp
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 # Generate the merged file
 
 message(STATUS "running ${TEST_PROG} --OF ${TARGETDIR}/${TESTBASE}.out --IF ${SOURCEDIR}/${INFILE1} --IF ${SOURCEDIR}/${INFILE2}")
@@ -35,7 +40,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE}.exp ${TARGETDIR}/${T
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 
@@ -48,5 +53,5 @@ message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE}.exp 
 execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE}.exp ${TARGETDIR}/${TESTBASE}.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - headers differ")
+    message(FATAL_ERROR "Test failed - headers differ: ${DIFFERENT}")
 endif()

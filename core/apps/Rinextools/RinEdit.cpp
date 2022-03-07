@@ -230,6 +230,7 @@
 /// data to a new RINEX file.
 
 // system
+#include "NewNavInc.h"
 #include <string>
 #include <vector>
 #include <map>
@@ -449,6 +450,7 @@ int executeEditCmd(const vector<EditCmd>::iterator& it, Rinex3ObsHeader& Rhead,
 //------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
       // get the (single) instance of the configuration
    Configuration& C(Configuration::Instance());
 

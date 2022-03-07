@@ -38,6 +38,7 @@ add_test(NAME DDBase_CmdOpt_f_missing
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DARGS="-f missingFile"
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_missing PROPERTY LABELS DDBase)
 
@@ -46,6 +47,7 @@ add_test(NAME DDBase_CmdOpt_f_invalid
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DARGS="-f ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.sp3"
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_invalid PROPERTY LABELS DDBase)
 
@@ -58,6 +60,7 @@ add_test(NAME DDBase_CmdOpt_f_valid
          -DNODIFF=TRUE
          -DTESTNAME=DDBase_CmdOpt_f_valid
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_valid PROPERTY LABELS DDBase)
 
@@ -74,6 +77,7 @@ add_test(NAME DDBase_CmdOpt_log_valid
          -DNODIFF=TRUE
          -DTESTNAME=DDBase_CmdOpt_log_valid
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/test_output_ddbase.log
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST DDBase_CmdOpt_log_valid PROPERTY LABELS DDBase)
 
@@ -84,6 +88,7 @@ add_test(NAME DDBase_CmdOpt_log_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/floop/derp/test_output_ddbase.log
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_log_invalid PROPERTY LABELS DDBase)
 
@@ -99,6 +104,7 @@ add_test(NAME DDBase_CmdOpt_obspath_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_obspath_invalid PROPERTY LABELS DDBase)
 
@@ -114,6 +120,7 @@ add_test(NAME DDBase_CmdOpt_obsfile_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_obsfile_invalid PROPERTY LABELS DDBase)
 
@@ -129,6 +136,7 @@ add_test(NAME DDBase_CmdOpt_navpath_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_navpath_invalid PROPERTY LABELS DDBase)
 
@@ -144,6 +152,7 @@ add_test(NAME DDBase_CmdOpt_navfile_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavFile\ missing_nav_file
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_navfile_invalid PROPERTY LABELS DDBase)
 
@@ -159,6 +168,7 @@ add_test(NAME DDBase_CmdOpt_eoppath_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --ObsFile\ missing_obs_file
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_eoppath_invalid PROPERTY LABELS DDBase)
 
@@ -174,6 +184,7 @@ add_test(NAME DDBase_CmdOpt_eopfile_invalid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPFile\ missing_eop_file
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_eopfile_invalid PROPERTY LABELS DDBase)
 
@@ -286,49 +297,12 @@ set_property(TEST DDBase_CmdOpt_eopfile_invalid PROPERTY LABELS DDBase)
 #         -DTEST_PROG=$<TARGET_FILE:DiscFix>
 #         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
 #         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_SOURCE_DIR}/core/tests/testhelp.cmake)
 
 ##############################################################################
 # @todo - DiscFix: Check that all other command line options are handled properly
 ###############################################################################
-
-
-###############################################################################
-# Test EarthOrientation against SOFA example code
-###############################################################################
-add_executable(test_EO_SOFA test_EO_SOFA.cpp)
-linkum(test_EO_SOFA)
-
-add_test(NAME EarthOrientation_SOFA
-         COMMAND ${CMAKE_COMMAND}
-         -DTEST_PROG=$<TARGET_FILE:test_EO_SOFA>
-         -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-         -DTESTNAME=EarthOrientation_SOFA
-         -DTESTBASE=EarthOrientation_SOFA
-         -DDIFF_ARGS=-l1\ -e1.e-12
-         -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
-set_property(TEST EarthOrientation_SOFA PROPERTY LABELS Geomatics)
-
-###############################################################################
-# Test SolidEarth and OceanLoad Tides vs IERS software (cf OceanLoadTides.cpp)
-###############################################################################
-add_executable(test_tides test_tides.cpp)
-linkum(test_tides)
-
-add_test(NAME EarthTides_IERS
-         COMMAND ${CMAKE_COMMAND}
-         -DTEST_PROG=$<TARGET_FILE:test_tides>
-         -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-         -DTESTNAME=EarthTides_IERS
-         -DTESTBASE=EarthTides_IERS
-         -DARGS=--dt\ 360.\ --prec\ 6\ --solid\ --ocean\ --oceanfile\ ${GNSSTK_APPS_TEST_DATA_DIR}/testocean.blq\ --oceansite\ ONSALA,REYKJAVIK\ --atm\ --atmfile\ ${GNSSTK_APPS_TEST_DATA_DIR}/testatm.atl\ --atmsite\ reyk,onsa
-         -DDIFF_ARGS=-l4\ -e1.e-5
-         -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
-set_property(TEST EarthTides_IERS PROPERTY LABELS Geomatics)
 
 ###############################################################################
 # Test JPL ephemeris 403 conversion
@@ -344,6 +318,7 @@ add_test(NAME JPL_403eph_conversion
          -DTESTBASE=JPL_403eph_conversion
          -DARGS=--header\ ${JPLDIR}/header.403\ --data\ ${JPLDIR}/ascp1975.403,${JPLDIR}/ascp2000.403,${JPLDIR}/ascp2025.403\ --output\ SolarSystem1975to2050.403.bin\ --verbose
          -DDIFF_ARGS=-l50\ -z1\ -e1.e-15
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST JPL_403eph_conversion PROPERTY LABELS Geomatics)
 
@@ -363,6 +338,7 @@ add_test(NAME JPL_403eph_accuracy
          -DTESTBASE=JPL_403eph_accuracy
          -DARGS=--file\ SolarSystem1975to2050.403.bin\ --test\ ${JPLDIR}/testpo.403\ -d
          -DDIFF_ARGS=-l1\ -z1\ -e1.e-16
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST JPL_403eph_accuracy PROPERTY LABELS Geomatics)
 set_property(TEST JPL_403eph_accuracy PROPERTY DEPENDS JPL_403eph_conversion)
@@ -380,6 +356,7 @@ add_test(NAME JPL_405eph_conversion
          -DTESTBASE=JPL_405eph_conversion
          -DARGS=--header\ ${JPLDIR}/header.405\ --data\ ${JPLDIR}/ascp1980.405,${JPLDIR}/ascp2000.405,${JPLDIR}/ascp2020.405\ --output\ SolarSystem1975to2050.405.bin\ --verbose
          -DDIFF_ARGS=-l50\ -z1\ -e1.e-15
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST JPL_405eph_conversion PROPERTY LABELS Geomatics)
 
@@ -396,17 +373,10 @@ add_test(NAME JPL_405eph_accuracy
          -DTESTBASE=JPL_405eph_accuracy
          -DARGS=--file\ SolarSystem1975to2050.405.bin\ --test\ ${JPLDIR}/testpo.405\ -d
          -DDIFF_ARGS=-l1\ -z1\ -e1.e-16
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST JPL_405eph_accuracy PROPERTY LABELS Geomatics)
 set_property(TEST JPL_405eph_accuracy PROPERTY DEPENDS JPL_405eph_conversion)
-
-###############################################################################
-# Test StatsFilters filters
-###############################################################################
-add_executable(StatsFilter_T StatsFilter_T.cpp)
-linkum(StatsFilter_T)
-add_test(StatsFilter StatsFilter_T)
-set_property(TEST StatsFilter PROPERTY LABELS Geomatics)
 
 ###############################################################################
 ## Test dfix
@@ -421,6 +391,7 @@ add_test(NAME test_dfix_karr
          -DTESTBASE=test_dfix_karr
          -DARGS=--obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_dfix_karr0880.ed.10o
          -DDIFF_ARGS=-l101\ -z1\ -v
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST test_dfix_karr PROPERTY LABELS Geomatics)
 
@@ -435,6 +406,7 @@ add_test(NAME test_dfix_tower
          -DTESTBASE=test_dfix_tower
          -DARGS=--obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_dfix_tower239.ed.15o\ --DC\ width=200,MinPts=100,MaxGap=100
          -DDIFF_ARGS=-l94\ -z1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST test_dfix_tower PROPERTY LABELS Geomatics)
 
@@ -449,6 +421,7 @@ add_test(NAME test_dfix_txau
          -DTESTBASE=test_dfix_txau
          -DARGS=--obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_dfix_txau047.ed.12o\ --DC\ width=100,MinPts=50,MaxGap=50
          -DDIFF_ARGS=-l93\ -z1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST test_dfix_txau PROPERTY LABELS Geomatics)
 
@@ -463,67 +436,11 @@ add_test(NAME test_dfix_job4131
          -DTESTBASE=test_dfix_job4131
          -DARGS=--obs\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_dfix_job4131.ed.obs\ --obsID\ RC1*,RC2*,RL1*,RL2*
          -DDIFF_ARGS=-l93\ -z1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST test_dfix_job4131 PROPERTY LABELS Geomatics)
 
-################################################################################
-# Test Rinex3ObsFileLoader RINEX3.03 input
 ###############################################################################
-add_executable(Rinex3ObsLoader_T Rinex3ObsLoader_T.cpp)
-linkum(Rinex3ObsLoader_T)
-
-add_test(NAME Rinex3ObsLoader_R303
-         COMMAND ${CMAKE_COMMAND}
-         -DTEST_PROG=$<TARGET_FILE:Rinex3ObsLoader_T>
-         -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-         -DTESTNAME=Rinex3ObsLoader_R303
-         -DTESTBASE=Rinex3ObsLoader_R303
-         -DARGS=${GNSSTK_APPS_TEST_DATA_DIR}/Rinex3ObsLoader303.obs
-         -DDIFF_ARGS=-l1
-         -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
-set_property(TEST Rinex3ObsLoader_R303 PROPERTY LABELS Geomatics)
-
-###############################################################################
-# Test Rinex3ObsFileLoader RINEX2.11 input
-###############################################################################
-add_test(NAME Rinex3ObsLoader_R211
-         COMMAND ${CMAKE_COMMAND}
-         -DTEST_PROG=$<TARGET_FILE:Rinex3ObsLoader_T>
-         -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-         -DTESTNAME=Rinex3ObsLoader_R211
-         -DTESTBASE=Rinex3ObsLoader_R211
-         -DARGS=${GNSSTK_APPS_TEST_DATA_DIR}/Rinex3ObsLoader211.obs
-         -DDIFF_ARGS=-l1
-         -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
-set_property(TEST Rinex3ObsLoader_R211 PROPERTY LABELS Geomatics)
-
-###############################################################################
-# Test Rinex3ObsFileLoader RINEX2.10 input
-###############################################################################
-add_test(NAME Rinex3ObsLoader_R210
-         COMMAND ${CMAKE_COMMAND}
-         -DTEST_PROG=$<TARGET_FILE:Rinex3ObsLoader_T>
-         -DDIFF_PROG=${df_diff}
-         -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
-         -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
-         -DTESTNAME=Rinex3ObsLoader_R210
-         -DTESTBASE=Rinex3ObsLoader_R210
-         -DARGS=${GNSSTK_APPS_TEST_DATA_DIR}/Rinex3ObsLoader210.obs
-         -DDIFF_ARGS=-l1
-         -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
-set_property(TEST Rinex3ObsLoader_R210 PROPERTY LABELS Geomatics)
-
-###############################################################################
-add_executable(KalmanFilter_T KalmanFilter_T.cpp)
-linkum(KalmanFilter_T)
-add_test(KalmanFilter KalmanFilter_T)
-set_property(TEST KalmanFilter PROPERTY LABELS Geomatics)
-
-################################################################################
 
 
 set (RSTATS_ARGS_1 "${SD}/SDexam01.txt -q -p 4 -x 1 -y 2 --wt 3 -bc -br -b2 -bw")
@@ -535,6 +452,7 @@ add_test(NAME rstats_1
   -DTESTBASE=rstats_1
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_1}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_1 PROPERTY LABELS Geomatics)
 
@@ -547,6 +465,7 @@ add_test(NAME rstats_2
   -DTESTBASE=rstats_2
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_2}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_2 PROPERTY LABELS Geomatics)
 
@@ -559,6 +478,7 @@ add_test(NAME rstats_3
   -DTESTBASE=rstats_3
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_3}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_3 PROPERTY LABELS Geomatics)
 
@@ -571,6 +491,7 @@ add_test(NAME rstats_4
   -DTESTBASE=rstats_4
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_4}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_4 PROPERTY LABELS Geomatics)
 
@@ -583,6 +504,7 @@ add_test(NAME rstats_5
   -DTESTBASE=rstats_5
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_5}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_5 PROPERTY LABELS Geomatics)
 
@@ -595,6 +517,7 @@ add_test(NAME rstats_6
   -DTESTBASE=rstats_6
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_6}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_6 PROPERTY LABELS Geomatics)
 
@@ -607,6 +530,7 @@ add_test(NAME rstats_7
   -DTESTBASE=rstats_7
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_7}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_7 PROPERTY LABELS Geomatics)
 
@@ -619,6 +543,7 @@ add_test(NAME rstats_8
   -DTESTBASE=rstats_8
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_8}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_8 PROPERTY LABELS Geomatics)
 
@@ -631,6 +556,7 @@ add_test(NAME rstats_9
   -DTESTBASE=rstats_9
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_9}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_9 PROPERTY LABELS Geomatics)
 
@@ -643,6 +569,7 @@ add_test(NAME rstats_10
   -DTESTBASE=rstats_10
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_10}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_10 PROPERTY LABELS Geomatics)
 
@@ -655,6 +582,7 @@ add_test(NAME rstats_11
   -DTESTBASE=rstats_11
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_11}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_11 PROPERTY LABELS Geomatics)
 
@@ -667,6 +595,7 @@ add_test(NAME rstats_12
   -DTESTBASE=rstats_12
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_12}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_12 PROPERTY LABELS Geomatics)
 
@@ -681,6 +610,7 @@ add_test(NAME rstats_13
   -DDIFF_PROG=${df_diff}
   -DDIFF_ARGS=-l1
   -DARGS=${RSTATS_ARGS_13}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_13 PROPERTY LABELS Geomatics)
 
@@ -693,6 +623,7 @@ add_test(NAME rstats_14
   -DTESTBASE=rstats_14
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_14}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_14 PROPERTY LABELS Geomatics)
 
@@ -705,6 +636,7 @@ add_test(NAME rstats_15
   -DTESTBASE=rstats_15
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_15}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_15 PROPERTY LABELS Geomatics)
 
@@ -717,6 +649,7 @@ add_test(NAME rstats_16
   -DTESTBASE=rstats_16
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_16}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_16 PROPERTY LABELS Geomatics)
 
@@ -729,6 +662,7 @@ add_test(NAME rstats_17
   -DTESTBASE=rstats_17
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_17}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_17 PROPERTY LABELS Geomatics)
 
@@ -741,6 +675,7 @@ add_test(NAME rstats_18
   -DTESTBASE=rstats_18
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_18}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_18 PROPERTY LABELS Geomatics)
 
@@ -753,6 +688,7 @@ add_test(NAME rstats_19
   -DTESTBASE=rstats_19
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_19}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_19 PROPERTY LABELS Geomatics)
 
@@ -765,6 +701,7 @@ add_test(NAME rstats_20
   -DTESTBASE=rstats_20
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_20}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_20 PROPERTY LABELS Geomatics)
 
@@ -777,6 +714,7 @@ add_test(NAME rstats_21
   -DTESTBASE=rstats_21
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_21}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_21 PROPERTY LABELS Geomatics)
 
@@ -789,6 +727,7 @@ add_test(NAME rstats_22
   -DTESTBASE=rstats_22
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_22}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_22 PROPERTY LABELS Geomatics)
 
@@ -801,6 +740,7 @@ add_test(NAME rstats_23
   -DTESTBASE=rstats_23
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_23}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_23 PROPERTY LABELS Geomatics)
 
@@ -813,6 +753,7 @@ add_test(NAME rstats_24
   -DTESTBASE=rstats_24
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_24}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_24 PROPERTY LABELS Geomatics)
 
@@ -825,6 +766,7 @@ add_test(NAME rstats_25
   -DTESTBASE=rstats_25
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_25}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_25 PROPERTY LABELS Geomatics)
 
@@ -838,6 +780,7 @@ add_test(NAME rstats_26
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DDIFF_PROG=${df_diff}
   -DARGS=${RSTATS_ARGS_26}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_26 PROPERTY LABELS Geomatics)
 
@@ -850,5 +793,6 @@ add_test(NAME rstats_27
   -DTESTBASE=rstats_27
   -DTEST_PROG=$<TARGET_FILE:rstats>
   -DARGS=${RSTATS_ARGS_27}
+  -DEXTPATH=${EXTPATH}
   -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST rstats_27 PROPERTY LABELS Geomatics)

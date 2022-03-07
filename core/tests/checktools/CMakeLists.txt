@@ -12,6 +12,7 @@ add_test(NAME rmwcheck_CmdOpt_1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check a valid RINEX Met file
@@ -24,6 +25,7 @@ add_test(NAME rmwcheck_Valid
          -DARGS=${SD}/arlm200a.15m
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
          -DTESTNAME=rmwcheck_CmdOpt_1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # check a valid RINEX Nav file (should fail, as it isn't a Met file)
@@ -35,6 +37,7 @@ add_test(NAME rmwcheck_Invalid_1
          -DNODIFF=1
          -DARGS=${SD}/arlm200a.15n
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that is not a RINEX file
@@ -46,6 +49,7 @@ add_test(NAME rmwcheck_Invalid_2
          -DNODIFF=1
          -DARGS=${SD}/timeconvert_2015_200_0.exp
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that does not exist
@@ -57,6 +61,7 @@ add_test(NAME rmwcheck_Invalid_2
 #         -DNODIFF=1
 #         -DARGS=${SD}/notAFile.txt
 #         -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 
@@ -71,6 +76,7 @@ add_test(NAME rnwcheck_CmdOpt_1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check a valid RINEX Nav file
@@ -83,6 +89,7 @@ add_test(NAME rnwcheck_Valid
          -DARGS=${SD}/arlm200a.15n
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
          -DTESTNAME=rnwcheck_Valid
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # check a valid RINEX Obs file (should fail, as it isn't a Nav file)
@@ -94,6 +101,7 @@ add_test(NAME rnwcheck_Invalid_1
          -DNODIFF=1
          -DARGS=${SD}/arlm200a.15o
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that is not a RINEX file
@@ -105,6 +113,7 @@ add_test(NAME rnwcheck_Invalid_2
          -DNODIFF=1
          -DARGS=${SD}/timeconvert_2015_200_0.exp
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that does not exist
@@ -116,6 +125,7 @@ add_test(NAME rnwcheck_Invalid_2
 #         -DNODIFF=1
 #         -DARGS=${SD}/notAFile.txt
 #         -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 ###############################################################################
@@ -129,6 +139,7 @@ add_test(NAME rowcheck_CmdOpt_1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check a valid RINEX Obs file
@@ -141,6 +152,7 @@ add_test(NAME rowcheck_Valid
          -DARGS=${SD}/arlm200a.15o
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
          -DTESTNAME=rowcheck_Valid
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # check a valid RINEX Met file (should fail, as it isn't a Obs file)
@@ -152,6 +164,7 @@ add_test(NAME rowcheck_Invalid_1
          -DNODIFF=1
          -DARGS=${SD}/arlm200a.15m
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that is not a RINEX file
@@ -163,6 +176,7 @@ add_test(NAME rowcheck_Invalid_2
          -DNODIFF=1
          -DARGS=${SD}/timeconvert_2015_200_0.exp
          -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 # check a file that does not exist
@@ -174,4 +188,5 @@ add_test(NAME rowcheck_Invalid_2
 #         -DNODIFF=1
 #         -DARGS=${SD}/notAFile.txt
 #         -DGNSSTK_BINDIR=${GNSSTK_BINDIR}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)

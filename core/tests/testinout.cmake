@@ -12,6 +12,11 @@
 # SPARG4: a single escaped argument (optional)
 # EXP_RC: expected rc from the program (optional)
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 if(NOT EXP_RC)
     set(EXP_RC 0)
 endif()

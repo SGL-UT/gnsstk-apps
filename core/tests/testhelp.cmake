@@ -4,12 +4,17 @@
 
 # help alone
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 execute_process(COMMAND ${TEST_PROG} -h
                 OUTPUT_QUIET
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with short help option")
+    message(FATAL_ERROR "Test failed with short help option: ${HAD_ERROR}")
 endif()
 
 execute_process(COMMAND ${TEST_PROG} --help
@@ -17,7 +22,7 @@ execute_process(COMMAND ${TEST_PROG} --help
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with long help option")
+    message(FATAL_ERROR "Test failed with long help option: ${HAD_ERROR}")
 endif()
 
 # help and debug
@@ -27,7 +32,7 @@ execute_process(COMMAND ${TEST_PROG} -h -d
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with short debug option")
+    message(FATAL_ERROR "Test failed with short debug option: ${HAD_ERROR}")
 endif()
 
 execute_process(COMMAND ${TEST_PROG} -h -ddd
@@ -35,7 +40,7 @@ execute_process(COMMAND ${TEST_PROG} -h -ddd
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with multiple short debug options")
+    message(FATAL_ERROR "Test failed with multiple short debug options: ${HAD_ERROR}")
 endif()
 
 # help and long debug
@@ -45,7 +50,7 @@ execute_process(COMMAND ${TEST_PROG} -h --debug
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with long debug option")
+    message(FATAL_ERROR "Test failed with long debug option: ${HAD_ERROR}")
 endif()
 
 execute_process(COMMAND ${TEST_PROG} -h --debug --debug --debug
@@ -53,7 +58,7 @@ execute_process(COMMAND ${TEST_PROG} -h --debug --debug --debug
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with multiple long debug options")
+    message(FATAL_ERROR "Test failed with multiple long debug options: ${HAD_ERROR}")
 endif()
 
 # help and verbose
@@ -63,7 +68,7 @@ execute_process(COMMAND ${TEST_PROG} -h -v
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with short verbose option")
+    message(FATAL_ERROR "Test failed with short verbose option: ${HAD_ERROR}")
 endif()
 
 execute_process(COMMAND ${TEST_PROG} -h -vvv
@@ -71,7 +76,7 @@ execute_process(COMMAND ${TEST_PROG} -h -vvv
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with multiple short verbose options")
+    message(FATAL_ERROR "Test failed with multiple short verbose options: ${HAD_ERROR}")
 endif()
 
 # help and long verbose
@@ -81,7 +86,7 @@ execute_process(COMMAND ${TEST_PROG} -h --verbose
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with long verbose option")
+    message(FATAL_ERROR "Test failed with long verbose option: ${HAD_ERROR}")
 endif()
 
 execute_process(COMMAND ${TEST_PROG} -h --verbose --verbose --verbose
@@ -89,7 +94,7 @@ execute_process(COMMAND ${TEST_PROG} -h --verbose --verbose --verbose
                 ERROR_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
-    message(FATAL_ERROR "Test failed with multiple long verbose options")
+    message(FATAL_ERROR "Test failed with multiple long verbose options: ${HAD_ERROR}")
 endif()
 
 # unimplemented option

@@ -248,6 +248,7 @@
  * printTime()
  */
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 
 #include <gnsstk/TimeString.hpp>
@@ -606,6 +607,7 @@ void TimCvt::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       TimCvt m(argv[0]);
