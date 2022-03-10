@@ -338,7 +338,7 @@ checkArguments()
       }
       if (numWords == 10)
       {
-         rv += "xmit-sat-id also requires system be specified";
+         rv += "xmit-sat-id also requires system to be specified";
          break;
       }
       if (numWords > 10)
