@@ -355,6 +355,7 @@ checkArguments()
       if (numWords > 11)
       {
          rv += "Extraneous text at end of \"" + value[i] + "\"";
+         break;
       }
       params.push_back(params1);
    }
@@ -487,53 +488,45 @@ process()
             cout << "Looking for" << endl << xvtOpt.params[i];
          }
          Xvt xvt;
-         if (xvtOpt.params[i].nmid.messageType == NavMessageType::Almanac)
+         bool useAlm = false;
+         switch (xvtOpt.params[i].nmid.messageType)
          {
-            if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when, xvt,
-                              true, xvtOpt.params[i].xmitHealth,
-                              xvtOpt.params[i].valid, xvtOpt.params[i].order))
-            {
-               cout << setprecision(15) << xvt << endl;
-            }
-            else
-            {
-               cout << "Not found" << endl;
-            }
-         }
-         else if (xvtOpt.params[i].nmid.messageType==NavMessageType::Ephemeris)
-         {
-            if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when, xvt,
-                              false, xvtOpt.params[i].xmitHealth,
-                              xvtOpt.params[i].valid, xvtOpt.params[i].order))
-            {
-               cout << setprecision(15) << xvt << endl;
-            }
-            else
-            {
-               cout << "Not found" << endl;
-            }
-         }
-         else if (xvtOpt.params[i].nmid.messageType == NavMessageType::Unknown)
-         {
-            if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when, xvt,
-                              xvtOpt.params[i].xmitHealth,
-                              xvtOpt.params[i].valid, xvtOpt.params[i].order))
-            {
-               cout << setprecision(15) << xvt << endl;
-            }
-            else
-            {
-               cout << "Not found" << endl;
-            }
-         }
-         else
-         {
-            cerr << "Can't compute an XVT using message type \""
-                 << StringUtils::asString(xvtOpt.params[i].nmid.messageType)
-                 << "\"" << endl;
-         }
-      }
-   }
+            case NavMessageType::Almanac:
+               useAlm = true;
+            case NavMessageType::Ephemeris:
+               if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when,
+                                 xvt, useAlm, xvtOpt.params[i].xmitHealth,
+                                 xvtOpt.params[i].valid,
+                                 xvtOpt.params[i].order))
+               {
+                  cout << setprecision(15) << xvt << endl;
+               }
+               else
+               {
+                  cout << "Not found" << endl;
+               }
+               break;
+            case NavMessageType::Unknown:
+               if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when,
+                                 xvt, xvtOpt.params[i].xmitHealth,
+                                 xvtOpt.params[i].valid,
+                                 xvtOpt.params[i].order))
+               {
+                  cout << setprecision(15) << xvt << endl;
+               }
+               else
+               {
+                  cout << "Not found" << endl;
+               }
+               break;
+            default:
+               cerr << "Can't compute an XVT using message type \""
+                    << StringUtils::asString(xvtOpt.params[i].nmid.messageType)
+                    << "\"" << endl;
+               break;
+         } // switch
+      } // for (unsigned i
+   } // if (xvtOpt.params.size() > 0)
    if (inqOpt.params.empty() && xvtOpt.params.empty())
    {
          // dump the processed results
