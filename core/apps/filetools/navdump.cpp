@@ -40,9 +40,58 @@
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/NavLibrary.hpp>
 #include <gnsstk/MultiFormatNavDataFactory.hpp>
+#include <gnsstk/TimeString.hpp>
+#include <gnsstk/CommandOptionNavEnumHelp.hpp>
+#include <gnsstk/DebugTrace.hpp>
 
 using namespace std;
 using namespace gnsstk;
+
+/// Storage for find parameters
+class FindParams
+{
+public:
+   FindParams()
+         : xmitHealth(SVHealth::Any), valid(NavValidityType::Any),
+           order(NavSearchOrder::User)
+   {
+   }
+      /** Subject satellite, transmit satellite, obs ID (obs type=nav,
+       * carrier band, tracking code, xmit antenna, freq offset), nav
+       * type, nav msg type */
+   NavMessageID nmid;
+      /// Time of interest for query
+   CommonTime when;
+      /// Desired health status of transmitting satellite
+   SVHealth xmitHealth;
+      /// Desired validity of the nav message
+   NavValidityType valid;
+      /// Find behavior, user or nearest.
+   NavSearchOrder order;
+};
+
+
+ostream& operator<<(ostream& s, const FindParams& fp)
+{
+   s << "  " << fp.nmid << endl
+     << "  " << printTime(fp.when, "%4Y/%03j/%02H:%02M:%02S") << endl
+     << "  " << StringUtils::asString(fp.xmitHealth) << endl
+     << "  " << StringUtils::asString(fp.valid) << endl;
+   switch (fp.order)
+   {
+      case NavSearchOrder::User:
+         s << "  User" << endl;
+         break;
+      case NavSearchOrder::Nearest:
+         s << "  Nearest" << endl;
+         break;
+      default:
+         s << "  Unknown search order" << endl;
+         break;
+   }
+   return s;
+}
+
 
 /// Get command-line option help for NavMessageType strings.
 class CommandOptionHelpNavMessageType : public CommandOptionHelp
@@ -66,9 +115,8 @@ public:
 };
 
 
-
-/// Get command-line option help for DumpDetail strings.
-class CommandOptionHelpDumpDetail : public CommandOptionHelp
+/// Command-line option specifically for NavLibrary queries.
+class CommandOptionNavLibraryFind : public CommandOptionWithAnyArg
 {
 public:
       /** Constructor.
@@ -77,17 +125,25 @@ public:
        * @param[in] loOpt The long command option.  Set to
        *   std::string() if unused.
        * @param[in] desc A string describing what this option does.
+       * @param[in] warnUnknownNMT If true, a warning will be printed
+       *   for any unknown nav message type.  If false, a warning will
+       *   NOT be printed if the literal "Unknown" is specified for
+       *   nav message type.
        */ 
-   CommandOptionHelpDumpDetail(const char shOpt,
+   CommandOptionNavLibraryFind(const char shOpt,
                                const std::string& loOpt,
-                               const std::string& desc);
+                               const std::string& desc,
+                               bool warnUnknownNMT = true);
 
-      /** Print the requested help information.
-       * @param[in] out The stream to which the help text will be printed.
-       * @param[in] pretty Unused in this child class. */
-   void printHelp(std::ostream& out, bool pretty = true) override;
+      /// Validate the input arguments.
+   std::string checkArguments() override;
+
+      /// The actual parameters as interpreted by above.
+   std::vector<FindParams> params;
+
+      /// Indicate whether to warn on unknown nav message type.
+   bool warnNMT;
 };
-
 
 /** \page apps
  * - \subpage navdump - Dumping any and all navigation data.
@@ -99,9 +155,8 @@ public:
  *
  * \section navdump_synopsis SYNOPSIS
  * <b>navdump</b>  <b>-h</b> <br/>
- * <b>navdump</b>  <b>-T</b> <br/>
- * <b>navdump</b>  <b>-L</b> <br/>
- * <b>navdump</b> <b>[-d</b><b>]</b> <b>[-v</b><b>]</b> <b>[-t</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-l</b>&nbsp;\argarg{ARG}<b>]</b> \argarg{ARG} <b>[</b>...<b>]</b>
+ * <b>navdump</b>  <b>-E</b>&nbsp;\argarg{ARG} <br/>
+ * <b>navdump</b> <b>[-d</b><b>]</b> <b>[-v</b><b>]</b> <b>[-t</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-l</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-F</b>&nbsp;\argarg{ARG}<b>]</b> <b>[-X</b>&nbsp;\argarg{ARG}<b>]</b> \argarg{ARG} <b>[</b>...<b>]</b>
  *
  * \section navdump_description DESCRIPTION
  * Print (to standard output) the parsed contents of any number of
@@ -115,13 +170,15 @@ public:
  * \dicterm{-h, \--help}
  * \dicdef{Print help usage}
  * \dicterm{-t, \--type=\argarg{ARG}}
- * \dicdef{Navigation data type(s) to dump (use -T for list, default=all types)}
- * \dicterm{-T, \--typelist}
- * \dicdef{List out valid nav message types and quit}
+ * \dicdef{Navigation data type(s) to dump (use "-E navmsgtype" for list, default=all types)}
+ * \dicterm{-E, \--enum=\argarg{ARG}}
+ * \dicdef{Get help for enums, specify one of system, obstype, carrier, range, antenna, navtype, navmsgtype, health, validity, order, detail}
  * \dicterm{-l, \--level=\argarg{ARG}}
- * \dicdef{Specify detail level of output (default=Full)}
- * \dicterm{-L, \--levellist}
- * \dicdef{List out valid detail levels}
+ * \dicdef{Specify detail level of output (use "-E detail" for list, default=Full)}
+ * \dicterm{-F, \--find=\argarg{ARG}}
+ * \dicdef{Find a specific object in the input matching "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier [range [navtype [xmit-health [validity-type [xmit-sat-id system]]]]]]"}
+ * \dicterm{-X, \--xvt=\argarg{ARG}}
+ * \dicdef{Compute a satellite XVT using nav data matching "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier [range [navtype [xmit-health [validity-type [xmit-sat-id system]]]]]]"  (navmsgtype must be Ephemeris, Almanac or Unknown for Almanac-if-no-Ephemeris)}
  * \enddictionary
  *
  * \section navdump_examples EXAMPLES
@@ -146,10 +203,6 @@ public:
  * \dictentry{2,One or both of the input files does not exist, or a bad command 
  *   line was used}
  * \enddictable
- *
- * \section rnwdiff_see_also SEE ALSO
- * \ref rmwdiff, \ref rowdiff
- * navdump will return 
  */
 class NavDump : public BasicFramework
 {
@@ -161,14 +214,16 @@ public:
 
       /// Command-line option for specifying the type of data to dump.
    CommandOptionWithAnyArg typesOpt;
-      /// Get a list of nav message types.
-   CommandOptionHelpNavMessageType typesHelpOpt;
+      /// Get a list of some other type of enum.
+   CommandOptionNavEnumHelp enumHelpOpt;
       /// Specify the detail level.
    CommandOptionWithAnyArg detailOpt;
-      /// Get a list of detail levels.
-   CommandOptionHelpDumpDetail detailHelpOpt;
       /// All remaining command-line arguments are treated as input files.
    CommandOptionRest filesOpt;
+      /// Get a specific object
+   CommandOptionNavLibraryFind inqOpt;
+      /// Get satellite XVT
+   CommandOptionNavLibraryFind xvtOpt;
       /// High level nav store interface.
    NavLibrary navLib;
       /// nav data file reader
@@ -178,90 +233,155 @@ public:
 };
 
 
-CommandOptionHelpNavMessageType ::
-CommandOptionHelpNavMessageType(const char shOpt,
-                                const std::string& loOpt,
-                                const std::string& desc)
-      : CommandOptionHelp(gnsstk::CommandOption::noArgument, shOpt, loOpt,
-                          desc)
+CommandOptionNavLibraryFind ::
+CommandOptionNavLibraryFind(const char shOpt,
+                            const std::string& loOpt,
+                            const std::string& desc,
+                            bool warnUnknownNMT)
+      : CommandOptionWithAnyArg(shOpt, loOpt, desc),
+        warnNMT(warnUnknownNMT)
 {
 }
 
 
-void CommandOptionHelpNavMessageType ::
-printHelp(std::ostream& out, bool pretty)
+std::string CommandOptionNavLibraryFind ::
+checkArguments()
 {
-   ostringstream s;
-   char *colch = getenv("COLUMNS");
-   int columns = 80;
-   unsigned maxlen = 0;
-   if (colch)
+   std::string rv;
+   for (unsigned i = 0; i < value.size(); i++)
    {
-      string colStr(colch);
-      columns = StringUtils::asInt(colStr);
+      FindParams params1;
+      std::vector<std::string> words = StringUtils::split(value[i]);
+      unsigned numWords = words.size();
+      if (numWords < 4)
+      {
+         rv += "Invalid parameter to find";
+         break;
+      }
+      params1.nmid.messageType = StringUtils::asNavMessageType(words[0]);
+      if (params1.nmid.messageType == NavMessageType::Unknown)
+      {
+         if (warnNMT || (words[0] != "Unknown"))
+         {
+            cerr << "Warning: Unknown nav message type: \"" << words[0] << "\""
+                 << endl;
+         }
+      }
+      try
+      {
+         gnsstk::scanTime(params1.when, words[1], "%Y/%j/%H:%M:%S");
+         params1.when.setTimeSystem(TimeSystem::Any);
+      }
+      catch (gnsstk::Exception& exc)
+      {
+         rv += exc.getText() + " (" + words[1] + ")";
+         break;
+      }
+      params1.nmid.sat.id = StringUtils::asInt(words[2]);
+      params1.nmid.sat.system = StringUtils::asSatelliteSystem(words[3]);
+         // default the overall system to the subject system
+         // (potentially change later to the transmit system)
+      params1.nmid.system = params1.nmid.sat.system;
+      if (params1.nmid.sat.system == SatelliteSystem::Unknown)
+      {
+         cerr << "Warning: Unknown system \"" << words[3] << "\"" << endl;
+      }
+      params1.nmid.obs.type = ObservationType::NavMsg;
+      params1.nmid.obs.band = CarrierBand::Any;
+      params1.nmid.obs.code = TrackingCode::Any;
+      params1.nmid.xmitSat.makeWild();
+      params1.nmid.nav = NavType::Any;
+      if (numWords > 4)
+      {
+         params1.nmid.obs.band = StringUtils::asCarrierBand(words[4]);
+         if (params1.nmid.obs.band == CarrierBand::Unknown)
+         {
+            cerr << "Warning: Unknown carrier band \"" << words[4] << "\""
+                 << endl;
+         }
+      }
+      if (numWords > 5)
+      {
+         params1.nmid.obs.code = StringUtils::asTrackingCode(words[5]);
+         if (params1.nmid.obs.code == TrackingCode::Unknown)
+         {
+            cerr << "Warning: Unknown tracking code \"" << words[5] << "\""
+                 << endl;
+         }
+      }
+      if (numWords > 6)
+      {
+         params1.nmid.nav = StringUtils::asNavType(words[6]);
+         if (params1.nmid.nav == NavType::Unknown)
+         {
+            cerr << "Warning: Unknown nav type \"" << words[6] << "\""
+                 << endl;
+         }
+      }
+      if (numWords > 7)
+      {
+         params1.xmitHealth = StringUtils::asSVHealth(words[7]);
+         if (params1.xmitHealth == SVHealth::Unknown)
+         {
+            cerr << "Warning: Unknown health \"" << words[7] << "\""
+                 << endl;
+         }
+      }
+      if (numWords > 8)
+      {
+         params1.valid = StringUtils::asNavValidityType(words[8]);
+         if (params1.valid == NavValidityType::Unknown)
+         {
+            cerr << "Warning: Unknown validity type \"" << words[8] << "\""
+                 << endl;
+         }
+      }
+      if (numWords == 10)
+      {
+         rv += "xmit-sat-id also requires system to be specified";
+         break;
+      }
+      if (numWords > 10)
+      {
+            // use SatID constructor to properly set wildcard flags
+         params1.nmid.xmitSat =
+            SatID(StringUtils::asInt(words[9]),
+                  StringUtils::asSatelliteSystem(words[10]));
+         if (params1.nmid.xmitSat.system == SatelliteSystem::Unknown)
+         {
+            cerr << "Warning: Unknown system \"" << words[10] << "\"" << endl;
+         }
+      }
+      if (numWords > 11)
+      {
+         rv += "Extraneous text at end of \"" + value[i] + "\"";
+         break;
+      }
+      params.push_back(params1);
    }
-   s << "Types:";
-   for (NavMessageType i : NavMessageTypeIterator())
-   {
-      if (i != NavMessageType::Unknown)
-         s << " " << StringUtils::asString(i);
-   }
-   if (pretty)
-      out << StringUtils::prettyPrint(s.str(),"\n","   ","",columns);
-   else
-      out << s.str();
-   out << endl;
-}
-
-
-
-
-CommandOptionHelpDumpDetail ::
-CommandOptionHelpDumpDetail(const char shOpt,
-                                const std::string& loOpt,
-                                const std::string& desc)
-      : CommandOptionHelp(gnsstk::CommandOption::noArgument, shOpt, loOpt,
-                          desc)
-{
-}
-
-
-void CommandOptionHelpDumpDetail ::
-printHelp(std::ostream& out, bool pretty)
-{
-   ostringstream s;
-   char *colch = getenv("COLUMNS");
-   int columns = 80;
-   unsigned maxlen = 0;
-   if (colch)
-   {
-      string colStr(colch);
-      columns = StringUtils::asInt(colStr);
-   }
-   s << "Detail levels:";
-   for (DumpDetail i : DumpDetailIterator())
-   {
-      if (i != DumpDetail::Unknown)
-         s << " " << StringUtils::asString(i);
-   }
-   if (pretty)
-      out << StringUtils::prettyPrint(s.str(),"\n","   ","",columns);
-   else
-      out << s.str();
-   out << endl;
+   return rv;
 }
 
 
 NavDump ::
 NavDump(const string& applName)
       : BasicFramework(applName, "Dump any and all navigation data (that we"
-                       " support)"),
-        typesOpt('t', "type", "Navigation data type(s) to dump (use -T for"
-                 " list, default=all types)"),
-        typesHelpOpt('T', "typelist", "List out valid nav message types and"
-                     " quit"),
-        detailOpt('l',"level","Specify detail level of output (default=Full)"),
-        detailHelpOpt('L', "levellist", "List out valid detail levels"),
+                       " support).  Debug will enable tracing (if tracing was"
+                       " compiled into the libraries)"),
+        typesOpt('t', "type", "Navigation data type(s) to dump (use \"-E"
+                 " navmsgtype\" for list, default=all types)"),
+        detailOpt('l',"level","Specify detail level of output (use \"-E"
+                  " detail\" for list, default=Full)"),
+        inqOpt('F', "find", "Find a specific object in the input matching \""
+               "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier"
+               " [range [navtype [xmit-health [validity-type [xmit-sat-id"
+               " system]]]]]]\""),
+        xvtOpt('X', "xvt", "Compute a satellite XVT using nav data matching \""
+               "navmsgtype YYYY/DOY/HH:MM:SS subject-sat-id system [carrier"
+               " [range [navtype [xmit-health [validity-type [xmit-sat-id"
+               " system]]]]]]\"  (navmsgtype must be Ephemeris, Almanac or"
+               " Unknown for Almanac-if-no-Ephemeris)", false),
+        enumHelpOpt('E', "enum"),
         detail(DumpDetail::Full),
         filesOpt("", true)
 {
@@ -280,6 +400,11 @@ initialize(int argc, char *argv[], bool pretty) throw()
 {
    if (!BasicFramework::initialize(argc, argv, pretty))
       return false;
+   if (debugLevel)
+   {
+      DEBUGTRACE_ENABLE();
+      DEBUGTRACE_FUNCTION();
+   }
    navLib.addFactory(ndfp);
       // process nav message type command line arguments
    vector<string> types(typesOpt.getValue());
@@ -321,6 +446,7 @@ initialize(int argc, char *argv[], bool pretty) throw()
 void NavDump ::
 process()
 {
+   DEBUGTRACE_FUNCTION();
       // read in ephemeris data
    vector<string> names = filesOpt.getValue();
    for (size_t i=0; i<names.size(); i++)
@@ -332,8 +458,80 @@ process()
          return;
       }
    }
-      // dump the processed results
-   navLib.dump(cout,detail);
+   if (inqOpt.params.size() > 0)
+   {
+      for (unsigned i = 0; i < inqOpt.params.size(); i++)
+      {
+         if (verboseLevel)
+         {
+            cout << "Looking for" << endl << inqOpt.params[i];
+         }
+         NavDataPtr ndp;
+         if (navLib.find(inqOpt.params[i].nmid, inqOpt.params[i].when, ndp,
+                         inqOpt.params[i].xmitHealth, inqOpt.params[i].valid,
+                         inqOpt.params[i].order))
+         {
+            ndp->dump(cout, detail);
+         }
+         else
+         {
+            cout << "Not found" << endl;
+         }
+      }
+   }
+   if (xvtOpt.params.size() > 0)
+   {
+      for (unsigned i = 0; i < xvtOpt.params.size(); i++)
+      {
+         if (verboseLevel)
+         {
+            cout << "Looking for" << endl << xvtOpt.params[i];
+         }
+         Xvt xvt;
+         bool useAlm = false;
+         switch (xvtOpt.params[i].nmid.messageType)
+         {
+            case NavMessageType::Almanac:
+               useAlm = true;
+            case NavMessageType::Ephemeris:
+               if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when,
+                                 xvt, useAlm, xvtOpt.params[i].xmitHealth,
+                                 xvtOpt.params[i].valid,
+                                 xvtOpt.params[i].order))
+               {
+                  cout << setprecision(15) << xvt << endl;
+               }
+               else
+               {
+                  cout << "Not found" << endl;
+               }
+               break;
+            case NavMessageType::Unknown:
+               if (navLib.getXvt(xvtOpt.params[i].nmid, xvtOpt.params[i].when,
+                                 xvt, xvtOpt.params[i].xmitHealth,
+                                 xvtOpt.params[i].valid,
+                                 xvtOpt.params[i].order))
+               {
+                  cout << setprecision(15) << xvt << endl;
+               }
+               else
+               {
+                  cout << "Not found" << endl;
+               }
+               break;
+            default:
+               cerr << "Can't compute an XVT using message type \""
+                    << StringUtils::asString(xvtOpt.params[i].nmid.messageType)
+                    << "\"" << endl;
+               break;
+         } // switch
+      } // for (unsigned i
+   } // if (xvtOpt.params.size() > 0)
+   if (inqOpt.params.empty() && xvtOpt.params.empty())
+   {
+         // dump the processed results
+      navLib.dump(cout,detail);
+   }
 }
 
 

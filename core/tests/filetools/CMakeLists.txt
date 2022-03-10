@@ -173,3 +173,32 @@ add_test(NAME navdump_Regression_2
          -DARGS=${NAVDUMP_REGRESSION_2_ARGS}
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
+
+set(NAVDUMP_REGRESSION_3_ARGS "-l OneLine")
+add_test(NAME navdump_Regression_3
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_Regression_3
+         -DTESTNAME=navdump_Regression_3
+         -DARGS=${NAVDUMP_REGRESSION_3_ARGS}
+         -DSPARG1=--find=Ephemeris\ 2015/200/02:05:00\ 13\ GPS
+         -DSPARG4=${SD}/arlm2000.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
+
+set(NAVDUMP_REGRESSION_4_ARGS "-l OneLine")
+add_test(NAME navdump_Regression_4
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_Regression_4
+         -DTESTNAME=navdump_Regression_4
+         -DDIFF_PROG=${df_diff}
+         -DARGS=${NAVDUMP_REGRESSION_4_ARGS}
+         -DSPARG1=--xvt=Ephemeris\ 2015/200/02:05:00\ 13\ GPS
+         -DSPARG4=${SD}/arlm2000.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
