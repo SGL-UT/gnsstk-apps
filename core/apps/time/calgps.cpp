@@ -73,6 +73,7 @@
  * \enddictable
  */
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <gnsstk/CommonTime.hpp>
@@ -117,6 +118,7 @@ void printMonth(short month, short year)
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
 
    try {
 

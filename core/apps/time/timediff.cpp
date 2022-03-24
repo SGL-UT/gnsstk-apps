@@ -37,6 +37,7 @@
 //==============================================================================
 
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/CommonTime.hpp>
 #include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
@@ -163,6 +164,7 @@ void TimeDiff::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       TimeDiff app(argv[0]);

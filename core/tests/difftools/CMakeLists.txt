@@ -21,6 +21,7 @@ add_test(NAME rmwdiff_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:rmwdiff>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check that rmwdiff fails with missing files
@@ -29,6 +30,7 @@ add_test(NAME rmwdiff_CmdOpt_1
 #         -DTEST_PROG=$<TARGET_FILE:rmwdiff>
 #         -DSOURCEDIR=${SD}
 #         -DTARGETDIR=${TD}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/testmissing.cmake)
 
 # check differences where there is no overlap in time
@@ -41,6 +43,7 @@ add_test(NAME rmwdiff_Diff_1
          -DTESTNAME=rmwdiff1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where there are none
@@ -53,6 +56,7 @@ add_test(NAME rmwdiff_Diff_2
          -DTESTNAME=rmwdiff2
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testsame.cmake)
 
 # check differences where there is time overlap and some data differences
@@ -65,6 +69,7 @@ add_test(NAME rmwdiff_Diff_3
          -DTESTNAME=rmwdiff3
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where one file is invalid
@@ -77,6 +82,7 @@ add_test(NAME rmwdiff_Diff_3
 #         -DTESTNAME=rmwdiff4
 #         -DSOURCEDIR=${SD}
 #         -DTARGETDIR=${TD}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/testfail.cmake)
 
 # check differences where the set of observables is different
@@ -89,6 +95,7 @@ add_test(NAME rmwdiff_Diff_5
          -DTESTNAME=rmwdiff5
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testsame.cmake)
 
 
@@ -102,6 +109,7 @@ add_test(NAME rnwdiff_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:rnwdiff>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check that rnwdiff fails with missing files
@@ -110,6 +118,7 @@ add_test(NAME rnwdiff_CmdOpt_1
 #         -DTEST_PROG=$<TARGET_FILE:rnwdiff>
 #         -DSOURCEDIR=${SD}
 #         -DTARGETDIR=${TD}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/testmissing.cmake)
 
 # check differences where there is no overlap in time
@@ -122,6 +131,7 @@ add_test(NAME rnwdiff_Diff_1
          -DTESTNAME=rnwdiff1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where there are none
@@ -134,6 +144,7 @@ add_test(NAME rnwdiff_Diff_2
          -DTESTNAME=rnwdiff2
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testsame.cmake)
 
 # check differences where there is time overlap and some data differences
@@ -146,6 +157,7 @@ add_test(NAME rnwdiff_Diff_3
          -DTESTNAME=rnwdiff3
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where one file is invalid
@@ -158,6 +170,7 @@ add_test(NAME rnwdiff_Diff_3
 #         -DTESTNAME=rnwdiff4
 #         -DSOURCEDIR=${SD}
 #         -DTARGETDIR=${TD}
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/testfail.cmake)
 
 
@@ -171,15 +184,17 @@ add_test(NAME rowdiff_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:rowdiff>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check that rowdiff fails with missing files
-#add_test(NAME rowdiff_CmdOpt_2
-#         COMMAND ${CMAKE_COMMAND}
-#         -DTEST_PROG=$<TARGET_FILE:rowdiff>
-#         -DSOURCEDIR=${SD}
-#         -DTARGETDIR=${TD}
-#         -P ${CMAKE_CURRENT_SOURCE_DIR}/testmissing.cmake)
+add_test(NAME rowdiff_CmdOpt_2
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rowdiff>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testmissing.cmake)
 
 # check differences where there is no overlap in time
 add_test(NAME rowdiff_Diff_1
@@ -191,6 +206,7 @@ add_test(NAME rowdiff_Diff_1
          -DTESTNAME=rowdiff1
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where there are none
@@ -203,6 +219,7 @@ add_test(NAME rowdiff_Diff_2
          -DTESTNAME=rowdiff2
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testsame.cmake)
 
 # check differences where there is time overlap and some data differences
@@ -215,19 +232,47 @@ add_test(NAME rowdiff_Diff_3
          -DTESTNAME=rowdiff3
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 # check differences where one file is invalid
-#add_test(NAME rowdiff_Diff_4
-#         COMMAND ${CMAKE_COMMAND}
-#         -DTEST_PROG=$<TARGET_FILE:rowdiff>
-#         -DFILE1=arlm200a.15n
-#         -DFILE2=arlm200z.15o
-#         -DTESTBASE=rowdiff4
-#         -DTESTNAME=rowdiff4
-#         -DSOURCEDIR=${SD}
-#         -DTARGETDIR=${TD}
-#         -P ${CMAKE_CURRENT_SOURCE_DIR}/testfail.cmake)
+add_test(NAME rowdiff_Diff_4
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rowdiff>
+         -DFILE1=arlm200a.15n
+         -DFILE2=arlm200z.15o
+         -DTESTBASE=rowdiff4
+         -DTESTNAME=rowdiff4
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testfail.cmake)
+
+# check differences where the second file contains only a header
+add_test(NAME rowdiff_Diff_5
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rowdiff>
+         -DFILE1=test_input_rinex_obs_RinexObsFile.06o
+         -DFILE2=test_input_rinex_obs_RinexObsFile_header_only.06o
+         -DTESTBASE=rowdiff5
+         -DTESTNAME=rowdiff5
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
+
+# check differences where the first file contains only a header
+add_test(NAME rowdiff_Diff_6
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rowdiff>
+         -DFILE1=test_input_rinex_obs_RinexObsFile_header_only.06o
+         -DFILE2=test_input_rinex_obs_RinexObsFile.06o
+         -DTESTBASE=rowdiff6
+         -DTESTNAME=rowdiff6
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testdiff.cmake)
 
 
 ###############################################################################
@@ -240,6 +285,7 @@ add_test(NAME rinheaddiff_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:rinheaddiff>
          -DSOURCEDIR=${SD}
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # Make sure that the same file is the same file...
@@ -252,6 +298,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_0
          -DTESTNAME=rinheaddiff_3obs_0
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure that headers with irrelevant changes (comment order,
@@ -265,6 +312,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_1
          -DTESTNAME=rinheaddiff_3obs_1
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure differences are recognized
@@ -277,6 +325,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_2a
          -DTESTNAME=rinheaddiff_3obs_2a
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure differences are recognized with one exclusion
@@ -291,6 +340,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_2b
          -DTESTNAME=rinheaddiff_3obs_2b
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure differences are recognized with one inclusion
@@ -305,6 +355,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_2c
          -DTESTNAME=rinheaddiff_3obs_2c
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure sameness is recognized with one inclusion
@@ -319,6 +370,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_2d
          -DTESTNAME=rinheaddiff_3obs_2d
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure sameness is recognized when excluding all differences.
@@ -334,6 +386,7 @@ add_test(NAME rinheaddiff_3OBS_Diff_2e
          -DTESTNAME=rinheaddiff_3obs_2e
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinhead2e.cmake)
 
 
@@ -351,6 +404,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_0
          -DTESTNAME=rinheaddiff_2obs_0
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure that headers with irrelevant changes (comment order,
@@ -364,6 +418,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_1
          -DTESTNAME=rinheaddiff_2obs_1
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure differences are recognized
@@ -376,6 +431,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_2a
          -DTESTNAME=rinheaddiff_2obs_2a
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure differences are recognized with one exclusion
@@ -390,6 +446,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_2b
          -DTESTNAME=rinheaddiff_2obs_2b
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure differences are recognized with one inclusion
@@ -404,6 +461,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_2c
          -DTESTNAME=rinheaddiff_2obs_2c
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheaddiff.cmake)
 
 # Make sure sameness is recognized with one inclusion
@@ -418,6 +476,7 @@ add_test(NAME rinheaddiff_2OBS_Diff_2d
          -DTESTNAME=rinheaddiff_2obs_2d
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinheadsame.cmake)
 
 # Make sure sameness is recognized when excluding all differences.
@@ -433,4 +492,5 @@ add_test(NAME rinheaddiff_2OBS_Diff_2e
          -DTESTNAME=rinheaddiff_2obs_2e
          -DSOURCEDIR=${SD}/rinheaddiff
          -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinhead2e.cmake)

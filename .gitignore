@@ -19,3 +19,8 @@ gnsstk.egg-info/
 
 # Coverage file results
 gcovr
+
+# generated files
+NewNavInc.h
+NewNavInit.h
+ExtLinkage.cmake

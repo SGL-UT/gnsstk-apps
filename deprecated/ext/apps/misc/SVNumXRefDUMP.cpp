@@ -41,6 +41,7 @@
 *  Demo program for gnsstk/core/lib/GNSSCore/SVNumXRef.
 *
 *********************************************************************/
+#include "NewNavInc.h"
 #include <stdio.h>
 #include "SVNumXRef.hpp"
 
@@ -49,6 +50,7 @@ using namespace gnsstk;
 
 int main( int argc, char * argv[] )
 {
+#include "NewNavInit.h"
    cout << "Entering SVNumXRefDUMP" << endl;
 
    SVNumXRef svNumXRef;

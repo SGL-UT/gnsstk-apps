@@ -87,6 +87,7 @@
 // mergeRinMet
 // Merge and sort rinex metrological files
 
+#include "NewNavInc.h"
 #include <gnsstk/RinexMetStream.hpp>
 #include <gnsstk/RinexMetHeader.hpp>
 #include <gnsstk/RinexMetData.hpp>
@@ -142,6 +143,7 @@ void MergeRinMet::process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       MergeRinMet m(argv[0]);

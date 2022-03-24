@@ -10,6 +10,7 @@ add_test(NAME mergeRinMet_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME mergeRinMet_1
@@ -23,6 +24,7 @@ add_test(NAME mergeRinMet_1
          -DRINDIFF=$<TARGET_FILE:rmwdiff>
          -DINFILE1=arlm200a.15m
          -DINFILE2=arlm200b.15m
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinmerge.cmake)
 
 # Test that the output of mergeRinMet_1 is a valid Rinex Met file.
@@ -34,6 +36,7 @@ add_test(NAME mergeRinMet_ValidOutput
          -DTESTNAME=mergeRinMet_ValidOutput
          -DTARGETDIR=${TD}
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_tests_properties(mergeRinMet_ValidOutput PROPERTIES DEPENDS mergeRinMet_1)
 
@@ -49,18 +52,21 @@ add_test(NAME mergeRinMet_2
          -DRINDIFF=$<TARGET_FILE:rmwdiff>
          -DINFILE1=mergeRinMet_2.exp
          -DINFILE2=mergeRinMet_2.exp
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinmerge.cmake)
 
 #add_test(NAME mergeRinMet_InvalidInput
 #         COMMAND ${CMAKE_COMMAND}
 #         -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
 #         -DARGS=-o\ ${TD}/mergeRinMet_InvalidInput.out\ ${SD}/timeconvert_2015_200_0.exp\ ${SD}/arlm200b.15m
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 #add_test(NAME mergeRinMet_MissingInput
 #         COMMAND ${CMAKE_COMMAND}
 #         -DTEST_PROG=$<TARGET_FILE:mergeRinMet>
 #         -DARGS=-o\ ${TD}/mergeRinMet_MissingInput.out\ ${SD}/notAFile.txt\ ${SD}/arlm200b.15m
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 ###############################################################################
 # TEST mergeRinNav
@@ -72,6 +78,7 @@ add_test(NAME mergeRinNav_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME mergeRinNav_1
@@ -85,6 +92,7 @@ add_test(NAME mergeRinNav_1
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=arlm200a.15n
          -DINFILE2=arlm200b.15n
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinmerge.cmake)
 
 # Test that the output of mergeRinNav_1 is a valid Rinex Nav file.
@@ -96,6 +104,7 @@ add_test(NAME mergeRinNav_ValidOutput
          -DTESTNAME=mergeRinNav_ValidOutput
          -DTARGETDIR=${TD}
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 set_tests_properties(mergeRinNav_ValidOutput PROPERTIES DEPENDS mergeRinNav_1)
 
@@ -112,16 +121,19 @@ add_test(NAME mergeRinNav_2
          -DRINDIFF=$<TARGET_FILE:rnwdiff>
          -DINFILE1=mergeRinNav_2.exp
          -DINFILE2=mergeRinNav_2.exp
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinmerge.cmake)
 
 #add_test(NAME mergeRinNav_InvalidInput
 #         COMMAND ${CMAKE_COMMAND}
 #         -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
 #         -DARGS=-o\ ${TD}/mergeRinNav_InvalidInput.out\ ${SD}/timeconvert_2015_200_0.exp\ ${SD}/arlm200b.15n
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
 
 #add_test(NAME mergeRinNav_MissingInput
 #         COMMAND ${CMAKE_COMMAND}
 #         -DTEST_PROG=$<TARGET_FILE:mergeRinNav>
 #         -DARGS=-o\ ${TD}/mergeRinNav_MissingInput.out\ ${SD}/notAFile.txt\ ${SD}/arlm200b.15n
+#         -DEXTPATH=${EXTPATH}
 #         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)

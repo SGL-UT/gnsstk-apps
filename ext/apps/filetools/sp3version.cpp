@@ -94,6 +94,7 @@
  * currently in converting SP3a to SP3c it inserts random data.
  */
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -354,6 +355,7 @@ unitrand()
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       SP3Version app(argv[0]);

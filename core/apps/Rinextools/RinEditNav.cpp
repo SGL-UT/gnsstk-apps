@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/RinexNavDataFactory.hpp>
 #include <gnsstk/CommandOptionWithTimeArg.hpp>
@@ -486,6 +487,7 @@ makeSysMappings()
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       RinEditNav app(argv[0]);

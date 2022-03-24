@@ -202,6 +202,7 @@
 /// observation file, plus optionally smooth the pseudoranges and/or debias the phases
 
 // system
+#include "NewNavInc.h"
 #include <ctime>
 #include <cstring>
 #include <string>
@@ -339,6 +340,7 @@ void PrintSPList(ostream&, string, vector<SatPass>&);
 //------------------------------------------------------------------------------------
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    try {
       clock_t totaltime = clock();
       int i,nread,npass,iret;

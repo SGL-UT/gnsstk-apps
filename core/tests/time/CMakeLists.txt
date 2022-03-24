@@ -11,6 +11,7 @@ add_test(NAME timeconvert_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:timeconvert>
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 # check ANSI time
@@ -23,6 +24,7 @@ add_test(NAME timeconvert_CmdOpt_ANSI
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Civil time
@@ -35,6 +37,7 @@ add_test(NAME timeconvert_CmdOpt_Civil
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check RINEX time
@@ -47,6 +50,7 @@ add_test(NAME timeconvert_CmdOpt_Rinex
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS epoch/week/second
@@ -59,6 +63,7 @@ add_test(NAME timeconvert_CmdOpt_GPSews
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS full week/second
@@ -71,6 +76,7 @@ add_test(NAME timeconvert_CmdOpt_GPSws
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS full week/zcount
@@ -83,6 +89,7 @@ add_test(NAME timeconvert_CmdOpt_GPSwz
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS 32-bit zcount
@@ -95,6 +102,7 @@ add_test(NAME timeconvert_CmdOpt_GPSfullz
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS 29-bit zcount
@@ -109,6 +117,7 @@ add_test(NAME timeconvert_CmdOpt_GPSzcount29
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Julian date
@@ -129,6 +138,7 @@ add_test(NAME timeconvert_CmdOpt_Julian
          -DTESTBASE=${TIMECONVERT_CMDOPT_JULIAN_BASE}
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check MJD
@@ -147,6 +157,7 @@ add_test(NAME timeconvert_CmdOpt_MJD
          -DTESTBASE=${TIMECONVERT_CMDOPT_MJD_BASE}
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check Unix
@@ -159,6 +170,7 @@ add_test(NAME timeconvert_CmdOpt_Unix
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check YDS
@@ -171,6 +183,7 @@ add_test(NAME timeconvert_CmdOpt_YDS
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check subtract offset
@@ -185,6 +198,7 @@ add_test(NAME timeconvert_CmdOpt_Subtract
          -DTESTBASE=timeconvert_2015_200_0
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check add offset
@@ -199,6 +213,7 @@ add_test(NAME timeconvert_CmdOpt_Add
          -DTESTBASE=timeconvert_2015_200_99
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check output format
@@ -213,6 +228,7 @@ add_test(NAME timeconvert_CmdOpt_Format
          -DTESTBASE=timeconvert_2015_200_format
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS->UTC conversion
@@ -227,6 +243,7 @@ add_test(NAME timeconvert_CmdOpt_GPS_UTC
          -DTESTBASE=timeconvert_CmdOpt_GPS_UTC
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/testopts.cmake)
 
 # check GPS->UTC conversion using nav data
@@ -240,6 +257,7 @@ add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV
          -DTESTBASE=timeconvert_CmdOpt_GPS_UTC_NAV
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # check GPS->UTC offset using nav data
@@ -254,6 +272,7 @@ add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV_OFS
          -DEXP_OUT=17.000000000931322575
          -DTESTNAME=timeconvert_CmdOpt_GPS_UTC_NAV_OFS
          -DTESTBASE=timeconvert_CmdOpt_GPS_UTC_NAV_OFS
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 # MISSING:
@@ -279,6 +298,7 @@ add_test(NAME calgps_CmdOpt_1
          -DTESTBASE=calgps_CmdOpt_1
          -DARGS=-h
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # Check that -3 option is valid.
@@ -291,6 +311,7 @@ add_test(NAME calgps_CmdOpt_2
          -DTESTBASE=calgps_CmdOpt_2
          -DARGS=-3
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # Check that -y option is valid.
@@ -303,6 +324,7 @@ add_test(NAME calgps_CmdOpt_3
          -DTESTBASE=calgps_CmdOpt_3
          -DARGS=-y
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # Check that no options is valid.
@@ -314,6 +336,7 @@ add_test(NAME calgps_CmdOpt_4
          -DTESTNAME=calgps_CmdOpt_4
          -DTESTBASE=calgps_CmdOpt_4
          -DNODIFF=1
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 # Check that -Y produces expected output.
@@ -325,6 +348,7 @@ add_test(NAME calgps_Year
          -DTESTNAME=calgps_Year
          -DTESTBASE=calgps_Year
          -DARGS=-Y\ 2015
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
 
@@ -338,6 +362,7 @@ add_test(NAME timediff_CmdOpt_1
          -DTEST_PROG=$<TARGET_FILE:timediff>
          -DSOURCEDIR=${GNSSTK_APPS_TEST_DATA_DIR}
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
 
 add_test(NAME timediff_Equal_1
@@ -347,6 +372,7 @@ add_test(NAME timediff_Equal_1
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_CIVIL}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_2
@@ -356,6 +382,7 @@ add_test(NAME timediff_Equal_2
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_RINEX}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_3
@@ -365,6 +392,7 @@ add_test(NAME timediff_Equal_3
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSEWS}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_4
@@ -374,6 +402,7 @@ add_test(NAME timediff_Equal_4
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSWS}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_5
@@ -383,6 +412,7 @@ add_test(NAME timediff_Equal_5
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSWZ}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_6
@@ -392,6 +422,7 @@ add_test(NAME timediff_Equal_6
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSFULLZ}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 # todo 29-bit zcount
@@ -405,6 +436,7 @@ add_test(NAME timediff_Equal_7
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_UNIX}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Equal_8
@@ -414,6 +446,7 @@ add_test(NAME timediff_Equal_8
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI}
          -DSPARG2=${TIMECONVERT_CMDOPT_YDS}
          -DEXP_OUT=0.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 # tests with actual time differences
@@ -434,6 +467,7 @@ add_test(NAME timediff_Diff_1
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI_C}
          -DSPARG2=${TIMECONVERT_CMDOPT_JULIAN}
          -DEXP_OUT=-1.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 add_test(NAME timediff_Diff_2
@@ -443,6 +477,7 @@ add_test(NAME timediff_Diff_2
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI_C}
          -DSPARG2=${TIMECONVERT_CMDOPT_MJD}
          -DEXP_OUT=-1.000000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 set( TIMECONVERT_CMDOPT_GPSFULLZ_B "-Z 972030019" )
@@ -453,6 +488,7 @@ add_test(NAME timediff_Diff_3
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI_B}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSFULLZ_B}
          -DEXP_OUT=-2.500000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 # test with verbose mode
@@ -470,6 +506,7 @@ add_test(NAME timediff_Verbose_1
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI_B}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSFULLZ_B}
          -DEXP_OUT=\ 1437264098\ -\ \ 972030019\ =\ -2.500000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
 
 # this tests having the -v at the end
@@ -481,4 +518,5 @@ add_test(NAME timediff_Verbose_2
          -DSPARG1=${TIMECONVERT_CMDOPT_ANSI_B}
          -DSPARG2=${TIMECONVERT_CMDOPT_GPSFULLZ_B}
          -DEXP_OUT=\ 1437264098\ -\ \ 972030019\ =\ -2.500000
+         -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testinout.cmake)
