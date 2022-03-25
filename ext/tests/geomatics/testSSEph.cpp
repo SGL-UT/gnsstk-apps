@@ -220,7 +220,7 @@ try {
          Target = SolarSystemEphemeris::Planet(target);
          Center = SolarSystemEphemeris::Planet(center);
          try {
-            SSEphemeris.RelativeInertialPositionVelocity(
+            SSEphemeris.relativeInertialPositionVelocity(
                            JD-MJD_TO_JD, Target, Center, PV, false);
          } catch(Exception& e) {
             string what=e.getText(0);
