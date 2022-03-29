@@ -1,3 +1,22 @@
+# Version 13.2.0   Tuesday March 29, 2022
+
+Modifications by Author
+-----------------------
+     Brian Tolman <btolman@arlut.utexas.edu> (1):
+           small fixed of function names for style
+
+     John Knutson <johnk@arlut.utexas.edu> (5):
+           Add navdump support for individual messages and xvt
+           Tell windows where to find the DLLs
+           Remove obviated help options and update docs for navdump
+           Reorder and update A<->B checks to eliminate error when the 2nd file contains only a header
+           Address review comments
+
+     Kyle Herrity <kherrity@arlut.utexas.edu> (1):
+           Apply 1 suggestion(s) to 1 file(s)
+
+
+
 # Version 13.1.0   Thursday February 24, 2022
 
 Modifications by Author

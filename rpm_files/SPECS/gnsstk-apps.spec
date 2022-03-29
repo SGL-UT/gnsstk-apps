@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.1.0
+%define version 13.2.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Mar 29 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.2.0 release
+- Update per style guide
+- Fix rowdiff failure when file 2 contained only a header.
+- Add navdump support for matching individual messages and getting satellite xvt.
+- Remove tests that are duplicates from gnsstk (library)
+- Update apps and tests so windows builds can use dynamic linking
 * Thu Feb 24 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.1.0 release
 - Fix build.sh for ExtLinkage.cmake find_package and removed protected term hit.

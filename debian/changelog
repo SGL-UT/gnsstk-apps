@@ -1,3 +1,15 @@
+gnsstk-apps (13.2.0-1) stable; urgency=low
+
+  * Updated to version 13.2.0
+  * Update apps and tests so windows builds can use dynamic linking
+  * Remove tests that are duplicates from gnsstk (library)
+  * Add navdump support for matching individual messages and getting
+    satellite xvt.
+  * Fix rowdiff failure when file 2 contained only a header.
+  * Update per style guide
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Tue, 29 Mar 2022 08:28:05 -0500
+
 gnsstk-apps (13.1.0-1) stable; urgency=low
 
   * Updated to version 13.1.0
