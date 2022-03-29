@@ -338,7 +338,7 @@ try {
       angle = statn.ant_azimuth * DEG_TO_RAD;
       if(fabs(angle) > 0.0001) {    // also below..
          Matrix<double> Rot;
-         Rot = SingleAxisRotation(angle,1) * UpEastNorth(statn.pos);
+         Rot = SingleAxisRotation(angle,1) * upEastNorth(statn.pos);
          West = Position(-Rot(1,0),-Rot(1,1),-Rot(1,2));
          North = Position(Rot(2,0),Rot(2,1),Rot(2,2));
       }
