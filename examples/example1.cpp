@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <gnsstk/SystemTime.hpp>
 #include <gnsstk/CommonTime.hpp>
@@ -49,6 +50,7 @@ using namespace gnsstk;
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
 
    try
    {

@@ -7,6 +7,11 @@
 # RINDIFF: location of RINEX diff tool for the format being tested
 # RINHEADDIFF: location of rinheaddiff application
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 message(STATUS "running ${TEST_PROG} -x E -o ${TARGETDIR}/RinEditNav_exclude_1.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n")
 
 execute_process(COMMAND ${TEST_PROG} -x E -o ${TARGETDIR}/RinEditNav_exclude_1.out ${SOURCEDIR}/test_input_rinex3_nav_gal.20n
@@ -25,7 +30,7 @@ execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/RinEditNav_exclude_1.exp ${TARGE
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - files differ")
+    message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
 
@@ -38,5 +43,5 @@ message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_exclu
 execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/RinEditNav_exclude_1.exp ${TARGETDIR}/RinEditNav_exclude_1.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
-    message(FATAL_ERROR "Test failed - headers differ")
+    message(FATAL_ERROR "Test failed - headers differ: ${DIFFERENT}")
 endif()

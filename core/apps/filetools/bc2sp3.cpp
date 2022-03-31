@@ -98,6 +98,7 @@
     * Potential problems related to discontinuities at change of BCE are ignored.
     */
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -491,6 +492,7 @@ process()
 
 int main(int argc, char* argv[])
 {
+#include "NewNavInit.h"
    try
    {
       BC2SP3 app(argv[0]);

@@ -43,6 +43,7 @@
   the Rinex 3 specification.
 */
 
+#include "NewNavInc.h"
 #include <iostream>
 #include <string>
 #include <map>
@@ -56,6 +57,7 @@
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    using namespace gnsstk;
    using namespace std;
 

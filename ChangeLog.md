@@ -1,3 +1,16 @@
+# Version 13.1.0   Thursday February 24, 2022
+
+Modifications by Author
+-----------------------
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           fix pkg name to be uppercase for ExtLinkage.cmake
+
+     John Knutson <johnk@arlut.utexas.edu> (2):
+           Windows fixes
+           Update cmake linkage so that optional libs work under windows
+
+
+
 # Version 13.0.0   Saturday January 22, 2022
 
 Modifications by Author

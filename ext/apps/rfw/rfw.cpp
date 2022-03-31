@@ -40,6 +40,7 @@
  * derived from system time.
  */
 
+#include "NewNavInc.h"
 #include <fstream>
 
 #include <unistd.h>
@@ -251,6 +252,7 @@ private:
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       RollingFileWriter crap(argv[0]);

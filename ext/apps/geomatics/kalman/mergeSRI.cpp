@@ -42,6 +42,7 @@
  */
 
 //------------------------------------------------------------------------------------
+#include "NewNavInc.h"
 #include <iostream>
 #include <iostream>
 #include <iomanip>
@@ -59,6 +60,7 @@ using namespace gnsstk;
 // with labels. Merge all these SRIs and output the final covariance and state.
 int main(int argc, char **argv)
 {
+#include "NewNavInit.h"
    try {
       bool verbose=false;
       int i,n,N,nfile,nline,nword;

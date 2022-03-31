@@ -36,6 +36,7 @@
 //
 //==============================================================================
 
+#include "NewNavInc.h"
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/SatMetaDataStore.hpp>
 
@@ -106,6 +107,7 @@ shutDown()
 
 int main(int argc, char *argv[])
 {
+#include "NewNavInit.h"
    try
    {
       SatMetaDataStoreCheck app(argv[0]);

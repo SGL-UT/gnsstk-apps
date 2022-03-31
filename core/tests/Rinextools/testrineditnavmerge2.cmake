@@ -15,6 +15,11 @@
 #
 # Reference file is ${SOURCEDIR}/${TESTBASE}.exp
 
+# Make sure windows knows where to find the DLLs
+if ( WIN32 )
+  set(ENV{PATH} "$ENV{PATH};${EXTPATH}")
+endif ( WIN32 )
+
 # Generate the merged file
 
 message(STATUS "running ${TEST_PROG} -2 ${TARGETDIR}/${TESTBASE}.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}")
