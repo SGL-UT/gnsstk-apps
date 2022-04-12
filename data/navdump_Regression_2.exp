@@ -8567,6 +8567,22 @@ Radial        Sine:   3.47812500E+01 m    Cosine:   2.12500000E+02 m
 Inclination   Sine:  -1.58324838E-07 rad  Cosine:  -5.40167093E-08 rad
 In-track      Sine:   8.32788646E-06 rad  Cosine:   1.76392496E-06 rad
 ****************************************************************************
+Time System Offset
+
+           TIMES OF INTEREST
+
+              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
+Transmit:     1854( 830)  233472   Tue-2   202   60672   07/21/2015   16:51:12
+
+           GPS UTC PARAMETERS
+Parameter                 Value
+Reference   2015/07/21 16:51:12
+A0             -9.313225746e-10 sec
+A1             -3.552713679e-15 sec/sec
+dtLS                         17 sec
+Provider                       
+UTC                     Unknown
+****************************************************************************
 Satellite Health
 
 PRN : GPS 0 / SVN : 
@@ -12968,35 +12984,3 @@ Transmit:     1854( 830)   43200   Sun-0   200   43200   07/19/2015   12:00:00
            CORRECTION
 
 Tgd:                -3.72529030E-09
-****************************************************************************
-Time System Offset
-
-           TIMES OF INTEREST
-
-              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
-Transmit:     1854( 830)  233472   Tue-2   202   60672   07/21/2015   16:51:12
-
-           GPS UTC PARAMETERS
-Parameter                 Value
-Reference   2015/07/21 16:51:12
-A0             -9.313225746e-10 sec
-A1             -3.552713679e-15 sec/sec
-dtLS                         17 sec
-Provider                       
-UTC                     Unknown
-****************************************************************************
-Time System Offset
-
-           TIMES OF INTEREST
-
-              Week(10bt)     SOW     DOW   UTD     SOD   MM/DD/YYYY   HH:MM:SS
-Transmit:     1854( 830)  233472   Tue-2   202   60672   07/21/2015   16:51:12
-
-           GPS UTC PARAMETERS
-Parameter                 Value
-Reference   2015/07/21 16:51:12
-A0             -9.313225746e-10 sec
-A1             -3.552713679e-15 sec/sec
-dtLS                         17 sec
-Provider                       
-UTC                     Unknown
