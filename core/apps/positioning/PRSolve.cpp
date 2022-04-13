@@ -2411,27 +2411,37 @@ bool SolutionObject::ValidateDescriptor(const string desc, string& msg)
       }
    } // end loop over frequencies in input
 
-   // codes valid?
+      // codes valid?
    bool codesok=true;
-   for(j=0; j<fields[2].size(); j++) {
-      // is code fields[2][j] valid for any frequency in input?
+   for(j=0; j<fields[2].size(); j++)
+   {
+         // is code fields[2][j] valid for any frequency in input?
       bool ok=false;
-      for(i=0; i<fields[1].size(); i++) {
+      for(i=0; i<fields[1].size(); i++)
+      {
          string codes = RinexObsID::validRinexTrackingCodes[csys][fields[1][i]];
-         // GPS C1N and C2N are not allowed
+            // GPS C1N and C2N are not allowed
          if(csys == 'G' && (fields[1][i] == '1'||fields[1][i] == '2'))
+         {
             strip(codes,'N');
+         }
          if(codes.find_first_of(fields[2][j]) != string::npos)
+         {
             ok = true;
+         }
       }  // end loop over frequencies
 
-      if(!ok) {
+      if(!ok)
+      {
          msg = desc + string(" : invalid code /") + fields[2][j] + string("/");
          codesok = false;
       }
    }  // end loop over codes in input
 
-   if(!codesok) return false;
+   if(!codesok)
+   {
+      return false;
+   }
 
    return true;
 }
