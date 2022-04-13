@@ -1250,7 +1250,6 @@ int Configuration::ProcessUserInput(int argc, char **argv)
             }
          }
       }
-      //return 1;
 
       /* TEMP - table of wavelengths
        * LOG(INFO) << "\nTable of freqs";
@@ -1260,7 +1259,7 @@ int Configuration::ProcessUserInput(int argc, char **argv)
        *    string sys(RinexSatID(string(1,s)).systemString3());
        *    RinexSatID sat(string(1,s));
        *    SatelliteSystem satsys(sat.system);
-
+       *
        *    vector<int> ifreq;
        *    vector<double> wls;
        *    vector<string> cbstr;
@@ -1283,12 +1282,12 @@ int Configuration::ProcessUserInput(int argc, char **argv)
        *       wls.push_back(wl*100);
        *       cbstr.push_back(asString(carBan));
        *    }
-
+       *
        *    //LOGstrm << sys << " 1" << fixed << setprecision(2);
        *    //for(size_t j=0; j<ifreq.size(); j++)
        *    //   LOGstrm << " " << cbstr[j] << "(" << ifreq[j] << ") " << wls[j];
        *    //LOGstrm << endl;
-
+       *
        *    for(size_t j=0; j<ifreq.size(); j++) {
        *       for(size_t jj,kk,k=j+1; k<ifreq.size(); k++) {
        *          double beta(getBeta(satsys,ifreq[j],ifreq[k]));
@@ -1301,7 +1300,7 @@ int Configuration::ProcessUserInput(int argc, char **argv)
        *          double wlwl(wls[kk]*(beta+1.0)/alpha);          // WL wl4
        *          double nlwl(1.0/(1.0/wls[jj] + 1.0/wls[kk]));   // NL wl6
        *          string ss(cbstr[jj]+string(1,',')+cbstr[kk]+string(1,':'));
-
+       *
        *          LOGstrm << sys << fixed << setprecision(2);
        *          LOGstrm << " & " << setw(9) << ss;
        *          LOGstrm << " & " << setw(5) << wls[jj]
