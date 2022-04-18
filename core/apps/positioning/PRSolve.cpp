@@ -266,7 +266,7 @@
 
 #include <gnsstk/PRSolution.hpp>
 
-#include <gnsstk/BasicFramework.hpp>
+#include <gnsstk/BasicFramework.hpp>   // for EXCEPTION_ERROR
 
 //------------------------------------------------------------------------------------
 using namespace std;
@@ -832,6 +832,7 @@ try {
    ostringstream ossE;
    CommonTime typtime;        // typical time for the dataset
 
+   // set up ephemeris+clock store
    C.ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
    gnsstk::MultiFormatNavDataFactory *mfndfp =
       dynamic_cast<gnsstk::MultiFormatNavDataFactory *>(C.ndfp.get());
@@ -899,8 +900,7 @@ try {
    // if Rinex clock files are to be loaded, tell the SP3 reader so
    bool useSP3clocks(C.InputClkFiles.size() == 0);
 
-   shared_ptr<SP3NavDataFactory> sp3fact =
-      mfndfp->getFactory<SP3NavDataFactory>();
+   shared_ptr<SP3NavDataFactory> sp3fact = mfndfp->getFactory<SP3NavDataFactory>();
    if (!sp3fact)
    {
       ossE << "Internal error: Unable to find SP3NavDataFactory" << endl;
@@ -962,7 +962,7 @@ try {
          }
 
       }
-   }
+   }  // end if InputSP3Files
 
    // -------- RINEX clock files --------------------------
    // Read RINEX clock files for clock (only) store.
@@ -994,7 +994,7 @@ try {
          << sp3fact->size() << " data";
 
       // set to linear interpolation, as this is best estimate for clocks - TD input?
-      sp3fact->setClockLinearInterp();     // changes 'interp order' to 1
+      sp3fact->setClockLinearInterp();     // changes 'interp order' to 2: linear
 
       set<SatID> sats(sp3fact->getIndexSet(CommonTime::BEGINNING_OF_TIME,
                                            CommonTime::END_OF_TIME));
@@ -1356,7 +1356,8 @@ try {
          int n = mfndfp->count(sat.system, NavMessageType::Ephemeris);
          if(n == 0) {
             LOG(WARNING) << "Warning - no ephemeris found for system "
-               << RinexObsID::map1to3sys[SObj.sysChars[k]] << ", in solution descriptor "
+               << RinexObsID::map1to3sys[SObj.sysChars[k]]
+               << ", in solution descriptor "
                << C.inSolDesc[i] << " => invalidate.";
             ok = false;
          }
@@ -2400,6 +2401,7 @@ bool SolutionObject::ValidateDescriptor(const string desc, string& msg)
       return false;
    }
 
+   // frequencies valid?
    for(i=0; i<fields[1].size(); i++) {
       if(RinexObsID::validRinexTrackingCodes[csys].find(fields[1][i]) ==
          RinexObsID::validRinexTrackingCodes[csys].end())
@@ -2407,15 +2409,38 @@ bool SolutionObject::ValidateDescriptor(const string desc, string& msg)
          msg = desc + string(" : invalid frequency /") + fields[1][i] + string("/");
          return false;
       }
-      string codes = RinexObsID::validRinexTrackingCodes[csys][fields[1][i]];
-      // GPS C1N and C2N are not allowed
-      if(csys == 'G' && (fields[1][i] == '1'||fields[1][i] == '2')) strip(codes,'N');
-      for(j=0; j<fields[2].size(); j++) {
-         if(codes.find_first_of(fields[2][j]) == string::npos) {
-            msg = desc + string(" : invalid code /") + fields[2][j] + string("/");
-            return false;
+   } // end loop over frequencies in input
+
+      // codes valid?
+   bool codesok=true;
+   for(j=0; j<fields[2].size(); j++)
+   {
+         // is code fields[2][j] valid for any frequency in input?
+      bool ok=false;
+      for(i=0; i<fields[1].size(); i++)
+      {
+         string codes = RinexObsID::validRinexTrackingCodes[csys][fields[1][i]];
+            // GPS C1N and C2N are not allowed
+         if(csys == 'G' && (fields[1][i] == '1'||fields[1][i] == '2'))
+         {
+            strip(codes,'N');
          }
+         if(codes.find_first_of(fields[2][j]) != string::npos)
+         {
+            ok = true;
+         }
+      }  // end loop over frequencies
+
+      if(!ok)
+      {
+         msg = desc + string(" : invalid code /") + fields[2][j] + string("/");
+         codesok = false;
       }
+   }  // end loop over codes in input
+
+   if(!codesok)
+   {
+      return false;
    }
 
    return true;

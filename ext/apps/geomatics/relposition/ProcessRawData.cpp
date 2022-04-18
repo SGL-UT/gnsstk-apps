@@ -279,7 +279,7 @@ try {
          it->second.elev = CER.elevation;  // this will be compared to PRS elev Limit
          it->second.az = CER.azimuth;
       }
-      catch(AssertionFailure& e)
+      catch(InvalidRequest& e)
       {
          if(CI.Verbose)
             oflog << "No ephemeris found for sat " << it->first << " at time "
