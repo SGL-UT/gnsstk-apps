@@ -1,3 +1,13 @@
+gnsstk-apps (13.3.0-1) stable; urgency=low
+
+  * Updated to version 13.3.0
+  * Update CMake package to be compatible with same major version.
+  * Update navdump regression to reflect TimeOffsetData changes
+  * Update Geomatics libs, including some style
+  * Fix RPATH to be platform independent
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 21 Apr 2022 15:13:46 -0500
+
 gnsstk-apps (13.2.0-1) stable; urgency=low
 
   * Updated to version 13.2.0

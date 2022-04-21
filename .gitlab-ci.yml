@@ -75,6 +75,7 @@ variables:
       - /^version_.*_prep$/
       - tags
       - /^tag_.*$/
+      - stable
     variables:
       - $BLD_ONLY_VS2019 != "True"
 

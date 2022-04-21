@@ -1,3 +1,30 @@
+# Version 13.3.0   Thursday April 21, 2022
+
+Modifications by Author
+-----------------------
+     Benjamin Glass <bglass@arlut.utexas.edu> (1):
+           CMakeLists.txt: Mark as compatible with same major version
+
+     Brian Tolman <btolman@arlut.utexas.edu> (11):
+           correct test of valid frequencies
+           add wavelength table in comments
+           change some function names
+           clock interpolation order tests
+           undo earlier style changes to function names
+           update test for function name mods
+           Fix DDBase to handle refactoring of ComputeAt.. routines for getXvt failure
+           change function names for style
+           more function name changes for style
+           small function name changes
+           trivial
+
+     John Knutson <johnk@arlut.utexas.edu> (3):
+           Update navdump regression to reflect TimeOffsetData changes
+           Apply 1 suggestion(s) to 1 file(s)
+           Fix RPATH to be platform independent
+
+
+
 # Version 13.2.0   Tuesday March 29, 2022
 
 Modifications by Author

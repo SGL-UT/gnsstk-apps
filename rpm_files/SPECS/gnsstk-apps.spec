@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.2.0
+%define version 13.3.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Apr 21 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.3.0 release
+- Fix RPATH to be platform independent
+- Update Geomatics libs, including some style
+- Update navdump regression to reflect TimeOffsetData changes
+- Update CMake package to be compatible with same major version.
 * Tue Mar 29 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.2.0 release
 - Update per style guide
