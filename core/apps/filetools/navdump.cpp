@@ -458,6 +458,8 @@ process()
          return;
       }
    }
+      // Set to true if any look-up fails, for later dumping.
+   bool notFound = false;
    if (inqOpt.params.size() > 0)
    {
       for (unsigned i = 0; i < inqOpt.params.size(); i++)
@@ -476,6 +478,8 @@ process()
          else
          {
             cout << "Not found" << endl;
+            notFound = true;
+            exitCode = BasicFramework::EXIST_ERROR;
          }
       }
    }
@@ -504,6 +508,8 @@ process()
                else
                {
                   cout << "Not found" << endl;
+                  notFound = true;
+                  exitCode = BasicFramework::EXIST_ERROR;
                }
                break;
             case NavMessageType::Unknown:
@@ -517,6 +523,8 @@ process()
                else
                {
                   cout << "Not found" << endl;
+                  notFound = true;
+                  exitCode = BasicFramework::EXIST_ERROR;
                }
                break;
             default:
@@ -527,7 +535,8 @@ process()
          } // switch
       } // for (unsigned i
    } // if (xvtOpt.params.size() > 0)
-   if (inqOpt.params.empty() && xvtOpt.params.empty())
+   if ((inqOpt.params.empty() && xvtOpt.params.empty()) ||
+       ((debugLevel > 0) && notFound))
    {
          // dump the processed results
       navLib.dump(cout,detail);

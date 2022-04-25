@@ -202,3 +202,27 @@ add_test(NAME navdump_Regression_4
          -DSPARG4=${SD}/arlm2000.15n
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
+
+add_test(NAME navdump_FindFail
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_FindFail
+         -DTESTNAME=navdump_FindFail
+         -DSPARG1=--find=Ephemeris\ 2019/200/02:05:00\ 13\ GPS
+         -DSPARG4=${SD}/arlm2000.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+add_test(NAME navdump_XvtFail
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:navdump>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DTESTBASE=navdump_XvtFail
+         -DTESTNAME=navdump_XvtFail
+         -DSPARG1=--xvt=Ephemeris\ 2019/200/02:05:00\ 13\ GPS
+         -DSPARG4=${SD}/arlm2000.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
