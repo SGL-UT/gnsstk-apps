@@ -55,4 +55,3 @@ but before the other pages.
 \endinternal
 
 \page apps Application Documentation
-\page APIguide API Guides

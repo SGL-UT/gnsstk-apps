@@ -820,9 +820,7 @@ INPUT                  = MAINPAGE.txt \
                          INTRO.txt \
                          HOWTO.txt \
                          ref/doxygen/ \
-                         core/lib \
                          core/apps \
-                         ext/lib \
                          ext/apps
 
 # This tag can be used to specify the character encoding of the source files
