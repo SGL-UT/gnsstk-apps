@@ -195,6 +195,7 @@ initialize(int argc, char *argv[], bool pretty) throw()
       // Open all requested files and read the first record so we can
       // process the data in time order (this assumes the individual
       // files are in time order to begin with).
+      // @TODO do not allow output filename(s) in files
    for (unsigned i = 0; i < files.size(); i++)
    {
       if (fileSet.count(files[i]) > 0)
@@ -216,6 +217,8 @@ initialize(int argc, char *argv[], bool pretty) throw()
       (*sp) >> dataMap[sp];
          // also save the time stamp so we always have everything in order
       orderMap[dataMap[sp].time] = sp;
+
+      cout << "Input file " << files[i] << endl;
    }
 
    set<string> outFNs;
@@ -259,8 +262,9 @@ initialize(int argc, char *argv[], bool pretty) throw()
 void RinEditNav ::
 process()
 {
-   bool done = false;
+   CommonTime tbegin,tend;
    writeHeaders();
+   bool done = false;
    while (!done)
    {
       if (orderMap.empty())
@@ -279,6 +283,17 @@ process()
          if (uniques.count(key) == 0)
          {
             uniques.insert(key);
+
+               // keep track of earliest and latest times
+            if (tbegin == CommonTime::BEGINNING_OF_TIME || tbegin > key.time)
+            {
+               tbegin = key.time;
+            }
+            if (tend == CommonTime::BEGINNING_OF_TIME || tend < key.time)
+            {
+               tend = key.time;
+            }
+
             for (auto o3i : output3Map)
             {
                   // Treat "Unknown" as a wildcard here
@@ -308,6 +323,12 @@ process()
          orderMap[dataMap[sp].time] = sp;
       }
    }
+
+      // write times to stdout
+   cout << "Nav table for all satellites has " << uniques.size()
+      << " entries; Time span is "
+      << printTime(tbegin,"%Y/%02m/%02d %02H:%02M:%02S %P") << " to "
+      << printTime(tend,"%Y/%02m/%02d %02H:%02M:%02S %P") << endl;
 }
 
 
@@ -362,6 +383,8 @@ parseOut(const CommandOptionWithAnyArg& opt, OutputMap& outMap,
       StrmPtr sp = make_shared<Rinex3NavStream>(sysFn[1].c_str(),std::ios::out);
       sp->exceptions(std::fstream::failbit);
       outMap[sys] = sp;
+
+      cout << "Output file " << sysFn[1] << endl;
    }
    return true;
 }
