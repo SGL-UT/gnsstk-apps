@@ -15,3 +15,7 @@ install (TARGETS rineditnav DESTINATION "${CMAKE_INSTALL_BINDIR}")
 add_executable(RinSum RinSum.cpp)
 linkum(RinSum)
 install (TARGETS RinSum DESTINATION "${CMAKE_INSTALL_BINDIR}")
+
+add_executable(rinexelvstrip RinexElvStrip.cpp)
+linkum(rinexelvstrip)
+install (TARGETS rinexelvstrip DESTINATION "${CMAKE_INSTALL_BINDIR}")
