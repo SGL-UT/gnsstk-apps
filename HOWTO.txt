@@ -30,6 +30,8 @@
     2. \ref calgps with the \c -y argument will produce a calendar for the current year.
     3. \ref calgps with the \c -Y \c YEAR argument will produce a calendar for YEAR.
 
+- \subpage usingwheresat
+
 \subsection HOWTOCode Library Use
 
 \li Use time data in my code...
@@ -55,3 +57,127 @@ but before the other pages.
 \endinternal
 
 \page apps Application Documentation
+- \subpage appsbyname
+- \subpage appsbyfunc
+
+\page appsbyname By Name
+- \subpage bc2sp3
+- \subpage calgps
+- \subpage convertSSEph
+- \subpage DDBase
+- \subpage dfix
+- \subpage DiscFix
+- \subpage findMoreThan12
+- \subpage lsfilt
+- \subpage mergeRinMet
+- \subpage mergeRinNav
+- \subpage mergeSRI
+- \subpage navdump
+- \subpage poscvt
+- \subpage PRSolve
+- \subpage rfw
+- \subpage RinDump
+- \subpage RinEdit
+- \subpage rineditnav
+- \subpage rinexelvstrip
+- \subpage rinheaddiff
+- \subpage RinSum
+- \subpage rmwcheck
+- \subpage rmwdiff
+- \subpage rnwcheck
+- \subpage rnwdiff
+- \subpage rowcheck
+- \subpage rowdiff
+- \subpage rstats
+- \subpage smdscheck
+- \subpage sp3version
+- \subpage timeconvert
+- \subpage timediff
+- \subpage tkalm
+- \subpage wheresat
+
+\page appsbyfunc By Function
+- \subpage apps_check
+- \subpage apps_diff
+- \subpage apps_file
+- \subpage apps_merge
+- \subpage apps_positioning
+- \subpage apps_RINEX
+- \subpage apps_time
+- \subpage apps_visibility
+
+\page apps_check File Format Check Tools
+
+These tools are for validating data files for format compliance.
+
+- \subpage rmwcheck
+- \subpage rnwcheck
+- \subpage rowcheck
+- \subpage smdscheck
+
+\page apps_diff File Differencing Tools
+
+These tools are for comparing specific data file formats in an intelligent way.
+
+- \subpage rinheaddiff
+- \subpage rmwdiff
+- \subpage rnwdiff
+- \subpage rowdiff
+
+\page apps_file File Processing Tools
+
+These tools are for processing GNSS data files that don't neatly fit
+into the other categories.
+
+- \subpage bc2sp3
+- \subpage navdump
+
+\page apps_merge File Merging Tools
+
+These tools are for merging the contents of two or more data files
+into a single output file.
+
+- \subpage mergeRinMet
+- \subpage mergeRinNav
+
+\page apps_positioning Position Tools
+
+These tools are for computing or manipulation position information.
+
+- \subpage poscvt
+- \subpage PRSolve
+
+\page apps_RINEX RINEX Tools
+
+These tools are for manipulating or processing RINEX data files.
+
+- \subpage mergeRinMet
+- \subpage mergeRinNav
+- \subpage RinDump
+- \subpage RinEdit
+- \subpage rineditnav
+- \subpage rinexelvstrip
+- \subpage rinheaddiff
+- \subpage RinSum
+- \subpage rmwcheck
+- \subpage rmwdiff
+- \subpage rnwcheck
+- \subpage rnwdiff
+- \subpage rowcheck
+- \subpage rowdiff
+
+\page apps_time Time Tools
+
+These tools are for manipulating or displaying time information.
+
+- \subpage calgps
+- \subpage timeconvert
+- \subpage timediff
+
+\page apps_visibility Visibility Tools
+
+These applications involve determining if satellites are visible to
+GNSS receivers or vice versa.
+
+- \subpage findMoreThan12
+- \subpage wheresat
