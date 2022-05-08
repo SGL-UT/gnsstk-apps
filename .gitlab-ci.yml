@@ -76,6 +76,7 @@ variables:
       - tags
       - /^tag_.*$/
       - stable
+      - /^release\/v[0-9.]*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
 
@@ -923,6 +924,8 @@ package_conda:
     - mv conda-bld conda-bld2
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
+    - export GIT_LAST_TAG=$(git describe --abbrev=0 origin/stable)
+    - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
     - conda index conda-bld2
     - conda-build conda_recipe --override-channels -c file://$PWD/conda-bld2/
     # Copy files to local directory for archiving.
