@@ -1271,7 +1271,7 @@ deb11_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian:11
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
