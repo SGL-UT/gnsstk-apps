@@ -87,7 +87,7 @@ static_analysis:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     - ./lint_test.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -100,7 +100,7 @@ sgllint_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_conda_py27:latest
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_conda_py27:latest
   script:
     - '######'
     - '# This job checks all files for required lines like copyright/license statements.'
@@ -120,7 +120,7 @@ protected_term_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36:latest
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36:latest
   script:
     - '######'
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
@@ -142,7 +142,7 @@ protected_history_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36:latest
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36:latest
   script:
     - '######'
     - '# This job checks all files modified on this branch for sensitive terms.'
@@ -165,7 +165,7 @@ generate_documentation:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install GraphViz
     - sudo apt-get install -y graphviz
@@ -184,7 +184,7 @@ repository_validation:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Verify there are no duplicate header files names in the repo.
     - ./dup_check.sh
@@ -201,7 +201,7 @@ deb9_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
@@ -219,7 +219,7 @@ deb10_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -237,7 +237,7 @@ deb10_op1_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
@@ -257,7 +257,7 @@ deb10_op2_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
@@ -277,7 +277,7 @@ conda_py36_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
   script:
     # Install dependencies from latest CI first.
     - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
@@ -300,7 +300,7 @@ conda_op2_py36_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
   script:
     # Install dependencies from latest CI first.
     - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_max
@@ -326,7 +326,7 @@ rhel7_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
@@ -345,7 +345,7 @@ rhel8_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -479,7 +479,7 @@ windows_op1_build_vs2019_dll:
 #   extends: .normal_job
 #   tags:
 #     - docker-executor
-#   image: $DOCKER_REGISTRY/debian9_fai_ish
+#   image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
 #   script:
 #     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
 #     - cd build
@@ -497,7 +497,7 @@ deb10_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd build
@@ -515,7 +515,7 @@ deb10_op2_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
     - cd build
@@ -533,7 +533,7 @@ rhel7_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
@@ -551,7 +551,7 @@ rhel8_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -682,7 +682,7 @@ deb9_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
@@ -701,7 +701,7 @@ rhel7_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
@@ -720,7 +720,7 @@ rhel8_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -809,7 +809,7 @@ deb9_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
@@ -825,7 +825,7 @@ rhel7_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
@@ -841,7 +841,7 @@ rhel8_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -862,7 +862,7 @@ package_debian_9:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
@@ -888,7 +888,7 @@ package_debian_10:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -917,7 +917,7 @@ package_conda:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/deb9_conda_py36
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
   script:
     - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
     - mv conda-bld conda-bld2
@@ -941,7 +941,7 @@ package_redhat:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - bash rpm_files/setup_dirs.sh
@@ -960,7 +960,7 @@ package_redhat_8:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
@@ -1077,7 +1077,7 @@ deb9_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
@@ -1094,7 +1094,7 @@ deb10_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -1111,7 +1111,7 @@ rhel7_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
@@ -1127,7 +1127,7 @@ rhel8_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
