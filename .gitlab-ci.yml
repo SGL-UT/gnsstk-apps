@@ -585,6 +585,42 @@ deb10_op2_test:
   dependencies:
     - deb10_op2_build
 
+deb11_test:
+  stage: test
+  needs: [deb11_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - cd build
+    - ctest -j 4
+  artifacts:
+    when: on_failure
+    paths:
+    - build/Testing/Temporary/
+  dependencies:
+    - deb11_build
+
+deb11_op2_test:
+  stage: test
+  needs: [deb11_op2_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
+    - cd build
+    - ctest -j 4
+  artifacts:
+    when: on_failure
+    paths:
+      - build/Testing/Temporary/
+  dependencies:
+    - deb11_op2_build
+
 rhel7_test:
   stage: test
   needs: [rhel7_build]
@@ -752,6 +788,28 @@ deb9_user_install:
       - build/install
   dependencies:
     - deb9_build
+    
+# User_Install Stage
+# Tests user install of GNSSTk on each platform, saves artifacts for
+# downstream builds.
+deb11_user_install:
+  stage: install
+  needs: [deb11_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - cd build
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - make install -j 4
+  artifacts:
+    paths:
+      - build/install
+  dependencies:
+    - deb11_build
 
 rhel7_user_install:
   stage: install
@@ -877,6 +935,25 @@ deb9_system_install:
   dependencies:
     - deb9_build
 
+# System Stage
+# Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
+deb11_system_install:
+  stage: install
+  needs: [deb11_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - cd build
+    - export gnsstk=/usr/local
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - sudo make install -j 4
+  dependencies:
+    - deb11_build
+
+
 rhel7_system_install:
   stage: install
   needs: [rhel7_build]
@@ -968,6 +1045,33 @@ package_debian_10:
       - debs/
   dependencies:
     - deb10_build
+
+#Temporarily changing name back to old name so repo_utils can find this job.  We will standardize job names per Jira SIM-55
+package_debian_11:
+  stage: package
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    # Remove any directories left over from the above script.
+    - rm -rf packages repo_utils
+    # Mark the debian log so that this package is a backport.
+    # Use the most recent Maintainer as current maintainer.
+    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
+    - dch --bpo "No Changes"
+    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=bullseye-sgl"
+    - mkdir debs
+    - mv ../*.deb debs
+    - mv ../*.changes debs
+    - mv ../*.dsc debs
+    - mv ../*.buildinfo debs
+  artifacts:
+    paths:
+      - debs/
 
 package_conda:
   stage: package
@@ -1162,6 +1266,23 @@ deb10_deploy:
     - timeconvert
   dependencies:
     - package_debian_10
+
+deb11_deploy:
+  stage: deploy
+  needs: [package_debian_11]
+  extends: .package_deploy
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/debian:11
+  script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - cd debs
+    - sudo apt-get -y install ./*.deb
+    - python3 -c "import gnsstk"
+    - timeconvert
+  dependencies:
+    - package_debian_11
 
 rhel7_deploy:
   stage: deploy
