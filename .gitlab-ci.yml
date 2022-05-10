@@ -949,7 +949,7 @@ deb11_system_install:
     - cd build
     - export gnsstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
-    - sudo make install -j 4
+    - make install -j 4
   dependencies:
     - deb11_build
 
@@ -1008,7 +1008,6 @@ package_debian_9:
     - mv ../*.deb debs
     - mv ../*.changes debs
     - mv ../*.dsc debs
-    - mv ../*.git debs
     - mv ../*.buildinfo debs
   artifacts:
     paths:
@@ -1037,8 +1036,7 @@ package_debian_10:
     - mkdir debs
     - mv ../*.deb debs
     - mv ../*.changes debs
-    - mv ../*.dsc debs
-    - mv ../*.git debs
+    - mv ../*.dsc debs  
     - mv ../*.buildinfo debs
   artifacts:
     paths:
