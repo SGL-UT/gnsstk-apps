@@ -1276,7 +1276,7 @@ deb11_deploy:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
     - cd debs
-    - sudo apt-get -y install ./*.deb
+    - apt-get -y install ./*.deb
     - python3 -c "import gnsstk"
     - timeconvert
   dependencies:
