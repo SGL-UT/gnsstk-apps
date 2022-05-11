@@ -14,6 +14,11 @@ PKG_TYPE=$2 #If set to pkg_min then only install required dependencies and not o
 git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl-tks/repo_utils.git
 export GL_API_TOKEN=$CI_API_TOKEN
 ./repo_utils/download_package_by_type.sh ${DEBIAN_JOB} ${PKG_TYPE}
-sudo dpkg -i packages/debs/*.deb
+
+SUDO=''
+if (( $EUID != 0 )); then
+    SUDO='sudo'
+fi
+$SUDO dpkg -i packages/debs/*.deb
 
 exit 0
