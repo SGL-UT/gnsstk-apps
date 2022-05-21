@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.3.0
+%define version 13.4.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,16 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri May 20 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.4.0 release
+- Fix CI Build Job Requiring LIBHDF5.
+- Add support for deploying to Debian 11
+- Update conda recipe and CI pipeline to release from stable branch
+- Delete example code which already exists in gnsstk library
+- Fix rineditnav so it doesn't ignore files with the same start time
+- Add rinexelvstrip, wheresat and findMoreThan12 tools
+- Add output to stdout including filenames, number of NavMsg, and time span for RinEditNav
+- Update timeconvert and navdump to indicate missing/bad file/data errors
 * Thu Apr 21 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.3.0 release
 - Fix RPATH to be platform independent

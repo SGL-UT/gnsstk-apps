@@ -1,3 +1,33 @@
+# Version 13.4.0   Friday May 20, 2022
+
+Modifications by Author
+-----------------------
+     Andrew Kuck <kuck@arlut.utexas.edu> (10):
+           Update DOCKER_REGISTRY
+           Add deb11 builds
+           Update .gitlab-ci.yml
+           Update .gitlab-ci.yml
+           Optional sudo command.
+           Sudo not needed on deb11
+           Update .gitlab-ci.yml
+           Update .gitlab-ci.yml
+           Upload Deb11 packages.
+           Add libhdf5.
+
+     Brian Tolman <btolman@arlut.utexas.edu> (1):
+           RinEditNav stdout
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           Update conda recipe and CI pipeline to release from stable branch
+
+     John Knutson <johnk@arlut.utexas.edu> (4):
+           Make sure navdump and timeconvert indicate errors
+           Add tools
+           Fix rineditnav so it doesn't ignore files with the same start time
+           Delete example code which already exists in gnsstk library
+
+
+
 # Version 13.3.0   Thursday April 21, 2022
 
 Modifications by Author

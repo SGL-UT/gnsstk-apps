@@ -466,6 +466,12 @@ void TimCvt::process()
          if (!ndfp->addDataSource(values[i]))
          {
             cerr << "Unable to load \"" << values[i] << "\"" << endl;
+               // this could be a missing or invalid file either one.
+            exitCode = BasicFramework::EXIST_ERROR;
+               // We continue because it's possible that the user
+               // specified a valid file in addition to this invalid
+               // one.  But we still want to indicate the error with
+               // the message and exit code.
          }
       }
       switch (debugLevel)

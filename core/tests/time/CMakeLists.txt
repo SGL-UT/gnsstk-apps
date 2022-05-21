@@ -260,6 +260,17 @@ add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_CURRENT_SOURCE_DIR}/../testsuccexp.cmake)
 
+# check GPS->UTC conversion using nav data
+add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV_fail
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:timeconvert>
+         -DSPARG1=--ws=1854\ 233472
+         -DSPARG2=--nav=${GNSSTK_APPS_TEST_DATA_DIR}/test_input_mpsolve.15n
+         -DSPARG3=--tgt-sys=UTC
+         -DSPARG4=--nav=${GNSSTK_APPS_TEST_DATA_DIR}/arl2000.15m
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
 # check GPS->UTC offset using nav data
 add_test(NAME timeconvert_CmdOpt_GPS_UTC_NAV_OFS
          COMMAND ${CMAKE_COMMAND}

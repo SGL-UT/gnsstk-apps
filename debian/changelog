@@ -1,3 +1,19 @@
+gnsstk-apps (13.4.0-1) stable; urgency=low
+
+  * Updated to version 13.4.0
+  * Update timeconvert and navdump to indicate missing/bad file/data
+    errors
+  * Add output to stdout including filenames, number of NavMsg, and time
+    span for RinEditNav
+  * Add rinexelvstrip, wheresat and findMoreThan12 tools
+  * Fix rineditnav so it doesn't ignore files with the same start time
+  * Delete example code which already exists in gnsstk library
+  * Update conda recipe and CI pipeline to release from stable branch
+  * Add support for deploying to Debian 11
+  * Fix CI Build Job Requiring LIBHDF5.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Fri, 20 May 2022 14:31:47 -0500
+
 gnsstk-apps (13.3.0-1) stable; urgency=low
 
   * Updated to version 13.3.0

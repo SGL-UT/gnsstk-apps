@@ -61,10 +61,11 @@ public:
    struct UniqueNav
    {
       UniqueNav()
-            : PRNID(-1)
+            : PRNID(-1), fitint2(0.)
       {}
       UniqueNav(const Rinex3NavData& rnd)
-            : time(rnd.time), satSys(rnd.satSys), PRNID(rnd.PRNID)
+            : time(rnd.time), satSys(rnd.satSys), PRNID(rnd.PRNID),
+              fitint2(rnd.fitint * 1800.)
       {
             // Kludge to make everything in the same time system.
             // This isn't truly valid, but it should be in most cases.
@@ -72,6 +73,7 @@ public:
       }
       bool operator<(const UniqueNav& right) const
       {
+            // fitint2 is not needed for ordering.
          if (time < right.time) return true;
          if (right.time < time) return false;
          if (satSys < right.satSys) return true;
@@ -79,9 +81,14 @@ public:
          if (PRNID < right.PRNID) return true;
          return false;
       }
+      CommonTime beginFit() const
+      { return time - fitint2; }
+      CommonTime endFit() const
+      { return time + fitint2; }
       CommonTime time;     ///< Time according to the sat/epoch record (TOC)
       std::string satSys;  ///< Satellite system of Epoch: G,R,E,S,C
       short PRNID;         ///< SV PRN ID
+      double fitint2;      ///< Half fit interval (in seconds) of ephemeris.
    };
 
    RinEditNav(const string& applName);
@@ -123,7 +130,7 @@ public:
       /// Map stream to data
    map<StrmPtr, Rinex3NavData> dataMap;
       /// Map time stamp of record in dataMap to stream
-   map<CommonTime, StrmPtr> orderMap;
+   multimap<CommonTime, StrmPtr> orderMap;
       /// Map satellite system to RINEX 3 output stream
    OutputMap output3Map;
       /// Map satellite system to RINEX 2 output stream
@@ -195,6 +202,7 @@ initialize(int argc, char *argv[], bool pretty) throw()
       // Open all requested files and read the first record so we can
       // process the data in time order (this assumes the individual
       // files are in time order to begin with).
+      // @TODO do not allow output filename(s) in files
    for (unsigned i = 0; i < files.size(); i++)
    {
       if (fileSet.count(files[i]) > 0)
@@ -215,7 +223,22 @@ initialize(int argc, char *argv[], bool pretty) throw()
          // read the first data record of the file into the map
       (*sp) >> dataMap[sp];
          // also save the time stamp so we always have everything in order
-      orderMap[dataMap[sp].time] = sp;
+      if (debugLevel)
+      {
+         cerr << printTime(dataMap[sp].time, "time:%Y/%02d/%02m-%02H:%02M:%02S")
+              << endl;
+         if (orderMap.find(dataMap[sp].time) == orderMap.end())
+         {
+            cerr << "  new orderMap entry " << sp << endl;
+         }
+         else
+         {
+            cerr << "  appending orderMap entry " << sp << endl;
+         }
+      }
+      orderMap.insert(pair<CommonTime,StrmPtr>(dataMap[sp].time,sp));
+
+      cout << "Input file " << files[i] << endl;
    }
 
    set<string> outFNs;
@@ -259,8 +282,9 @@ initialize(int argc, char *argv[], bool pretty) throw()
 void RinEditNav ::
 process()
 {
-   bool done = false;
+   CommonTime tbegin,tend;
    writeHeaders();
+   bool done = false;
    while (!done)
    {
       if (orderMap.empty())
@@ -271,6 +295,10 @@ process()
          // first element of orderMap is always the oldest
       auto omi = orderMap.begin();
       StrmPtr sp = omi->second;
+      if (debugLevel)
+      {
+         cerr << "Processing " << sp << endl;
+      }
          // write the already-read data record to output
       if ((omi->first >= minTime) && (omi->first < maxTime) &&
           (exclSats.count(dataMap[sp].sat) == 0))
@@ -279,6 +307,19 @@ process()
          if (uniques.count(key) == 0)
          {
             uniques.insert(key);
+
+               // keep track of earliest and latest times
+            if ((tbegin == CommonTime::BEGINNING_OF_TIME) ||
+                (tbegin > key.beginFit()))
+            {
+               tbegin = key.beginFit();
+            }
+            if ((tend == CommonTime::BEGINNING_OF_TIME) ||
+                (tend < key.endFit()))
+            {
+               tend = key.endFit();
+            }
+
             for (auto o3i : output3Map)
             {
                   // Treat "Unknown" as a wildcard here
@@ -305,9 +346,15 @@ process()
       if (*sp)
       {
             // only add the record if it's valid.
-         orderMap[dataMap[sp].time] = sp;
+         orderMap.insert(pair<CommonTime,StrmPtr>(dataMap[sp].time,sp));
       }
    }
+
+      // write times to stdout
+   cout << "Nav table for all satellites has " << uniques.size()
+        << " entries; Valid time span is "
+        << printTime(tbegin,"%Y/%02m/%02d %02H:%02M:%02S %P") << " to "
+        << printTime(tend,"%Y/%02m/%02d %02H:%02M:%02S %P") << endl;
 }
 
 
@@ -362,6 +409,8 @@ parseOut(const CommandOptionWithAnyArg& opt, OutputMap& outMap,
       StrmPtr sp = make_shared<Rinex3NavStream>(sysFn[1].c_str(),std::ios::out);
       sp->exceptions(std::fstream::failbit);
       outMap[sys] = sp;
+
+      cout << "Output file " << sysFn[1] << endl;
    }
    return true;
 }

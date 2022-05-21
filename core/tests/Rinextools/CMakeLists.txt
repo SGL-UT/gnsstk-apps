@@ -361,3 +361,92 @@ test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
 #test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
 #    --obs\ ${SD}/inputs/igs/UCAL00CAN_S_20161700100_15M_01S_MO
 #    "-l2 -v")
+
+
+
+###############################################################################
+# TEST rinexelvstrip
+###############################################################################
+
+# check that -h option is valid
+add_test(NAME rinexelvstrip_CmdOpt_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DSOURCEDIR=${SD}
+         -DTARGETDIR=${TD}
+         -DGNSSTK_APPS_BINDIR=${GNSSTK_APPS_BINDIR}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testhelp.cmake)
+
+# check that missing input rinex obs = fail
+add_test(NAME rinexelvstrip_CmdOpt_2
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DARGS=-i\ ${SD}/arlm200a.15o.nope\ -o\ ${TD}/rinexelvstrip_CmdOpt_2.out\ -n\ ${SD}/glob200a.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# check that missing input nav file = fail
+add_test(NAME rinexelvstrip_CmdOpt_3
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DARGS=-i\ ${SD}/arlm200a.15o\ -o\ ${TD}/rinexelvstrip_CmdOpt_3.out\ -n\ ${SD}/glob200a.15n.nope
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# check that non-writable output file = fail
+add_test(NAME rinexelvstrip_CmdOpt_4
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DARGS=-i\ ${SD}/arlm200a.15o\ -o\ /idontexist/rinexelvstrip_CmdOpt_4.out\ -n\ ${SD}/glob200a.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# check that invalid (existing) input file = fail
+add_test(NAME rinexelvstrip_CmdOpt_5
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DARGS=-i\ ${SD}/timeconvert_2015_200_0.exp\ -o\ ${TD}/rinexelvstrip_CmdOpt_5.out\ -n\ ${SD}/glob200a.15n
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+# check that invalid (existing) nav file = fail
+add_test(NAME rinexelvstrip_CmdOpt_6
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DARGS=-i\ ${SD}/arlm200a.15o\ -o\ ${TD}/rinexelvstrip_CmdOpt_6.out\ -n\ ${SD}/timeconvert_2015_200_0.exp
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/../testfailexp.cmake)
+
+
+# default cutoff
+add_test(NAME rinexelvstrip_Regression_1
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DINPUT_FILE=${SD}/arlm200a.15o
+         -DNAV_FILE=${SD}/glob200a.15n
+         -DGNSSTK_APPS_BINDIR=${GNSSTK_APPS_BINDIR}
+         -DTESTBASE=rinexelvstrip_Regression_1
+         -DSOURCEDIR=${SD}
+         -DEXPDIR=${SD}
+         -DRINDIFF=$<TARGET_FILE:rowdiff>
+         -DTARGETDIR=${TD}
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinexelvstrip.cmake)
+
+
+# 20 degree cutoff
+add_test(NAME rinexelvstrip_Regression_2
+         COMMAND ${CMAKE_COMMAND}
+         -DTEST_PROG=$<TARGET_FILE:rinexelvstrip>
+         -DINPUT_FILE=${SD}/arlm200a.15o
+         -DNAV_FILE=${SD}/glob200a.15n
+         -DGNSSTK_APPS_BINDIR=${GNSSTK_APPS_BINDIR}
+         -DTESTBASE=rinexelvstrip_Regression_2
+         -DSOURCEDIR=${SD}
+         -DEXPDIR=${SD}
+         -DRINDIFF=$<TARGET_FILE:rowdiff>
+         -DTARGETDIR=${TD}
+         -DARGS=-e\ 20
+         -DEXTPATH=${EXTPATH}
+         -P ${CMAKE_CURRENT_SOURCE_DIR}/testrinexelvstrip.cmake)
