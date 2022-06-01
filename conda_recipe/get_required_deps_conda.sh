@@ -11,8 +11,9 @@ CONDA_JOB=${1:-package_conda}
 PKG_TYPE=$2 #If set to pkg_min then only install required dependencies and not optional libs.
             #If set to pkg_max then install both required and optional libs
 
-git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl-tks/repo_utils.git
 export GL_API_TOKEN=$CI_API_TOKEN
-./repo_utils/download_package_by_type.sh ${CONDA_JOB} ${PKG_TYPE}
+python3 -m pip install --upgrade pip
+python3 -m pip install tks-ci-tools --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
+download_package_by_type.sh ${CONDA_JOB} ${PKG_TYPE}
 mv packages/conda-bld ./conda-bld
 exit 0
