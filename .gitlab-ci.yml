@@ -101,18 +101,17 @@ sgllint_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_conda_py27:latest
+  image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
     - '# This job checks all files for required lines like copyright/license statements.'
     - '######'
-    - conda activate py27
     # Obtain the latest version of ./sgl_lint.py
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
-    - python repo_utils/sgl_lint.py -v -R core
-    - python repo_utils/sgl_lint.py -v -R ext
-    - python repo_utils/sgl_lint.py -v -R swig/apps
-    - python repo_utils/sgl_lint.py -v -R swig/gnsstk
+    - python3 -m pip install sgl-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple
+    - sgl_lint -v -R core
+    - sgl_lint -v -R ext
+    - sgl_lint -v -R swig/apps
+    - sgl_lint -v -R swig/gnsstk
   dependencies: []
 
 protected_term_lint:
@@ -121,18 +120,19 @@ protected_term_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36:latest
+  image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
     - '######'
-    - conda activate py36
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
+    - apt-get update && apt-get install -y git
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install tks-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
     - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
-    - echo "bash repo_utils/dw_search/modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
-    - bash repo_utils/dw_search/modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
+    - echo "modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
+    - modified_file_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
   dependencies: []
   # This has the occasional false-positive, so it's advisory only.
   allow_failure: true
@@ -143,18 +143,19 @@ protected_history_lint:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36:latest
+  image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
     - '# This job checks all files modified on this branch for sensitive terms.'
     - '######'
-    - conda activate py36
-    - git clone --depth 1 https://${CI_USER}:${CI_TOKEN}@${REPO_HOST}/sgl/repo_utils.git
+    - apt-get update && apt-get install -y git
+    - python3 -m pip install --upgrade pip
+    - python3 -m pip install tks-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
     - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
-    - echo "bash repo_utils/dw_search/history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
-    - bash repo_utils/dw_search/history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
+    - echo "history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA"
+    - history_check.sh ${CI_DEFAULT_BRANCH} $CI_COMMIT_SHA
   dependencies: []
   # This has the occasional false-positive, so it's advisory only.
   allow_failure: true
@@ -1004,7 +1005,7 @@ package_debian_9:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     # Remove any directories left over from the above script.
-    - rm -rf packages repo_utils
+    - rm -rf packages
     - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=stretch-sgl"
     - mkdir debs
     - mv ../*.deb debs
@@ -1029,7 +1030,7 @@ package_debian_10:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     # Remove any directories left over from the above script.
-    - rm -rf packages repo_utils
+    - rm -rf packages
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
     - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
@@ -1058,7 +1059,7 @@ package_debian_11:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
     # Remove any directories left over from the above script.
-    - rm -rf packages repo_utils
+    - rm -rf packages
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
     - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
