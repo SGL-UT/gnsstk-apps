@@ -177,6 +177,7 @@ namespace gnsstk
             rc = fcntl(fd, F_SETFL, 0);
             if (rc < 0)
             {
+               close(fd);
                cout << "Error in fcntl, rc=" << rc << endl;
                return;
             }
