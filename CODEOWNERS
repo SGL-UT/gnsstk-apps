@@ -1,23 +1,7 @@
-# Default owners
-* @kuck @johnk
-
-# CODEOWNERS
+[CODEOWNERS]
 CODEOWNERS @kuck @rain
 
-# ----------------
-# Conda/RPM/Distro
-# ----------------
-
-conda_recipe/ @dbarber @kuck
-conda_recipe_py36/ @dbarber @kuck
-debian/ @dbarber @kuck
-rpm_files/ @dbarber @kuck
-
-# -----------
-# Python/Swig
-# -----------
-
-swig/ @kuck @malik
+[Subject Matter Experts]
 
 # -------------
 # Documentation
@@ -74,3 +58,29 @@ ext/lib/PosSol/ @btolman @johnk
 data/ @dbarber @kuck
 deprecated/ @dbarber @kuck
 examples/ @johnk @btolman @renfrob
+
+
+[CPP Reviewers]
+*.cpp   @code-reviewers/cpp
+*.hpp   @code-reviewers/cpp
+*.c     @code-reviewers/cpp
+*.h     @code-reviewers/cpp
+
+[Python Reviewers]
+*.py   @code-reviewers/python
+
+[Bash Reviewers]
+*.sh   @code-reviewers/bash
+
+[Swig Reviewers]
+swig/  @code-reviewers/swig
+*.i    @code-reviewers/swig
+
+[CMAKE Reviewers]
+CMakeLists.txt   @code-reviewers/cmake
+*.cmake          @code-reviewers/cmake
+
+[Distribution Reviewers]
+conda_recipe/ @code-reviewers/conda-recipes
+debian/ @code-reviewers/debian_pkgs
+rpm_files/ @code-reviewers/rpm_pkgs
