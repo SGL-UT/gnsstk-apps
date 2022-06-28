@@ -848,6 +848,7 @@ try {
    if(GD.inputfile != string("stdin")) {
       pin = new ifstream(GD.inputfile.c_str());
       if(pin->fail()) {
+         delete pin;
          cout << "Could not open file " << GD.inputfile << " .. abort.\n";
          return -2;
       }

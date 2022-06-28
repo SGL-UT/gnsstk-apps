@@ -210,6 +210,7 @@ int main(int argc, char **argv)
       if(!filename.empty()) {
          pin = new ifstream(filename.c_str());
          if(pin->fail()) {
+            delete pin;
             cout << "Could not open file " << filename << " .. abort.\n";
             return -2;
          }

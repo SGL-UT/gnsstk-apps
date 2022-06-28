@@ -17,7 +17,7 @@ if ( $args[1] )
 $user=$env:CI_USER
 $token=$env:CI_TOKEN
 $repohost=$env:REPO_HOST
-$giturl="https://"+$user+":"+$token+"@"+$repohost+"/sgl-tks/repo_utils.git"
+$giturl="https://"+$user+":"+$token+"@"+$repohost+"/sgl-tks/tks_ci_tools.git"
 git clone --depth 1 $giturl
-.\repo_utils\download_package_by_type.ps1 $WINDOWS_JOB $PKG_TYPE
+.\tks_ci_tools\tks_ci_tools\scripts\download_package_by_type.ps1 $WINDOWS_JOB $PKG_TYPE
 exit
