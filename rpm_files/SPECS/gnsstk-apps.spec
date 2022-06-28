@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.4.0
+%define version 13.4.1
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,11 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jun 28 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.4.1 release
+- Standardize CODEOWNERS file.
+- Fix some memory/resource leak issues.
+- Replaced cloning repo_utils with pip installed tks_ci_tools
 * Fri May 20 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.4.0 release
 - Fix CI Build Job Requiring LIBHDF5.

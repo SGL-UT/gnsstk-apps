@@ -1,3 +1,18 @@
+# Version 13.4.1   Tuesday June 28, 2022
+
+Modifications by Author
+-----------------------
+     Andrew Kuck <kuck@arlut.utexas.edu> (1):
+           Update CODEOWNERS to use standard reviewers
+
+     Dan Wright <dan.wright@arlut.utexas.edu> (1):
+           Replaced repo_utils with tks_ci_tools
+
+     John Knutson <johnk@arlut.utexas.edu> (1):
+           Resolve some issues identified by Fortify
+
+
+
 # Version 13.4.0   Friday May 20, 2022
 
 Modifications by Author
