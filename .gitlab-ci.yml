@@ -1011,6 +1011,7 @@ package_debian_9:
     - mv ../*.deb debs
     - mv ../*.changes debs
     - mv ../*.dsc debs
+    - mv ../*.git ../*.gitshallow debs
     - mv ../*.buildinfo debs
   artifacts:
     paths:
@@ -1039,7 +1040,8 @@ package_debian_10:
     - mkdir debs
     - mv ../*.deb debs
     - mv ../*.changes debs
-    - mv ../*.dsc debs  
+    - mv ../*.dsc debs
+    - mv ../*.git ../*.gitshallow debs
     - mv ../*.buildinfo debs
   artifacts:
     paths:
@@ -1069,6 +1071,7 @@ package_debian_11:
     - mv ../*.deb debs
     - mv ../*.changes debs
     - mv ../*.dsc debs
+    - mv ../*.git ../*.gitshallow debs
     - mv ../*.buildinfo debs
   artifacts:
     paths:
