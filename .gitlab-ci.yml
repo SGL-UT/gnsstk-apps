@@ -77,8 +77,37 @@ variables:
       - /^tag_.*$/
       - stable
       - /^release\/v[0-9.]*$/
+      - /^bugfix/ci_*$/
+      - /^feature/ci_*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
+
+.build_conda:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  script:
+    # Install dependencies from latest CI first.
+    - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [${PYTHON_VERSION}]" ${PKG_TYPE}'
+    - conda activate conda_builder
+    - conda index conda-bld
+    # - conda create --name py${PYTHON_VERSION} "python=${PYTHON_VERSION}"
+    # - conda activate py${PYTHON_VERSION}
+    - conda activate py$(echo "$PYTHON_VERSION" | sed 's/\.//g')
+    - conda install gnsstk ${OPT_CONDA_LIBS} --override-channels -c file://$PWD/conda-bld/
+    # Link optional libraries
+    - ./optional_package_add.sh ${OPT_LIBS}
+    - mkdir -p build
+    - cd build
+    - export gnsstk=`pwd`/install
+    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
 
 # Check Stage
 # Runs static analysis on code.
@@ -332,54 +361,21 @@ deb11_op2_build:
     paths:
       - build/
 
-conda_py36_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
-  script:
-    # Install dependencies from latest CI first.
-    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
-    - conda activate conda_builder
-    - conda index conda-bld
-    - conda activate py36
-    - conda install gnsstk --override-channels -c file://$PWD/conda-bld/
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+conda_py3.6_build:
+  variables:
+    PYTHON_VERSION: "3.6"
+    OPT_LIBS: ""
+    OPT_CONDA_LIBS: ""
+    PKG_TYPE: "pkg_min"
+  extends: .build_conda
 
-conda_op2_py36_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
-  script:
-    # Install dependencies from latest CI first.
-    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_max
-    - conda activate conda_builder
-    - conda index conda-bld
-    - conda activate py36
-    # Install optional conda libraries
-    - conda install gnsstk $PACKAGE_CONFIG_CONDA_2 --override-channels -c file://$PWD/conda-bld/
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+conda_py3.6_op2_build:
+  variables:
+    PYTHON_VERSION: "3.6"
+    OPT_LIBS: $PACKAGE_CONFIG_2
+    OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
+    PKG_TYPE: "pkg_max"
+  extends: .build_conda
 
 rhel7_build:
   stage: build
@@ -1085,23 +1081,25 @@ package_conda:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
   script:
-    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
+    - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [${PYTHON_VERSION}]" pkg_min'
     - mv conda-bld conda-bld2
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
     - export GIT_LAST_TAG=$(git describe --abbrev=0 origin/stable)
     - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
     - conda index conda-bld2
-    - conda-build conda_recipe --override-channels -c file://$PWD/conda-bld2/
-    # Copy files to local directory for archiving.
+     # Output directory must exist before conda build
     - mkdir -p conda-bld
-    - cp -r $CONDA_PREFIX/conda-bld/* conda-bld/
+    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-bld2/
     # Don't archive the cache files.
     - rm -r conda-bld/linux-64/.cache
   artifacts:
     paths:
       - conda-bld/linux-64/
   dependencies: []
+  parallel:
+    matrix:
+      - PYTHON_VERSION: ["3.6"]
 
 package_redhat:
   stage: package
