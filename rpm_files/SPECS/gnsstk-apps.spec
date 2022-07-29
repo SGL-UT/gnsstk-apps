@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.4.1
+%define version 13.4.2
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Fri Jul 29 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.4.2 release
+- Update CODEOWNERS file.
+- Update conda package to be python independent
+- Fix upstream conda download package name to use matrix job name.
+- Fix debian pkg uploading with .git and shallow files.
 * Tue Jun 28 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.4.1 release
 - Standardize CODEOWNERS file.
