@@ -14,6 +14,13 @@ PKG_TYPE=$2 #If set to pkg_min then only install required dependencies and not o
 export GL_API_TOKEN=$CI_API_TOKEN
 python3 -m pip install --upgrade pip
 python3 -m pip install tks-ci-tools --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
-download_package_by_type.sh ${CONDA_JOB} ${PKG_TYPE}
-mv packages/conda-bld ./conda-bld
+download_package_by_type.sh "${CONDA_JOB}" ${PKG_TYPE}
+
+rsync --remove-source-files --archive packages/conda-bld/ ./conda-deps/
+
+eval "$(conda shell.bash hook)"
+conda activate conda_builder
+conda index conda-deps
+conda deactivate
+
 exit 0

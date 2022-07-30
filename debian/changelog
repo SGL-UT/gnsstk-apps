@@ -1,3 +1,13 @@
+gnsstk-apps (13.4.2-1) stable; urgency=low
+
+  * Updated to version 13.4.2
+  * Fix debian pkg uploading with .git and shallow files.
+  * Fix upstream conda download package name to use matrix job name.
+  * Update conda package to be python independent
+  * Update CODEOWNERS file.
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Fri, 29 Jul 2022 08:56:47 -0500
+
 gnsstk-apps (13.4.1-1) stable; urgency=low
 
   * Updated to version 13.4.1

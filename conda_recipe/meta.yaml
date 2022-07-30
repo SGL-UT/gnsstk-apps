@@ -15,11 +15,8 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
   host:
-    - python {{ python }}
-    - setuptools
     - gnsstk >=13.0.0,<14
   run:
-    - python {{ python }}
     - gnsstk >=13.0.0,<14
 
 test:

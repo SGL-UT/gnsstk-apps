@@ -77,8 +77,35 @@ variables:
       - /^tag_.*$/
       - stable
       - /^release\/v[0-9.]*$/
+      - /^bugfix/ci_*$/
+      - /^feature/ci_*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
+
+.build_conda:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  script:
+    # Install dependencies from latest CI first. Some packages are python version dependent, others are not.
+    # Using python 3.9 for build and testing is arbitrary since gnsstk-apps is not python dependent.
+    - bash conda_recipe/get_required_deps_conda.sh package_conda ${PKG_TYPE} 
+    - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [3.9]" ${PKG_TYPE}'
+    - conda create -c file://$PWD/conda-deps --name py3.9 "python=3.9" gnsstk ${OPT_CONDA_LIBS}
+    - conda activate py3.9
+    # Link optional libraries
+    - ./optional_package_add.sh ${OPT_LIBS}
+    - mkdir -p build
+    - cd build
+    - export gnsstk=`pwd`/install
+    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
 
 # Check Stage
 # Runs static analysis on code.
@@ -332,54 +359,19 @@ deb11_op2_build:
     paths:
       - build/
 
-conda_py36_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
-  script:
-    # Install dependencies from latest CI first.
-    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
-    - conda activate conda_builder
-    - conda index conda-bld
-    - conda activate py36
-    - conda install gnsstk --override-channels -c file://$PWD/conda-bld/
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+conda_build:
+  variables:
+    OPT_LIBS: ""
+    OPT_CONDA_LIBS: ""
+    PKG_TYPE: "pkg_min"
+  extends: .build_conda
 
-conda_op2_py36_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
-  script:
-    # Install dependencies from latest CI first.
-    - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_max
-    - conda activate conda_builder
-    - conda index conda-bld
-    - conda activate py36
-    # Install optional conda libraries
-    - conda install gnsstk $PACKAGE_CONFIG_CONDA_2 --override-channels -c file://$PWD/conda-bld/
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+conda_op2_build:
+  variables:
+    OPT_LIBS: $PACKAGE_CONFIG_2
+    OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
+    PKG_TYPE: "pkg_max"
+  extends: .build_conda
 
 rhel7_build:
   stage: build
@@ -551,6 +543,47 @@ windows_op1_build_vs2019_dll:
 #     - build/Testing/Temporary/
 #   dependencies:
 #     - deb9_build
+
+.test_conda:
+  stage: test
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  script:
+    # Install dependencies from latest CI first. Some dependencies are python version dependent, others are not.
+    - bash conda_recipe/get_required_deps_conda.sh package_conda ${PKG_TYPE} 
+    - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [3.9]" ${PKG_TYPE}'
+    - conda create -c file://$PWD/conda-deps/ --name py3.9 python=3.9 gnsstk $OPT_CONDA_LIBS
+    - conda activate py3.9
+    - python -c "import gnsstk"
+    - cd build
+    - ctest -j 4
+    - touch $CI_PROJECT_DIR/success
+  artifacts:
+    when: on_failure
+    paths:
+    - build/Testing/Temporary/
+    - build/swig/
+    expire_in: 4 days
+
+conda_test:
+  extends: .test_conda
+  dependencies: [conda_build]
+  needs: [conda_build]
+  variables:
+    OPT_LIBS: ""
+    OPT_CONDA_LIBS: ""
+    PKG_TYPE: "pkg_min"
+
+conda_op2_test:
+  extends: .test_conda
+  dependencies: [conda_op2_build]
+  needs: [conda_op2_build]
+  variables:
+    OPT_LIBS: $PACKAGE_CONFIG_2
+    OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
+    PKG_TYPE: "pkg_max"
 
 deb10_test:
   stage: test
@@ -791,7 +824,7 @@ deb9_user_install:
       - build/install
   dependencies:
     - deb9_build
-    
+
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
 # downstream builds.
@@ -1085,17 +1118,17 @@ package_conda:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
   script:
+    # Use of py3.9 package is arbitrary. Any of the gnsstk conda packages can be used for building
+    # since gnsstk-apps does not depend on python.
     - bash conda_recipe/get_required_deps_conda.sh package_conda pkg_min
-    - mv conda-bld conda-bld2
+    - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [3.9]" pkg_min'
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
     - export GIT_LAST_TAG=$(git describe --abbrev=0 origin/stable)
     - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
-    - conda index conda-bld2
-    - conda-build conda_recipe --override-channels -c file://$PWD/conda-bld2/
-    # Copy files to local directory for archiving.
+     # Output directory must exist before conda build
     - mkdir -p conda-bld
-    - cp -r $CONDA_PREFIX/conda-bld/* conda-bld/
+    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/
     # Don't archive the cache files.
     - rm -r conda-bld/linux-64/.cache
   artifacts:

@@ -1,3 +1,18 @@
+# Version 13.4.2   Friday July 29, 2022
+
+Modifications by Author
+-----------------------
+     Dave Rainwater <rain@arlut.utexas.edu> (1):
+           [ci-skip] First rough revision per Jira issue
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           hotfix debian pkg
+
+     Taben Malik <malik@arlut.utexas.edu> (1):
+           Update Conda Packages
+
+
+
 # Version 13.4.1   Tuesday June 28, 2022
 
 Modifications by Author
