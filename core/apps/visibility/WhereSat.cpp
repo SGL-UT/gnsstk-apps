@@ -130,6 +130,7 @@
 #include <gnsstk/BasicFramework.hpp>
 #include <gnsstk/CommonTime.hpp>
 #include <gnsstk/CommandOption.hpp>
+#include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 #include <gnsstk/CommandOptionParser.hpp>
 #include <gnsstk/WGS84Ellipsoid.hpp>
 #include <gnsstk/NavLibrary.hpp>
@@ -156,12 +157,13 @@ public:
    CommandOptionNoArg velOpt;
    CommandOptionWithAnyArg ephFiles;
    CommandOptionWithAnyArg positionOpt;
-   CommandOptionWithAnyArg startTimeOpt;
-   CommandOptionWithAnyArg endTimeOpt;
+   CommandOptionWithCommonTimeArg startTimeOpt;
+   CommandOptionWithCommonTimeArg endTimeOpt;
    CommandOptionWithAnyArg formatOpt;
    CommandOptionWithAnyArg sidOpt;
    CommandOptionWithNumberArg prnOpt;
    CommandOptionWithNumberArg incrementOpt;
+   CommandOptionNoArg almOpt;
       /// High level nav store interface.
    NavLibrary navLib;
       /// nav data file reader
@@ -180,9 +182,11 @@ WhereSat(const string& applName)
                     " coordinates.  Format as a string: \"X Y Z\". Used to give"
                     " user-centered data (SV range, azimuth & elevation) when"
                     " SV is in view."),
-        startTimeOpt('\0',"start","Ignore data before this time. Format as"
+        startTimeOpt('\0',"start","%m/%d/%Y %H:%M:%S",
+                     "Ignore data before this time. Format as"
                      " string: \"MO/DD/YYYY HH:MM:SS\"."),
-        endTimeOpt('\0',"end", "Ignore data after this time. Format as string: "
+        endTimeOpt('\0',"end","%m/%d/%Y %H:%M:%S",
+                   "Ignore data after this time. Format as string: "
                    "\"MO/DD/YYYY HH:MM:SS\"."),
         formatOpt('f',"time-format","CommonTime format specifier used for times"
                   " in the output. The default is \"%02m/%02d/%4Y"
@@ -194,7 +198,9 @@ WhereSat(const string& applName)
                " multiple satellites. If this option is not specified, all"
                " ephemeris data will be processed."),
         incrementOpt('t',"time","Time increment for ephemeris calculation. "
-                     "Enter increment in seconds. Default is 900 (15 min).")
+                     "Enter increment in seconds. Default is 900 (15 min)."),
+        almOpt('A', "use-alm", "Use almanac to compute positions"
+               " (default=ephemeris)")
 {
       // Initialize these two items in here rather than in the
       // initializer list to guarantee execution order and avoid seg
@@ -356,58 +362,34 @@ process()
    CommonTime tStart,tEnd;
    if (startTimeOpt.getCount())
    {
-      double ss;
-      int mm,dd,yy,hh,minu;
-      sscanf(startTimeOpt.getValue().front().c_str(),
-             "%d/%d/%d %d:%d:%lf",&mm,&dd,&yy,&hh,&minu,&ss);
-      tS=CivilTime((short)yy, (short)mm, (short)dd, (short)hh,
-                   (short)minu, (double)ss, TimeSystem::Any);
-      tStart = tS.convertToCommonTime();
-      cout << tS << endl;
+      tStart = startTimeOpt.getTime()[0];
+      tStart.setTimeSystem(gnsstk::TimeSystem::Any);
    }
    else
    {
-         //extra code b/c sscanf reads in int's but CivilTime needs shorts
-         //cout << navLib.getInitialTime() << endl;
-      CommonTime tFile(navLib.getInitialTime());
-      short year = static_cast<CivilTime>(tFile).year;
-      short month = static_cast<CivilTime>(tFile).month;
-      short day = static_cast<CivilTime>(tFile).day;
-      short hour = static_cast<CivilTime>(tFile).hour;
-      short minute = static_cast<CivilTime>(tFile).minute;
-      double ss = static_cast<CivilTime>(tFile).second;
-      tS = CivilTime(year,month,day,hour,minute,ss, TimeSystem::Any);
-      tStart = tS.convertToCommonTime();
-      cout << tS << endl;
+      tStart = navLib.getInitialTime();
    }
+   tS = tStart;
+   cout << tS << endl;
 
    if (endTimeOpt.getCount())
    {
-      double ss;
-      int mm,dd,yy,hh,minu;
-      sscanf(endTimeOpt.getValue().front().c_str(),
-             "%d/%d/%d %d:%d:%lf",&mm,&dd,&yy,&hh,&minu,&ss);
-      tE = CivilTime((short)yy, (short)mm, (short)dd, (short)hh, (short)minu,
-                     (double)ss, TimeSystem::Any);
-      tEnd = tE.convertToCommonTime();
-      cout << tE << endl;
+      tEnd = endTimeOpt.getTime()[0];
+      tEnd.setTimeSystem(gnsstk::TimeSystem::Any);
    }
    else
    {
-         //extra code b/c sscanf reads in int's but CivilTime needs shorts
-      CommonTime tFile(navLib.getFinalTime());
-      short year = static_cast<CivilTime>(tFile).year;
-      short month = static_cast<CivilTime>(tFile).month;
-      short day = static_cast<CivilTime>(tFile).day;
-      short hour = static_cast<CivilTime>(tFile).hour;
-      short minute = static_cast<CivilTime>(tFile).minute;
-      double ss = static_cast<CivilTime>(tFile).second;
-      tE = CivilTime(year,month,day,hour,minute,ss, TimeSystem::Any);
-      tEnd = tE.convertToCommonTime();
-      cout << tE << endl;
+      tEnd = navLib.getFinalTime();
    }
+   tE = tEnd;
+   cout << tE << endl;
 
    CommonTime t = tStart;
+   if (debugLevel)
+   {
+      cerr << "dump:" << endl;
+      navLib.dump(std::cerr, gnsstk::DumpDetail::OneLine);
+   }
    while (t <= tEnd)
    {
       for(set<SatID>::iterator i = satSet.begin(); i != satSet.end(); i++ )
@@ -416,7 +398,7 @@ process()
          RinexSatID rsid(thisSat);   // Used only for output formatting
          Xvt xvt;
          if (navLib.getXvt(
-                NavSatelliteID(thisSat),t,xvt,false,
+                NavSatelliteID(thisSat),t,xvt, almOpt,
                 (ignoreHealthOpt ? SVHealth::Any : SVHealth::Healthy),
                 NavValidityType::ValidOnly, NavSearchOrder::Nearest))
          {
