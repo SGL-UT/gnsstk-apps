@@ -15,8 +15,8 @@ export GL_API_TOKEN=$CI_API_TOKEN
 if (( $EUID != 0 )); then
   export PATH="$PATH:/home/dev_user/.local/bin"
 fi
-python3 -m pip install --upgrade pip
-python3 -m pip install tks-ci-tools --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
+
+python3 -m pip install tks-ci-tools
 download_package_by_type.sh ${DEBIAN_JOB} ${PKG_TYPE}
 
 

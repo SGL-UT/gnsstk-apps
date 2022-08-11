@@ -12,8 +12,7 @@ PKG_TYPE=$2 #If set to pkg_min then only install required dependencies and not o
             #If set to pkg_max then install both required and optional libs
 
 export GL_API_TOKEN=$CI_API_TOKEN
-python3 -m pip install --upgrade pip
-sudo pip3 install tks-ci-tools --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
+sudo pip3 install tks-ci-tools
 download_package_by_type.sh ${PACKAGE_JOB} ${PKG_TYPE}
 sudo yum install packages/rpm_files/RPMS/x86_64/*.rpm -y
 exit 0
