@@ -145,11 +145,11 @@ endif( )
 if( COVERAGE_SWITCH )
   if (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang"
     OR ((${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER "4.9.0" ) AND CMAKE_COMPILER_IS_GNUCXX))
-    message(STATUS "Enabling address sanitizer for debug build")
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
+    message(STATUS "Enabling test coverage (gcov)")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage --coverage" )
+    set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov" )
   endif()
 endif( )
-
 
 #----------------------------------------
 # Add sub-directories
