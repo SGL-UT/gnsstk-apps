@@ -1,16 +1,21 @@
-GNSSTk-APPs 13.4.2 Release Notes
+GNSSTk-APPs 13.5.0 Release Notes
 ========================
 
- * This release includes updating conda packages to be python independent.
- * Additionally, it contains build and CI updates.
+ * This release includes the following:
+    * Updating `WhereSat` to add almanac support.
+    * Updating `sats.csv` to match finalized format
+ * Additionally, it contains build tests and CI updates.
 
-Updates since v13.4.1
+Updates since v13.4.2
 ---------------------
 
 **Build System and Test Suite**
-  * Update conda package to be python independent
-  * Fix debian pkg uploading with .git and shallow files.
+  * Fix rineditnav tests so they don't clobber each other's output for random failures. 
 
 **Gitlab CI**
-  * Update CODEOWNERS file.
-  * Fix upstream conda download package name to use matrix job name.
+  * Add sonar scan job to pipeline
+  * Update replaced sgl_ci docker images with sgl equivalent
+
+**Library Changes**
+  * Update WhereSat to add almanac support
+  * Update sats.csv to match finalized format

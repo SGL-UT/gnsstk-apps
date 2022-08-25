@@ -1,3 +1,20 @@
+# Version 13.5.0   Thursday August 25, 2022
+
+Modifications by Author
+-----------------------
+     Dan Wright <dan.wright@arlut.utexas.edu> (1):
+           Ci docker swap
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           Add sonar scan to pipeline job
+
+     John Knutson <johnk@arlut.utexas.edu> (3):
+           Change WhereSat to use CommandOptionWithCommonTimeArg and support the use of almanacs
+           Update sats.csv to match finalized format
+           Fix RineEditNav 1st-build test failures
+
+
+
 # Version 13.4.2   Friday July 29, 2022
 
 Modifications by Author
