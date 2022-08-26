@@ -11,8 +11,8 @@ cmake_policy( VERSION 2.8.4 )
 
 project( NAVSAT_TOOLS )
 set( NAVSAT_TOOLS_VERSION_MAJOR "13" )
-set( NAVSAT_TOOLS_VERSION_MINOR "4" )
-set( NAVSAT_TOOLS_VERSION_PATCH "2" )
+set( NAVSAT_TOOLS_VERSION_MINOR "5" )
+set( NAVSAT_TOOLS_VERSION_PATCH "0" )
 set( NAVSAT_TOOLS_VERSION "${NAVSAT_TOOLS_VERSION_MAJOR}.${NAVSAT_TOOLS_VERSION_MINOR}.${NAVSAT_TOOLS_VERSION_PATCH}" )
 set( CPACK_PACKAGE_VERSION_MAJOR ${NAVSAT_TOOLS_VERSION_MAJOR} )
 set( CPACK_PACKAGE_VERSION_MINOR ${NAVSAT_TOOLS_VERSION_MINOR} )
@@ -145,11 +145,11 @@ endif( )
 if( COVERAGE_SWITCH )
   if (${CMAKE_CXX_COMPILER_ID} MATCHES "Clang"
     OR ((${CMAKE_CXX_COMPILER_VERSION} VERSION_GREATER "4.9.0" ) AND CMAKE_COMPILER_IS_GNUCXX))
-    message(STATUS "Enabling address sanitizer for debug build")
-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage" )
+    message(STATUS "Enabling test coverage (gcov)")
+    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage --coverage" )
+    set( CMAKE_EXE_LINKER_FLAGS  "${CMAKE_EXE_LINKER_FLAGS} -coverage -lgcov" )
   endif()
 endif( )
-
 
 #----------------------------------------
 # Add sub-directories

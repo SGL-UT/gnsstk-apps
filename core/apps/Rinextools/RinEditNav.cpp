@@ -95,7 +95,7 @@ public:
 
    bool initialize(int argc, char *argv[], bool pretty=true) throw() override;
 
-   void process();
+   void process() override;
 
       /** Parse the RINEX 3 or RINEX 2 output options.
        * @param[in] opt The command line option to process output file
@@ -202,7 +202,7 @@ initialize(int argc, char *argv[], bool pretty) throw()
       // Open all requested files and read the first record so we can
       // process the data in time order (this assumes the individual
       // files are in time order to begin with).
-      // @TODO do not allow output filename(s) in files
+      /// @todo do not allow output filename(s) in files
    for (unsigned i = 0; i < files.size(); i++)
    {
       if (fileSet.count(files[i]) > 0)

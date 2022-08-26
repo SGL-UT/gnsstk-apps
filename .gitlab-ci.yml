@@ -14,11 +14,14 @@ include:
   - project: sgl-tks/ci-control
     file: /general/artifactory-upload.yml
     ref: main
+  - project: 'sgl/ci-control'
+    file: 'common/scanning/sonar.yml'
 
 stages:
   - check
   - build
   - test
+  - quality
   - install
   - package
   - push
@@ -47,6 +50,14 @@ variables:
   BLD_VS_STATIC:
     value: "True"
     description: "If True, then link against Static Libraries (VS2019 only, VS2015 always builds static)"
+
+  # Sonar Controls
+  SONAR_EXCLUSIONS: '**/tests/**,**/rpm_files/**,**/conda_recipe/**,**/data/**,**/coverage-cpp.xml,**/build*/**,**/debian/**,**/deprecated/**,**/examples/**,**/ref/**,**/rpm_files/**,**/swig/**,**/DoxygenLayout.xml,**/custom.css'
+  SONAR_SOURCES: 'core'
+  SONAR_TEST_SOURCES: 'core/tests'
+  SONAR_TEST_INCLUSION: 'core/tests'
+  SONAR_PROJECT_KEY: gnsstk-apps
+  SONAR_ADDTIONAL_PARAMS: "-Dsonar.cfamily.gcov.reportsPath=."
 
 # Template for all normal jobs.
 .normal_job:
@@ -88,7 +99,9 @@ variables:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  before_script:
+    - source /opt/miniconda/etc/profile.d/conda.sh
   script:
     # Install dependencies from latest CI first. Some packages are python version dependent, others are not.
     # Using python 3.9 for build and testing is arbitrary since gnsstk-apps is not python dependent.
@@ -115,7 +128,7 @@ static_analysis:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - ./lint_test.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -134,7 +147,7 @@ sgllint_lint:
     - '# This job checks all files for required lines like copyright/license statements.'
     - '######'
     # Obtain the latest version of ./sgl_lint.py
-    - python3 -m pip install sgl-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple
+    - python3 -m pip install sgl-ci-tools
     - sgl_lint -v -R core
     - sgl_lint -v -R ext
     - sgl_lint -v -R swig/apps
@@ -153,8 +166,7 @@ protected_term_lint:
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
     - '######'
     - apt-get update && apt-get install -y git
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install tks-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
+    - python3 -m pip install tks-ci-tools
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
     - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
@@ -176,8 +188,7 @@ protected_history_lint:
     - '# This job checks all files modified on this branch for sensitive terms.'
     - '######'
     - apt-get update && apt-get install -y git
-    - python3 -m pip install --upgrade pip
-    - python3 -m pip install tks-ci-tools>=0.0.1 --extra-index-url https://sgl-artifactory.arlut.utexas.edu/artifactory/api/pypi/pypi-ci/simple/
+    - python3 -m pip install tks-ci-tools
     # We pull the default branch because the CI doesn't normally have any branches other than the one being tested.
     - echo "git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}"
     - git fetch -uf origin ${CI_DEFAULT_BRANCH}:${CI_DEFAULT_BRANCH}
@@ -194,7 +205,7 @@ generate_documentation:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install GraphViz
     - sudo apt-get install -y graphviz
@@ -213,7 +224,7 @@ repository_validation:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Verify there are no duplicate header files names in the repo.
     - ./dup_check.sh
@@ -230,13 +241,13 @@ deb9_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
@@ -248,13 +259,13 @@ deb10_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
@@ -266,7 +277,7 @@ deb10_op1_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
@@ -274,7 +285,7 @@ deb10_op1_build:
     - ./optional_package_add.sh $PACKAGE_CONFIG_1
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
@@ -286,7 +297,7 @@ deb10_op2_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
@@ -294,7 +305,7 @@ deb10_op2_build:
     - ./optional_package_add.sh $PACKAGE_CONFIG_2
     - mkdir -p build
     - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
@@ -379,14 +390,14 @@ rhel7_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - mkdir -p build
     - cd build
     - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON ../
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
     - make all -j 4
   artifacts:
     paths:
@@ -398,7 +409,7 @@ rhel8_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -549,7 +560,9 @@ windows_op1_build_vs2019_dll:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  before_script:
+    - source /opt/miniconda/etc/profile.d/conda.sh
   script:
     # Install dependencies from latest CI first. Some dependencies are python version dependent, others are not.
     - bash conda_recipe/get_required_deps_conda.sh package_conda ${PKG_TYPE} 
@@ -591,7 +604,7 @@ deb10_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     - cd build
@@ -609,7 +622,7 @@ deb10_op2_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
     - cd build
@@ -663,7 +676,7 @@ rhel7_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
@@ -681,7 +694,7 @@ rhel8_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -803,6 +816,44 @@ windows_op1_test_vs2019_dll:
   timeout: 10m
   allow_failure: false
 
+#
+# Quality Stage - SonarQube code quality scan
+#
+
+sonar-scan:
+  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  stage: quality
+  needs: []
+  extends:
+    - .sonarqube-check
+  tags:
+    - docker-executor
+  script:
+    - apt-get install gcovr lcov -y
+    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DDEBUG_SWITCH=ON -DTEST_SWITCH=ON -DCOVERAGE_SWITCH=ON ../
+    - build-wrapper-linux-x86-64 --out-dir . make all -j 4
+    - ctest -j 4
+    - cd ..
+    - gcovr --exclude=build* --xml-pretty --exclude-unreachable-branches --print-summary -o coverage-cpp.xml -r .
+    - for f in `find . -name '*.o'`; do echo "Processing $f file..."; pushd `dirname $f`; gcov -o `basename $f` x; popd ;done
+    - !reference [.scan-c++, script]
+    - touch $CI_PROJECT_DIR/success
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "main" || $CI_COMMIT_REF_NAME == "stable"
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+  # Sonar Quality Profile will fail since code coverage is below 80%
+  # Allowing job to fail so sonar scan doesn't fail the pipeline for nightly big chain.
+  allow_failure: true
+  # only:
+  #   - merge_requests
+  #   - main
+  #   - tags
+  #   - stable
+
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
 # downstream builds.
@@ -812,12 +863,12 @@ deb9_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
     - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
     - make install -j 4
   artifacts:
     paths:
@@ -853,12 +904,12 @@ rhel7_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
     - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
     - make install -j 4
   artifacts:
     paths:
@@ -872,7 +923,7 @@ rhel8_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -961,12 +1012,12 @@ deb9_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     - cd build
     - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
     - sudo make install -j 4
   dependencies:
     - deb9_build
@@ -996,12 +1047,12 @@ rhel7_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - cd build
     - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
     - sudo make install -j 4
   dependencies:
     - rhel7_build
@@ -1012,7 +1063,7 @@ rhel8_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -1033,7 +1084,7 @@ package_debian_9:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
@@ -1059,7 +1110,7 @@ package_debian_10:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -1116,7 +1167,9 @@ package_conda:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/deb9_conda_py36
+  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  before_script:
+    - source /opt/miniconda/etc/profile.d/conda.sh
   script:
     # Use of py3.9 package is arbitrary. Any of the gnsstk conda packages can be used for building
     # since gnsstk-apps does not depend on python.
@@ -1142,7 +1195,7 @@ package_redhat:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
     - bash rpm_files/setup_dirs.sh
@@ -1161,7 +1214,7 @@ package_redhat_8:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
@@ -1278,7 +1331,7 @@ deb9_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
@@ -1295,7 +1348,7 @@ deb10_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/debian10_fai_ish
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -1329,7 +1382,7 @@ rhel7_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos7_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
@@ -1345,7 +1398,7 @@ rhel8_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl_ci/centos8_sgl
+  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min

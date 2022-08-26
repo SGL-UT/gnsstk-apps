@@ -1,3 +1,15 @@
+gnsstk-apps (13.5.0-1) stable; urgency=low
+
+  * Updated to version 13.5.0
+  * Update sats.csv to match finalized format
+  * Update WhereSat to add almanac support
+  * Update replaced sgl_ci docker images with sgl equivalent
+  * Fix rineditnav tests so they don't clobber each other's output for
+    random failures.
+  * Add sonar scan job to pipeline
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 25 Aug 2022 15:24:07 -0500
+
 gnsstk-apps (13.4.2-1) stable; urgency=low
 
   * Updated to version 13.4.2

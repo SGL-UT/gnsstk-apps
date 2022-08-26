@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.4.2
+%define version 13.5.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,13 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Aug 25 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.5.0 release
+- Add sonar scan job to pipeline
+- Fix rineditnav tests so they don't clobber each other's output for random failures.
+- Update replaced sgl_ci docker images with sgl equivalent
+- Update WhereSat to add almanac support
+- Update sats.csv to match finalized format
 * Fri Jul 29 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.4.2 release
 - Update CODEOWNERS file.

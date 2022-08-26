@@ -12,8 +12,8 @@
 # RINHEADDIFF: location of rinheaddiff application
 #
 # TEST_PROG is expected to generate the output file
-# ${TARGETDIR}/${TESTBASE3}.out (RINEX 3)
-# ${TARGETDIR}/${TESTBASE2}.out (RINEX 2)
+# ${TARGETDIR}/${TESTBASE3}.3.out (RINEX 3)
+# ${TARGETDIR}/${TESTBASE2}.2.out (RINEX 2)
 #
 # Reference files are
 # ${SOURCEDIR}/${TESTBASE3}.exp (RINEX 3)
@@ -26,9 +26,9 @@ endif ( WIN32 )
 
 # Generate the merged file
 
-message(STATUS "running ${TEST_PROG} -o ${TARGETDIR}/${TESTBASE3}.out -2 ${TARGETDIR}/${TESTBASE2}.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}")
+message(STATUS "running ${TEST_PROG} -o ${TARGETDIR}/${TESTBASE3}.3.out -2 ${TARGETDIR}/${TESTBASE2}.2.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}")
 
-execute_process(COMMAND ${TEST_PROG} -o ${TARGETDIR}/${TESTBASE3}.out -2 ${TARGETDIR}/${TESTBASE2}.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}
+execute_process(COMMAND ${TEST_PROG} -o ${TARGETDIR}/${TESTBASE3}.3.out -2 ${TARGETDIR}/${TESTBASE2}.2.out ${SOURCEDIR}/${INFILE1} ${SOURCEDIR}/${INFILE2}
                 OUTPUT_QUIET
                 RESULT_VARIABLE HAD_ERROR)
 if(HAD_ERROR)
@@ -38,18 +38,18 @@ endif()
 
 # diff against reference
 
-message(STATUS "running ${RINDIFF} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.out")
+message(STATUS "running ${RINDIFF} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.3.out")
 
-execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.out
+execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.3.out
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
     message(FATAL_ERROR "Test failed - files differ: ${DIFFERENT}")
 endif()
 
-message(STATUS "running ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.out")
+message(STATUS "running ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.2.out")
 
-execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.out
+execute_process(COMMAND ${RINDIFF} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.2.out
     OUTPUT_QUIET
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
@@ -61,17 +61,17 @@ endif()
 
 set( EXCL1 "PGM / RUN BY / DATE" )
 
-message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.out")
+message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.3.out")
 
-execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.out
+execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE3}.exp ${TARGETDIR}/${TESTBASE3}.3.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
     message(FATAL_ERROR "Test failed - headers differ")
 endif()
 
-message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.out")
+message(STATUS "running ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.2.out")
 
-execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.out
+execute_process(COMMAND ${RINHEADDIFF} -x ${EXCL1} ${SOURCEDIR}/${TESTBASE2}.exp ${TARGETDIR}/${TESTBASE2}.2.out
     RESULT_VARIABLE DIFFERENT)
 if(DIFFERENT)
     message(FATAL_ERROR "Test failed - headers differ")
