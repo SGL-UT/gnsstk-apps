@@ -1090,6 +1090,10 @@ package_debian_9:
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     # Remove any directories left over from the above script.
     - rm -rf packages
+    # Mark the debian log so that this package is a backport.
+    # Use the most recent Maintainer as current maintainer.
+    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
+    - dch --bpo "No Changes"
     - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=stretch-sgl"
     - mkdir debs
     - mv ../*.deb debs
@@ -1416,7 +1420,7 @@ push_artifacts:
       - $BLD_ONLY_VS2019 == "True"
   variables:
     # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
-    DEB_9_PACKAGES: "debs/*-1_amd64.deb"
+    DEB_9_PACKAGES: "debs/*bpo9*.deb"
     DEB_10_PACKAGES: "debs/*bpo10*.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
     #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
