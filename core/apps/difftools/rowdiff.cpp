@@ -121,7 +121,7 @@ public:
            precisionOption('p',"precision","Limit data comparison to n decimal"
                            " places. Default = 5")
    {}
-   virtual bool initialize(int argc, char* argv[]) throw();
+   virtual bool initialize(int argc, char* argv[]) noexcept;
 
 protected:
    virtual void process();
@@ -132,7 +132,7 @@ private:
    static const int DEFAULT_PRECISION = 5;
 };
 
-bool ROWDiff::initialize(int argc, char* argv[]) throw()
+bool ROWDiff::initialize(int argc, char* argv[]) noexcept
 {
    if (!DiffFrame::initialize(argc, argv))
    {

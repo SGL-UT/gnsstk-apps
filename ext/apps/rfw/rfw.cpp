@@ -60,7 +60,7 @@ using namespace gnsstk;
 class RollingFileWriter : public gnsstk::BasicFramework
 {
 public:
-   RollingFileWriter(const std::string& applName) throw()
+   RollingFileWriter(const std::string& applName) noexcept
       : BasicFramework(applName,
                        "Reads data from a stream and writes the data out to a"
                        "TimeNamedFileStream."),
@@ -69,7 +69,7 @@ public:
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Woverloaded-virtual"
-   bool initialize(int argc, char *argv[]) throw()
+   bool initialize(int argc, char *argv[]) noexcept
    {
       CommandOptionWithAnyArg inputOpt(
          'i', "input",
