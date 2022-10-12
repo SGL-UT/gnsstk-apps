@@ -134,6 +134,20 @@ static_analysis:
   # Allow failures here to prevent blocking the rest of the pipeline.
   allow_failure: true
 
+submodule_check:
+  stage: check
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  variables:
+    GIT_SUBMODULE_UPDATE_FLAGS: --remote
+  only:
+    - main
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+  script:
+    - (! git status --porcelain | grep 'M data')
+
 # sgl_lint will verify that source files have proper copyright.
 sgllint_lint:
   stage: check
@@ -1086,6 +1100,8 @@ package_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     # Remove any directories left over from the above script.
@@ -1116,6 +1132,8 @@ package_debian_10:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     # Remove any directories left over from the above script.
@@ -1146,6 +1164,8 @@ package_debian_11:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
     # Remove any directories left over from the above script.
