@@ -6,8 +6,8 @@
 #           Is dependend on by $NAVSAT_TOOLS/build.sh
 #============================================================
 
-cmake_minimum_required( VERSION 2.8.4 )
-cmake_policy( VERSION 2.8.4 )
+cmake_minimum_required( VERSION 3.7.2 )
+cmake_policy( VERSION 3.7.2 )
 
 project( NAVSAT_TOOLS )
 set( NAVSAT_TOOLS_VERSION_MAJOR "13" )

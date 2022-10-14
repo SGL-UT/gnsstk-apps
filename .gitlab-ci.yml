@@ -398,25 +398,6 @@ conda_op2_build:
     PKG_TYPE: "pkg_max"
   extends: .build_conda
 
-rhel7_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - make all -j 4
-  artifacts:
-    paths:
-    - build/
-
 rhel8_build:
   stage: build
   needs: []
@@ -684,24 +665,6 @@ deb11_op2_test:
   dependencies:
     - deb11_op2_build
 
-rhel7_test:
-  stage: test
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - rhel7_build
-
 rhel8_test:
   stage: test
   needs: [rhel8_build]
@@ -912,25 +875,6 @@ deb11_user_install:
   dependencies:
     - deb11_build
 
-rhel7_user_install:
-  stage: install
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - make install -j 4
-  artifacts:
-    paths:
-      - build/install
-  dependencies:
-    - rhel7_build
-
 rhel8_user_install:
   stage: install
   needs: [rhel8_build]
@@ -1053,23 +997,6 @@ deb11_system_install:
     - make install -j 4
   dependencies:
     - deb11_build
-
-
-rhel7_system_install:
-  stage: install
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - sudo make install -j 4
-  dependencies:
-    - rhel7_build
 
 rhel8_system_install:
   stage: install
@@ -1211,25 +1138,6 @@ package_conda:
   artifacts:
     paths:
       - conda-bld/linux-64/
-  dependencies: []
-
-package_redhat:
-  stage: package
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gnsstk-apps-master/ -o rpm_files/SOURCES/gnsstk-apps-master.tar.gz HEAD
-    - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gnsstk-apps.spec
-  artifacts:
-    paths:
-      - rpm_files/RPMS/x86_64/gnsstk-*
-      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
 
 package_redhat_8:
@@ -1400,22 +1308,6 @@ deb11_deploy:
   dependencies:
     - package_debian_11
 
-rhel7_deploy:
-  stage: deploy
-  needs: [package_redhat]
-  extends: .package_deploy
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gnsstk-*.rpm -y
-    - timeconvert
-  dependencies:
-    - package_redhat
-
 rhel8_deploy:
   stage: deploy
   needs: [package_redhat_8]
@@ -1444,5 +1336,5 @@ push_artifacts:
     DEB_10_PACKAGES: "debs/*bpo10*.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
     #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
-  needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat, package_redhat_8]
-  dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat, package_redhat_8]
+  needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
+  dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
