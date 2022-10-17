@@ -263,7 +263,7 @@
 #include <gnsstk/UnixTime.hpp>
 #include <gnsstk/YDSTime.hpp>
 #include <gnsstk/SystemTime.hpp>
-
+#include <gnsstk/DebugTrace.hpp>
 #include <gnsstk/CommandOptionWithCommonTimeArg.hpp>
 #include <gnsstk/EnumIterator.hpp>
 #include <gnsstk/BasicTimeSystemConverter.hpp>
@@ -444,6 +444,10 @@ TimCvt::TimCvt(char* arg0)
 
 void TimCvt::process()
 {
+   if (debugLevel)
+   {
+      DEBUGTRACE_ENABLE();
+   }
    CommonTime ct;
    ct.setTimeSystem(TimeSystem::GPS);
    CommandOption *whichOpt = mutexOption.whichOne();
