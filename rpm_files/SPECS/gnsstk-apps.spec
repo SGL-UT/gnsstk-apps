@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc README.md COPYING.md RELNOTES.md
 /usr/bin/*
-/usr/share/cmake/GNSSTK-Apps
+/usr/share/cmake/GNSSTK_Apps
 
 
 %changelog
