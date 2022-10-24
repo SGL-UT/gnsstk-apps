@@ -819,7 +819,6 @@ INPUT                  = MAINPAGE.txt \
                          INSTALL.md \
                          INTRO.txt \
                          HOWTO.txt \
-                         core/apps/visibility/UsingWhereSat.md \
                          ref/doxygen/ \
                          core/apps \
                          ext/apps
