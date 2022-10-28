@@ -37,7 +37,7 @@ set( TD ${GNSSTK_APPS_TEST_OUTPUT_DIR} )
 add_test(NAME DDBase_CmdOpt_f_missing
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:DDBase>
-         -DARGS="-f missingFile"
+         -DARGS=-f\ missingFile\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_f_missing.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_missing PROPERTY LABELS DDBase)
@@ -46,7 +46,7 @@ set_property(TEST DDBase_CmdOpt_f_missing PROPERTY LABELS DDBase)
 add_test(NAME DDBase_CmdOpt_f_invalid
          COMMAND ${CMAKE_COMMAND}
          -DTEST_PROG=$<TARGET_FILE:DDBase>
-         -DARGS="-f ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.sp3"
+         -DARGS=-f\ ${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.sp3\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_f_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_invalid PROPERTY LABELS DDBase)
@@ -59,7 +59,7 @@ add_test(NAME DDBase_CmdOpt_f_valid
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
          -DTESTNAME=DDBase_CmdOpt_f_valid
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}
+         -DARGS=-d\ -v\ -f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_f_valid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testsuccexp.cmake)
 set_property(TEST DDBase_CmdOpt_f_valid PROPERTY LABELS DDBase)
@@ -103,7 +103,7 @@ add_test(NAME DDBase_CmdOpt_obspath_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_obspath_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_obspath_invalid PROPERTY LABELS DDBase)
@@ -119,7 +119,7 @@ add_test(NAME DDBase_CmdOpt_obsfile_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_obsfile_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_obsfile_invalid PROPERTY LABELS DDBase)
@@ -135,7 +135,7 @@ add_test(NAME DDBase_CmdOpt_navpath_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --ObsFile\ missing_obs_file\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_navpath_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_navpath_invalid PROPERTY LABELS DDBase)
@@ -151,7 +151,7 @@ add_test(NAME DDBase_CmdOpt_navfile_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavFile\ missing_nav_file
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --NavFile\ missing_nav_file\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_navfile_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_navfile_invalid PROPERTY LABELS DDBase)
@@ -167,7 +167,7 @@ add_test(NAME DDBase_CmdOpt_eoppath_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --ObsFile\ missing_obs_file
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}/floop/derp\ --ObsFile\ missing_obs_file\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_eoppath_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_eoppath_invalid PROPERTY LABELS DDBase)
@@ -183,7 +183,7 @@ add_test(NAME DDBase_CmdOpt_eopfile_invalid
          -DTEST_PROG=$<TARGET_FILE:DDBase>
          -DTARGETDIR=${GNSSTK_APPS_TEST_OUTPUT_DIR}
          -DNODIFF=TRUE
-         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPFile\ missing_eop_file
+         -DARGS=-f${GNSSTK_APPS_TEST_DATA_DIR}/test_input_ddbase.opt_ok\ --ObsPath\ ${GNSSTK_APPS_TEST_DATA_DIR} --NavPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPPath\ ${GNSSTK_APPS_TEST_DATA_DIR}\ --EOPFile\ missing_eop_file\ --Log\ ${GNSSTK_APPS_TEST_OUTPUT_DIR}/ddbase_cmdopt_eopfile_invalid.log
          -DEXTPATH=${EXTPATH}
          -P ${CMAKE_SOURCE_DIR}/core/tests/testfailexp.cmake)
 set_property(TEST DDBase_CmdOpt_eopfile_invalid PROPERTY LABELS DDBase)
