@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.5.0
+%define version 13.6.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,19 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Oct 31 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v13.6.0 release
+- Fix ddbase tests that were writing to the same output file
+- Add Merge UsingWhereSat.md into the WhereSat.cpp doxygen documentation.
+- Update Changed the minimum cmake version
+- Add navdump option for printing satellite positions in geodetic coordinates
+- Add navdump option to request XVTs using a text file
+- Add navdump detail to xvt output
+- Add navdump support for more precise time stamps
+- Add navdump support for internal time system conversion
+- Update Split test data into a separate repo with submodule configuration
+- Update exception specifications from throw() to noexcept
+- Fix pipeline push artifacts
 * Thu Aug 25 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.5.0 release
 - Add sonar scan job to pipeline

@@ -1331,10 +1331,16 @@ push_artifacts:
     variables:
       - $BLD_ONLY_VS2019 == "True"
   variables:
-    # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
     DEB_9_PACKAGES: "debs/*bpo9*.deb"
     DEB_10_PACKAGES: "debs/*bpo10*.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
-    #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
   needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
   dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
+
+push_artifacts_windows:
+  extends:
+    - .push_selected_artifacts
+    - .vs2019_job
+  stage: push
+  needs: [package_windows_vs2019]
+  dependencies: [package_windows_vs2019]

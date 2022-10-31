@@ -1,3 +1,22 @@
+# Version 13.6.0   Monday October 31, 2022
+
+Modifications by Author
+-----------------------
+     Dan Wright <dan.wright@arlut.utexas.edu> (1):
+           Changed minimum cmake version
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           fix pipeline push artifacts
+
+     John Knutson <johnk@arlut.utexas.edu> (5):
+           Change throw() to noexcept
+           Split test data into a separate repo
+           navdump enhancements in support of GLONASS work
+           Merge the contents of the old UsingWhereSat.md file with the WhereSat...
+           Fix ddbase tests to not output to the same file
+
+
+
 # Version 13.5.0   Thursday August 25, 2022
 
 Modifications by Author
