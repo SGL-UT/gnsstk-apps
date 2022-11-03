@@ -93,7 +93,7 @@ public:
 
    RinEditNav(const string& applName);
 
-   bool initialize(int argc, char *argv[], bool pretty=true) throw() override;
+   bool initialize(int argc, char *argv[], bool pretty=true) noexcept override;
 
    void process() override;
 
@@ -179,7 +179,7 @@ RinEditNav(const string& applName)
 
 
 bool RinEditNav ::
-initialize(int argc, char *argv[], bool pretty) throw()
+initialize(int argc, char *argv[], bool pretty) noexcept
 {
    if (!BasicFramework::initialize(argc, argv, pretty))
       return false;

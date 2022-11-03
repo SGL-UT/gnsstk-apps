@@ -56,7 +56,7 @@ public:
       /** Load all specified input files.
        * @copydetails BasicFramework::initialize()
        */
-   bool initialize(int argc, char* argv[], bool pretty=true) throw() override;
+   bool initialize(int argc, char* argv[], bool pretty=true) noexcept override;
 
       /// Print out a message if no errors were found.
    void shutDown() override;
@@ -79,7 +79,7 @@ SatMetaDataStoreCheck(const string& applName)
 
 
 bool SatMetaDataStoreCheck ::
-initialize(int argc, char* argv[], bool pretty) throw()
+initialize(int argc, char* argv[], bool pretty) noexcept
 {
    if (!BasicFramework::initialize(argc, argv))
       return false;

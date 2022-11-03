@@ -117,7 +117,7 @@ public:
    virtual bool initialize( int argc,
                             char *argv[],
                             bool pretty = true )
-      throw();
+      noexcept;
 
       /// load ephemeris data
    virtual void additionalSetup();
@@ -182,7 +182,7 @@ bool FindMoreThan12 ::
 initialize( int argc,
             char *argv[],
             bool pretty )
-   throw()
+   noexcept
 {
    if (!BasicFramework::initialize(argc, argv, pretty))
       return false;

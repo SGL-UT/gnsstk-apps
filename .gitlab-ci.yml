@@ -134,6 +134,20 @@ static_analysis:
   # Allow failures here to prevent blocking the rest of the pipeline.
   allow_failure: true
 
+submodule_check:
+  stage: check
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  variables:
+    GIT_SUBMODULE_UPDATE_FLAGS: --remote
+  only:
+    - main
+  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+  script:
+    - (! git status --porcelain | grep 'M data')
+
 # sgl_lint will verify that source files have proper copyright.
 sgllint_lint:
   stage: check
@@ -383,25 +397,6 @@ conda_op2_build:
     OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
     PKG_TYPE: "pkg_max"
   extends: .build_conda
-
-rhel7_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - mkdir -p build
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - make all -j 4
-  artifacts:
-    paths:
-    - build/
 
 rhel8_build:
   stage: build
@@ -670,24 +665,6 @@ deb11_op2_test:
   dependencies:
     - deb11_op2_build
 
-rhel7_test:
-  stage: test
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - rhel7_build
-
 rhel8_test:
   stage: test
   needs: [rhel8_build]
@@ -898,25 +875,6 @@ deb11_user_install:
   dependencies:
     - deb11_build
 
-rhel7_user_install:
-  stage: install
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - make install -j 4
-  artifacts:
-    paths:
-      - build/install
-  dependencies:
-    - rhel7_build
-
 rhel8_user_install:
   stage: install
   needs: [rhel8_build]
@@ -1040,23 +998,6 @@ deb11_system_install:
   dependencies:
     - deb11_build
 
-
-rhel7_system_install:
-  stage: install
-  needs: [rhel7_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd build
-    - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - sudo make install -j 4
-  dependencies:
-    - rhel7_build
-
 rhel8_system_install:
   stage: install
   needs: [rhel8_build]
@@ -1086,10 +1027,16 @@ package_debian_9:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
     # Remove any directories left over from the above script.
     - rm -rf packages
+    # Mark the debian log so that this package is a backport.
+    # Use the most recent Maintainer as current maintainer.
+    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
+    - dch --bpo "No Changes"
     - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=stretch-sgl"
     - mkdir debs
     - mv ../*.deb debs
@@ -1112,6 +1059,8 @@ package_debian_10:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
     # Remove any directories left over from the above script.
@@ -1142,6 +1091,8 @@ package_debian_11:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
+    # kludge for dpkg
+    - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
     # Remove any directories left over from the above script.
@@ -1187,25 +1138,6 @@ package_conda:
   artifacts:
     paths:
       - conda-bld/linux-64/
-  dependencies: []
-
-package_redhat:
-  stage: package
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - bash rpm_files/setup_dirs.sh
-    - git archive --prefix gnsstk-apps-master/ -o rpm_files/SOURCES/gnsstk-apps-master.tar.gz HEAD
-    - pushd rpm_files
-    - rpmbuild --define "_topdir ${PWD}" --define "debug_package %{nil}" -ba SPECS/gnsstk-apps.spec
-  artifacts:
-    paths:
-      - rpm_files/RPMS/x86_64/gnsstk-*
-      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
 
 package_redhat_8:
@@ -1376,22 +1308,6 @@ deb11_deploy:
   dependencies:
     - package_debian_11
 
-rhel7_deploy:
-  stage: deploy
-  needs: [package_redhat]
-  extends: .package_deploy
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-7:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat pkg_min
-    - cd rpm_files/RPMS/x86_64/
-    - sudo yum install gnsstk-*.rpm -y
-    - timeconvert
-  dependencies:
-    - package_redhat
-
 rhel8_deploy:
   stage: deploy
   needs: [package_redhat_8]
@@ -1415,10 +1331,16 @@ push_artifacts:
     variables:
       - $BLD_ONLY_VS2019 == "True"
   variables:
-    # CONDA_PACKAGES: "conda-bld/linux-64/*.tar.bz2"
-    DEB_9_PACKAGES: "debs/*-1_amd64.deb"
+    DEB_9_PACKAGES: "debs/*bpo9*.deb"
     DEB_10_PACKAGES: "debs/*bpo10*.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
-    #RPM_PACKAGES: "rpm_files/RPMS/x86_64/*.rpm"
-  needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat, package_redhat_8]
-  dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat, package_redhat_8]
+  needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
+  dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
+
+push_artifacts_windows:
+  extends:
+    - .push_selected_artifacts
+    - .vs2019_job
+  stage: push
+  needs: [package_windows_vs2019]
+  dependencies: [package_windows_vs2019]

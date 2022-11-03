@@ -1,3 +1,23 @@
+gnsstk-apps (13.6.0-1) stable; urgency=low
+
+  * Updated to version 13.6.0
+  * Fix pipeline push artifacts
+  * Update exception specifications from throw() to noexcept
+  * Update Split test data into a separate repo with submodule
+    configuration
+  * Add navdump support for internal time system conversion
+  * Add navdump support for more precise time stamps
+  * Add navdump detail to xvt output
+  * Add navdump option to request XVTs using a text file
+  * Add navdump option for printing satellite positions in geodetic
+    coordinates
+  * Update Changed the minimum cmake version
+  * Add Merge UsingWhereSat.md into the WhereSat.cpp doxygen
+    documentation.
+  * Fix ddbase tests that were writing to the same output file
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Mon, 31 Oct 2022 15:12:49 -0500
+
 gnsstk-apps (13.5.0-1) stable; urgency=low
 
   * Updated to version 13.5.0

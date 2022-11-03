@@ -158,7 +158,7 @@ int DumpData(string msg=string("DUMP"));
 class GlobalData : public Singleton<GlobalData> {
 public:
    // Default and only constructor, sets defaults.
-   GlobalData() throw() { SetDefaults(); }
+   GlobalData() noexcept { SetDefaults(); }
 
    // prgm housekeeping
    static const std::string Version;   // see below
@@ -251,7 +251,7 @@ public:
    std::string longfmt;                // times in error messages, etc.
 
 private:
-   void SetDefaults(void) throw()
+   void SetDefaults(void) noexcept
    {
       PrgmName = std::string("rstats");
 

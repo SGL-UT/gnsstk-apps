@@ -115,9 +115,9 @@ using namespace gnsstk;
 class RinexElvStrip : public BasicFramework
 {
 public:
-   RinexElvStrip(const string& app) throw();
-   virtual ~RinexElvStrip() throw() {}
-   virtual bool initialize(int argc, char *argv[], bool pretty=true) throw();
+   RinexElvStrip(const string& app) noexcept;
+   virtual ~RinexElvStrip() noexcept {}
+   virtual bool initialize(int argc, char *argv[], bool pretty=true) noexcept;
 
 protected:
    virtual void additionalSetup();
@@ -140,7 +140,7 @@ private:
 
 const double RinexElvStrip::DEFAULT_ELEVATION_MASK = 10.0;
 
-RinexElvStrip::RinexElvStrip(const string& app) throw()
+RinexElvStrip::RinexElvStrip(const string& app) noexcept
       : BasicFramework(app, "Strip low elevation data from observations."),
         inputArg('i', "input", "Input RINEX obs file", true),
         outputArg('o', "output", "Output RINEX obs file", true),
@@ -160,7 +160,7 @@ RinexElvStrip::RinexElvStrip(const string& app) throw()
    elvArg.setMaxCount(1);
 }
 
-bool RinexElvStrip::initialize(int argc, char *argv[], bool pretty) throw()
+bool RinexElvStrip::initialize(int argc, char *argv[], bool pretty) noexcept
 {
    if (!BasicFramework::initialize(argc, argv, pretty))
       return false;
