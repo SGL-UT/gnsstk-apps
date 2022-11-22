@@ -7,7 +7,7 @@ if [ -z $CI_API_TOKEN ]; then
     exit 1
 fi
 
-DEBIAN_JOB=${1:-package_debian_9}
+DEBIAN_JOB=${1:-package_10}
 PKG_TYPE=$2 #If set to pkg_min then only install required dependencies and not optional libs.
             #If set to pkg_max then install both required and optional libs
 
