@@ -248,25 +248,6 @@ repository_validation:
 #
 # Build Stage - Try building in several environments.
 #
-
-deb9_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-    - build/
-
 deb10_build:
   stage: build
   needs: []
@@ -528,27 +509,6 @@ windows_op1_build_vs2019_dll:
     paths:
     - build/
   allow_failure: false
-
-# Test Stage
-# Runs all tests of GNSSTK for each platform
-# Commenting out this job since one unit test is failing and we don't need to support Debian 9 anymore.
-# deb9_test:
-#   stage: test
-#   needs: [deb9_build]
-#   extends: .normal_job
-#   tags:
-#     - docker-executor
-#   image: $DOCKER_REGISTRY/sgl_ci/debian9_fai_ish
-#   script:
-#     - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-#     - cd build
-#     - ctest -j 4
-#   artifacts:
-#     when: on_failure
-#     paths:
-#     - build/Testing/Temporary/
-#   dependencies:
-#     - deb9_build
 
 .test_conda:
   stage: test
@@ -834,28 +794,6 @@ sonar-scan:
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
 # downstream builds.
-deb9_user_install:
-  stage: install
-  needs: [deb9_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - make install -j 4
-  artifacts:
-    paths:
-      - build/install
-  dependencies:
-    - deb9_build
-
-# User_Install Stage
-# Tests user install of GNSSTk on each platform, saves artifacts for
-# downstream builds.
 deb11_user_install:
   stage: install
   needs: [deb11_build]
@@ -964,24 +902,6 @@ user_install_windows_vs2019_dll:
 
 # System Stage
 # Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
-deb9_system_install:
-  stage: install
-  needs: [deb9_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-    - cd build
-    - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk -DPYTHON_EXECUTABLE=/usr/bin/python3 ../
-    - sudo make install -j 4
-  dependencies:
-    - deb9_build
-
-# System Stage
-# Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
 deb11_system_install:
   stage: install
   needs: [deb11_build]
@@ -1019,37 +939,6 @@ rhel8_system_install:
 # Tests packaging of GNSSTk-apps on all platforms
 # Temporarily changing name back to old name so repo_utils can find this job.
 # We will standardize job names per Jira SIM-55
-package_debian_9:
-  stage: package
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
-  script:
-    # kludge for dpkg
-    - rm -f .gitmodules
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-    # Remove any directories left over from the above script.
-    - rm -rf packages
-    # Mark the debian log so that this package is a backport.
-    # Use the most recent Maintainer as current maintainer.
-    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
-    - dch --bpo "No Changes"
-    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=stretch-sgl"
-    - mkdir debs
-    - mv ../*.deb debs
-    - mv ../*.changes debs
-    - mv ../*.dsc debs
-    - mv ../*.git ../*.gitshallow debs
-    - mv ../*.buildinfo debs
-  artifacts:
-    paths:
-      - debs/
-  dependencies:
-    - deb9_build
-
 #Temporarily changing name back to old name so repo_utils can find this job.  We will standardize job names per Jira SIM-55
 package_debian_10:
   stage: package
@@ -1257,23 +1146,6 @@ package_windows_op1_vs2019_dll:
 
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
-deb9_deploy:
-  stage: deploy
-  needs: [package_debian_9]
-  extends: .package_deploy
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-9:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_9 pkg_min
-    - cd debs
-    - sudo apt-get -y install ./*.deb
-    - python3 -c "import gnsstk"
-    - timeconvert
-  dependencies:
-    - package_debian_9
-
 deb10_deploy:
   stage: deploy
   needs: [package_debian_10]
@@ -1331,11 +1203,10 @@ push_artifacts:
     variables:
       - $BLD_ONLY_VS2019 == "True"
   variables:
-    DEB_9_PACKAGES: "debs/*bpo9*.deb"
     DEB_10_PACKAGES: "debs/*bpo10*.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
-  needs: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
-  dependencies: [package_conda, package_debian_9, package_debian_10, package_debian_11, package_redhat_8]
+  needs: [package_conda, package_debian_10, package_debian_11, package_redhat_8]
+  dependencies: [package_conda, package_debian_10, package_debian_11, package_redhat_8]
 
 push_artifacts_windows:
   extends:
