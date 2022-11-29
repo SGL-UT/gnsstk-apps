@@ -286,6 +286,8 @@ public:
    CommandOptionWithAnyArg geodOpt;
       /// Specify files to load ONLY for changing time systems.
    CommandOptionWithAnyArg toFileOpt;
+      /// command option for specifying the location of the satellite metadata.
+   CommandOptionWithAnyArg satMetaOpt;
       /// High level nav store interface.
    std::shared_ptr<NavLibrary> navLib;
       /// Time system offsets when requested.
@@ -300,6 +302,8 @@ public:
    NavMessageTypeSet nmts;
       /// Description of how to specify a nav message
    static const std::string specHelp;
+      /// Storage for PRN<->SVN translation.
+   SatMetaDataStore satMetaDataStore;
 };
 
 
@@ -550,6 +554,8 @@ NavDump(const string& applName)
                   " system conversions during look-ups for everything else."
                   "  Only makes sense to use with -F -X or --xvt-file when a"
                   " time system is specified."),
+        satMetaOpt('M', "svconfig", "File containing satellite configuration"
+                   " information for mapping SVN<->PRN"),
         enumHelpOpt('E', "enum"),
         detail(DumpDetail::Full),
         ell(nullptr),
@@ -654,6 +660,19 @@ initialize(int argc, char *argv[], bool pretty) noexcept
          return false;
       }
    }
+   if (satMetaOpt.getCount())
+   {
+      for (unsigned i = 0; i < satMetaOpt.getCount(); i++)
+      {
+         if (!satMetaDataStore.loadData(satMetaOpt.getValue()[i]))
+         {
+            cerr << "Failed to load \"" << satMetaOpt.getValue()[i]
+                 << "\"" << endl;
+            return false;
+         }
+      }
+   }
+   gnsstk::NavData::satMetaDataStore = &satMetaDataStore;
    return true;
 }
 
