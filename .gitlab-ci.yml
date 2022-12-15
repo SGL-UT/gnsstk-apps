@@ -365,6 +365,24 @@ deb11_op2_build:
     paths:
       - build/
 
+ubu20_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    - mkdir -p build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
 conda_build:
   variables:
     OPT_LIBS: ""
@@ -625,6 +643,24 @@ deb11_op2_test:
   dependencies:
     - deb11_op2_build
 
+ubu20_test:
+  stage: test
+  needs: [ubu20_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    - cd build
+    - ctest -j 4
+  artifacts:
+    when: on_failure
+    paths:
+    - build/Testing/Temporary/
+  dependencies:
+    - ubu20_build
+
 rhel8_test:
   stage: test
   needs: [rhel8_build]
@@ -813,6 +849,25 @@ deb11_user_install:
   dependencies:
     - deb11_build
 
+ubu20_user_install:
+  stage: install
+  needs: [ubu20_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    - cd build
+    - export gnsstk=`pwd`/install
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - make install -j 4
+  artifacts:
+    paths:
+      - build/install
+  dependencies:
+    - ubu20_build
+
 rhel8_user_install:
   stage: install
   needs: [rhel8_build]
@@ -918,6 +973,22 @@ deb11_system_install:
   dependencies:
     - deb11_build
 
+ubu20_system_install:
+  stage: install
+  needs: [ubu20_build]
+  extends: .normal_job
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    - cd build
+    - export gnsstk=/usr/local
+    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
+    - make install -j 4
+  dependencies:
+    - ubu20_build
+
 rhel8_system_install:
   stage: install
   needs: [rhel8_build]
@@ -1000,6 +1071,36 @@ package_debian_11:
   artifacts:
     paths:
       - debs/
+
+package_ubuntu_20.04:
+  stage: package
+  needs: []
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    # kludge for dpkg
+    - rm -f .gitmodules
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    # Remove any directories left over from the above script.
+    - rm -rf packages
+    # Mark the debian log so that this package is a backport.
+    # Use the most recent Maintainer as current maintainer.
+    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
+    - dch --bpo "No Changes" && dch  -l "ubuntu" -D focal 'No Changes' -u low
+    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=focal-sgl"
+    - mkdir debs
+    - mv ../*.deb debs
+    - mv ../*.changes debs
+    - mv ../*.dsc debs
+    - mv ../*.git ../*.gitshallow debs
+    - mv ../*.buildinfo debs
+  artifacts:
+    paths:
+      - debs/
+  dependencies:
+    - ubu20_build
 
 package_conda:
   stage: package
@@ -1180,6 +1281,23 @@ deb11_deploy:
   dependencies:
     - package_debian_11
 
+ubu20_deploy:
+  stage: deploy
+  needs: [package_ubuntu_20.04]
+  extends: .package_deploy
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    - cd debs
+    - sudo apt-get -y install ./*.deb
+    - python3 -c "import gnsstk"
+    - timeconvert
+  dependencies:
+    - package_ubuntu_20.04
+
 rhel8_deploy:
   stage: deploy
   needs: [package_redhat_8]
@@ -1203,10 +1321,11 @@ push_artifacts:
     variables:
       - $BLD_ONLY_VS2019 == "True"
   variables:
-    DEB_10_PACKAGES: "debs/*bpo10*.deb"
+    DEB_10_PACKAGES: "debs/*bpo10+1_amd64.deb"
     DEB_11_PACKAGES: "debs/*bpo11*.deb"
-  needs: [package_conda, package_debian_10, package_debian_11, package_redhat_8]
-  dependencies: [package_conda, package_debian_10, package_debian_11, package_redhat_8]
+    UBU_20_PACKAGES: "debs/*bpo10+1ubuntu*.deb"
+  needs: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
+  dependencies: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
 
 push_artifacts_windows:
   extends:
