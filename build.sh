@@ -31,7 +31,7 @@ examples:
    $ build.sh
      Build and install to $system_install_prefix
    $ sudo build.sh -s -b /tmp/qwe
-      Build, test and install to $navsat_tools
+      Build, test and install to $gnsstk_apps
    $ build.sh -tue
      build for running debugger
    $ build.sh -vt  -- -DCMAKE_BUILD_TYPE=debug
@@ -69,7 +69,7 @@ OPTIONS:
                         Make sure the build path is writable by root.
 
    -u                   Install the build to the path in the
-                        \$navsat_tools environment variable.  If this
+                        \$gnsstk_apps environment variable.  If this
                         variable is not set, it will be installed to
                         $user_install_prefix.
 
@@ -119,7 +119,7 @@ while getopts ":hb:cdepi:j:nP:F:sutTKv" OPTION; do
            install_prefix=$system_install_prefix
            ;;
         u) install=1
-           install_prefix=${navsat_tools:-$user_install_prefix}
+           install_prefix=${gnsstk_apps:-$user_install_prefix}
            user_install=1
            ;;
         t) test_switch=1
@@ -158,8 +158,20 @@ if [ -f "$LOG" ]; then
 fi
 
 if [ $clean ]; then
+
+    case `uname` in
+    Linux)
+       echo "Uninstalling using install_manifest.txt if it exists..."
+       find $build_root -name "install_manifest.txt" -exec cat {} \; | xargs rm -fv
+       ;;
+    *)
+        echo "Not running make uninstall on non-Linux systems"
+        ;;
+    esac
+
     rm -rf "$build_root"/*
     log "Cleaned out $build_root ..."
+
 fi
 
 if ((verbose>0)); then

@@ -1,3 +1,20 @@
+# Version 14.0.0   Thursday December 22, 2022
+
+Modifications by Author
+-----------------------
+     Dan Wright <dan.wright@arlut.utexas.edu> (3):
+           Ci clean build
+           Ci cmake package name
+           Deprecated debian 9
+
+     David Barber <dbarber@arlut.utexas.edu> (1):
+           adding ubuntu 20.04 pipeline jobs
+
+     John Knutson <johnk@arlut.utexas.edu> (1):
+           Add signals and other improvements to nav dump
+
+
+
 # Version 13.6.0   Monday October 31, 2022
 
 Modifications by Author

@@ -1,3 +1,14 @@
+gnsstk-apps (14.0.0-1) stable; urgency=low
+
+  * Updated to version 14.0.0
+  * Updated the clean build parameter
+  * Deprecated Debian 9 build
+  * Add PRN/SVN mapping support to navdump
+  * Add ubuntu 20.04 pipeline jobs
+  * Update replaced hypen with underscore from cmake package name
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Thu, 22 Dec 2022 14:39:25 -0600
+
 gnsstk-apps (13.6.0-1) stable; urgency=low
 
   * Updated to version 13.6.0

@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 13.6.0
+%define version 14.0.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -10,7 +10,7 @@ License:        LGPL
 Source:         %{name}-master.tar.gz
 URL:            https://github.com/SGL-UT/GNSSTk
 Group:          Development/Libraries
-Requires: gnsstk >= 13.0.0, gnsstk < 14.0.0
+Requires: gnsstk >= 14.0.0, gnsstk < 15.0.0
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -49,10 +49,17 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc README.md COPYING.md RELNOTES.md
 /usr/bin/*
-/usr/share/cmake/GNSSTK-Apps
+/usr/share/cmake/GNSSTK_Apps
 
 
 %changelog
+* Thu Dec 22 2022 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.0.0 release
+- Update replaced hypen with underscore from cmake package name
+- Add ubuntu 20.04 pipeline jobs
+- Add PRN/SVN mapping support to navdump
+- Deprecated Debian 9 build
+- Updated the clean build parameter
 * Mon Oct 31 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v13.6.0 release
 - Fix ddbase tests that were writing to the same output file

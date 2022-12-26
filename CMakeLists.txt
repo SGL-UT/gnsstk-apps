@@ -1,23 +1,23 @@
 #============================================================
-# Name    = $NAVSAT_TOOLS/CMakeLists.txt
-# Purpose = Generator of build framework (e.g. Makefiles) for Navsat-Tools
+# Name    = $GNSSTK_APPS/CMakeLists.txt
+# Purpose = Generator of build framework (e.g. Makefiles) for GNSSTK_APPS
 # Notes   = This is the top-level CMake input file
-#           Depends on $NAVSAT_TOOLS/BuildSetup.cmake
-#           Is dependend on by $NAVSAT_TOOLS/build.sh
+#           Depends on $GNSSTK_APPS/BuildSetup.cmake
+#           Is dependend on by $GNSSTK_APPS/build.sh
 #============================================================
 
 cmake_minimum_required( VERSION 3.7.2 )
 cmake_policy( VERSION 3.7.2 )
 
-project( NAVSAT_TOOLS )
-set( NAVSAT_TOOLS_VERSION_MAJOR "13" )
-set( NAVSAT_TOOLS_VERSION_MINOR "6" )
-set( NAVSAT_TOOLS_VERSION_PATCH "0" )
-set( NAVSAT_TOOLS_VERSION "${NAVSAT_TOOLS_VERSION_MAJOR}.${NAVSAT_TOOLS_VERSION_MINOR}.${NAVSAT_TOOLS_VERSION_PATCH}" )
-set( CPACK_PACKAGE_VERSION_MAJOR ${NAVSAT_TOOLS_VERSION_MAJOR} )
-set( CPACK_PACKAGE_VERSION_MINOR ${NAVSAT_TOOLS_VERSION_MINOR} )
-set( CPACK_PACKAGE_VERSION_PATCH ${NAVSAT_TOOLS_VERSION_PATCH} )
-set( CPACK_PACKAGE_VERSION ${NAVSAT_TOOLS_VERSION} )
+project( GNSSTK_APPS )
+set( GNSSTK_APPS_VERSION_MAJOR "14" )
+set( GNSSTK_APPS_VERSION_MINOR "0" )
+set( GNSSTK_APPS_VERSION_PATCH "0" )
+set( GNSSTK_APPS_VERSION "${GNSSTK_APPS_VERSION_MAJOR}.${GNSSTK_APPS_VERSION_MINOR}.${GNSSTK_APPS_VERSION_PATCH}" )
+set( CPACK_PACKAGE_VERSION_MAJOR ${GNSSTK_APPS_VERSION_MAJOR} )
+set( CPACK_PACKAGE_VERSION_MINOR ${GNSSTK_APPS_VERSION_MINOR} )
+set( CPACK_PACKAGE_VERSION_PATCH ${GNSSTK_APPS_VERSION_PATCH} )
+set( CPACK_PACKAGE_VERSION ${GNSSTK_APPS_VERSION} )
 
 
 option( BUILD_SHARED_LIBS "Build using shared libraries" OFF )
@@ -165,16 +165,16 @@ endif()
 # Export the project import cmake files.
 #----------------------------------------
 include( CMakePackageConfigHelpers )
-set( INSTALL_CONFIG_DIR ${CMAKE_INSTALL_DATADIR}/cmake/GNSSTK-Apps )
-configure_package_config_file( ${CMAKE_CURRENT_SOURCE_DIR}/GNSSTK-AppsConfig.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfig.cmake
+set( INSTALL_CONFIG_DIR ${CMAKE_INSTALL_DATADIR}/cmake/GNSSTK_Apps )
+configure_package_config_file( ${CMAKE_CURRENT_SOURCE_DIR}/GNSSTK_AppsConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK_AppsConfig.cmake
     INSTALL_DESTINATION ${INSTALL_CONFIG_DIR}
     PATH_VARS CMAKE_INSTALL_LIBDIR CMAKE_INSTALL_INCLUDEDIR CMAKE_INSTALL_BINDIR CMAKE_INSTALL_PREFIX INSTALL_CONFIG_DIR )
-write_basic_package_version_file( ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfigVersion.cmake
+write_basic_package_version_file( ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK_AppsConfigVersion.cmake
     VERSION ${GNSSTK_VERSION}
     COMPATIBILITY SameMajorVersion )
 install( FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfig.cmake
-    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK-AppsConfigVersion.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK_AppsConfig.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/GNSSTK_AppsConfigVersion.cmake
     DESTINATION
     ${INSTALL_CONFIG_DIR} )
