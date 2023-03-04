@@ -15,7 +15,7 @@
 //  You should have received a copy of the GNU Lesser General Public
 //  License along with GNSSTk; if not, write to the Free Software Foundation,
 //  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110, USA
-//  
+//
 //  This software was developed by Applied Research Laboratories at the
 //  University of Texas at Austin.
 //  Copyright 2004-2022, The Board of Regents of The University of Texas System
@@ -29,9 +29,9 @@
 //  within the U.S. Department of Defense. The U.S. Government retains all
 //  rights to use, duplicate, distribute, disclose, or release this software.
 //
-//  Pursuant to DoD Directive 523024 
+//  Pursuant to DoD Directive 523024
 //
-//  DISTRIBUTION STATEMENT A: This software has been approved for public 
+//  DISTRIBUTION STATEMENT A: This software has been approved for public
 //                            release, distribution is unlimited.
 //
 //==============================================================================
@@ -274,9 +274,9 @@ initialize(int argc, char *argv[], bool pretty) noexcept
          return false;
       }
    }
-   
+
    return true;
-}   
+}
 
 
 void RinEditNav ::
@@ -462,9 +462,8 @@ writeHeaders()
       for (const auto& i : dmi.first->header.mapIonoCorr)
       {
          merged.mapIonoCorr[i.first] = i.second;
-         merged.valid |= (
-            dmi.first->header.valid & (Rinex3NavHeader::validIonoCorrGPS |
-                                       Rinex3NavHeader::validIonoCorrGal));
+         merged.valid |= (dmi.first->header.valid
+                          & Rinex3NavHeader::validIonoCorr);
       }
          // attempt to determine the system or mixed from the input
       SatelliteSystem guessedSys;
