@@ -130,11 +130,11 @@ void MergeRinNav::process()
    fff.unique(Rinex3NavDataOperatorEqualsFull());
 
       // set the pgm/runby/date field
-   merged.theHeader.fileType = string("NAVIGATION");
+   merged.theHeader.fileType = string("NAVIGATION DATA");
    merged.theHeader.fileProgram = std::string("mergeRinNav");
    merged.theHeader.fileAgency = std::string("gnsstk");
    merged.theHeader.date = CivilTime(SystemTime()).asString();
-   merged.theHeader.version = 2.1;
+   merged.theHeader.version = 3.04;
    merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validVersion;
    merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validRunBy;
    merged.theHeader.valid |= gnsstk::Rinex3NavHeader::validComment;
