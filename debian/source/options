@@ -1,2 +1,2 @@
-extend-diff-ignore="debian/changelog$"
+extend-diff-ignore="(debian/changelog|debian/.*install.*|debian/.*enable.*)$"
 git-depth=1

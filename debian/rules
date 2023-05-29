@@ -17,11 +17,22 @@ include /usr/share/dpkg/default.mk
 # package maintainers to append LDFLAGS
 #export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
+major = $(shell dpkg-parsechangelog -S Version | sed -ne 's/^\([0-9]\+\)\..*$$/\1/p')
+minor = $(shell dpkg-parsechangelog -S Version | sed -ne 's/^[0-9]\+\.\([0-9]\+\)\..*$$/\1/p')
+
+gen_control:
+	@echo "$@ Generated $(major) $(minor)."
+	sed -e 's/__VER__/$(major)/g' debian/control.in >debian/control
+# Update install file for co-installation of major pkg versions
+	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk$(major)-apps.install
+	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_enable.sh
+	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_post_install.sh
+
 # main packaging script based on dh7 syntax
 %:
 	dh $@  --parallel --with python3
 
-override_dh_auto_configure:
+override_dh_auto_configure: gen_control
 	dh_auto_configure -- \
 	 -DBUILD_EXT=ON \
 	 -DUSE_RPATH=OFF \
@@ -32,3 +43,7 @@ override_dh_usrlocal:
 
 override_dh_shlibdeps:
 	dh_shlibdeps --dpkg-shlibdeps-params=--ignore-missing-info
+
+override_dh_auto_install: gen_control
+	dh_auto_install --destdir=debian/tmp
+	sed -e 's/PACKAGE_PREFIX_DIR}\/bin/PACKAGE_PREFIX_DIR}\/share\/gnsstk$(major)-apps\/bin/g' -i debian/tmp/usr/share/cmake/GNSSTK_Apps/GNSSTK_AppsConfig.cmake
