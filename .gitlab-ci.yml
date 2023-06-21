@@ -333,6 +333,7 @@ deb11_op1_build:
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
+    - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
     # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_1
@@ -633,6 +634,7 @@ deb11_op2_test:
     - docker-executor
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
+    - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
     - cd build
     - ctest -j 4
