@@ -429,7 +429,7 @@ process()
       // get the ephemeris source(s)
       // without clock, SP3 doesn't work.
    navLib.addFactory(ndfp); // must be done before setTypeFilter
-   navLib.setTypeFilter({NavMessageType::Ephemeris, NavMessageType::Clock});
+   navLib.setTypeFilter({NavMessageType::Ephemeris, NavMessageType::Almanac, NavMessageType::Clock});
    if (debugLevel)
    {
       cout << "Attempting to read ephemeris data." << endl;
