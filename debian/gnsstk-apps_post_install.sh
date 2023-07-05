@@ -5,33 +5,27 @@
 SRC_FILE=/usr/share/gnsstk__VER__-apps/gnsstk-apps_enable.sh
 TGT_FILE=/etc/profile.d/gnsstk-apps_enable.sh
 
+# Set current major version that is being installed. 
+SRC_GNSSTK_APPS_VER=__VER__
+
 # Initally file has not been copied yet.
 COPIED=0
 
-echo -e "\nAttempting to copy $SRC_FILE to $TGT_FILE \n"
-
-# Copying gnsstk-apps_enable.sh script to /etc/profile.d
+# Attempting to copy gnsstk-apps_enable.sh script to /etc/profile.d
+# It will copy for these two use cases:
+#   1) target file doesn't exist in /etc/profile.d
+#   2) target file already exists but target gnsstk-apps major version is older
+#         than source file gnsstk-apps major version
 if [[ -f "$SRC_FILE" && -f "$TGT_FILE" ]]; then
-    exit_loop=0
-    while [ $exit_loop -lt 1 ]
-    do
-    read -p "$TGT_FILE exits so do you want to overwrite it (y/n)?" yn
-        case $yn in
-            [yY])
-                echo -e "\nOk. Overwriting..."
-                cp -f $SRC_FILE $TGT_FILE
-                COPIED=1
-                exit_loop=1
-                ;;
-            [nN])
-                echo -e "\nOk. Exiting..."
-                exit_loop=1
-                ;;
-            *)
-                echo -e "\ninvalid response: ${yn}.  Try again..."
-                ;;
-        esac
-    done
+    TGT_GNSSTK_APPS_VER=$(sed -n -E -e 's/^GNSSTK_APPS_VER=([0-9]+).*/\1/p' $TGT_FILE)
+    if [ $TGT_GNSSTK_APPS_VER -lt $SRC_GNSSTK_APPS_VER ]; then
+        echo -e "\nCopying $SRC_FILE to $TGT_FILE"
+        cp -f $SRC_FILE $TGT_FILE
+        COPIED=1
+    else
+        echo -e "\nTarget gnsstk-apps major version $TGT_GNSSTK_APPS_VER is greater or equal to source gnsstk-apps major version $SRC_GNSSTK_APPS_VER"
+        echo -e "Therefore, not copying $SRC_FILE to $TGT_FILE\n"
+    fi
 else
     if [[ -f "$SRC_FILE" && ! -f "$TGT_FILE" ]]; then
         echo -e "\nCopying $SRC_FILE to $TGT_FILE"
