@@ -1,4 +1,5 @@
 #!/bin/bash
+# This file should be sourced and not executed as bash script.  Ex. source /etc/profile.d/gnsstk-apps_enable.sh
 GNSSTK_APPS_VER=__VER__
 
 # User created file that overwrites GNSSTK_APPS_VER variable.
@@ -13,3 +14,6 @@ fi
 
 echo "gnsstk-apps major version being used is $GNSSTK_APPS_VER"
 source /usr/share/gnsstk__VER__-apps/enable
+
+echo -e "\nThe following env variables have been set or are already set"
+env | grep 'LD_LIBRARY_PATH\|CPLUS_INCLUDE_PATH\|PYTHONPATH\|^PATH'

@@ -88,8 +88,8 @@ variables:
       - /^tag_.*$/
       - stable
       - /^release\/v[0-9.]*$/
-      - /^bugfix/ci_*$/
-      - /^feature/ci_*$/
+      - /^bugfix\/ci_.*$/
+      - /^feature\/ci_.*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
 
@@ -258,8 +258,8 @@ deb10_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
@@ -278,9 +278,9 @@ deb10_op1_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     # Link optional library
     - ./optional_package_add.sh $PACKAGE_CONFIG_1
     - mkdir -p build
@@ -301,9 +301,9 @@ deb10_op2_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_2
     - mkdir -p build
@@ -324,8 +324,8 @@ deb11_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -345,9 +345,9 @@ deb11_op1_build:
     # Install dependencies from latest CI first.
     - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_1
     - mkdir -p build
@@ -367,11 +367,10 @@ deb11_op2_build:
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
-    - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     # Link optional libraries
     - ./optional_package_add.sh $PACKAGE_CONFIG_2
     - mkdir -p build
@@ -392,8 +391,8 @@ ubu20_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
@@ -599,8 +598,8 @@ deb10_test:
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - ctest -j 4
   artifacts:
@@ -619,9 +618,9 @@ deb10_op2_test:
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     - cd build
     - ctest -j 4
   artifacts:
@@ -640,8 +639,8 @@ deb11_test:
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - ctest -j 4
   artifacts:
@@ -661,9 +660,9 @@ deb11_op2_test:
   script:
     - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /usr/share/${tks}*/${tks}_post_install.sh; done
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     - cd build
     - ctest -j 4
   artifacts:
@@ -682,8 +681,8 @@ ubu20_test:
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - ctest -j 4
   artifacts:
@@ -871,8 +870,8 @@ deb11_user_install:
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - export gnsstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -892,8 +891,8 @@ ubu20_user_install:
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - export gnsstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -1002,8 +1001,8 @@ deb11_system_install:
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - export gnsstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -1020,8 +1019,8 @@ ubu20_system_install:
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd build
     - export gnsstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -1063,8 +1062,8 @@ package_debian_10:
     - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     # Remove any directories left over from the above script.
     - rm -rf packages
     # Mark the debian log so that this package is a backport.
@@ -1097,8 +1096,8 @@ package_debian_11:
     - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     # Remove any directories left over from the above script.
     - rm -rf packages
     # Mark the debian log so that this package is a backport.
@@ -1127,8 +1126,8 @@ package_ubuntu_20.04:
     - rm -f .gitmodules
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     # Remove any directories left over from the above script.
     - rm -rf packages
     # Mark the debian log so that this package is a backport.
@@ -1303,10 +1302,12 @@ deb10_deploy:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd debs
     - sudo apt-get -y install ./*.deb
+    # source gnsstk-apps' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk-apps_enable.sh
     - python3 -c "import gnsstk"
     - timeconvert
   dependencies:
@@ -1322,10 +1323,12 @@ deb11_deploy:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd debs
     - apt-get -y install ./*.deb
+    # source gnsstk-apps' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk-apps_enable.sh
     - python3 -c "import gnsstk"
     - timeconvert
   dependencies:
@@ -1341,10 +1344,12 @@ ubu20_deploy:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
-    # source gnsstk's post install script to set private library install env variables.
-    - source /usr/share/gnsstk*/gnsstk_post_install.sh
+    # source gnsstk's enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
     - cd debs
     - sudo apt-get -y install ./*.deb
+    # source gnsstk-apps' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk-apps_enable.sh
     - python3 -c "import gnsstk"
     - timeconvert
   dependencies:

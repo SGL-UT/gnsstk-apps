@@ -26,7 +26,7 @@ gen_control:
 # Update install file for co-installation of major pkg versions
 	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk$(major)-apps.install
 	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_enable.sh
-	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_post_install.sh
+	sed -e 's/__VER__/$(major)/g' -i debian/postinst
 	sed -e 's/__VER__/$(major)/g' -i debian/prerm
 
 # main packaging script based on dh7 syntax
