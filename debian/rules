@@ -27,7 +27,7 @@ gen_control:
 	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk$(major)-apps.install
 	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_enable.sh
 	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_post_install.sh
-	sed -e 's/__VER__/$(major)/g' -i debian/gnsstk-apps_post_uninstall.sh
+	sed -e 's/__VER__/$(major)/g' -i debian/prerm
 
 # main packaging script based on dh7 syntax
 %:

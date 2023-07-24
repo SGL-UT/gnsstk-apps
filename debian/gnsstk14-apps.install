@@ -3,4 +3,3 @@ usr/share/cmake/GNSSTK_Apps/* usr/share/cmake/GNSSTK__VER___Apps
 debian/enable usr/share/gnsstk__VER__-apps
 debian/gnsstk-apps_enable.sh usr/share/gnsstk__VER__-apps
 debian/gnsstk-apps_post_install.sh usr/share/gnsstk__VER__-apps
-debian/gnsstk-apps_post_uninstall.sh usr/share/gnsstk__VER__-apps
