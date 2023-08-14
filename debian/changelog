@@ -1,3 +1,14 @@
+gnsstk-apps (14.1.0-1) focal; urgency=low
+
+  * Updated to version 14.1.0
+  * Fix expected time offset output.
+  * Fix deb11 optional pipeline jobs
+  * Fix WhereSat.cpp to no longer filter out almanac subframes when
+    loading data allowing the use-alm flag to function properly
+  * Update create debian/ubuntu major version coinstallable package
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Mon, 14 Aug 2023 12:45:12 -0500
+
 gnsstk-apps (14.0.0-1) stable; urgency=low
 
   * Updated to version 14.0.0

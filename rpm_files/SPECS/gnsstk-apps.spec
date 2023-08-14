@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.0.0
+%define version 14.1.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Aug 14 2023 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.0 release
+- Update create debian/ubuntu major version coinstallable package
+- Fix WhereSat.cpp to no longer filter out almanac subframes when loading data allowing the use-alm flag to function properly
+- Fix deb11 optional pipeline jobs
+- Fix expected time offset output.
 * Thu Dec 22 2022 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.0.0 release
 - Update replaced hypen with underscore from cmake package name

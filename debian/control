@@ -1,7 +1,7 @@
 Source: gnsstk-apps
 Priority: optional
 Maintainer: David Barber <dbarber@arlut.utexas.edu>
-Build-Depends: debhelper (>= 9), cmake, libgnsstk14
+Build-Depends: debhelper (>= 9), cmake, libgnsstk14 (>= 14.2.0)
 Standards-Version: 3.9.5
 Section: libs
 Homepage: http://www.gnsstk.org/
@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/SGL-UT/GNSSTk.git
 
 Package: gnsstk14-apps
 Architecture: any
-Depends: libgnsstk14, ${misc:Depends}, ${shlibs:Depends}
+Depends: libgnsstk14 (>= 14.2.0), ${misc:Depends}, ${shlibs:Depends}
 Description: GNSS Toolkit (GNSSTk) - command line tools
  The GNSS Toolkit (GNSSTk) is an open-source (LGPL) project sponsored by
  the Space and Geophysics Laboratory (SGL), part of the Applied Research
