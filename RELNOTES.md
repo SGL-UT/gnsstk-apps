@@ -1,21 +1,21 @@
-GNSSTk-APPs 14.0.0 Release Notes
+GNSSTk-APPs 14.1.0 Release Notes
 ========================
 
- * This release introduces a major update to the toolkit apps.
- * It includes the following:
-   * Updating cmake package from using a hyphen to using an underscore.
-   * Adding PRN/SVN mapping support to navdump.
-   * Adding Ubuntu20.04 (focal) support.
+ * This release includes the following:
+   * Fixing WhereSat.cpp to no longer filter out almanac subframes.
+   * Fixing expected time offset output in gnsstk data submodule repo.
+   * Co-installation of major versions of debian packages.
 
-Updates since v13.6.0
+Updates since v14.0.0
 ---------------------
 
 **Build System and Test Suite**
-  * Updated the clean build parameter
+  * Update create debian/ubuntu major version coinstallable package 
 
 **Gitlab CI**
-  * Add ubuntu 20.04 pipeline jobs
+  * Fix deb11 optional pipeline jobs
 
-**Library Changes**
-  * Update replaced hypen with underscore from cmake package name
-  * Add PRN/SVN mapping support to navdump
+Fixes since v14.0.0
+--------------------
+  * Fix expected time offset output.
+  * Fix WhereSat.cpp to no longer filter out almanac subframes when loading data allowing the use-alm flag to function properly

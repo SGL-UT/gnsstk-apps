@@ -1,3 +1,22 @@
+# Version 14.1.0   Monday August 14, 2023
+
+Modifications by Author
+-----------------------
+     David Barber <dbarber@arlut.utexas.edu> (5):
+           fix deb11 optional pipeline jobs
+           create debian/ubuntu major version coinstallable package
+           Apply code review updates from gnsstk coinstall MR
+           add uninstall script to debian prerm maintainer script
+           add postinstall script to debian postinst maintainer script
+
+     Sydney Holdampf <holdampf@arlut.utexas.edu> (1):
+           Don't filter out almanac subframes when loading data
+
+     Taben Malik <malik@arlut.utexas.edu> (1):
+           Fix expected time offset output
+
+
+
 # Version 14.0.0   Thursday December 22, 2022
 
 Modifications by Author

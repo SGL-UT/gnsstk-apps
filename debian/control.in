@@ -8,7 +8,7 @@ Homepage: http://www.gnsstk.org/
 Vcs-Git: https://github.com/SGL-UT/GNSSTk.git
 Vcs-Browser: https://github.com/SGL-UT/GNSSTk.git
 
-Package: gnsstk14-apps
+Package: gnsstk__VER__-apps
 Architecture: any
 Depends: libgnsstk14 (>= 14.2.0), ${misc:Depends}, ${shlibs:Depends}
 Description: GNSS Toolkit (GNSSTk) - command line tools

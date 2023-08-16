@@ -1,0 +1,2 @@
+export PATH=/usr/share/gnsstk${GNSSTK_APPS_VER}-apps/bin${PATH:+:${PATH}}
+export CMAKE_PREFIX_PATH=/usr/share/cmake/GNSSTK${GNSSTK_APPS_VER}_Apps${CMAKE_PREFIX_PATH:+:${CMAKE_PREFIX_PATH}}
