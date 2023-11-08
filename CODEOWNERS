@@ -16,23 +16,23 @@ ref/usersguide/ @johnk @renfrob @rain
 # ---------------------
 
 # Core apps
-core/apps/ @johnk @btolman
-core/apps/positioning/ @btolman @renfrob
-core/apps/Rinextools/ @btolman @renfrob
+core/apps/ @johnk @magliocca @evillalba
+core/apps/positioning/ @magliocca @renfrob @malik @evillalba
+core/apps/Rinextools/ @magliocca @renfrob @evillalba
 
 # Core tests
 core/tests/ @johnk @anthony @renfrob
 
 # Ext -- unsupported & unmaintained, not part of the API
 ext/ @johnk @dbarber
-ext/apps/filetools/ @btolman @renfrob
-ext/apps/geomatics/ @btolman
+ext/apps/filetools/ @magliocca @renfrob
+ext/apps/geomatics/ @magliocca @butcher
 ext/apps/rfw/ @johnk @renfrob
 
 # Other
 data/ @dbarber @kuck
 deprecated/ @dbarber @kuck
-examples/ @johnk @btolman @renfrob
+examples/ @johnk @magliocca @renfrob
 
 
 [CPP Reviewers]
