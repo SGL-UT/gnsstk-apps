@@ -1,3 +1,11 @@
+gnsstk-apps (14.1.1-1) focal; urgency=low
+
+  * Updated to version 14.1.1
+  * Update gnsstk-apps_enable.sh source commands to be POSIX compliant.
+  * Update codeowners file to replace contributors that left
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Mon, 18 Dec 2023 13:52:48 -0600
+
 gnsstk-apps (14.1.0-1) focal; urgency=low
 
   * Updated to version 14.1.0
