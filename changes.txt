@@ -1,0 +1,2 @@
+  * Update gnsstk-apps_enable.sh source commands to be POSIX compliant.
+  * Update codeowners file to replace contributors that left

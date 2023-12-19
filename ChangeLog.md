@@ -1,3 +1,15 @@
+# Version 14.1.1   Monday December 18, 2023
+
+Modifications by Author
+-----------------------
+     Sarah Magliocca <magliocca@arlut.utexas.edu> (1):
+           Replacing Brian Tolman as a CODEOWNER with GNSS Geospatial PO and others
+
+     Taben Malik <malik@arlut.utexas.edu> (1):
+           Making gnsstk-apps_enable.sh source commands POSIX compliant.
+
+
+
 # Version 14.1.0   Monday August 14, 2023
 
 Modifications by Author

@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.0
+%define version 14.1.1
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Mon Dec 18 2023 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.1 release
+- Update codeowners file to replace contributors that left
+- Update gnsstk-apps_enable.sh source commands to be POSIX compliant.
 * Mon Aug 14 2023 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.0 release
 - Update create debian/ubuntu major version coinstallable package
