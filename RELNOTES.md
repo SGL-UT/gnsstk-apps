@@ -1,13 +1,10 @@
-GNSSTk-APPs 14.1.1 Release Notes
+GNSSTk-APPs 14.1.2 Release Notes
 ========================
 
- * This release includes updates to the build system and GitLab CICD.
+ * This release includes a fix to update the windows installer path for NSIS installer packages.
 
-Updates since v14.1.0
+Updates since v14.1.1
 ---------------------
 
 **Build System and Test Suite**
-  * Update gnsstk-apps_enable.sh source commands to be POSIX compliant.
-
-**Gitlab CI**
-  * Update codeowners file to replace contributors that left
+  * Fix windows installer path
