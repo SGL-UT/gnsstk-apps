@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.1
+%define version 14.1.2
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -10,7 +10,7 @@ License:        LGPL
 Source:         %{name}-master.tar.gz
 URL:            https://github.com/SGL-UT/GNSSTk
 Group:          Development/Libraries
-Requires: gnsstk >= 14.0.0, gnsstk < 15.0.0
+Requires: gnsstk >= 14.4.0, gnsstk < 15.0.0
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu May 09 2024 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.2 release
+- Fix windows installer path
 * Mon Dec 18 2023 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.1 release
 - Update codeowners file to replace contributors that left
