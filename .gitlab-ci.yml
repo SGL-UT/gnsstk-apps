@@ -99,7 +99,7 @@ variables:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -421,7 +421,7 @@ rhel8_build:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -551,7 +551,7 @@ windows_op1_build_vs2019_dll:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -698,7 +698,7 @@ rhel8_test:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -909,7 +909,7 @@ rhel8_user_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -1034,7 +1034,7 @@ rhel8_system_install:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
@@ -1153,7 +1153,7 @@ package_conda:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/tks/centos-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -1181,7 +1181,7 @@ package_redhat_8:
   extends: .normal_job
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
@@ -1361,7 +1361,7 @@ rhel8_deploy:
   extends: .package_deploy
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/centos-8:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
