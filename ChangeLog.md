@@ -1,3 +1,14 @@
+# Version 14.1.3   Saturday September 07, 2024
+
+Modifications by Author
+-----------------------
+     David Barber <dbarber@arlut.utexas.edu> (3):
+           refactor pipeline to use rhel 8 image instead of centos 8
+           add bugfix branch to sonarqube scans
+           Update submodule ref to gnsstk-data repo
+
+
+
 # Version 14.1.2   Thursday May 09, 2024
 
 Modifications by Author

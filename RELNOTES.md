@@ -1,10 +1,10 @@
-GNSSTk-APPs 14.1.2 Release Notes
+GNSSTk-APPs 14.1.3 Release Notes
 ========================
 
- * This release includes a fix to update the windows installer path for NSIS installer packages.
+ * This point release updates the gitlab pipeline to use rhel 8 docker images since centos 8 app stream has been deprecated.
 
-Updates since v14.1.1
+Updates since v14.1.2
 ---------------------
-
-**Build System and Test Suite**
-  * Fix windows installer path
+**Gitlab CI**
+  * Update pipeline to use rhel 8 image instead of deprecated centos 8 app stream.
+  * Update submodule to point to latest gnsstk-data commit.
