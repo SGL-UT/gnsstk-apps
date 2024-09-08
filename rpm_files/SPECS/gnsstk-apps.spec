@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.2
+%define version 14.1.3
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Sat Sep 07 2024 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.3 release
+- Update submodule to point to latest gnsstk-data commit
+- Update pipeline to use rhel 8 image instead of deprecated centos 8 app stream
 * Thu May 09 2024 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.2 release
 - Fix windows installer path
