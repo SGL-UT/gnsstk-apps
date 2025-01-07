@@ -57,7 +57,7 @@ variables:
   SONAR_TEST_SOURCES: 'core/tests'
   SONAR_TEST_INCLUSION: 'core/tests'
   SONAR_PROJECT_KEY: gnsstk-apps
-  SONAR_ADDTIONAL_PARAMS: "-Dsonar.cfamily.gcov.reportsPath=."
+  SONAR_ADDTIONAL_PARAMS: "-Dsonar.cfamily.gcov.reportsPath=. -Dsonar.sourceEncoding=UTF-8"
 
 # Template for all normal jobs.
 .normal_job:
@@ -447,10 +447,14 @@ windows_build:
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
-    - cmake --build . --config Release -- /m
+    - cmake --build . --config Release -- /m:4 /nr:false
   artifacts:
     paths:
-    - build/
+      - build/
+      - library/
+      - "*.{in,cmake,h}"
+      - "**/CMakeLists.txt"
+    expire_in: 4 days
 
 windows_build_vs2019:
   variables:
@@ -466,11 +470,14 @@ windows_build_vs2019:
     - mkdir build
     - cd build
     - cmake -DBUILD_SHARED_LIBS=FALSE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m
+    - cmake --build . --config Release  -- /m:4 /nr:false
   artifacts:
     paths:
-    - build/
-  allow_failure: false
+      - build/
+      - library/
+      - "*.{in,cmake,h}"
+      - "**/CMakeLists.txt"
+    expire_in: 4 days
 
 windows_build_vs2019_dll:
   variables:
@@ -486,11 +493,14 @@ windows_build_vs2019_dll:
     - mkdir build
     - cd build
     - cmake -DBUILD_SHARED_LIBS=TRUE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m
+    - cmake --build . --config Release  -- /m:4 /nr:false
   artifacts:
     paths:
-    - build/
-  allow_failure: false
+      - build/
+      - library/
+      - "*.{in,cmake,h}"
+      - "**/CMakeLists.txt"
+    expire_in: 4 days
 
 windows_op1_build_vs2019:
   variables:
@@ -513,11 +523,14 @@ windows_op1_build_vs2019:
     - mkdir build
     - cd build
     - cmake -DBUILD_SHARED_LIBS=FALSE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m
+    - cmake --build . --config Release  -- /m:4 /nr:false
   artifacts:
     paths:
-    - build/
-  allow_failure: false
+      - build/
+      - library/
+      - "*.{in,cmake,h}"
+      - "**/CMakeLists.txt"
+    expire_in: 4 days
 
 windows_op1_build_vs2019_dll:
   variables:
@@ -540,11 +553,14 @@ windows_op1_build_vs2019_dll:
     - mkdir build
     - cd build
     - cmake -DBUILD_SHARED_LIBS=TRUE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m
+    - cmake --build . --config Release  -- /m:4 /nr:false
   artifacts:
     paths:
-    - build/
-  allow_failure: false
+      - build/
+      - library/
+      - "*.{in,cmake,h}"
+      - "**/CMakeLists.txt"
+    expire_in: 4 days
 
 .test_conda:
   stage: test
@@ -713,7 +729,8 @@ rhel8_test:
 windows_test:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: test
   needs: [windows_build]
   extends: .normal_job
@@ -730,12 +747,12 @@ windows_test:
   dependencies:
     - windows_build
   timeout: 10m
-  allow_failure: false
 
 windows_test_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: test
   needs: [windows_build_vs2019]
   extends: .vs2019_job
@@ -752,12 +769,12 @@ windows_test_vs2019:
   dependencies:
     - windows_build_vs2019
   timeout: 10m
-  allow_failure: false
 
 windows_test_vs2019_dll:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: test
   needs: [windows_build_vs2019_dll]
   extends: .vs2019_dll_job
@@ -774,12 +791,12 @@ windows_test_vs2019_dll:
   dependencies:
     - windows_build_vs2019_dll
   timeout: 10m
-  allow_failure: false
 
 windows_op1_test_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: test
   needs: [windows_op1_build_vs2019]
   extends: .vs2019_job
@@ -796,12 +813,12 @@ windows_op1_test_vs2019:
   dependencies:
     - windows_op1_build_vs2019
   timeout: 10m
-  allow_failure: false
 
 windows_op1_test_vs2019_dll:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: test
   needs: [windows_op1_build_vs2019_dll]
   extends: .vs2019_dll_job
@@ -818,14 +835,13 @@ windows_op1_test_vs2019_dll:
   dependencies:
     - windows_op1_build_vs2019_dll
   timeout: 10m
-  allow_failure: false
 
 #
 # Quality Stage - SonarQube code quality scan
 #
 
 sonar-scan:
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   stage: quality
   needs: []
   extends:
@@ -842,21 +858,13 @@ sonar-scan:
     - ctest -j 4
     - cd ..
     - gcovr --exclude=build* --xml-pretty --exclude-unreachable-branches --print-summary -o coverage-cpp.xml -r .
-    - for f in `find . -name '*.o'`; do echo "Processing $f file..."; pushd `dirname $f`; gcov -o `basename $f` x; popd ;done
+    - suppress_output=$(for f in `find . -name '*.o'`; do echo "Processing $f file..."; pushd `dirname $f`; gcov -o `basename $f` x; popd ;done)
     - !reference [.scan-c++, script]
-    - touch $CI_PROJECT_DIR/success
-  rules:
-    - if: $CI_COMMIT_REF_NAME == "main" || $CI_COMMIT_REF_NAME == "stable" || $CI_COMMIT_REF_NAME =~/^bugfix\/ci_.*$/
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-      when: manual
-  # Sonar Quality Profile will fail since code coverage is below 80%
-  # Allowing job to fail so sonar scan doesn't fail the pipeline for nightly big chain.
+  # Sonar Quality Profile will fail since code coverage is below 80%.
+  # Currently, allowing job to fail so sonar scan doesn't fail the pipeline.
+  # This will be removed once coverge is >= 80% and pipeline successful will be enforced for MR.
   allow_failure: true
-  # only:
-  #   - merge_requests
-  #   - main
-  #   - tags
-  #   - stable
+  retry: 2
 
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
@@ -926,7 +934,8 @@ user_install_windows:
   stage: install
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   needs: [windows_build,windows_test]
   extends: .normal_job
   tags:
@@ -934,21 +943,22 @@ user_install_windows:
   script:
     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
     - cd build
-    - cmake --build . --config Release --target install
+    - cmake --build . --config Release --target install -j 10
   artifacts:
     paths:
       - build/install/
+    expire_in: 4 days
   dependencies:
     - windows_build
     - windows_test
-  timeout: 20m
-  allow_failure: false
+  timeout: 30m
 
 user_install_windows_vs2019:
   stage: install
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   needs: [windows_build_vs2019,windows_test_vs2019]
   extends: .vs2019_job
   tags:
@@ -956,21 +966,22 @@ user_install_windows_vs2019:
   script:
     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
     - cd build
-    - cmake --build . --config Release --target install
+    - cmake --build . --config Release --target install -j 10
   artifacts:
     paths:
       - build/install/
+    expire_in: 4 days
   dependencies:
     - windows_build_vs2019
     - windows_test_vs2019
-  timeout: 20m
-  allow_failure: false
+  timeout: 30m
 
 user_install_windows_vs2019_dll:
   stage: install
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   needs: [windows_build_vs2019_dll,windows_test_vs2019_dll]
   extends: .vs2019_dll_job
   tags:
@@ -978,15 +989,15 @@ user_install_windows_vs2019_dll:
   script:
     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
     - cd build
-    - cmake --build . --config Release --target install
+    - cmake --build . --config Release --target install -j 10
   artifacts:
     paths:
       - build/install/
+    expire_in: 4 days
   dependencies:
     - windows_build_vs2019_dll
     - windows_test_vs2019_dll
-  timeout: 20m
-  allow_failure: false
+  timeout: 30m
 
 # user_install_windows_op1_vs2019: Moved to sgl-tks/ci-control/gnsstk-apps/ci_downstrm_chain.yml
 
@@ -1198,9 +1209,10 @@ package_redhat_8:
 package_windows:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: package
-  needs: [windows_build]
+  needs: [windows_build,user_install_windows]
   extends: .normal_job
   tags:
     - win10-vs2015
@@ -1217,9 +1229,10 @@ package_windows:
 package_windows_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: package
-  needs: [windows_build_vs2019]
+  needs: [windows_build_vs2019,user_install_windows_vs2019]
   extends: .vs2019_job
   tags:
     - win10-vs2019
@@ -1236,9 +1249,10 @@ package_windows_vs2019:
 package_windows_vs2019_dll:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: package
-  needs: [windows_build_vs2019_dll]
+  needs: [windows_build_vs2019_dll,user_install_windows_vs2019_dll]
   extends: .vs2019_dll_job
   tags:
     - win10-vs2019
@@ -1255,9 +1269,10 @@ package_windows_vs2019_dll:
 package_windows_op1_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: package
-  needs: [windows_op1_build_vs2019]
+  needs: [windows_op1_build_vs2019,windows_op1_test_vs2019]
   extends: .vs2019_job
   tags:
     - win10-vs2019
@@ -1274,9 +1289,10 @@ package_windows_op1_vs2019:
 package_windows_op1_vs2019_dll:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
-    GIT_STRATEGY: none
+    GIT_STRATEGY: fetch
+    GIT_CLEAN_FLAGS: none
   stage: package
-  needs: [windows_op1_build_vs2019_dll]
+  needs: [windows_op1_build_vs2019_dll,windows_op1_test_vs2019_dll]
   extends: .vs2019_dll_job
   tags:
     - win10-vs2019

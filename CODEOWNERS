@@ -1,5 +1,5 @@
 [CODEOWNERS]
-CODEOWNERS @kuck @rain
+CODEOWNERS @kuck @dbarber
 
 [Subject Matter Experts]
 
@@ -21,7 +21,7 @@ core/apps/positioning/ @magliocca @renfrob @malik @evillalba
 core/apps/Rinextools/ @magliocca @renfrob @evillalba
 
 # Core tests
-core/tests/ @johnk @anthony @renfrob
+core/tests/ @code-reviewers/cpp
 
 # Ext -- unsupported & unmaintained, not part of the API
 ext/ @johnk @dbarber
