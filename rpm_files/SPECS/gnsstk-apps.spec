@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.3
+%define version 14.1.4
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,10 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jan 07 2025 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.4 release
+- Update gitlab windows jobs to use new gitlab windows runners
+- Update gnsstk-data submodule ref
 * Sat Sep 07 2024 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.3 release
 - Update submodule to point to latest gnsstk-data commit

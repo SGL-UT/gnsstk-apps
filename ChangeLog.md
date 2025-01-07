@@ -1,3 +1,15 @@
+# Version 14.1.4   Tuesday January 07, 2025
+
+Modifications by Author
+-----------------------
+     David Barber <dbarber@arlut.utexas.edu> (4):
+           Update gnsstk-data submodule ref
+           Update gnsstk-data submodule reference
+           Update gnsstk-data submodule ref
+           update windows pipeline jobs to use new gitlab windows runners
+
+
+
 # Version 14.1.3   Saturday September 07, 2024
 
 Modifications by Author
