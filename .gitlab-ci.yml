@@ -98,7 +98,7 @@ variables:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -127,7 +127,7 @@ static_analysis:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - ./lint_test.sh
@@ -139,7 +139,7 @@ submodule_check:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   variables:
     GIT_SUBMODULE_UPDATE_FLAGS: --remote
   only:
@@ -154,7 +154,7 @@ sgllint_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
@@ -173,7 +173,7 @@ protected_term_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
@@ -195,7 +195,7 @@ protected_history_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   image: $DOCKER_REGISTRY/sgl/debian-10:python3
   script:
     - '######'
@@ -218,7 +218,7 @@ generate_documentation:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install GraphViz
@@ -237,7 +237,7 @@ repository_validation:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Verify there are no duplicate header files names in the repo.
@@ -253,7 +253,7 @@ deb10_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -273,7 +273,7 @@ deb10_op1_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -296,7 +296,7 @@ deb10_op2_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -319,7 +319,7 @@ deb11_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -339,7 +339,7 @@ deb11_op1_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -363,7 +363,7 @@ deb11_op2_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -386,7 +386,7 @@ ubu20_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -420,7 +420,7 @@ rhel8_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -566,7 +566,7 @@ windows_op1_build_vs2019_dll:
   stage: test
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -610,7 +610,7 @@ deb10_test:
   needs: [deb10_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
@@ -630,7 +630,7 @@ deb10_op2_test:
   needs: [deb10_op2_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
@@ -651,7 +651,7 @@ deb11_test:
   needs: [deb11_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
@@ -671,7 +671,7 @@ deb11_op2_test:
   needs: [deb11_op2_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - apt-get install -y libhdf5-dev
@@ -693,7 +693,7 @@ ubu20_test:
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -713,7 +713,7 @@ rhel8_test:
   needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -847,7 +847,7 @@ sonar-scan:
   extends:
     - .sonarqube-check
   tags:
-    - docker-executor
+    - extra-large
   script:
     - apt-get install gcovr lcov -y
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
@@ -874,7 +874,7 @@ deb11_user_install:
   needs: [deb11_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
@@ -895,7 +895,7 @@ ubu20_user_install:
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -916,7 +916,7 @@ rhel8_user_install:
   needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -1008,7 +1008,7 @@ deb11_system_install:
   needs: [deb11_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
@@ -1026,7 +1026,7 @@ ubu20_system_install:
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -1044,7 +1044,7 @@ rhel8_system_install:
   needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -1066,7 +1066,7 @@ package_debian_10:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # kludge for dpkg
@@ -1100,7 +1100,7 @@ package_debian_11:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # kludge for dpkg
@@ -1130,7 +1130,7 @@ package_ubuntu_20.04:
   stage: package
   needs: []
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # kludge for dpkg
@@ -1163,7 +1163,7 @@ package_conda:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -1191,7 +1191,7 @@ package_redhat_8:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
@@ -1313,7 +1313,7 @@ deb10_deploy:
   needs: [package_debian_10]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -1334,7 +1334,7 @@ deb11_deploy:
   needs: [package_debian_11]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -1355,7 +1355,7 @@ ubu20_deploy:
   needs: [package_ubuntu_20.04]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -1376,7 +1376,7 @@ rhel8_deploy:
   needs: [package_redhat_8]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
