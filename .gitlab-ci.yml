@@ -19,6 +19,7 @@ include:
 
 stages:
   - check
+  - dependency
   - build
   - test
   - quality
@@ -50,6 +51,9 @@ variables:
   BLD_VS_STATIC:
     value: "True"
     description: "If True, then link against Static Libraries (VS2019 only, VS2015 always builds static)"
+  NO_BIGBUILD_CI:
+    value: "False"
+    description: "If True then no big build jobs are executed on main/ci_xxx/version_xxx_prep branches. Defaults to False"
 
   # Sonar Controls
   SONAR_EXCLUSIONS: '**/tests/**,**/rpm_files/**,**/conda_recipe/**,**/data/**,**/coverage-cpp.xml,**/build*/**,**/debian/**,**/deprecated/**,**/examples/**,**/ref/**,**/rpm_files/**,**/swig/**,**/DoxygenLayout.xml,**/custom.css'
@@ -76,6 +80,20 @@ variables:
     variables:
       - $BLD_VS2019 == "True"
       - $BLD_VS_DLL == "True"
+
+# Template for all "big" builds.
+.big_build:
+  only:
+    refs:
+      - main
+      - /^ci_.*$/
+      - /^version_.*_prep$/
+      - stable
+      - /^release\/v[0-9.]*$/
+      - /^bugfix\/ci_.*$/
+      - /^feature\/ci_.*$/
+    variables:
+      - $NO_BIGBUILD_CI != "True"
 
 # Template for all jobs that should deploy packages.
 .package_deploy:
@@ -244,6 +262,55 @@ repository_validation:
     - ./dup_check.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
   allow_failure: false
+
+# Verifies that an upstream change hasn't broken the last tagged release..
+upstream_main_repository_validation:
+  stage: dependency
+  needs: []
+  extends: .big_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - '######'
+    - '# This job builds/tests the last tagged release of gnsstk-apps to see if upstream dependencies have broken it.'
+    - '# If this test fails, gnsstk may require a major version increase.'
+    - '######'
+    # Install lib dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    # source gnsstk enable script to set private library env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - git checkout -f $(git describe --abbrev=0 origin/stable)
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - ctest -j 4
+  allow_failure: true
+
+# Verifies that an upstream change hasn't broken the last tagged release..
+upstream_stable_repository_validation:
+  stage: dependency
+  needs: []
+  extends: .big_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - '######'
+    - '# This job builds/tests the current main of gnsstk-apps against LTR of gnsstk.'
+    - '# If this test fails, we may require bumping out minimum version of gnsstk.'
+    - '######'
+    - apt-get update
+    - apt-get install -y gnsstk14-bin libgnsstk14-dev
+    # source gnsstk enable script to set private library env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - ctest -j 4
+  allow_failure: true
 
 #
 # Build Stage - Try building in several environments.
