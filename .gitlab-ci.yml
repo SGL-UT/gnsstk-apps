@@ -36,21 +36,18 @@ variables:
   GNSSTK_COMMIT:
     value: "main"
     description: "Upstream gnsstk lib branch to link. Defaults to main"
-  # By default, pipeline will build with both VS 2015 and VS 2019 windows jobs along with rest of platform jobs.
+  # By default, pipeline will build with VS 2019 windows jobs along with rest of platform jobs.
   # If you want to build only VS 2019 windows jobs, then set BLD_ONLY_VS2019 to True. It will exclude rest of platform jobs.
   # If you want to exclude VS 2019 windows jobs, then set BLD_VS2019 to False.
   BLD_VS2019:
     value: "True"
     description: "If True, then build under Windows using Visual Studio 2019. Defaults to True"
-  BLD_ONLY_VS2019:
-    value: "False"
-    description: "If True, then ONLY build Windows using Visual Studio 2019 and skips Visual Studio 2015 jobs. Defaults to False"
   BLD_VS_DLL:
     value: "True"
     description: "If True, then link against Dynamic Link Libraries (VS2019 only)"
   BLD_VS_STATIC:
     value: "True"
-    description: "If True, then link against Static Libraries (VS2019 only, VS2015 always builds static)"
+    description: "If True, then link against Static Libraries (VS2019 only)"
   NO_BIGBUILD_CI:
     value: "False"
     description: "If True then no big build jobs are executed on main/ci_xxx/version_xxx_prep branches. Defaults to False"
@@ -67,7 +64,6 @@ variables:
 .normal_job:
   except:
     variables:
-      - $BLD_ONLY_VS2019 == "True"
 
 .vs2019_job:
   only:
@@ -458,6 +454,13 @@ ubu20_build:
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    # Print pipeline variables
+    - echo "Dependency branches"
+    - echo "GNSSTK_COMMIT:$GNSSTK_COMMIT"
+    - echo "SGLTK_COMMIT:$SGLTK_COMMIT"
+    - echo "Downstream branches"
+    - echo "BETATK_COMMIT:$BETATK_COMMIT"
+    - echo "MDHTK_COMMIT:$MDHTK_COMMIT"
     # source gnsstk's enable script to set private library install env variables.
     - source /etc/profile.d/gnsstk_enable.sh
     - mkdir -p build
@@ -499,29 +502,6 @@ rhel8_build:
   artifacts:
     paths:
       - build/
-
-windows_build:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - windows/install_required_deps_windows.ps1 user_install_windows pkg_min
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
-    - cmake --build . --config Release -- /m:4 /nr:false
-  artifacts:
-    paths:
-      - build/
-      - library/
-      - "*.{in,cmake,h}"
-      - "**/CMakeLists.txt"
-    expire_in: 4 days
 
 windows_build_vs2019:
   variables:
@@ -793,28 +773,6 @@ rhel8_test:
   dependencies:
     - rhel8_build
 
-windows_test:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: test
-  needs: [windows_build]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --target RUN_TESTS --config Release
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - windows_build
-  timeout: 10m
-
 windows_test_vs2019:
   variables:
     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019
@@ -996,29 +954,6 @@ rhel8_user_install:
       - build/install
   dependencies:
     - rhel8_build
-
-user_install_windows:
-  stage: install
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  needs: [windows_build,windows_test]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --config Release --target install -j 10
-  artifacts:
-    paths:
-      - build/install/
-    expire_in: 4 days
-  dependencies:
-    - windows_build
-    - windows_test
-  timeout: 30m
 
 user_install_windows_vs2019:
   stage: install
@@ -1272,26 +1207,6 @@ package_redhat_8:
      - rpm_files/RPMS/x86_64/gnsstk-*
      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
-
-package_windows:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: package
-  needs: [windows_build,user_install_windows]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - cd build
-    - cpack -C Release
-#    - cpack -G WIX -C Release
-  dependencies:
-    - windows_build
-  artifacts:
-    paths:
-      - build/_CPack_Packages
 
 package_windows_vs2019:
   variables:

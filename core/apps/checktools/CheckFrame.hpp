@@ -46,7 +46,7 @@
 #include <gnsstk/BasicFramework.hpp>
 
 template <class FileData>
-struct NullTimeFilter : public std::unary_function<FileData, bool>
+struct NullTimeFilter
 {
 public:
    NullTimeFilter(const gnsstk::CommonTime& startTime,
