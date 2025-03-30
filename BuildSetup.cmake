@@ -13,6 +13,10 @@ elseif( WIN32 )
     set( STADYN "STATIC" )
 endif()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+set(CMAKE_CXX_EXTENSIONS off)
+
 # profiler stuff
 if( ${PROFILER} )
   set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg -no-pie -static" )
