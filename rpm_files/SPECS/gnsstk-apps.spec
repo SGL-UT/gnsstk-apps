@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.4
+%define version 14.1.5
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Wed May 07 2025 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v14.1.5 release
+-   Fix wheresat application such that a usable default TimeSystem is used for the optional start and end times
 * Tue Jan 07 2025 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.4 release
 - Update gitlab windows jobs to use new gitlab windows runners

@@ -268,51 +268,51 @@ deb10_build:
     paths:
       - build/
 
-deb10_op1_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional library
-    - ./optional_package_add.sh $PACKAGE_CONFIG_1
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+# deb10_op1_build:
+#   stage: build
+#   needs: []
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+#   script:
+#     # Install dependencies from latest CI first.
+#     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     # Link optional library
+#     - ./optional_package_add.sh $PACKAGE_CONFIG_1
+#     - mkdir -p build
+#     - cd build
+#     - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+#     - make all -j 4
+#   artifacts:
+#     paths:
+#       - build/
 
-deb10_op2_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+# deb10_op2_build:
+#   stage: build
+#   needs: []
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+#   script:
+#     # Install dependencies from latest CI first.
+#     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     # Link optional libraries
+#     - ./optional_package_add.sh $PACKAGE_CONFIG_2
+#     - mkdir -p build
+#     - cd build
+#     - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+#     - make all -j 4
+#   artifacts:
+#     paths:
+#       - build/
 
 deb11_build:
   stage: build
@@ -334,52 +334,52 @@ deb11_build:
     paths:
       - build/
 
-deb11_op1_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - apt-get install -y libhdf5-dev
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_1
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+# deb11_op1_build:
+#   stage: build
+#   needs: []
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+#   script:
+#     # Install dependencies from latest CI first.
+#     - apt-get install -y libhdf5-dev
+#     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     # Link optional libraries
+#     - ./optional_package_add.sh $PACKAGE_CONFIG_1
+#     - mkdir -p build
+#     - cd build
+#     - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+#     - make all -j 4
+#   artifacts:
+#     paths:
+#       - build/
 
-deb11_op2_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
+# deb11_op2_build:
+#   stage: build
+#   needs: []
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+#   script:
+#     # Install dependencies from latest CI first.
+#     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     # Link optional libraries
+#     - ./optional_package_add.sh $PACKAGE_CONFIG_2
+#     - mkdir -p build
+#     - cd build
+#     - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+#     - make all -j 4
+#   artifacts:
+#     paths:
+#       - build/
 
 ubu20_build:
   stage: build
@@ -408,12 +408,12 @@ conda_build:
     PKG_TYPE: "pkg_min"
   extends: .build_conda
 
-conda_op2_build:
-  variables:
-    OPT_LIBS: $PACKAGE_CONFIG_2
-    OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
-    PKG_TYPE: "pkg_max"
-  extends: .build_conda
+# conda_op2_build:
+#   variables:
+#     OPT_LIBS: $PACKAGE_CONFIG_2
+#     OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
+#     PKG_TYPE: "pkg_max"
+#   extends: .build_conda
 
 rhel8_build:
   stage: build
@@ -433,28 +433,6 @@ rhel8_build:
     paths:
       - build/
 
-windows_build:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - windows/install_required_deps_windows.ps1 user_install_windows pkg_min
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
-    - cmake --build . --config Release -- /m:4 /nr:false
-  artifacts:
-    paths:
-      - build/
-      - library/
-      - "*.{in,cmake,h}"
-      - "**/CMakeLists.txt"
-    expire_in: 4 days
 
 windows_build_vs2019:
   variables:
@@ -502,65 +480,65 @@ windows_build_vs2019_dll:
       - "**/CMakeLists.txt"
     expire_in: 4 days
 
-windows_op1_build_vs2019:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
-  stage: build
-  needs: []
-  extends: .vs2019_job
-  tags:
-    - win10-vs2019
-  script:
-    - $linkfile=".\ExtLinkage.cmake"
-    - $str1="find_package("
-    - $str2=$env:PACKAGE_CONFIG_1.ToUpper()
-    - $str3=" CONFIG)"
-    - if (Test-Path $linkfile) { Remove-Item $linkfile }
-    - foreach ($pkg in $str2) { "$str1$pkg$str3" | Out-File -FilePath $linkfile -Append -Encoding UTF8 }
-    - type $linkfile
-    - windows/install_required_deps_windows.ps1 user_install_windows_vs2019 pkg_max
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - mkdir build
-    - cd build
-    - cmake -DBUILD_SHARED_LIBS=FALSE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m:4 /nr:false
-  artifacts:
-    paths:
-      - build/
-      - library/
-      - "*.{in,cmake,h}"
-      - "**/CMakeLists.txt"
-    expire_in: 4 days
+# windows_op1_build_vs2019:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
+#   stage: build
+#   needs: []
+#   extends: .vs2019_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - $linkfile=".\ExtLinkage.cmake"
+#     - $str1="find_package("
+#     - $str2=$env:PACKAGE_CONFIG_1.ToUpper()
+#     - $str3=" CONFIG)"
+#     - if (Test-Path $linkfile) { Remove-Item $linkfile }
+#     - foreach ($pkg in $str2) { "$str1$pkg$str3" | Out-File -FilePath $linkfile -Append -Encoding UTF8 }
+#     - type $linkfile
+#     - windows/install_required_deps_windows.ps1 user_install_windows_vs2019 pkg_max
+#     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
+#     - mkdir build
+#     - cd build
+#     - cmake -DBUILD_SHARED_LIBS=FALSE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
+#     - cmake --build . --config Release  -- /m:4 /nr:false
+#   artifacts:
+#     paths:
+#       - build/
+#       - library/
+#       - "*.{in,cmake,h}"
+#       - "**/CMakeLists.txt"
+#     expire_in: 4 days
 
-windows_op1_build_vs2019_dll:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
-  stage: build
-  needs: []
-  extends: .vs2019_dll_job
-  tags:
-    - win10-vs2019
-  script:
-    - $linkfile=".\ExtLinkage.cmake"
-    - $str1="find_package("
-    - $str2=$env:PACKAGE_CONFIG_1.ToUpper()
-    - $str3=" CONFIG)"
-    - if (Test-Path $linkfile) { Remove-Item $linkfile }
-    - foreach ($pkg in $str2) { "$str1$pkg$str3" | Out-File -FilePath $linkfile -Append -Encoding UTF8 }
-    - type $linkfile
-    - windows/install_required_deps_windows.ps1 user_install_windows_vs2019_dll pkg_max
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - mkdir build
-    - cd build
-    - cmake -DBUILD_SHARED_LIBS=TRUE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
-    - cmake --build . --config Release  -- /m:4 /nr:false
-  artifacts:
-    paths:
-      - build/
-      - library/
-      - "*.{in,cmake,h}"
-      - "**/CMakeLists.txt"
-    expire_in: 4 days
+# windows_op1_build_vs2019_dll:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
+#   stage: build
+#   needs: []
+#   extends: .vs2019_dll_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - $linkfile=".\ExtLinkage.cmake"
+#     - $str1="find_package("
+#     - $str2=$env:PACKAGE_CONFIG_1.ToUpper()
+#     - $str3=" CONFIG)"
+#     - if (Test-Path $linkfile) { Remove-Item $linkfile }
+#     - foreach ($pkg in $str2) { "$str1$pkg$str3" | Out-File -FilePath $linkfile -Append -Encoding UTF8 }
+#     - type $linkfile
+#     - windows/install_required_deps_windows.ps1 user_install_windows_vs2019_dll pkg_max
+#     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
+#     - mkdir build
+#     - cd build
+#     - cmake -DBUILD_SHARED_LIBS=TRUE -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 16 2019" -A x64 ../
+#     - cmake --build . --config Release  -- /m:4 /nr:false
+#   artifacts:
+#     paths:
+#       - build/
+#       - library/
+#       - "*.{in,cmake,h}"
+#       - "**/CMakeLists.txt"
+#     expire_in: 4 days
 
 .test_conda:
   stage: test
@@ -596,14 +574,14 @@ conda_test:
     OPT_CONDA_LIBS: ""
     PKG_TYPE: "pkg_min"
 
-conda_op2_test:
-  extends: .test_conda
-  dependencies: [conda_op2_build]
-  needs: [conda_op2_build]
-  variables:
-    OPT_LIBS: $PACKAGE_CONFIG_2
-    OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
-    PKG_TYPE: "pkg_max"
+# conda_op2_test:
+#   extends: .test_conda
+#   dependencies: [conda_op2_build]
+#   needs: [conda_op2_build]
+#   variables:
+#     OPT_LIBS: $PACKAGE_CONFIG_2
+#     OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
+#     PKG_TYPE: "pkg_max"
 
 deb10_test:
   stage: test
@@ -625,26 +603,26 @@ deb10_test:
   dependencies:
     - deb10_build
 
-deb10_op2_test:
-  stage: test
-  needs: [deb10_op2_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-      - build/Testing/Temporary/
-  dependencies:
-    - deb10_op2_build
+# deb10_op2_test:
+#   stage: test
+#   needs: [deb10_op2_build]
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+#   script:
+#     - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     - cd build
+#     - ctest -j 4
+#   artifacts:
+#     when: on_failure
+#     paths:
+#       - build/Testing/Temporary/
+#   dependencies:
+#     - deb10_op2_build
 
 deb11_test:
   stage: test
@@ -666,27 +644,27 @@ deb11_test:
   dependencies:
     - deb11_build
 
-deb11_op2_test:
-  stage: test
-  needs: [deb11_op2_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    - apt-get install -y libhdf5-dev
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-      - build/Testing/Temporary/
-  dependencies:
-    - deb11_op2_build
+# deb11_op2_test:
+#   stage: test
+#   needs: [deb11_op2_build]
+#   extends: .normal_job
+#   tags:
+#     - docker-executor
+#   image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
+#   script:
+#     - apt-get install -y libhdf5-dev
+#     - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
+#     # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+#     - source /etc/profile.d/gnsstk_enable.sh
+#     - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+#     - cd build
+#     - ctest -j 4
+#   artifacts:
+#     when: on_failure
+#     paths:
+#       - build/Testing/Temporary/
+#   dependencies:
+#     - deb11_op2_build
 
 ubu20_test:
   stage: test
@@ -726,27 +704,6 @@ rhel8_test:
   dependencies:
     - rhel8_build
 
-windows_test:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: test
-  needs: [windows_build]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --target RUN_TESTS --config Release
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - windows_build
-  timeout: 10m
 
 windows_test_vs2019:
   variables:
@@ -792,49 +749,49 @@ windows_test_vs2019_dll:
     - windows_build_vs2019_dll
   timeout: 10m
 
-windows_op1_test_vs2019:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: test
-  needs: [windows_op1_build_vs2019]
-  extends: .vs2019_job
-  tags:
-    - win10-vs2019
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --target RUN_TESTS --config Release
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - windows_op1_build_vs2019
-  timeout: 10m
+# windows_op1_test_vs2019:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
+#     GIT_STRATEGY: fetch
+#     GIT_CLEAN_FLAGS: none
+#   stage: test
+#   needs: [windows_op1_build_vs2019]
+#   extends: .vs2019_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
+#     - cd build
+#     - cmake --build . --target RUN_TESTS --config Release
+#   artifacts:
+#     when: on_failure
+#     paths:
+#     - build/Testing/Temporary/
+#   dependencies:
+#     - windows_op1_build_vs2019
+#   timeout: 10m
 
-windows_op1_test_vs2019_dll:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: test
-  needs: [windows_op1_build_vs2019_dll]
-  extends: .vs2019_dll_job
-  tags:
-    - win10-vs2019
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --target RUN_TESTS --config Release
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - windows_op1_build_vs2019_dll
-  timeout: 10m
+# windows_op1_test_vs2019_dll:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
+#     GIT_STRATEGY: fetch
+#     GIT_CLEAN_FLAGS: none
+#   stage: test
+#   needs: [windows_op1_build_vs2019_dll]
+#   extends: .vs2019_dll_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
+#     - cd build
+#     - cmake --build . --target RUN_TESTS --config Release
+#   artifacts:
+#     when: on_failure
+#     paths:
+#     - build/Testing/Temporary/
+#   dependencies:
+#     - windows_op1_build_vs2019_dll
+#   timeout: 10m
 
 #
 # Quality Stage - SonarQube code quality scan
@@ -930,28 +887,6 @@ rhel8_user_install:
   dependencies:
     - rhel8_build
 
-user_install_windows:
-  stage: install
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  needs: [windows_build,windows_test]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --config Release --target install -j 10
-  artifacts:
-    paths:
-      - build/install/
-    expire_in: 4 days
-  dependencies:
-    - windows_build
-    - windows_test
-  timeout: 30m
 
 user_install_windows_vs2019:
   stage: install
@@ -1174,8 +1109,8 @@ package_conda:
     - 'bash conda_recipe/get_required_deps_conda.sh "package_conda: [3.9]" pkg_min'
     - conda activate conda_builder
     - export GIT_COMMIT=$CI_COMMIT_REF_NAME
-    - export GIT_LAST_TAG=$(git describe --abbrev=0 origin/stable)
-    - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
+    - export GIT_LAST_TAG=$(git describe --abbrev=0 origin/release/v14.1.5)
+    - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/release/v14.1.5)..@)
      # Output directory must exist before conda build
     - mkdir -p conda-bld
     - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/
@@ -1206,25 +1141,6 @@ package_redhat_8:
      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
 
-package_windows:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: package
-  needs: [windows_build,user_install_windows]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - cd build
-    - cpack -C Release
-#    - cpack -G WIX -C Release
-  dependencies:
-    - windows_build
-  artifacts:
-    paths:
-      - build/_CPack_Packages
 
 package_windows_vs2019:
   variables:
@@ -1266,45 +1182,45 @@ package_windows_vs2019_dll:
     paths:
       - build/_CPack_Packages
 
-package_windows_op1_vs2019:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: package
-  needs: [windows_op1_build_vs2019,windows_op1_test_vs2019]
-  extends: .vs2019_job
-  tags:
-    - win10-vs2019
-  script:
-    - cd build
-    - cpack -C Release
-#    - cpack -G WIX -C Release
-  dependencies:
-    - windows_op1_build_vs2019
-  artifacts:
-    paths:
-      - build/_CPack_Packages
+# package_windows_op1_vs2019:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_op1
+#     GIT_STRATEGY: fetch
+#     GIT_CLEAN_FLAGS: none
+#   stage: package
+#   needs: [windows_op1_build_vs2019,windows_op1_test_vs2019]
+#   extends: .vs2019_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - cd build
+#     - cpack -C Release
+# #    - cpack -G WIX -C Release
+#   dependencies:
+#     - windows_op1_build_vs2019
+#   artifacts:
+#     paths:
+#       - build/_CPack_Packages
 
-package_windows_op1_vs2019_dll:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: package
-  needs: [windows_op1_build_vs2019_dll,windows_op1_test_vs2019_dll]
-  extends: .vs2019_dll_job
-  tags:
-    - win10-vs2019
-  script:
-    - cd build
-    - cpack -C Release
-#    - cpack -G WIX -C Release
-  dependencies:
-    - windows_op1_build_vs2019_dll
-  artifacts:
-    paths:
-      - build/_CPack_Packages
+# package_windows_op1_vs2019_dll:
+#   variables:
+#     GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/${CI_PIPELINE_ID}_vs2019_dll_op1
+#     GIT_STRATEGY: fetch
+#     GIT_CLEAN_FLAGS: none
+#   stage: package
+#   needs: [windows_op1_build_vs2019_dll,windows_op1_test_vs2019_dll]
+#   extends: .vs2019_dll_job
+#   tags:
+#     - win10-vs2019
+#   script:
+#     - cd build
+#     - cpack -C Release
+# #    - cpack -G WIX -C Release
+#   dependencies:
+#     - windows_op1_build_vs2019_dll
+#   artifacts:
+#     paths:
+#       - build/_CPack_Packages
 
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.

@@ -1,11 +1,7 @@
-GNSSTk-APPs 14.1.4 Release Notes
+GNSSTk-APPs 14.1.5 Release Notes
 ========================
 
- * This point release updates the gitlab pipeline to use new gitlab windows runners and updates the submodule reference to gnsstk-data repo.
+ * This point release fixes wheresat application such that a usable default TimeSystem is used for the optional start and end times.
 
-Updates since v14.1.3
----------------------
-
-**Gitlab CI**
-  * Update gnsstk-data submodule ref
-  * Update gitlab windows jobs to use new gitlab windows runners 
+Fixes since v14.1.4
+   *  Fix wheresat application such that a usable default TimeSystem is used for the optional start and end times

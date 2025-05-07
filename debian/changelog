@@ -1,3 +1,11 @@
+gnsstk-apps (14.1.5-1) focal; urgency=low
+
+  * Updated to version 14.1.5
+  * Fix wheresat application such that a usable default TimeSystem is
+    used for the optional start and end times
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Wed, 07 May 2025 00:54:26 -0500
+
 gnsstk-apps (14.1.4-1) focal; urgency=low
 
   * Updated to version 14.1.4
