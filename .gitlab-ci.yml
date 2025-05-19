@@ -16,6 +16,10 @@ include:
     ref: main
   - project: 'sgl/ci-control'
     file: 'common/scanning/sonar.yml'
+  - project: 'sgl/ci-control'
+    file: 'common/scanning/fortify.yml'
+  - project: sgl-tks/ci-control
+    file: /general/fortify-upload.yml
 
 stages:
   - check
@@ -23,6 +27,7 @@ stages:
   - build
   - test
   - quality
+  - reporting
   - install
   - package
   - push
@@ -51,6 +56,12 @@ variables:
   NO_BIGBUILD_CI:
     value: "False"
     description: "If True then no big build jobs are executed on main/ci_xxx/version_xxx_prep branches. Defaults to False"
+  FORTIFY_SCAN_TYPE:
+    value: ''
+    options:
+    - ''
+    - '-quick'
+    description: "Defaults to blank which is Critical, High, Medium, and Low. Change value to -quick for Critical and High only.  Do not use -quick for releases"
 
   # Sonar Controls
   SONAR_EXCLUSIONS: '**/tests/**,**/rpm_files/**,**/conda_recipe/**,**/data/**,**/coverage-cpp.xml,**/build*/**,**/debian/**,**/deprecated/**,**/examples/**,**/ref/**,**/rpm_files/**,**/swig/**,**/DoxygenLayout.xml,**/custom.css'
@@ -62,20 +73,25 @@ variables:
 
 # Template for all normal jobs.
 .normal_job:
-  except:
-    variables:
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 .vs2019_job:
   only:
     variables:
       - $BLD_VS2019 == "True"
       - $BLD_VS_STATIC == "True"
+  retry: 2
 
 .vs2019_dll_job:
   only:
     variables:
       - $BLD_VS2019 == "True"
       - $BLD_VS_DLL == "True"
+  retry: 2
 
 # Template for all "big" builds.
 .big_build:
@@ -90,6 +106,11 @@ variables:
       - /^feature\/ci_.*$/
     variables:
       - $NO_BIGBUILD_CI != "True"
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 # Template for all jobs that should deploy packages.
 .package_deploy:
@@ -106,6 +127,11 @@ variables:
       - /^feature\/ci_.*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 .build_conda:
   stage: build
@@ -133,6 +159,11 @@ variables:
   artifacts:
     paths:
       - build/
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 # Check Stage
 # Runs static analysis on code.
@@ -889,7 +920,40 @@ sonar-scan:
   # Currently, allowing job to fail so sonar scan doesn't fail the pipeline.
   # This will be removed once coverge is >= 80% and pipeline successful will be enforced for MR.
   allow_failure: true
-  retry: 2
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+fortify-scan:
+  extends:
+    - .cpp_fortify
+  tags:
+    - extra-large
+  needs: []
+  variables:
+    FORTIFY_SCAN_TYPE: '-quick'
+  script:
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    - mkdir -p build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - !reference [.fortify_post_consolidated_cpp, script]
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+fortify-scan-publish:
+  stage: reporting
+  extends: .fortify-scan-publish
+  needs:
+    - job: fortify-scan
+      artifacts: true
 
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
@@ -1056,7 +1120,6 @@ rhel8_system_install:
     - sudo make install -j 4
   dependencies:
     - rhel8_build
-
 
 # Package Stage
 # Tests packaging of GNSSTk-apps on all platforms
@@ -1381,6 +1444,11 @@ push_artifacts:
     UBU_20_PACKAGES: "debs/*bpo10+1ubuntu*.deb"
   needs: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
   dependencies: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 push_artifacts_windows:
   extends:
