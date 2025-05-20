@@ -932,8 +932,6 @@ fortify-scan:
   tags:
     - extra-large
   needs: []
-  variables:
-    FORTIFY_SCAN_TYPE: '-quick'
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
