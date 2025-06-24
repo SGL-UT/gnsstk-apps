@@ -332,7 +332,7 @@ upstream_stable_repository_validation:
     - '# If this test fails, we may require bumping out minimum version of gnsstk.'
     - '######'
     - apt-get update
-    - apt-get install -y gnsstk14-bin libgnsstk14-dev
+    - apt-get install -y gnsstk15-bin libgnsstk15-dev
     # source gnsstk enable script to set private library env variables.
     - source /etc/profile.d/gnsstk_enable.sh
     - mkdir build

@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 14.1.4
+%define version 15.0.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -10,7 +10,7 @@ License:        LGPL
 Source:         %{name}-master.tar.gz
 URL:            https://github.com/SGL-UT/GNSSTk
 Group:          Development/Libraries
-Requires: gnsstk >= 14.4.0, gnsstk < 15.0.0
+Requires: gnsstk >= 15.0.0, gnsstk < 16.0.0
 BuildRequires: cmake
 BuildRequires: gcc
 BuildRequires: gcc-c++
@@ -53,6 +53,17 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jun 24 2025 David Barber <dbarber@arlut.utexas.edu>
+- Updated for v15.0.0 release
+- Update cmake to set minimum compiler version on RHEL to be C++17 ABI compatible
+- Update submodule ref to point to latest gnsstk-data merge
+- Fix fortify pipeline job to default to full scans
+- Fix tests using df_diff from df_diff fixes in gnsstk!969
+- Add Fortify scan job
+- Fix wheresat application such that a usable default TimeSystem is used for the optional start and end times; alternatively, allow a TimeSystem to be specified on the command-line.
+- Add C++17 support for Toolkits
+- Add pipeline jobs for check LTS breaking changes
+- Update CI pipeline to use RKS Runner Tags
 * Tue Jan 07 2025 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v14.1.4 release
 - Update gitlab windows jobs to use new gitlab windows runners

@@ -15,9 +15,9 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ cdt('xorg-x11-proto-devel') }}  # [linux]
   host:
-    - gnsstk >=14.4.0,<15
+    - gnsstk >=15.0.0,<16
   run:
-    - gnsstk >=14.4.0,<15
+    - gnsstk >=15.0.0,<16
 
 test:
   imports:
