@@ -329,32 +329,32 @@ add_test(NAME RinEditNav_time_3
 # Check RinSum with obspath and Rinex v2.11 file
 test_app_with_stdout(RinSum_obspath_v211 RinSum Rinex2
     --obspath\ ${SD}/inputs/igs\ --obs\ faa1170b00.16o
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum & Rinex v2.10 file
 test_app_with_stdout(RinSum_v210_osn3 RinSum Rinex2
     --obs\ ${SD}/inputs/igs/osn31700.16o\ --ycode
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum & Rinex v2.11 file
 test_app_with_stdout(RinSum_v211_cags RinSum Rinex2
     --obs\ ${SD}/inputs/igs/cags1700.16o
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum & Rinex v2.11 file
 test_app_with_stdout(RinSum_v211_kerg RinSum Rinex2
     --obs\ ${SD}/inputs/igs/kerg1700.16o
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum with Rinex v2.11 file with more obs types
 test_app_with_stdout(RinSum_v211_nklg RinSum Rinex2
     --obs\ ${SD}/inputs/igs/nklg170b00.16o
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum Rinex v3.02 input
 test_app_with_stdout(RinSum_v302_FAA1 RinSum Rinex3
     --obs\ ${SD}/inputs/igs/FAA100PYF_R_20161700100_15M_01S_MO
-    "-l2 -v")
+    "-l2 -v -z1")
 
 # Check RinSum with Rinex v3.03 input
 # Uncomment this when Nathanial's changes make it in

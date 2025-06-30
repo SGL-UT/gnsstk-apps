@@ -2,6 +2,7 @@
 *~
 .*.swp
 .idea
+CMakePresets.json
 
 # Python compiled byte-code
 *.pyc

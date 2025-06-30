@@ -1,3 +1,21 @@
+gnsstk-apps (15.0.0-1) focal; urgency=low
+
+  * Updated to version 15.0.0
+  * Update CI pipeline to use RKS Runner Tags
+  * Add pipeline jobs for check LTS breaking changes
+  * Add C++17 support for Toolkits
+  * Fix wheresat application such that a usable default TimeSystem is
+    used for the optional start and end times; alternatively, allow a
+    TimeSystem to be specified on the command-line.
+  * Add Fortify scan job
+  * Fix tests using df_diff from df_diff fixes in gnsstk!969
+  * Fix fortify pipeline job to default to full scans
+  * Update submodule ref to point to latest gnsstk-data merge
+  * Update cmake to set minimum compiler version on RHEL to be C++17 ABI
+    compatible
+
+ -- David Barber <dbarber@arlut.utexas.edu>  Tue, 24 Jun 2025 14:13:37 -0500
+
 gnsstk-apps (14.1.4-1) focal; urgency=low
 
   * Updated to version 14.1.4

@@ -294,6 +294,8 @@ class WhereSat : public BasicFramework
 public:
    WhereSat(const string& applName);
 
+   bool initialize(int argc, char *argv[], bool pretty = true) noexcept override;
+
    void process() override;
 
    CommandOptionNoArg ignoreHealthOpt;
@@ -302,6 +304,7 @@ public:
    CommandOptionWithAnyArg positionOpt;
    CommandOptionWithCommonTimeArg startTimeOpt;
    CommandOptionWithCommonTimeArg endTimeOpt;
+   CommandOptionWithAnyArg timeSysOpt;
    CommandOptionWithAnyArg formatOpt;
    CommandOptionWithAnyArg sidOpt;
    CommandOptionWithNumberArg prnOpt;
@@ -311,46 +314,80 @@ public:
    NavLibrary navLib;
       /// nav data file reader
    gnsstk::NavDataFactoryPtr ndfp;
+      /// TimeSystem of the start and end times
+   gnsstk::TimeSystem timeSys { gnsstk::TimeSystem::Unknown };
 };
 
 
 WhereSat ::
 WhereSat(const string& applName)
       : BasicFramework(applName, "Computes ephemeris data."),
-        ignoreHealthOpt('i',"noHealth","Ignore bad SV health."),
-        velOpt('V',"velocity","Display velocity in addition to position"),
-        ephFiles('e',"eph-files","Ephemeris source file(s). Can be RINEX nav,"
-                 " SP3, RawNavCSV, or FIC.",true),
-        positionOpt('u',"position","Antenna position (m) in ECEF (x,y,z)"
+        ignoreHealthOpt('i', "noHealth", "Ignore bad SV health."),
+        velOpt('V', "velocity", "Display velocity in addition to position."),
+        ephFiles('e', "eph-files", "Ephemeris source file(s). Can be RINEX nav,"
+                 " SP3, RawNavCSV, or FIC.", true),
+        positionOpt('u', "position", "Antenna position (m) in ECEF (x,y,z)"
                     " coordinates.  Format as a string: \"X Y Z\". Used to give"
                     " user-centered data (SV range, azimuth & elevation) when"
                     " SV is in view."),
-        startTimeOpt('\0',"start","%m/%d/%Y %H:%M:%S",
+        startTimeOpt('\0', "start", "%m/%d/%Y %H:%M:%S",
                      "Ignore data before this time. Format as"
                      " string: \"MO/DD/YYYY HH:MM:SS\"."),
-        endTimeOpt('\0',"end","%m/%d/%Y %H:%M:%S",
+        endTimeOpt('\0', "end", "%m/%d/%Y %H:%M:%S",
                    "Ignore data after this time. Format as string: "
                    "\"MO/DD/YYYY HH:MM:SS\"."),
-        formatOpt('f',"time-format","CommonTime format specifier used for times"
+        timeSysOpt('\0', "time-system", "Time system of the optional --start and"
+                   " --end times (default = navigation data time system)."),
+        formatOpt('f', "time-format", "CommonTime format specifier used for times"
                   " in the output. The default is \"%02m/%02d/%4Y"
                   " %02H:%02M:%04.1f\"."),
-        sidOpt('s',"sat","Which SVs to analyze (by RINEX SatID.  e.g., G01"
+        sidOpt('s', "sat", "Which SVs to analyze (by RINEX SatID.  e.g., G01"
                " E30). Repeat option for multiple satellites. If this option is"
                " not specified, all ephemeris data will be processed."),
-        prnOpt('p',"prn","Which SVs to analyze (by PRN). Repeat option for"
+        prnOpt('p', "prn", "Which SVs to analyze (by PRN). Repeat option for"
                " multiple satellites. If this option is not specified, all"
                " ephemeris data will be processed."),
-        incrementOpt('t',"time","Time increment for ephemeris calculation. "
+        incrementOpt('t', "time", "Time increment for ephemeris calculation. "
                      "Enter increment in seconds. Default is 900 (15 min)."),
         almOpt('A', "use-alm", "Use almanac to compute positions"
-               " (default=ephemeris)")
+               " (default=ephemeris).")
 {
+   positionOpt.setMaxCount(1);
+   startTimeOpt.setMaxCount(1);
+   endTimeOpt.setMaxCount(1);
+   timeSysOpt.setMaxCount(1);
+   formatOpt.setMaxCount(1);
+   incrementOpt.setMaxCount(1);
+
       // Initialize these two items in here rather than in the
       // initializer list to guarantee execution order and avoid seg
       // faults.
    ndfp = std::make_shared<gnsstk::MultiFormatNavDataFactory>();
    ephFiles.setDescription("Ephemeris source file(s). Can be " +
                            ndfp->getFactoryFormats() + ".");
+}
+
+
+bool WhereSat ::
+initialize(int argc, char *argv[], bool pretty) noexcept
+{
+   if (!gnsstk::BasicFramework::initialize(argc, argv, pretty))
+      return false;
+
+   if (timeSysOpt.getCount() > 0)
+   {
+      std::string timeSysStr = timeSysOpt.getValue()[0];
+      timeSys = gnsstk::StringUtils::asTimeSystem(timeSysStr);
+      if ((timeSys == gnsstk::TimeSystem::Unknown) ||
+          (timeSys == gnsstk::TimeSystem::Any))
+      {
+         cerr << "The supplied TimeSystem '" << timeSysStr
+              << "' is invalid; a specific TimeSystem is required." << endl;
+         exitCode = gnsstk::BasicFramework::OPTION_ERROR;
+         return false;
+      }
+   }  
+   return true;
 }
 
 
@@ -390,7 +427,7 @@ process()
    {
       cout << "One of more invalid SVs specified.  wheresat will terminate."
            << endl;
-      exitCode = 1;
+      exitCode = gnsstk::BasicFramework::OPTION_ERROR;
       return;
    }
    cout << "Scan complete, # of PRNs on command line = " << prnSet.size()
@@ -502,15 +539,23 @@ process()
         << satSet.size() << endl;
 
    CivilTime tS, tE;
-   CommonTime tStart,tEnd;
+   CommonTime tStart, tEnd;
+   CommonTime tInit = navLib.getInitialTime();
+
+     // If the TimeSystem was not specified, use the TimeSystem
+     // of the first data in the nav data store.
+   if (timeSys == gnsstk::TimeSystem::Unknown)
+   {
+      timeSys = tInit.getTimeSystem();
+   }
    if (startTimeOpt.getCount())
    {
       tStart = startTimeOpt.getTime()[0];
-      tStart.setTimeSystem(gnsstk::TimeSystem::Any);
+      tStart.setTimeSystem(timeSys);
    }
    else
    {
-      tStart = navLib.getInitialTime();
+      tStart = tInit;
    }
    tS = tStart;
    cout << tS << endl;
@@ -518,7 +563,7 @@ process()
    if (endTimeOpt.getCount())
    {
       tEnd = endTimeOpt.getTime()[0];
-      tEnd.setTimeSystem(gnsstk::TimeSystem::Any);
+      tEnd.setTimeSystem(timeSys);
    }
    else
    {

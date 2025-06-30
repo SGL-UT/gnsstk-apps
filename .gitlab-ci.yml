@@ -16,12 +16,18 @@ include:
     ref: main
   - project: 'sgl/ci-control'
     file: 'common/scanning/sonar.yml'
+  - project: 'sgl/ci-control'
+    file: 'common/scanning/fortify.yml'
+  - project: sgl-tks/ci-control
+    file: /general/fortify-upload.yml
 
 stages:
   - check
+  - dependency
   - build
   - test
   - quality
+  - reporting
   - install
   - package
   - push
@@ -35,21 +41,27 @@ variables:
   GNSSTK_COMMIT:
     value: "main"
     description: "Upstream gnsstk lib branch to link. Defaults to main"
-  # By default, pipeline will build with both VS 2015 and VS 2019 windows jobs along with rest of platform jobs.
+  # By default, pipeline will build with VS 2019 windows jobs along with rest of platform jobs.
   # If you want to build only VS 2019 windows jobs, then set BLD_ONLY_VS2019 to True. It will exclude rest of platform jobs.
   # If you want to exclude VS 2019 windows jobs, then set BLD_VS2019 to False.
   BLD_VS2019:
     value: "True"
     description: "If True, then build under Windows using Visual Studio 2019. Defaults to True"
-  BLD_ONLY_VS2019:
-    value: "False"
-    description: "If True, then ONLY build Windows using Visual Studio 2019 and skips Visual Studio 2015 jobs. Defaults to False"
   BLD_VS_DLL:
     value: "True"
     description: "If True, then link against Dynamic Link Libraries (VS2019 only)"
   BLD_VS_STATIC:
     value: "True"
-    description: "If True, then link against Static Libraries (VS2019 only, VS2015 always builds static)"
+    description: "If True, then link against Static Libraries (VS2019 only)"
+  NO_BIGBUILD_CI:
+    value: "False"
+    description: "If True then no big build jobs are executed on main/ci_xxx/version_xxx_prep branches. Defaults to False"
+  FORTIFY_SCAN_TYPE:
+    value: ''
+    options:
+    - ''
+    - '-quick'
+    description: "Defaults to blank which is Critical, High, Medium, and Low. Change value to -quick for Critical and High only.  Do not use -quick for releases"
 
   # Sonar Controls
   SONAR_EXCLUSIONS: '**/tests/**,**/rpm_files/**,**/conda_recipe/**,**/data/**,**/coverage-cpp.xml,**/build*/**,**/debian/**,**/deprecated/**,**/examples/**,**/ref/**,**/rpm_files/**,**/swig/**,**/DoxygenLayout.xml,**/custom.css'
@@ -61,21 +73,44 @@ variables:
 
 # Template for all normal jobs.
 .normal_job:
-  except:
-    variables:
-      - $BLD_ONLY_VS2019 == "True"
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 .vs2019_job:
   only:
     variables:
       - $BLD_VS2019 == "True"
       - $BLD_VS_STATIC == "True"
+  retry: 2
 
 .vs2019_dll_job:
   only:
     variables:
       - $BLD_VS2019 == "True"
       - $BLD_VS_DLL == "True"
+  retry: 2
+
+# Template for all "big" builds.
+.big_build:
+  only:
+    refs:
+      - main
+      - /^ci_.*$/
+      - /^version_.*_prep$/
+      - stable
+      - /^release\/v[0-9.]*$/
+      - /^bugfix\/ci_.*$/
+      - /^feature\/ci_.*$/
+    variables:
+      - $NO_BIGBUILD_CI != "True"
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 # Template for all jobs that should deploy packages.
 .package_deploy:
@@ -92,13 +127,18 @@ variables:
       - /^feature\/ci_.*$/
     variables:
       - $BLD_ONLY_VS2019 != "True"
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 .build_conda:
   stage: build
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -113,12 +153,20 @@ variables:
     - ./optional_package_add.sh ${OPT_LIBS}
     - mkdir -p build
     - cd build
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - export gnsstk=`pwd`/install
     - cmake -DPYTHON_INSTALL_PREFIX=$gnsstk -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
       - build/
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 # Check Stage
 # Runs static analysis on code.
@@ -127,8 +175,8 @@ static_analysis:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+    - standard
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - ./lint_test.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -139,12 +187,12 @@ submodule_check:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - standard
   variables:
     GIT_SUBMODULE_UPDATE_FLAGS: --remote
   only:
     - main
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - (! git status --porcelain | grep 'M data')
 
@@ -154,8 +202,8 @@ sgllint_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:python3
+    - standard
+  image: $DOCKER_REGISTRY/sgl/rhel8:python-3.9
   script:
     - '######'
     - '# This job checks all files for required lines like copyright/license statements.'
@@ -173,8 +221,8 @@ protected_term_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:python3
+    - standard
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - '######'
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
@@ -195,8 +243,8 @@ protected_history_lint:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:python3
+    - standard
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - '######'
     - '# This job checks all files modified on this branch for sensitive terms.'
@@ -218,8 +266,8 @@ generate_documentation:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+    - extra-large
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Install GraphViz
     - sudo apt-get install -y graphviz
@@ -237,165 +285,135 @@ repository_validation:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
+    - standard
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Verify there are no duplicate header files names in the repo.
     - ./dup_check.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
   allow_failure: false
 
+# Verifies that an upstream change hasn't broken the last tagged release..
+upstream_main_repository_validation:
+  stage: dependency
+  needs: []
+  extends: .big_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - '######'
+    - '# This job builds/tests the last tagged release of gnsstk-apps to see if upstream dependencies have broken it.'
+    - '# If this test fails, gnsstk may require a major version increase.'
+    - '######'
+    # Install lib dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    # source gnsstk enable script to set private library env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - git checkout -f $(git describe --abbrev=0 origin/stable)
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - ctest -j 4
+  allow_failure: true
+
+# Verifies that an upstream change hasn't broken the last tagged release..
+upstream_stable_repository_validation:
+  stage: dependency
+  needs: []
+  extends: .big_build
+  tags:
+    - docker-executor
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    - '######'
+    - '# This job builds/tests the current main of gnsstk-apps against LTR of gnsstk.'
+    - '# If this test fails, we may require bumping out minimum version of gnsstk.'
+    - '######'
+    - apt-get update
+    - apt-get install -y gnsstk15-bin libgnsstk15-dev
+    # source gnsstk enable script to set private library env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - mkdir build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - ctest -j 4
+  allow_failure: true
+
 #
 # Build Stage - Try building in several environments.
 #
-deb10_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
-deb10_op1_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional library
-    - ./optional_package_add.sh $PACKAGE_CONFIG_1
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
-deb10_op2_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
-deb11_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
-deb11_op1_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - apt-get install -y libhdf5-dev
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_1
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
-deb11_op2_build:
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    # Link optional libraries
-    - ./optional_package_add.sh $PACKAGE_CONFIG_2
-    - mkdir -p build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
-    - make all -j 4
-  artifacts:
-    paths:
-      - build/
-
 ubu20_build:
   stage: build
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
+    # Print pipeline variables
+    - echo "Dependency branches"
+    - echo "GNSSTK_COMMIT:$GNSSTK_COMMIT"
+    - echo "SGLTK_COMMIT:$SGLTK_COMMIT"
+    - echo "Downstream branches"
+    - echo "BETATK_COMMIT:$BETATK_COMMIT"
+    - echo "MDHTK_COMMIT:$MDHTK_COMMIT"
     # source gnsstk's enable script to set private library install env variables.
     - source /etc/profile.d/gnsstk_enable.sh
     - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DPYTHON_EXECUTABLE=/usr/bin/python3 $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
+ubu20_op1_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - extra-large
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    # Install dependencies from latest CI first.
+    - apt-get install -y libhdf5-dev
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_max
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+    # Link optional libraries
+    - ./optional_package_add.sh $PACKAGE_CONFIG_1
+    - mkdir -p build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+  artifacts:
+    paths:
+      - build/
+
+ubu20_op2_build:
+  stage: build
+  needs: []
+  extends: .normal_job
+  tags:
+    - extra-large
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  script:
+    # Install dependencies from latest CI first.
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_max
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
+    # Link optional libraries
+    - ./optional_package_add.sh $PACKAGE_CONFIG_2
+    - mkdir -p build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
     - make all -j 4
   artifacts:
     paths:
@@ -420,11 +438,14 @@ rhel8_build:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - mkdir -p build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
@@ -432,29 +453,6 @@ rhel8_build:
   artifacts:
     paths:
       - build/
-
-windows_build:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-  stage: build
-  needs: []
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - windows/install_required_deps_windows.ps1 user_install_windows pkg_min
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - mkdir build
-    - cd build
-    - cmake -DCMAKE_INSTALL_PREFIX=install -DBUILD_EXT=ON -DTEST_SWITCH=ON -G "Visual Studio 14 2015 Win64" ../
-    - cmake --build . --config Release -- /m:4 /nr:false
-  artifacts:
-    paths:
-      - build/
-      - library/
-      - "*.{in,cmake,h}"
-      - "**/CMakeLists.txt"
-    expire_in: 4 days
 
 windows_build_vs2019:
   variables:
@@ -566,7 +564,7 @@ windows_op1_build_vs2019_dll:
   stage: test
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -578,6 +576,9 @@ windows_op1_build_vs2019_dll:
     - conda activate py3.9
     - python -c "import gnsstk"
     - cd build
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - ctest -j 4
     - touch $CI_PROJECT_DIR/success
   artifacts:
@@ -605,95 +606,12 @@ conda_op2_test:
     OPT_CONDA_LIBS: $PACKAGE_CONFIG_CONDA_2
     PKG_TYPE: "pkg_max"
 
-deb10_test:
-  stage: test
-  needs: [deb10_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - deb10_build
-
-deb10_op2_test:
-  stage: test
-  needs: [deb10_op2_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-      - build/Testing/Temporary/
-  dependencies:
-    - deb10_op2_build
-
-deb11_test:
-  stage: test
-  needs: [deb11_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-    - build/Testing/Temporary/
-  dependencies:
-    - deb11_build
-
-deb11_op2_test:
-  stage: test
-  needs: [deb11_op2_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    - apt-get install -y libhdf5-dev
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_max
-    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
-    - cd build
-    - ctest -j 4
-  artifacts:
-    when: on_failure
-    paths:
-      - build/Testing/Temporary/
-  dependencies:
-    - deb11_op2_build
-
 ubu20_test:
   stage: test
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -708,15 +626,19 @@ ubu20_test:
   dependencies:
     - ubu20_build
 
-rhel8_test:
+ubu20_op2_test:
   stage: test
-  needs: [rhel8_build]
+  needs: [ubu20_op2_build]
   extends: .normal_job
   tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
+    - extra-large
+  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
-    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    - apt-get install -y libhdf5-dev
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_max
+    # source gnsstk's and optional dependencies' enable script to set private library install env variables.
+    - source /etc/profile.d/gnsstk_enable.sh
+    - for tks in ${PACKAGE_CONFIG_2}; do source /etc/profile.d/${tks}_enable.sh; done
     - cd build
     - ctest -j 4
   artifacts:
@@ -724,29 +646,28 @@ rhel8_test:
     paths:
       - build/Testing/Temporary/
   dependencies:
-    - rhel8_build
+    - ubu20_op2_build
 
-windows_test:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
+rhel8_test:
   stage: test
-  needs: [windows_build]
+  needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - win10-vs2015
+    - extra-large
+  image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - cd build
-    - cmake --build . --target RUN_TESTS --config Release
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
+    - ctest -j 4
   artifacts:
     when: on_failure
     paths:
-    - build/Testing/Temporary/
+      - build/Testing/Temporary/
   dependencies:
-    - windows_build
-  timeout: 10m
+    - rhel8_build
 
 windows_test_vs2019:
   variables:
@@ -839,7 +760,6 @@ windows_op1_test_vs2019_dll:
 #
 # Quality Stage - SonarQube code quality scan
 #
-
 sonar-scan:
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   stage: quality
@@ -847,10 +767,10 @@ sonar-scan:
   extends:
     - .sonarqube-check
   tags:
-    - docker-executor
+    - extra-large
   script:
     - apt-get install gcovr lcov -y
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
+    - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
     - mkdir build
     - cd build
     - cmake -DCMAKE_INSTALL_PREFIX=install -DDEBUG_SWITCH=ON -DTEST_SWITCH=ON -DCOVERAGE_SWITCH=ON ../
@@ -864,38 +784,51 @@ sonar-scan:
   # Currently, allowing job to fail so sonar scan doesn't fail the pipeline.
   # This will be removed once coverge is >= 80% and pipeline successful will be enforced for MR.
   allow_failure: true
-  retry: 2
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+fortify-scan:
+  extends:
+    - .cpp_fortify
+  tags:
+    - extra-large
+  needs: []
+  script:
+    # Install dependencies from latest CI first.
+    - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
+    - mkdir -p build
+    - cd build
+    - cmake -DCMAKE_INSTALL_PREFIX=install $CMAKE_ARG_DEFAULT
+    - make all -j 4
+    - !reference [.fortify_post_consolidated_cpp, script]
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+fortify-scan-publish:
+  stage: reporting
+  extends: .fortify-scan-publish
+  needs:
+    - job: fortify-scan
+      artifacts: true
 
 # User_Install Stage
 # Tests user install of GNSSTk on each platform, saves artifacts for
 # downstream builds.
-deb11_user_install:
-  stage: install
-  needs: [deb11_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd build
-    - export gnsstk=`pwd`/install
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
-    - make install -j 4
-  artifacts:
-    paths:
-      - build/install
-  dependencies:
-    - deb11_build
-
 ubu20_user_install:
   stage: install
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -916,10 +849,13 @@ rhel8_user_install:
   needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - cd build
     - export gnsstk=`pwd`/install
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -929,29 +865,6 @@ rhel8_user_install:
       - build/install
   dependencies:
     - rhel8_build
-
-user_install_windows:
-  stage: install
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  needs: [windows_build,windows_test]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - Get-ChildItem "$env:CI_PROJECT_DIR\library\build\install\share\cmake" -Directory | Foreach-Object { $env:CMAKE_PREFIX_PATH += ";" + $_.FullName }
-    - cd build
-    - cmake --build . --config Release --target install -j 10
-  artifacts:
-    paths:
-      - build/install/
-    expire_in: 4 days
-  dependencies:
-    - windows_build
-    - windows_test
-  timeout: 30m
 
 user_install_windows_vs2019:
   stage: install
@@ -1003,30 +916,12 @@ user_install_windows_vs2019_dll:
 
 # System Stage
 # Tests install of GNSSTk on each platform, saves artifacts for downstream builds.
-deb11_system_install:
-  stage: install
-  needs: [deb11_build]
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd build
-    - export gnsstk=/usr/local
-    - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
-    - make install -j 4
-  dependencies:
-    - deb11_build
-
 ubu20_system_install:
   stage: install
   needs: [ubu20_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -1044,10 +939,13 @@ rhel8_system_install:
   needs: [rhel8_build]
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - cd build
     - export gnsstk=/usr/local
     - cmake -DCMAKE_INSTALL_PREFIX=$gnsstk ../
@@ -1055,82 +953,16 @@ rhel8_system_install:
   dependencies:
     - rhel8_build
 
-
 # Package Stage
 # Tests packaging of GNSSTk-apps on all platforms
 # Temporarily changing name back to old name so repo_utils can find this job.
 # We will standardize job names per Jira SIM-55
 #Temporarily changing name back to old name so repo_utils can find this job.  We will standardize job names per Jira SIM-55
-package_debian_10:
-  stage: package
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # kludge for dpkg
-    - rm -f .gitmodules
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    # Remove any directories left over from the above script.
-    - rm -rf packages
-    # Mark the debian log so that this package is a backport.
-    # Use the most recent Maintainer as current maintainer.
-    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
-    - dch --bpo "No Changes"
-    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=buster-sgl"
-    - mkdir debs
-    - mv ../*.deb debs
-    - mv ../*.changes debs
-    - mv ../*.dsc debs
-    - mv ../*.git ../*.gitshallow debs
-    - mv ../*.buildinfo debs
-  artifacts:
-    paths:
-      - debs/
-  dependencies:
-    - deb10_build
-
-#Temporarily changing name back to old name so repo_utils can find this job.  We will standardize job names per Jira SIM-55
-package_debian_11:
-  stage: package
-  needs: []
-  extends: .normal_job
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # kludge for dpkg
-    - rm -f .gitmodules
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    # Remove any directories left over from the above script.
-    - rm -rf packages
-    # Mark the debian log so that this package is a backport.
-    # Use the most recent Maintainer as current maintainer.
-    - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
-    - dch --bpo "No Changes"
-    - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=bullseye-sgl"
-    - mkdir debs
-    - mv ../*.deb debs
-    - mv ../*.changes debs
-    - mv ../*.dsc debs
-    - mv ../*.git ../*.gitshallow debs
-    - mv ../*.buildinfo debs
-  artifacts:
-    paths:
-      - debs/
-
 package_ubuntu_20.04:
   stage: package
   needs: []
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # kludge for dpkg
@@ -1144,7 +976,7 @@ package_ubuntu_20.04:
     # Mark the debian log so that this package is a backport.
     # Use the most recent Maintainer as current maintainer.
     - export DEBEMAIL=$(dpkg-parsechangelog -S Maintainer)
-    - dch --bpo "No Changes" && dch  -l "ubuntu" -D focal 'No Changes' -u low
+    - dch --bpo "No Changes" && dch  -l "cpp17ubuntu" -D focal 'No Changes' -u low
     - dpkg-buildpackage -us -uc -d --changes-option="-DDistribution=focal-sgl"
     - mkdir debs
     - mv ../*.deb debs
@@ -1163,7 +995,7 @@ package_conda:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
@@ -1191,9 +1023,12 @@ package_redhat_8:
   needs: []
   extends: .normal_job
   tags:
-    - docker-executor
+    - extra-large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
+    # source gcc9 for std C++17
+    - source /opt/rh/gcc-toolset-9/enable
+    - gcc --version
     - bash rpm_files/install_required_deps_rpm.sh package_redhat_8 pkg_min
     - bash rpm_files/setup_dirs.sh
     - git archive --prefix gnsstk-apps-master/ -o rpm_files/SOURCES/gnsstk-apps-master.tar.gz HEAD
@@ -1205,26 +1040,6 @@ package_redhat_8:
      - rpm_files/RPMS/x86_64/gnsstk-*
      - rpm_files/SRPMS/gnsstk-*
   dependencies: []
-
-package_windows:
-  variables:
-    GIT_CLONE_PATH: $CI_BUILDS_DIR/$CI_PROJECT_NAME/$CI_PIPELINE_ID
-    GIT_STRATEGY: fetch
-    GIT_CLEAN_FLAGS: none
-  stage: package
-  needs: [windows_build,user_install_windows]
-  extends: .normal_job
-  tags:
-    - win10-vs2015
-  script:
-    - cd build
-    - cpack -C Release
-#    - cpack -G WIX -C Release
-  dependencies:
-    - windows_build
-  artifacts:
-    paths:
-      - build/_CPack_Packages
 
 package_windows_vs2019:
   variables:
@@ -1308,54 +1123,12 @@ package_windows_op1_vs2019_dll:
 
 # Deploy Stage
 # Tests install of GNSSTk package on each platform, saves artifacts for downstream builds.
-deb10_deploy:
-  stage: deploy
-  needs: [package_debian_10]
-  extends: .package_deploy
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-10:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_10 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd debs
-    - sudo apt-get -y install ./*.deb
-    # source gnsstk-apps' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk-apps_enable.sh
-    - python3 -c "import gnsstk"
-    - timeconvert
-  dependencies:
-    - package_debian_10
-
-deb11_deploy:
-  stage: deploy
-  needs: [package_debian_11]
-  extends: .package_deploy
-  tags:
-    - docker-executor
-  image: $DOCKER_REGISTRY/sgl/debian-11:pkgbuild
-  script:
-    # Install dependencies from latest CI first.
-    - bash debian/install_required_deps_debian.sh package_debian_11 pkg_min
-    # source gnsstk's enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk_enable.sh
-    - cd debs
-    - apt-get -y install ./*.deb
-    # source gnsstk-apps' enable script to set private library install env variables.
-    - source /etc/profile.d/gnsstk-apps_enable.sh
-    - python3 -c "import gnsstk"
-    - timeconvert
-  dependencies:
-    - package_debian_11
-
 ubu20_deploy:
   stage: deploy
   needs: [package_ubuntu_20.04]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -1376,7 +1149,7 @@ rhel8_deploy:
   needs: [package_redhat_8]
   extends: .package_deploy
   tags:
-    - docker-executor
+    - large
   image: $DOCKER_REGISTRY/sgl/rhel-8:pkgbuild
   script:
     # Install dependencies from latest CI first.
@@ -1394,11 +1167,14 @@ push_artifacts:
     variables:
       - $BLD_ONLY_VS2019 == "True"
   variables:
-    DEB_10_PACKAGES: "debs/*bpo10+1_amd64.deb"
-    DEB_11_PACKAGES: "debs/*bpo11*.deb"
-    UBU_20_PACKAGES: "debs/*bpo10+1ubuntu*.deb"
-  needs: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
-  dependencies: [package_conda, package_debian_10, package_debian_11, package_ubuntu_20.04, package_redhat_8]
+    UBU_20_PACKAGES: "debs/*bpo10+1*ubuntu*.deb"
+  needs: [package_conda, package_ubuntu_20.04, package_redhat_8]
+  dependencies: [package_conda, package_ubuntu_20.04, package_redhat_8]
+  retry: 
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
 
 push_artifacts_windows:
   extends:

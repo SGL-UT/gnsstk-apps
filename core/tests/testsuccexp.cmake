@@ -43,6 +43,7 @@ endif()
 IF(DEFINED ARGS)
    string(REPLACE " " ";" ARG_LIST ${ARGS})
 ENDIF(DEFINED ARGS)
+
 # Convert DIFF_ARGS into a cmake list
 IF(DEFINED DIFF_ARGS)
    string(REPLACE " " ";" DIFF_ARG_LIST ${DIFF_ARGS})
@@ -81,7 +82,7 @@ IF(NOT DEFINED NODIFF)
     set(out "${TARGETDIR}/${TESTNAME}.out")
 
     if(DEFINED DIFF_PROG)
-        message(STATUS         "${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}")
+        message(STATUS         "${DIFF_PROG} ${DIFF_ARGS} -1 ${out} -2 ${exp}")
         execute_process(COMMAND ${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}
             RESULT_VARIABLE DIFFERENT)
     else()
@@ -109,7 +110,7 @@ IF(DEFINED DIFFSTDERR)
     set(out "${TARGETDIR}/${TESTNAME}.err")
 
     if(DEFINED DIFF_PROG)
-        message(STATUS         "${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}")
+        message(STATUS         "${DIFF_PROG} ${DIFF_ARGS} -1 ${out} -2 ${exp}")
         execute_process(COMMAND ${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}
             RESULT_VARIABLE DIFFERENT)
     else()
@@ -137,7 +138,7 @@ IF(DEFINED DIFFLOG)
     set(out "${TARGETDIR}/${TESTNAME}.log")
 
     if(DEFINED DIFF_PROG)
-        message(STATUS         "${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}")
+        message(STATUS         "${DIFF_PROG} ${DIFF_ARGS} -1 ${out} -2 ${exp}")
         execute_process(COMMAND ${DIFF_PROG} ${DIFF_ARG_LIST} -1 ${out} -2 ${exp}
             RESULT_VARIABLE DIFFERENT)
     else()

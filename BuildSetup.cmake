@@ -13,6 +13,20 @@ elseif( WIN32 )
     set( STADYN "STATIC" )
 endif()
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED on)
+set(CMAKE_CXX_EXTENSIONS off)
+
+#----------------------------------------
+# Set minimum GNU compiler version
+# to version 9 or greater for C++17 ABI stable compatibility
+#----------------------------------------
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS "9.0")
+        message(FATAL_ERROR "Found gcc version ${CMAKE_CXX_COMPILER_VERSION}. Compiler version must be at least 9 to be ABI stable with C++17 Std!")
+    endif()
+endif()
+
 # profiler stuff
 if( ${PROFILER} )
   set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg -no-pie -static" )
