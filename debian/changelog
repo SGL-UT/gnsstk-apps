@@ -1,3 +1,10 @@
+gnsstk-apps (15.1.0-1) focal; urgency=low
+
+  * Updated to version 15.1.0
+  * Release for ABI compatibility due to change in gnsstk
+
+ -- Cherie Formacion <cformacion@arlut.utexas.edu>  Thu, 16 Oct 2025 13:24:37 -0500
+
 gnsstk-apps (15.0.0-1) focal; urgency=low
 
   * Updated to version 15.0.0
