@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 15.0.0
+%define version 15.1.0
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,9 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Thu Oct 16 2025  <>
+- Updated for v15.1.0 release
+- Release for ABI compatibility due to change in gnsstk
 * Tue Jun 24 2025 David Barber <dbarber@arlut.utexas.edu>
 - Updated for v15.0.0 release
 - Update cmake to set minimum compiler version on RHEL to be C++17 ABI compatible
