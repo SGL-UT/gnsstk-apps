@@ -139,7 +139,7 @@ variables:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -565,7 +565,7 @@ windows_op1_build_vs2019_dll:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -996,7 +996,7 @@ package_conda:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -1010,7 +1010,7 @@ package_conda:
     - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
      # Output directory must exist before conda build
     - mkdir -p conda-bld
-    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/
+    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/ -c http://mirror.arlut.utexas.edu/conda/pkgs/main
     # Don't archive the cache files.
     - rm -r conda-bld/linux-64/.cache
   artifacts:
