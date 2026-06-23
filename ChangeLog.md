@@ -1,3 +1,17 @@
+# Version 15.1.1   Tuesday June 23, 2026
+
+Modifications by Author
+-----------------------
+     David Barber <dbarber@arlut.utexas.edu> (2):
+           add sysroot_linux-64 >= 2.28 to conda recipe as a dependency
+           Update gnsstk-data submodule ref
+
+     Taben Malik <malik@arlut.utexas.edu> (2):
+           remove non-existent ctest -v flag
+           Use reduced pkgbuild image
+
+
+
 # Version 15.1.0   Thursday October 16, 2025
 
 Modifications by Author
