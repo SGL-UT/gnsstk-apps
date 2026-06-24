@@ -1,5 +1,5 @@
 %define name gnsstk-apps
-%define version 15.1.0
+%define version 15.1.1
 %define release 1
 
 Summary:        GNSS Toolkit
@@ -53,6 +53,12 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
+* Tue Jun 23 2026  <>
+- Updated for v15.1.1 release
+- Update gnsstk-data submodule ref in gitlab pipeline
+- Use reduced pkgbuild image in gitlab pipeline
+- Fix build.sh to remove non-existent ctest `-v` flag.
+- Fix conda pkg pipeline job by pinning version of conda glibc to 2.28
 * Thu Oct 16 2025  <>
 - Updated for v15.1.0 release
 - Release for ABI compatibility due to change in gnsstk

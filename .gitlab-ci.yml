@@ -139,7 +139,7 @@ variables:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -176,7 +176,7 @@ static_analysis:
   extends: .normal_job
   tags:
     - standard
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - ./lint_test.sh
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -192,7 +192,7 @@ submodule_check:
     GIT_SUBMODULE_UPDATE_FLAGS: --remote
   only:
     - main
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - (! git status --porcelain | grep 'M data')
 
@@ -222,7 +222,7 @@ protected_term_lint:
   extends: .normal_job
   tags:
     - standard
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - '######'
     - '# This job checks all files for protected terms in files modified since the branch split from default.'
@@ -244,7 +244,7 @@ protected_history_lint:
   extends: .normal_job
   tags:
     - standard
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - '######'
     - '# This job checks all files modified on this branch for sensitive terms.'
@@ -267,10 +267,11 @@ generate_documentation:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Install GraphViz
-    - sudo apt-get install -y graphviz
+    - apt-get update
+    - DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true apt-get install -y --no-install-recommends graphviz
     # Call doxygen w/alternate target directory
     - doxygen
   # Allow failures here to prevent blocking the rest of the pipeline.
@@ -286,7 +287,7 @@ repository_validation:
   extends: .normal_job
   tags:
     - standard
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Verify there are no duplicate header files names in the repo.
     - ./dup_check.sh
@@ -300,7 +301,7 @@ upstream_main_repository_validation:
   extends: .big_build
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - '######'
     - '# This job builds/tests the last tagged release of gnsstk-apps to see if upstream dependencies have broken it.'
@@ -325,7 +326,7 @@ upstream_stable_repository_validation:
   extends: .big_build
   tags:
     - docker-executor
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - '######'
     - '# This job builds/tests the current main of gnsstk-apps against LTR of gnsstk.'
@@ -351,7 +352,7 @@ ubu20_build:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
@@ -378,7 +379,7 @@ ubu20_op1_build:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - apt-get install -y libhdf5-dev
@@ -402,7 +403,7 @@ ubu20_op2_build:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_max
@@ -565,7 +566,7 @@ windows_op1_build_vs2019_dll:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -612,7 +613,7 @@ ubu20_test:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
     # source gnsstk's enable script to set private library install env variables.
@@ -632,7 +633,7 @@ ubu20_op2_test:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - apt-get install -y libhdf5-dev
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_max
@@ -761,7 +762,7 @@ windows_op1_test_vs2019_dll:
 # Quality Stage - SonarQube code quality scan
 #
 sonar-scan:
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   stage: quality
   needs: []
   extends:
@@ -829,7 +830,7 @@ ubu20_user_install:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
     # source gnsstk's enable script to set private library install env variables.
@@ -922,7 +923,7 @@ ubu20_system_install:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
     # source gnsstk's enable script to set private library install env variables.
@@ -963,7 +964,7 @@ package_ubuntu_20.04:
   needs: []
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # kludge for dpkg
     - rm -f .gitmodules
@@ -996,7 +997,7 @@ package_conda:
   extends: .normal_job
   tags:
     - extra-large
-  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6
+  image: $DOCKER_REGISTRY/sgl/rhel8-conda:python-3.6-libmamba
   before_script:
     - source /opt/miniconda/etc/profile.d/conda.sh
   script:
@@ -1010,7 +1011,7 @@ package_conda:
     - export GIT_CHANGES_LAST_TAG=$(git rev-list --count $(git describe --abbrev=0 origin/stable)..@)
      # Output directory must exist before conda build
     - mkdir -p conda-bld
-    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/
+    - conda-build --output-folder conda-bld --python=$PYTHON_VERSION conda_recipe --override-channels -c file://$PWD/conda-deps/ -c http://mirror.arlut.utexas.edu/conda/pkgs/main
     # Don't archive the cache files.
     - rm -r conda-bld/linux-64/.cache
   artifacts:
@@ -1129,7 +1130,7 @@ ubu20_deploy:
   extends: .package_deploy
   tags:
     - large
-  image: $DOCKER_REGISTRY/sgl/ubuntu-20.04:pkgbuild
+  image: $DOCKER_REGISTRY/sgl/ubuntu-slim-20.04:pkgbuild
   script:
     # Install dependencies from latest CI first.
     - bash debian/install_required_deps_debian.sh package_ubuntu_20.04 pkg_min
